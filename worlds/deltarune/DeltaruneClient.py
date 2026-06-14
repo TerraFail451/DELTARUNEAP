@@ -6,15 +6,20 @@ import bsdiff4
 import shutil
 import json
 import hashlib
+import websockets
+import functools
 
 import Utils
 
 from NetUtils import NetworkItem, ClientStatus
 from worlds import deltarune
-from MultiServer import mark_raw, Context, Client
+from MultiServer import mark_raw, Context, Client, Endpoint
 from Utils import async_start
+from worlds.deltarune.LinuxProxy import proxy, proxy_loop
 
 ap_world_version = "v2.0.2"
+
+DEBUG = True
 
 # Try importing gui_enabled in Utils first before trying to import them from CommonClient
 # Core AP will be officially moving it to Utils in the future, so this is in accommodation for that
@@ -85,14 +90,27 @@ class DeltaruneCommandProcessor(ClientCommandProcessor):
             self.ctx.patch_game()
             self.output("Patched.")
 
+    async def _cmd_linux_proxy(self):
+        """Use this if you're a linux user to create a proxy between Archipelago Server and your game"""
+        self.ctx.proxy = websockets.serve(
+            functools.partial(proxy, ctx=self.ctx),
+            host="localhost",
+            port=1225,
+            ping_timeout=999999,
+            ping_interval=999999,
+        )
+        self.ctx.proxy_task = asyncio.create_task(proxy_loop(self.ctx), name="ProxyLoop")
+
+        await self.ctx.proxy
+        self.output("You should now be able to connect to localhost:1225 in game")
+        await self.ctx.proxy_task
+
     def _cmd_chosen_route(self):
         """Use this to figure out your chosen route, if you don't know or have forgotten."""
         if isinstance(self.ctx, DeltaruneContext):
             if self.ctx.chosen_route == "all_recruits":
-                self.output(
-                    """You're doing "All Recruits" - Progress through the story normally. Recruit Everyone!!!
-Gaining recruits has been turned into checks."""
-                )
+                self.output("""You're doing "All Recruits" - Progress through the story normally. Recruit Everyone!!!
+Gaining recruits has been turned into checks.""")
             elif self.ctx.chosen_route == "weird_route":
                 self.output(
                     """You're doing "Weird Route" - Proceed through the "Weird Route" storyline while losing all possible recruits.
@@ -174,7 +192,7 @@ Both gaining and losing recruits have been turned into checks."""
                 if not error:
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
                     self.ctx.patch_game()
-                    self.output("Patching successful!")
+                    self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}/DELTARUNE.exe")
 
 
 class DeltaruneContext(SuperContext):
@@ -200,10 +218,49 @@ class DeltaruneContext(SuperContext):
     receivingtype = 0
     unused_items = 0
     save_game_folder = os.path.expandvars(r"%localappdata%/DELTARUNEAP")
+    proxy = None
+    proxy_connected = False
+    proxy_endpoint: Endpoint = None
+    proxy_task = None
+    proxy_autoreconnect_task = None
+    proxy_server_msgs = []
+    proxy_message_queue = []
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
         self.game = "DELTARUNE"
+
+    def is_connected(self) -> bool:
+        return self.server and self.server.socket.open
+
+    def is_proxy_connected(self) -> bool:
+        return self.proxy_endpoint and self.proxy_endpoint.socket.open
+
+    async def send_msgs_proxy(self, msgs: typing.Iterable[dict]) -> bool:
+        """`msgs` JSON serializable"""
+        if not self.proxy_endpoint or not self.proxy_endpoint.socket.open or self.proxy_endpoint.socket.closed:
+            return False
+
+        if DEBUG:
+            self.output(f"Outgoing message: {msgs}")
+
+        # queue so that packets sent in quick succession don't get lost
+        # special thanks to profdecube for looking into this issue and writing a fix for it
+        self.proxy_message_queue.append(msgs)
+        if not self.is_processing_outgoing_messages:
+            self.is_processing_outgoing_messages = True
+            while len(self.proxy_message_queue) > 0:
+                message_to_process = self.proxy_message_queue.pop(0)
+                await self.proxy_endpoint.socket.send(message_to_process)
+                await asyncio.sleep(0.1)
+            self.is_processing_outgoing_messages = False
+        return True
+
+    async def disconnect_proxy(self):
+        if self.proxy_endpoint and not self.proxy_endpoint.socket.closed:
+            await self.proxy_endpoint.socket.close()
+        if self.proxy_task is not None:
+            await self.proxy_task
 
     def patch_game(self):
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "rb") as f:
@@ -257,10 +314,6 @@ async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
         except:
             await ctx.version_mismatch()
             return
-
-async def send_testy():
-    """i like to test oh yeah."""
-    logger.info("I am testing yippeee...")
 
 
 def main():
