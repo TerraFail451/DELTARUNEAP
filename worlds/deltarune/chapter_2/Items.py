@@ -36,7 +36,7 @@ chapter2_items = [
     ItemData(
         ItemIDs.tensionbit,
         ItemClassification.progression | ItemClassification.useful,
-        groups=[ItemGroups.tension_items],
+        groups=[ItemGroups.tension_items, ItemGroups.fusion_ingredient],
     ),
     ItemData(
         ItemIDs.glowwrist,
@@ -166,7 +166,7 @@ chapter2_items = [
         ItemIDs.bshotbowtie,
         ItemClassification.progression | ItemClassification.useful,
         should_be_included=lambda world: world.is_not_weird_route_only(),
-        groups=[ItemGroups.armors],
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
     ),
     ItemData(
         ItemIDs.freezering,
