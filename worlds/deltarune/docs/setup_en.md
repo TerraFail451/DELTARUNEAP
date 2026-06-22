@@ -16,6 +16,12 @@
 
 **Requires DELTARUNE 1.04 vanilla *(last public branch on Steam)***
 
+**If you've updated to Chapter 5, do the following to downpatch your base DELTARUNE:**
+
+- Open the steamconsole (Windows + R `steam://nav/console`)
+- Type `download_depot 1671210 1671212 5291565625263756968`
+- Follow the rest of the Setup guide. But use `/auto_patch steamdepot` instead of `/auto_patch steaminstall`
+
 Download the APWorld and place it into archipelago/custom_worlds (Double clicking the APWorld will also work!)
 
 Run the Archipelago Launcher (Or restart the launcher if it's already running)
