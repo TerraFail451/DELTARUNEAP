@@ -22,9 +22,6 @@ if TYPE_CHECKING:
 
 
 def set_rules(world: "DeltaruneWorld"):
-    multiworld = world.multiworld
-    player = world.player
-
     if world.can_access_fusion():
         have_chapter2_equipment_not_in_order = [
             OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
@@ -95,14 +92,14 @@ def set_rules(world: "DeltaruneWorld"):
         if world.include_chapter(2) and world.is_not_weird_route_only():
             world.set_rule(
                 world.get_location(locations[LocationIDs.cc_castle_town_tensionbow_fusion]),
-                Has(items[ItemIDs.bshotbowtie], player) & Has(items[ItemIDs.tensionbit], player),
+                Has(items[ItemIDs.bshotbowtie]) & Has(items[ItemIDs.tensionbit]),
             )
 
         # TwistedSwd
         if world.is_unused_items_included() and world.include_chapter(2) and world.is_weird_route():
             world.set_rule(
                 world.get_location(locations[LocationIDs.cc_castle_town_twistedsword_fusion]),
-                have_thornring & Has(items[ItemIDs.purecrystal], player),
+                have_thornring & Has(items[ItemIDs.purecrystal]),
             )
 
 
