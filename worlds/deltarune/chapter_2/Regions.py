@@ -17,7 +17,6 @@ from worlds.deltarune.Rules import (
     have_kris_susie_or_ralsei,
     can_recruit_with_kris_susie,
     have_susie,
-    have_noelle,
 )
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.Locations import LocationIDs, locations
@@ -127,8 +126,7 @@ def create_regions(world: "DeltaruneWorld"):
     trash_zone.connect(cyber_city, rule=have_kris_or_noelle | (have_kris_susie_or_ralsei & Has(glitched_item_name)))
 
     # Require Kris for Spamton fight unless you skip it with an Interaction Slide
-    # Require Noelle for second Berdly fight. It's brutal without it apparently
-    cyber_city.connect(cyber_city_spamton_fight, rule=(have_kris & have_noelle) | Has(glitched_item_name))
+    cyber_city.connect(cyber_city_spamton_fight, rule=have_kris)
     cyber_city.connect(mansion_lobby, rule=can_snowgrave)
     cyber_city.connect(
         cyber_city_post_spamton,
