@@ -3,7 +3,9 @@
 ## Required Software
 
 - DELTARUNE from the [Steam page](https://store.steampowered.com/app/1671210/)
+  - Require 1.04 (`download_depot 1671210 1671212 5291565625263756968`)
 - Archipelago from the [Archipelago Releases Page](https://github.com/ArchipelagoMW/Archipelago/releases)
+  - Require minimum 0.6.7
 - DELTARUNE APWorld from the [Releases Page](https://github.com/theemeraldsword85/DELTARUNEAP/releases)
   
 ## Recommended Software
