@@ -18,7 +18,13 @@ chapter5_items = [
         ItemClassification.progression,
         should_be_included=lambda world: world.is_chapters_randomized(),
         groups=[ItemGroups.region_blockers],
-    )
+    ),
+    ItemData(
+        ItemIDs.shadowcrystal,
+        ItemClassification.filler,
+        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        blacklist_filler=True,
+    ),
 ]
 
 

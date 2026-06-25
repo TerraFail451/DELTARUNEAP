@@ -275,6 +275,29 @@ class LocationIDs(IntEnum):
     ch1_recruit_rudinn = 255
     ch3_board_1_z_rank = 256
     ch3_board_2_z_rank = 257
+
+    ch5_pink_dollar_1 = 258
+    ch5_pink_dollar_2 = 259
+    ch5_pink_dollar_3 = 260
+    ch5_pink_dollar_4 = 261
+    ch5_pink_dollar_5 = 262
+    ch5_pink_dollar_6 = 263
+    ch5_pink_dollar_7 = 264
+    ch5_pink_dollar_8 = 265
+    ch5_pink_dollar_9 = 266
+    ch5_pink_dollar_10 = 267
+    ch5_pink_dollar_11 = 268
+    ch5_pink_dollar_12 = 269
+    ch5_pink_dollar_13 = 270
+    ch5_pink_dollar_14 = 271
+    ch5_pink_dollar_15 = 272
+    ch5_pink_dollar_16 = 273
+    ch5_pink_dollar_17 = 274
+    ch5_pink_dollar_18 = 275
+    ch5_pink_dollar_19 = 276
+    ch5_top_castle_mad_mew_mew = 277
+
+    # Lost recruits
     ch2_lost_werewire = 1049
     ch2_lost_tasque = 1054
     ch2_lost_virovirokun = 1055
@@ -597,6 +620,26 @@ locations = {
     LocationIDs.ch4_mike_pluey_silver: "CH4: Mike - Pluey (Silver Rank)",
     LocationIDs.ch4_mike_pluey_gold: "CH4: Mike - Pluey (Gold Rank)",
     LocationIDs.ch4_mike_pluey_platinum: "CH4: Mike - Pluey (Platinum Rank)",
+    LocationIDs.ch5_pink_dollar_1: "CH5: Pink Dollar 1",
+    LocationIDs.ch5_pink_dollar_2: "CH5: Pink Dollar 2",
+    LocationIDs.ch5_pink_dollar_3: "CH5: Pink Dollar 3",
+    LocationIDs.ch5_pink_dollar_4: "CH5: Pink Dollar 4",
+    LocationIDs.ch5_pink_dollar_5: "CH5: Pink Dollar 5",
+    LocationIDs.ch5_pink_dollar_6: "CH5: Pink Dollar 6",
+    LocationIDs.ch5_pink_dollar_7: "CH5: Pink Dollar 7",
+    LocationIDs.ch5_pink_dollar_8: "CH5: Pink Dollar 8",
+    LocationIDs.ch5_pink_dollar_9: "CH5: Pink Dollar 9",
+    LocationIDs.ch5_pink_dollar_10: "CH5: Pink Dollar 10",
+    LocationIDs.ch5_pink_dollar_11: "CH5: Pink Dollar 11",
+    LocationIDs.ch5_pink_dollar_12: "CH5: Pink Dollar 12",
+    LocationIDs.ch5_pink_dollar_13: "CH5: Pink Dollar 13",
+    LocationIDs.ch5_pink_dollar_14: "CH5: Pink Dollar 14",
+    LocationIDs.ch5_pink_dollar_15: "CH5: Pink Dollar 15",
+    LocationIDs.ch5_pink_dollar_16: "CH5: Pink Dollar 16",
+    LocationIDs.ch5_pink_dollar_17: "CH5: Pink Dollar 17",
+    LocationIDs.ch5_pink_dollar_18: "CH5: Pink Dollar 18",
+    LocationIDs.ch5_pink_dollar_19: "CH5: Pink Dollar 19",
+    LocationIDs.ch5_top_castle_mad_mew_mew: "CH5: Top Castle - Mad Mew Mew defeated",
 }
 
 
