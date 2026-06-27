@@ -295,7 +295,7 @@ class LocationIDs(IntEnum):
     ch5_pink_dollar_17 = 274
     ch5_pink_dollar_18 = 275
     ch5_pink_dollar_19 = 276
-    ch5_top_castle_mad_mew_mew = 277
+    ch5_top_castle_pink = 277
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -639,7 +639,7 @@ locations = {
     LocationIDs.ch5_pink_dollar_17: "CH5: Pink Dollar 17",
     LocationIDs.ch5_pink_dollar_18: "CH5: Pink Dollar 18",
     LocationIDs.ch5_pink_dollar_19: "CH5: Pink Dollar 19",
-    LocationIDs.ch5_top_castle_mad_mew_mew: "CH5: Top Castle - Mad Mew Mew defeated",
+    LocationIDs.ch5_top_castle_pink: "CH5: Top Castle - Pink Defeat",
 }
 
 
