@@ -15,7 +15,6 @@ class LocationGroups(str, Enum):
     chapter4 = "Chapter 4"
     chapter5 = "Chapter 5"
 
-
 class DeltaruneLocation(Location):
     game: str = "Deltarune"
 
