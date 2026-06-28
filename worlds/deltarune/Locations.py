@@ -356,12 +356,12 @@ class LocationIDs(IntEnum):
     ch5_castle_top_annoying_dog = 334
     ch5_castle_top_pink_door_pink_coin = 335
     ch5_castle_top_pink_defeat = 336
-    ch5_castle_top_flower_gift_1 = 337
-    ch5_castle_top_flower_gift_2 = 338
-    ch5_castle_top_flower_gift_3 = 339
-    ch5_castle_top_flower_gift_4 = 340
-    ch5_castle_top_flower_gift_5 = 341
-    ch5_castle_top_flower_gift_6 = 342
+    ch5_castle_top_flower_gift_aqua = 337
+    ch5_castle_top_flower_gift_orange = 338
+    ch5_castle_top_flower_gift_blue = 339
+    ch5_castle_top_flower_gift_seth = 340
+    ch5_castle_top_flower_gift_green = 341
+    ch5_castle_top_flower_gift_yellow = 342
     ch5_castle_top_flowerys_gift = 343
     ch5_castle_top_fountain_sealed_1 = 344
     ch5_castle_top_fountain_sealed_2 = 345
@@ -776,12 +776,12 @@ locations = {
     LocationIDs.ch5_castle_top_annoying_dog: "CH5: Top of Castle - Annoying Dog...?",
     LocationIDs.ch5_castle_top_pink_door_pink_coin: "CH5: Top of Castle - Pink Door Pink Coin",
     LocationIDs.ch5_castle_top_pink_defeat: "CH5: Top of Castle - Pink Defeat",
-    LocationIDs.ch5_castle_top_flower_gift_1: "CH5: Top of Castle - Flower Gift 1",
-    LocationIDs.ch5_castle_top_flower_gift_2: "CH5: Top of Castle - Flower Gift 2",
-    LocationIDs.ch5_castle_top_flower_gift_3: "CH5: Top of Castle - Flower Gift 3",
-    LocationIDs.ch5_castle_top_flower_gift_4: "CH5: Top of Castle - Flower Gift 4",
-    LocationIDs.ch5_castle_top_flower_gift_5: "CH5: Top of Castle - Flower Gift 5",
-    LocationIDs.ch5_castle_top_flower_gift_6: "CH5: Top of Castle - Flower Gift 6",
+    LocationIDs.ch5_castle_top_flower_gift_1: "CH5: Top of Castle - Aqua's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_2: "CH5: Top of Castle - Orange's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_3: "CH5: Top of Castle - Blue's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_4: "CH5: Top of Castle - Seth's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_5: "CH5: Top of Castle - Green's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_6: "CH5: Top of Castle - Yellow's Gift",
     LocationIDs.ch5_castle_top_flowerys_gift: "CH5: Top of Castle - Flowery's Gift",
     LocationIDs.ch5_castle_top_fountain_sealed_1: "CH5: Flower Kingdom - Fountain Sealed...?",
     LocationIDs.ch5_castle_top_fountain_sealed_2: "CH5: Flower Kingdom - Fountain Sealed",
