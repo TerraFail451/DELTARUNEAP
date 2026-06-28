@@ -28,27 +28,27 @@ chapter5_locations = {
     ],
     Regions.ch5_flower_rewards: [
         LocationData(
-            id=LocationIDs.ch5_castle_top_flower_gift_1,
+            id=LocationIDs.ch5_castle_top_flower_gift_aqua,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_castle_top_flower_gift_2,
+            id=LocationIDs.ch5_castle_top_flower_gift_orange,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_castle_top_flower_gift_3,
+            id=LocationIDs.ch5_castle_top_flower_gift_blue,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_castle_top_flower_gift_4,
+            id=LocationIDs.ch5_castle_top_flower_gift_seth,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_castle_top_flower_gift_5,
+            id=LocationIDs.ch5_castle_top_flower_gift_green,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_castle_top_flower_gift_6,
+            id=LocationIDs.ch5_castle_top_flower_gift_yellow,
             group=LocationGroups.chapter5,
         ),
         LocationData(
