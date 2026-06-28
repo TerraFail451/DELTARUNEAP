@@ -10,49 +10,49 @@ if TYPE_CHECKING:
 chapter5_locations = {
     Regions.ch5_mew_mew_shop: [
         LocationData(
-            id=LocationIDs.ch5_mew_mew_shop_1,
+            id=LocationIDs.ch5_pinks_shop_1,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_mew_mew_shop_2,
+            id=LocationIDs.ch5_pinks_shop_2,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_mew_mew_shop_3,
+            id=LocationIDs.ch5_pinks_shop_3,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_mew_mew_shop_4,
+            id=LocationIDs.ch5_pinks_shop_4,
             group=LocationGroups.chapter5,
         ),
     ],
     Regions.ch5_flower_rewards: [
         LocationData(
-            id=LocationIDs.ch5_flower_reward_aqua_item,
+            id=LocationIDs.ch5_castle_top_flower_gift_1,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_flower_reward_blue_item,
+            id=LocationIDs.ch5_castle_top_flower_gift_2,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_flower_reward_green_item,
+            id=LocationIDs.ch5_castle_top_flower_gift_3,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_flower_reward_yellow_item,
+            id=LocationIDs.ch5_castle_top_flower_gift_4,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_flower_reward_orange_item,
+            id=LocationIDs.ch5_castle_top_flower_gift_5,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_flower_reward_seth_item,
+            id=LocationIDs.ch5_castle_top_flower_gift_6,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_flower_reward_flowery_item,
+            id=LocationIDs.ch5_castle_top_flowerys_gift,
             group=LocationGroups.chapter5,
         ),
     ],
