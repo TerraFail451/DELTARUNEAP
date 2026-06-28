@@ -13,6 +13,7 @@ class LocationGroups(str, Enum):
     chapter2 = "Chapter 2"
     chapter3 = "Chapter 3"
     chapter4 = "Chapter 4"
+    chapter5 = "Chapter 5"
 
 
 class DeltaruneLocation(Location):
@@ -296,6 +297,17 @@ class LocationIDs(IntEnum):
     ch5_pink_dollar_18 = 275
     ch5_pink_dollar_19 = 276
     ch5_top_castle_pink = 277
+    ch5_flower_reward_aqua_item = 278
+    ch5_flower_reward_blue_item = 279
+    ch5_flower_reward_green_item = 280
+    ch5_flower_reward_yellow_item = 281
+    ch5_flower_reward_orange_item = 282
+    ch5_flower_reward_seth_item = 283
+    ch5_flower_reward_flowery_item = 284
+    ch5_mew_mew_shop_1 = 285
+    ch5_mew_mew_shop_2 = 286
+    ch5_mew_mew_shop_3 = 287
+    ch5_mew_mew_shop_4 = 288
 
     # Lost recruits
     ch2_lost_werewire = 1049
