@@ -305,6 +305,7 @@ class LocationIDs(IntEnum):
     ch5_dark_garden_aquas_gift = 284
     ch5_dark_garden_end_of_garden_warp_door = 285
     ch5_dark_garden_near_shrine_warp_door = 286
+    # past this point all locations require petal feather 
     ch5_garden_hopschef_gift = 287
     ch5_garden_pink_coin_near_tropical_starwalker = 288
     ch5_dark_garden_pink_coin_above_shrine = 289
