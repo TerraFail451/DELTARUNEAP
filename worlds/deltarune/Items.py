@@ -416,8 +416,8 @@ items = {
     ItemIDs.tensionbow: "TensionBow",
     ItemIDs.shadowcrystal: "ShadowCrystal",
     ItemIDs.purecrystal: "PureCrystal",
-    ItemIDs.pinkcoin: "1 Pink Coin",
-    ItemIDs.pinkkey: "Pink Key",
+    ItemIDs.pinkcoin: "Pink Coin",
+    ItemIDs.pinkkey: "MysteryKey",
 }
 
 
