@@ -138,7 +138,10 @@ def create_regions(world: "DeltaruneWorld"):
 
     cyber_city_post_spamton.connect(mansion_lobby)
 
-    mansion_lobby.connect(swatch_cafe)
+    mansion_lobby.connect(
+        swatch_cafe,
+        rule=CanReachRegion(Regions.ch2_cyber_city_spamton_fight),
+    )
     # Require you to being able to spare spamton
     mansion_lobby.connect(
         spamton_shop,
