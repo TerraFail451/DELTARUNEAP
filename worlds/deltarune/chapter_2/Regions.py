@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import Region
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
-from rule_builder.rules import CanReachLocation, CanReachRegion, Has
+from rule_builder.rules import CanReachEntrance, CanReachLocation, CanReachRegion, Has
 from worlds.deltarune.Options import ChosenRoute, MacGuffinChapter2, RandomizeSecretBosses
 from worlds.deltarune.Regions import Regions, add_location_to_region, get_entrance_name
 from worlds.deltarune.chapter_2.Locations import chapter2_locations
@@ -177,7 +177,18 @@ def create_regions(world: "DeltaruneWorld"):
         & CanReachRegion(Regions.ch2_cyber_city_post_spamton)
         & (have_kris | Has(glitched_item_name)),
     )
-    mansion_basement.connect(spamton_neo, rule=Has(items[ItemIDs.emptydisk]))
+    mansion_basement.connect(
+        spamton_neo, get_entrance_name(mansion_basement, spamton_neo), rule=Has(items[ItemIDs.emptydisk])
+    )
+
+    secret_boss_mandatory = CanReachEntrance(get_entrance_name(mansion_basement, spamton_neo)) | [
+        OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")
+    ]
+
+    tunnel_of_love.connect(
+        post_chapter_castle_town,
+        rule=secret_boss_mandatory & Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)),
+    )
 
     # WEIRD ROUTE REGION CONNECTIONS
     cyber_city.connect(mansion_lobby_weird_route, rule=can_snowgrave)
@@ -196,16 +207,7 @@ def create_regions(world: "DeltaruneWorld"):
         spamton_neo,
         rule=Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)) & have_kris,
     )
-    spamton_neo.connect(
+    mansion_lobby_weird_route.connect(
         post_chapter_castle_town,
-        rule=can_snowgrave,
-    )
-
-    secret_boss_mandatory = CanReachLocation(locations[LocationIDs.ch2_mansion_spamton_neo_defeat_item_1]) | [
-        OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")
-    ]
-
-    tunnel_of_love.connect(
-        post_chapter_castle_town,
-        rule=secret_boss_mandatory & Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)),
+        rule=Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)) & have_kris,
     )
