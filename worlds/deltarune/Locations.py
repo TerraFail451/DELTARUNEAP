@@ -305,6 +305,7 @@ class LocationIDs(IntEnum):
     ch5_dark_garden_aquas_gift = 284
     ch5_dark_garden_end_of_garden_warp_door = 285
     ch5_dark_garden_near_shrine_warp_door = 286
+    # past this point all locations require petal feather
     ch5_garden_hopschef_gift = 287
     ch5_garden_pink_coin_near_tropical_starwalker = 288
     ch5_dark_garden_pink_coin_above_shrine = 289
@@ -355,12 +356,12 @@ class LocationIDs(IntEnum):
     ch5_castle_top_annoying_dog = 334
     ch5_castle_top_pink_door_pink_coin = 335
     ch5_castle_top_pink_defeat = 336
-    ch5_castle_top_flower_gift_1 = 337
-    ch5_castle_top_flower_gift_2 = 338
-    ch5_castle_top_flower_gift_3 = 339
-    ch5_castle_top_flower_gift_4 = 340
-    ch5_castle_top_flower_gift_5 = 341
-    ch5_castle_top_flower_gift_6 = 342
+    ch5_castle_top_flower_gift_aqua = 337
+    ch5_castle_top_flower_gift_orange = 338
+    ch5_castle_top_flower_gift_blue = 339
+    ch5_castle_top_flower_gift_seth = 340
+    ch5_castle_top_flower_gift_green = 341
+    ch5_castle_top_flower_gift_yellow = 342
     ch5_castle_top_flowerys_gift = 343
     ch5_castle_top_fountain_sealed_1 = 344
     ch5_castle_top_fountain_sealed_2 = 345
@@ -398,14 +399,14 @@ class LocationIDs(IntEnum):
     ch1_lost_rudinn_ranger = 1253
     ch1_lost_head_hathy = 1254
     ch1_lost_rudinn = 1255
-    ch5_floradinn_recruit = 1267
-    ch5_sheary_recruit = 1273
-    ch5_netskie_recruit = 1278
-    ch5_shi_recruit = 1295
-    ch5_leafling_recruit = 1297
-    ch5_kawkaw_recruit = 1303
-    ch5_shinobeetle_recruit = 1309
-    ch5_terakota_recruit = 1320
+    ch5_lost_floradinn = 1267
+    ch5_lost_sheary = 1273
+    ch5_lost_netskie = 1278
+    ch5_lost_shi = 1295
+    ch5_lost_leafling = 1297
+    ch5_lost_kawkaw = 1303
+    ch5_lost_shinobeetle = 1309
+    ch5_lost_terakota = 1320
 
 
 locations = {
@@ -775,12 +776,12 @@ locations = {
     LocationIDs.ch5_castle_top_annoying_dog: "CH5: Top of Castle - Annoying Dog...?",
     LocationIDs.ch5_castle_top_pink_door_pink_coin: "CH5: Top of Castle - Pink Door Pink Coin",
     LocationIDs.ch5_castle_top_pink_defeat: "CH5: Top of Castle - Pink Defeat",
-    LocationIDs.ch5_castle_top_flower_gift_1: "CH5: Top of Castle - Flower Gift 1",
-    LocationIDs.ch5_castle_top_flower_gift_2: "CH5: Top of Castle - Flower Gift 2",
-    LocationIDs.ch5_castle_top_flower_gift_3: "CH5: Top of Castle - Flower Gift 3",
-    LocationIDs.ch5_castle_top_flower_gift_4: "CH5: Top of Castle - Flower Gift 4",
-    LocationIDs.ch5_castle_top_flower_gift_5: "CH5: Top of Castle - Flower Gift 5",
-    LocationIDs.ch5_castle_top_flower_gift_6: "CH5: Top of Castle - Flower Gift 6",
+    LocationIDs.ch5_castle_top_flower_gift_aqua: "CH5: Top of Castle - Aqua's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_orange: "CH5: Top of Castle - Orange's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_blue: "CH5: Top of Castle - Blue's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_seth: "CH5: Top of Castle - Seth's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_green: "CH5: Top of Castle - Green's Gift",
+    LocationIDs.ch5_castle_top_flower_gift_yellow: "CH5: Top of Castle - Yellow's Gift",
     LocationIDs.ch5_castle_top_flowerys_gift: "CH5: Top of Castle - Flowery's Gift",
     LocationIDs.ch5_castle_top_fountain_sealed_1: "CH5: Flower Kingdom - Fountain Sealed...?",
     LocationIDs.ch5_castle_top_fountain_sealed_2: "CH5: Flower Kingdom - Fountain Sealed",
