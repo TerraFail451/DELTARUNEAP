@@ -74,11 +74,22 @@ class ItemIDs(IntEnum):
     tvslop = 37
     execbuffet = 38
     deluxedinner = 39
+    punchbowl = 40
+    flavinge = 41
+    greentea = 42
+    orangejuice = 43
 
     ancientsweet = 60
     rhapsotea = 61
     scarlixir = 62
     bittertear = 63
+    schadenbrot = 64
+    treecake = 65
+    s_potion = 66
+    raw_moon = 67
+    phanta = 68
+    flowerysoda = 69
+    shikacola = 70
 
     brokencake = 10003
     broken_key_a = 10004
@@ -95,12 +106,24 @@ class ItemIDs(IntEnum):
     odd_controller = 10016
     # nothing
     tripticket = 10018
+    # lancercon = 10019
+
+    # scissors = 10020
+    # yellowshred = 10021
+    # bootoil = 10022
+    # redsplatter = 10023
+    bromider = 10024
+    petalfeather = 10025
+    # perpbook = 10026
+    # bluestring = 10027
+    # trainplan = 10028
+    # yellowkey = 10029
 
     sheetmusic = 10030
     claimbclaws = 10031
 
-    pinkcoin = 10032
-    pinkkey = 10033
+    pinkkey = 10032
+    bromidef = 10033
 
     chapter_1_egg = 10950
     chapter_2_egg = 10951
@@ -126,6 +149,7 @@ class ItemIDs(IntEnum):
     ice_key = 11018
     shelter_key = 11019
     sacred_moss = 11020
+    pinkcoin = 11021
 
     amber_card = 20001
     dice_brace = 20002
@@ -159,7 +183,7 @@ class ItemIDs(IntEnum):
     truetie = 20031
     dogwidow = 20032
     redribbon = 20033
-    netskuehat = 20034
+    netskiehat = 20034
     sethspecs = 20035
     yellowhat = 20036
     ogloves = 20037
@@ -203,7 +227,10 @@ class ItemIDs(IntEnum):
     blueshoes = 30032
     aquaknife = 30033
     floweryscarf = 30034
-    brokenscarf = 30035
+    # FloweryScarf is the BrokenScarf, so we'll only have one of them.
+    # In Chapter 5 and below, you will get the floweryscarf
+    # In Chapter 6+, you'll receive brokenscarf instead
+    # brokenscarf = 30035
     gildedrose = 30036
     mistlewp = 30037
 
@@ -252,6 +279,11 @@ class ItemIDs(IntEnum):
     chapter_5_unlock = 90005
 
     s_r_n_actions = 100000
+
+    flowerydollars_10 = 110010
+    flowerydollars_25 = 110025
+    flowerydollars_50 = 110050
+    flowerydollars_100 = 110100
 
 
 items = {
@@ -418,6 +450,37 @@ items = {
     ItemIDs.purecrystal: "PureCrystal",
     ItemIDs.pinkcoin: "Pink Coin",
     ItemIDs.pinkkey: "MysteryKey",
+    ItemIDs.chapter_5_unlock: "Chapter 5 Unlock",
+    ItemIDs.punchbowl: "PunchBowl",
+    ItemIDs.flavinge: "Flavinge",
+    ItemIDs.greentea: "GreenTea",
+    ItemIDs.orangejuice: "OrangeJuice",
+    ItemIDs.schadenbrot: "SchadenBrot",
+    ItemIDs.treecake: "TreeCake",
+    ItemIDs.s_potion: "S. Potion",
+    ItemIDs.raw_moon: "Raw Moon",
+    ItemIDs.phanta: "Phanta",
+    ItemIDs.flowerysoda: "FlowerySoda",
+    ItemIDs.shikacola: "Shikacola",
+    ItemIDs.bromider: "Bromide R",
+    ItemIDs.petalfeather: "PetalFeather",
+    ItemIDs.bromidef: "Bromide F",
+    ItemIDs.netskiehat: "NetskieHat",
+    ItemIDs.sethspecs: "SethSpecs",
+    ItemIDs.yellowhat: "YellowHat",
+    ItemIDs.ogloves: "O. Gloves",
+    ItemIDs.greenapron: "Green Apron",
+    ItemIDs.woodblade2: "Wood Blade 2",
+    ItemIDs.thatchet: "Thatchet",
+    ItemIDs.blueshoes: "BlueShoes",
+    ItemIDs.aquaknife: "AquaKnife",
+    ItemIDs.floweryscarf: "FloweryScarf",
+    ItemIDs.gildedrose: "GildedRose",
+    ItemIDs.mistlewp: "MistleWP",
+    ItemIDs.flowerydollars_10: "10 Flowery Dollars",
+    ItemIDs.flowerydollars_25: "25 Flowery Dollars",
+    ItemIDs.flowerydollars_50: "50 Flowery Dollars",
+    ItemIDs.flowerydollars_100: "100 Flowery Dollars",
 }
 
 
