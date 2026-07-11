@@ -1,18 +1,44 @@
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
+
 from worlds.deltarune.Items import (
-    DeltaruneItem,
-    ItemData,
-    ItemGroups,
     ItemIDs,
+    ItemData,
+    ItemData,
     generic_create_items,
     generic_get_filler_and_trap_items,
+    DeltaruneItem,
+    ItemGroups,
 )
 
 if TYPE_CHECKING:
     from .. import DeltaruneWorld
 
 chapter5_items = [
+    ItemData(ItemIDs.flavinge, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.greentea, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.orangejuice, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.s_potion, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.raw_moon, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.phanta, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.flowerysoda, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.shikacola, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.punchbowl, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.schadenbrot, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.treecake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.bromider, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.bromidef, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.flowerydollars_10, ItemClassification.filler, groups=[ItemGroups.currencies]),
+    ItemData(ItemIDs.flowerydollars_25, ItemClassification.filler, groups=[ItemGroups.currencies]),
+    ItemData(ItemIDs.flowerydollars_50, ItemClassification.filler, groups=[ItemGroups.currencies]),
+    ItemData(ItemIDs.flowerydollars_100, ItemClassification.filler, groups=[ItemGroups.currencies]),
+    ItemData(ItemIDs.netskiehat, ItemClassification.useful, groups=[ItemGroups.armors]),
+    ItemData(ItemIDs.greenapron, ItemClassification.useful, groups=[ItemGroups.armors]),
+    ItemData(ItemIDs.woodblade2, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
+    ItemData(ItemIDs.thatchet, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.susie_weapons]),
+    ItemData(ItemIDs.mistlewp, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
+    ItemData(ItemIDs.gildedrose, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.noelle_weapons]),
+    ItemData(ItemIDs.petalfeather, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(
         ItemIDs.chapter_5_unlock,
         ItemClassification.progression,
@@ -40,36 +66,43 @@ chapter5_items = [
         ItemIDs.aquaknife,
         ItemClassification.useful,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.weapons, ItemGroups.kris_weapons],
     ),
     ItemData(
         ItemIDs.blueshoes,
         ItemClassification.useful,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
     ),
     ItemData(
         ItemIDs.greenapron,
         ItemClassification.useful,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.yellowhat,
         ItemClassification.useful,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.ogloves,
         ItemClassification.useful,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.sethspecs,
         ItemClassification.useful,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.floweryscarf,
         ItemClassification.filler,
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
         blacklist_filler=True,
     ),
 ]
