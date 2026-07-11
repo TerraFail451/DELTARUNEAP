@@ -179,7 +179,7 @@ class ItemIDs(IntEnum):
     blue_ribbon = 20026
     tennatie = 20027
 
-    monarchRBN = 20030
+    monarchrbn = 20030
     truetie = 20031
     dogwidow = 20032
     redribbon = 20033
@@ -477,6 +477,10 @@ items = {
     ItemIDs.floweryscarf: "FloweryScarf",
     ItemIDs.gildedrose: "GildedRose",
     ItemIDs.mistlewp: "MistleWP",
+    ItemIDs.monarchrbn: "MonarchRBN",
+    ItemIDs.truetie: "TrueTie",
+    ItemIDs.dogwidow: "DogWidow",
+    ItemIDs.redribbon: "RedRibbon",
     ItemIDs.flowerydollars_10: "10 Flowery Dollars",
     ItemIDs.flowerydollars_25: "25 Flowery Dollars",
     ItemIDs.flowerydollars_50: "50 Flowery Dollars",
