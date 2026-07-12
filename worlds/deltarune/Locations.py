@@ -276,7 +276,7 @@ class LocationIDs(IntEnum):
     ch3_board_1_z_rank = 256
     ch3_board_2_z_rank = 257
 
-    ch5_castle_town_topchef_gift = 258
+    ch5_castle_town_top_chef_gift = 258
     cc_castle_town_monarchrbn_fusion = 259
     cc_castle_town_truetie_fusion = 260
     cc_castle_town_tvdinner_fusion = 261
@@ -697,11 +697,11 @@ locations = {
     LocationIDs.ch4_mike_pluey_silver: "CH4: Mike - Pluey (Silver Rank)",
     LocationIDs.ch4_mike_pluey_gold: "CH4: Mike - Pluey (Gold Rank)",
     LocationIDs.ch4_mike_pluey_platinum: "CH4: Mike - Pluey (Platinum Rank)",
-    LocationIDs.ch5_castle_town_topchef_gift: "CH5: Castle Town - TopChef Gift",
+    LocationIDs.ch5_castle_town_top_chef_gift: "CH5: Castle Town - TopChef Gift",
     LocationIDs.cc_castle_town_monarchrbn_fusion: "CC: Castle Town - MonarchRBN Fusion",
     LocationIDs.cc_castle_town_truetie_fusion: "CC: Castle Town - TrueTie Fusion",
     LocationIDs.cc_castle_town_tvdinner_fusion: "CC: Castle Town - TVDinner Fusion",
-    LocationIDs.cc_castle_town_deluxedinner_fusion: "Cc: Castle Town - DeluxeDinner Fusion",
+    LocationIDs.cc_castle_town_deluxedinner_fusion: "CC: Castle Town - DeluxeDinner Fusion",
     LocationIDs.cc_castle_town_punchbowl_fusion: "CC: Castle Town - PunchBowl Fusion",
     LocationIDs.cc_castle_town_tensionmax_fusion: "CC: Castle Town - TensionMax Fusion",
     LocationIDs.cc_castle_town_dogwidow_fusion: "CC: Castle Town - DogWidow Fusion",

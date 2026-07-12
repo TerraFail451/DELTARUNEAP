@@ -131,7 +131,8 @@ components.append(
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
 max_deltarune_chapter = 4
-fusion_access_chapter = [2, 4]
+fusion_access_chapter = [2, 4, 5]
+ch5_fusion_access_chapter = [5]
 
 def data_path(file_name: str):
     import pkgutil
@@ -408,6 +409,11 @@ class DeltaruneWorld(World):
     # Check if you have at least one chapter that give you access to fusions
     def can_access_fusion(self) -> bool:
         result = self.has_at_least_one_chapter_included(fusion_access_chapter)
+        return result
+
+    # I'm guessing chapter 6 and 7 will let you fuse this stuff as well, so i'll make it bc i dont want to later 
+    def can_access_ch5_fusion(self) -> bool:
+        result = self.has_at_least_one_chapter_included(ch5_fusion_access_chapter)
         return result
 
     def count_chapter_included(self, chapters=list(range(1, max_deltarune_chapter + 1))):

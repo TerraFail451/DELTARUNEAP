@@ -112,9 +112,9 @@ chapter2_items = [
     ),
     ItemData(
         ItemIDs.frayedbowtie,
-        ItemClassification.filler,
+        ItemClassification.progression,
         should_be_included=lambda world: world.is_not_weird_route_only(),
-        groups=[ItemGroups.armors],
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
     ),
     ItemData(
         ItemIDs.glowshard,
@@ -124,10 +124,10 @@ chapter2_items = [
     ),
     ItemData(
         ItemIDs.dogdollar,
-        ItemClassification.filler,
+        ItemClassification.progression | ItemClassification.deprioritized,
         should_be_included=lambda world: world.is_not_weird_route_only(),
-        groups=[ItemGroups.currencies],
-        amount=0,
+        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
+        amount=1,
     ),
     ItemData(
         ItemIDs.chapter_2_egg,

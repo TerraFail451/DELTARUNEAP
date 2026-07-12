@@ -8,7 +8,17 @@ if TYPE_CHECKING:
     from .. import DeltaruneWorld
 
 chapter5_locations = {
-    Regions.ch5_mew_mew_shop: [
+    Regions.ch5_castle_town: [
+        LocationData(
+            id=LocationIDs.ch5_castle_town_top_chef_gift,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
+            id=LocationIDs.ch5_castle_town_trashy_trio_challenge,
+            group=LocationGroups.chapter5,
+        ),
+    ],
+    Regions.ch5_pinks_shop: [
         LocationData(
             id=LocationIDs.ch5_pinks_shop_1,
             group=LocationGroups.chapter5,

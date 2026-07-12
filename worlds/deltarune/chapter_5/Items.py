@@ -112,8 +112,8 @@ chapter5_items = [
 
 
 def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:
-    return generic_create_items(world, chapter5_items, chapter5_items)
+    return generic_create_items(world, chapter5_items)
 
 
 def get_filler_items(world: "DeltaruneWorld"):
-    return generic_get_filler_and_trap_items(world, chapter5_items, chapter5_items)
+    return generic_get_filler_and_trap_items(world, chapter5_items)
