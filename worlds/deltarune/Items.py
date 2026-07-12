@@ -129,6 +129,7 @@ class ItemIDs(IntEnum):
     chapter_2_egg = 10951
     chapter_3_egg = 10952
     chapter_4_egg = 10953
+    chapter_5_egg = 10953
 
     # great_door_key = 11000
     bake_sale_ticket = 11001
@@ -150,6 +151,7 @@ class ItemIDs(IntEnum):
     shelter_key = 11019
     sacred_moss = 11020
     pinkcoin = 11021
+    compliment_list = 11022
 
     amber_card = 20001
     dice_brace = 20002
@@ -263,6 +265,7 @@ class ItemIDs(IntEnum):
     keygen_2_segment = 70001
     remote_battery = 70002
     combination_lock_digit = 70003
+    jarona_lesson = 70003
 
     point_1 = 80001
     points_2 = 80002
@@ -485,6 +488,9 @@ items = {
     ItemIDs.flowerydollars_25: "25 Flowery Dollars",
     ItemIDs.flowerydollars_50: "50 Flowery Dollars",
     ItemIDs.flowerydollars_100: "100 Flowery Dollars",
+    ItemIDs.chapter_5_egg: "CH5 Egg",
+    ItemIDs.compliment_list: "Compliment List",
+    ItemIDs.jarona_lesson: "Jarona Lesson",
 }
 
 

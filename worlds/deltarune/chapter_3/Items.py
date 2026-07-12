@@ -41,7 +41,7 @@ chapter3_items = [
     ),
     ItemData(
         ItemIDs.dogdollar, 
-        ItemClassification.progression | ItemClassification.deprioritized, 
+        ItemClassification.progression | ItemClassification.deprioritized,
         groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient], 
         amount=1
     ),

@@ -125,7 +125,8 @@ chapter2_items = [
     ItemData(
         ItemIDs.dogdollar,
         ItemClassification.progression | ItemClassification.deprioritized,
-        should_be_included=lambda world: world.is_not_weird_route_only(),
+        should_be_included=lambda world: world.is_not_weird_route_only()
+            and world.is_hidden_items_randomized(),
         groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
         amount=1,
     ),

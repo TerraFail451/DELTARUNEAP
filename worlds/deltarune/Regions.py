@@ -90,7 +90,7 @@ class Regions(StrEnum):
     ch5_garden = "CH5: The Garden of Hopes and Dreams"
     ch5_greens_cafe = "CH5: Green's Cafe"
     ch5_dark_garden = "CH5: Dark Garden"
-    ch5_dark_garden_petal_feather = "CH5: Dark Garden (PetalFeather Required)"
+    ch5_garden_petal_feather = "CH5: Garden (PetalFeather Required)"
     ch5_cliffs = "CH5: Cliffs"
     ch5_pinks_shop = "CH5: Pink's Shop"
     ch5_flower_castle = "CH5: Flower Castle"
@@ -100,7 +100,7 @@ class Regions(StrEnum):
     ch5_castle_top = "CH5: Top of Castle"
     ch5_pink_room = "CH5: Pink Room"
     ch5_flower_rewards = "CH5: Flower Rewards"
-    ch5_fountains = "CH5: Fountain Sealed"
+    ch5_fountains = "CH5: Fountains"
 
 
 def add_location_to_region(region: Region, locations: list[LocationData], world: "DeltaruneWorld"):

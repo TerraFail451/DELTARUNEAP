@@ -337,7 +337,7 @@ class LocationIDs(IntEnum):
     ch5_castle_west_hidden_zen_garden_chest = 315
     ch5_castle_west_yellow_flower_platforming_pink_coin = 316
     ch5_castle_west_shinobeetle_shuriken_pink_coin = 317
-    ch5_castle_west_blues_room_warp_doors = 318
+    ch5_castle_west_blues_room_warp_door = 318
     ch5_castle_east_pink_coin_behind_paper_wall = 319
     ch5_terakota_recruit = 320
     ch5_castle_east_terakota_buttons_pink_coin = 321
@@ -350,7 +350,7 @@ class LocationIDs(IntEnum):
     ch5_castle_east_mysterious_puzzle_warp_door = 328
     ch5_castle_top_painting_room_item = 329
     ch5_vending_machine_flowerys_secret = 330
-    # nothing = 331
+    ch5_castle_moss = 331
     # nothing = 332
     ch5_castle_top_yellow_flower_platforming_pink_coin = 333
     ch5_castle_top_annoying_dog = 334
@@ -363,8 +363,8 @@ class LocationIDs(IntEnum):
     ch5_castle_top_flower_gift_green = 341
     ch5_castle_top_flower_gift_yellow = 342
     ch5_castle_top_flowerys_gift = 343
-    ch5_castle_top_fountain_sealed_1 = 344
-    ch5_castle_top_fountain_sealed_2 = 345
+    ch5_fountain_sealed_1 = 344
+    ch5_fountain_sealed_2 = 345
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -749,7 +749,7 @@ locations = {
     LocationIDs.ch5_cliffs_chest_near_climbing_vines: "CH5: Cliffs - Chest Near Climbing Vines",
     LocationIDs.ch5_cliffs_running_challenge_pink_coin: "CH5: Cliffs - Running Challenge Pink Coin",
     LocationIDs.ch5_shinobeetle_recruit: "CH5: Recruit Shinobeetle",
-    LocationIDs.ch5_castle_foyer_warp_door: "CH5: Castle - Foyer Warp Door",
+    LocationIDs.ch5_castle_foyer_warp_door: "CH5: Flower Castle - Foyer Warp Door",
     LocationIDs.ch5_vending_machine_1: "CH5: Vending Machine Item #1",
     LocationIDs.ch5_vending_machine_2: "CH5: Vending Machine Item #2",
     LocationIDs.ch5_vending_machine_3: "CH5: Vending Machine Item #3",
@@ -757,7 +757,7 @@ locations = {
     LocationIDs.ch5_castle_west_hidden_zen_garden_chest: "CH5: Castle West - Hidden Zen Garden Chest",
     LocationIDs.ch5_castle_west_yellow_flower_platforming_pink_coin: "CH5: Castle West - Yellow Flower Platforming Pink Coin",
     LocationIDs.ch5_castle_west_shinobeetle_shuriken_pink_coin: "CH5: Castle West - Shinobeetle Shuriken Pink Coin",
-    LocationIDs.ch5_castle_west_blues_room_warp_doors: "CH5: Castle West - Blue's Room Warp Door",
+    LocationIDs.ch5_castle_west_blues_room_warp_door: "CH5: Castle West - Blue's Room Warp Door",
     LocationIDs.ch5_castle_east_pink_coin_behind_paper_wall: "CH5: Castle East - Pink Coin Behind Paper Wall",
     LocationIDs.ch5_terakota_recruit: "CH5: Recruit Terakota",
     LocationIDs.ch5_castle_east_terakota_buttons_pink_coin: "CH5: Castle East - Terakota Buttons Pink Coin",
@@ -770,6 +770,7 @@ locations = {
     LocationIDs.ch5_castle_east_mysterious_puzzle_warp_door: "CH5: Castle East - Mysterious Puzzle Warp Door",
     LocationIDs.ch5_castle_top_painting_room_item: "CH5: Top of Castle - Painting Room Item",
     LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Vending Machine Flowery's Secret",
+    LocationIDs.ch5_castle_moss: "CH5: Flower Castle - Moss",
     LocationIDs.ch5_castle_top_yellow_flower_platforming_pink_coin: "CH5: Top of Castle - Yellow Flower Platforming Pink Coin",
     LocationIDs.ch5_castle_top_annoying_dog: "CH5: Top of Castle - Annoying Dog...?",
     LocationIDs.ch5_castle_top_pink_door_pink_coin: "CH5: Top of Castle - Pink Door Pink Coin",
@@ -781,8 +782,8 @@ locations = {
     LocationIDs.ch5_castle_top_flower_gift_green: "CH5: Top of Castle - Green's Gift",
     LocationIDs.ch5_castle_top_flower_gift_yellow: "CH5: Top of Castle - Yellow's Gift",
     LocationIDs.ch5_castle_top_flowerys_gift: "CH5: Top of Castle - Flowery's Gift",
-    LocationIDs.ch5_castle_top_fountain_sealed_1: "CH5: Flower Kingdom - Fountain Sealed...?",
-    LocationIDs.ch5_castle_top_fountain_sealed_2: "CH5: Flower Kingdom - Fountain Sealed",
+    LocationIDs.ch5_fountain_sealed_1: "CH5: Flower Kingdom - Fountain Sealed...?",
+    LocationIDs.ch5_fountain_sealed_2: "CH5: Flower Kingdom - Fountain Sealed",
     LocationIDs.ch5_lost_floradinn: "CH5: Lost Floradinn",
     LocationIDs.ch5_lost_sheary: "CH5: Lost Sheary",
     LocationIDs.ch5_lost_netskie: "CH5: Lost Netskie",
