@@ -18,6 +18,8 @@ def set_completion_goal(world: "DeltaruneWorld"):
         locations_goal.append(locations[LocationIDs.ch3_fountain_sealed])
     if world.include_chapter(4):
         locations_goal.append(locations[LocationIDs.ch4_third_sanctuary_fountain_sealed])
+    if world.include_chapter(5):
+        locations_goal.append(locations[LocationIDs.ch5_fountain_sealed_2])
 
     def complete_chapters_goal(state: CollectionState):
         for location in locations_goal:

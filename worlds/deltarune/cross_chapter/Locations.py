@@ -81,7 +81,6 @@ cross_chapter_locations: dict = {
             #frayed bowtie
             and world.include_chapter(2)
             #tennatie
-            and world.is_hidden_items_randomized()
             and world.include_chapter(3),
             group=LocationGroups.castle_town,
         ),
@@ -116,10 +115,8 @@ cross_chapter_locations: dict = {
         LocationData(
             LocationIDs.cc_castle_town_dogwidow_fusion,
             should_be_included=lambda world: world.can_access_ch5_fusion()
-            #Goldwidow
-            and world.include_chapter(4)
-            #dogdollar (no need to check for any more chapters since dogdollar is already in ch4)
-            and world.is_hidden_items_randomized(),
+            #Goldwidow and dogdollar (no need to check for any more chapters since dogdollar is already in ch4)
+            and world.include_chapter(4),
             group=LocationGroups.castle_town,
         ),
     ],

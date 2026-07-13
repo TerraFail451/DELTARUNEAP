@@ -410,12 +410,12 @@ class LocationIDs(IntEnum):
 
 
 locations = {
-    LocationIDs.cc_castle_town_twin_ribbon_fusion: "Castle Town - Twin Ribbon Fusion",
-    LocationIDs.cc_castle_town_tensionbow_fusion: "Castle Town - TensionBow Fusion",
-    LocationIDs.cc_castle_town_dd_burger_fusion: "Castle Town - DD-Burger Fusion",
-    LocationIDs.cc_castle_town_silver_card_fusion: "Castle Town - Silver Card Fusion",
-    LocationIDs.cc_castle_town_spike_band_fusion: "Castle Town - Spike Band Fusion",
-    LocationIDs.cc_castle_town_twistedsword_fusion: "Castle Town - TwistedSwd Fusion",
+    LocationIDs.cc_castle_town_twin_ribbon_fusion: "CC: Castle Town - Twin Ribbon Fusion",
+    LocationIDs.cc_castle_town_tensionbow_fusion: "CC: Castle Town - TensionBow Fusion",
+    LocationIDs.cc_castle_town_dd_burger_fusion: "CC: Castle Town - DD-Burger Fusion",
+    LocationIDs.cc_castle_town_silver_card_fusion: "CC: Castle Town - Silver Card Fusion",
+    LocationIDs.cc_castle_town_spike_band_fusion: "CC: Castle Town - Spike Band Fusion",
+    LocationIDs.cc_castle_town_twistedsword_fusion: "CC: Castle Town - TwistedSwd Fusion",
     LocationIDs.ch1_unknown_hidden_item: "CH1: ?????? - Hidden Item",
     LocationIDs.ch1_castle_town_manual: "CH1: Castle Town - Manual",
     LocationIDs.ch1_throw_away_manual: "CH1: Throw Away Manual",

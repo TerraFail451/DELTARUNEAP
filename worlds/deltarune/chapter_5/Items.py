@@ -25,10 +25,8 @@ chapter5_items = [
     ItemData(ItemIDs.phanta, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.flowerysoda, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.shikacola, ItemClassification.filler, groups=[ItemGroups.healing_item]),
-    ItemData(ItemIDs.punchbowl, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.schadenbrot, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.treecake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
-    ItemData(ItemIDs.tensionmax, ItemClassification.filler, groups=[ItemGroups.tension_items]),
     ItemData(ItemIDs.bromider, ItemClassification.filler, blacklist_filler=True),
     ItemData(ItemIDs.flowerydollars_10, ItemClassification.filler, groups=[ItemGroups.currencies]),
     ItemData(ItemIDs.flowerydollars_25, ItemClassification.filler, groups=[ItemGroups.currencies]),
@@ -67,27 +65,6 @@ chapter5_items = [
     ItemData(ItemIDs.mistlewp, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
     ItemData(ItemIDs.gildedrose, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.noelle_weapons]),
     ItemData(
-        ItemIDs.monarchrbn, 
-        ItemClassification.useful, 
-        should_be_included=lambda world: world.include_chapter(4),
-        groups=[ItemGroups.armors]
-        ),
-    ItemData(
-        ItemIDs.truetie, 
-        ItemClassification.useful,
-        should_be_included=lambda world: world.include_chapter(2)
-            and world.is_hidden_items_randomized()
-            and world.include_chapter(3),
-        groups=[ItemGroups.armors]
-        ),
-    ItemData(
-        ItemIDs.dogwidow, 
-        ItemClassification.useful, 
-            should_be_included=lambda world: world.include_chapter(4)
-            and world.is_hidden_items_randomized(),
-        groups=[ItemGroups.armors]
-        ),
-    ItemData(
         ItemIDs.dogdollar, 
         ItemClassification.progression | ItemClassification.deprioritized, 
         should_be_included=lambda world: world.is_hidden_items_randomized(),
@@ -117,7 +94,8 @@ chapter5_items = [
     ItemData(
         ItemIDs.pinkkey,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized(),
+        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized()
+        and not world.is_mysterykey_from_pink_coins(),
     ),
     ItemData(
         ItemIDs.aquaknife,
@@ -169,5 +147,5 @@ def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:
     return generic_create_items(world, chapter5_items)
 
 
-def get_filler_items(world: "DeltaruneWorld"):
+def get_filler_and_trap_items(world: "DeltaruneWorld"):
     return generic_get_filler_and_trap_items(world, chapter5_items)

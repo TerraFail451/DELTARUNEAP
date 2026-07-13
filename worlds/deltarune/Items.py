@@ -265,7 +265,7 @@ class ItemIDs(IntEnum):
     keygen_2_segment = 70001
     remote_battery = 70002
     combination_lock_digit = 70003
-    jarona_lesson = 70003
+    jarona_lesson = 70004
 
     point_1 = 80001
     points_2 = 80002

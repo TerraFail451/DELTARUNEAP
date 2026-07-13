@@ -13,8 +13,11 @@ chapter5_locations = {
             id=LocationIDs.ch5_castle_town_top_chef_gift,
             group=LocationGroups.chapter5,
         ),
+    ],
+    Regions.ch5_dojo: [
         LocationData(
-            id=LocationIDs.ch5_castle_town_trashy_trio_challenge,
+            LocationIDs.ch5_castle_town_trashy_trio_challenge,
+            should_be_included=lambda world: world.is_all_recruits(),
             group=LocationGroups.chapter5,
         ),
     ],

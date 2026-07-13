@@ -245,6 +245,10 @@ class DeltaruneContext(SuperContext):
             patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch4.bsdiff"))
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
+        with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "rb") as f:
+            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch5.bsdiff"))
+        with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "wb") as f:
+            f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "data.win"), "rb") as f:
             patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("deltarune.bsdiff"))
         with open(Utils.user_path("DELTARUNE", "data.win"), "wb") as f:

@@ -55,11 +55,16 @@ from worlds.deltarune.chapter_4.Rules import (
     handle_locked_items as handle_chapter_4_locked_items,
     set_rules as set_chapter_4_rules,
 )
+from worlds.deltarune.chapter_5.Rules import (
+    handle_locked_items as handle_chapter_5_locked_items,
+    set_rules as set_chapter_5_rules,
+)
 from worlds.deltarune.cross_chapter.Regions import create_regions as create_cross_chapter_regions
 from worlds.deltarune.chapter_1.Regions import create_regions as create_chapter_1_regions
 from worlds.deltarune.chapter_2.Regions import create_regions as create_chapter_2_regions
 from worlds.deltarune.chapter_3.Regions import create_regions as create_chapter_3_regions
 from worlds.deltarune.chapter_4.Regions import create_regions as create_chapter_4_regions
+from worlds.deltarune.chapter_5.Regions import create_regions as create_chapter_5_regions
 from worlds.deltarune.cross_chapter.Items import (
     cross_chapter_items,
     create_items as create_cross_chapter_items,
@@ -85,14 +90,20 @@ from worlds.deltarune.chapter_4.Items import (
     create_items as create_chapter_4_items,
     get_filler_and_trap_items as get_chapter_4_filler_and_trap_items,
 )
+from worlds.deltarune.chapter_5.Items import (
+    chapter5_items,
+    create_items as create_chapter_5_items,
+    get_filler_and_trap_items as get_chapter_5_filler_and_trap_items,
+)
 from worlds.deltarune.chapter_1.Locations import chapter1_locations
 from worlds.deltarune.chapter_2.Locations import chapter2_locations
 from worlds.deltarune.chapter_3.Locations import chapter3_locations
 from worlds.deltarune.chapter_4.Locations import chapter4_locations
+from worlds.deltarune.chapter_5.Locations import chapter5_locations
 from worlds.deltarune.cross_chapter.Locations import cross_chapter_locations
 from worlds.deltarune.tracker import handle_auto_tracking, handle_player_icon_position
 
-all_item_data: list[ItemData] = chapter1_items + chapter2_items + chapter3_items + chapter4_items + cross_chapter_items
+all_item_data: list[ItemData] = chapter1_items + chapter2_items + chapter3_items + chapter4_items + chapter5_items + cross_chapter_items
 
 all_locations = []
 
@@ -105,6 +116,8 @@ for region, location in chapter2_locations.items():
 for region, location in chapter3_locations.items():
     all_locations += location
 for region, location in chapter4_locations.items():
+    all_locations += location
+for region, location in chapter5_locations.items():
     all_locations += location
 
 
@@ -130,7 +143,7 @@ components.append(
 # I apologize for the name of the icon - Emerald
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
-max_deltarune_chapter = 4
+max_deltarune_chapter = 5
 fusion_access_chapter = [2, 4, 5]
 ch5_fusion_access_chapter = [5]
 
@@ -205,12 +218,14 @@ class DeltaruneWorld(World):
                 "macguffin_chapter_2",
                 "macguffin_chapter_3",
                 "macguffin_chapter_4",
+                "macguffin_chapter_5",
                 "macguffin_extra",
                 "remove_starting_equipment",
                 "include_chapter_1",
                 "include_chapter_2",
                 "include_chapter_3",
                 "include_chapter_4",
+                "include_chapter_5",
                 "exclude_t_rank",
                 "exclude_z_rank",
                 "chosen_route",
@@ -219,6 +234,8 @@ class DeltaruneWorld(World):
                 "randomize_chapters",
                 "include_hidden_items",
                 "include_secret_bosses_items_requirement",
+                "mysterykey_from_pink_coins",
+                "door_key_from_broken_keys",
                 "death_link",
                 "item_balancing",
                 "include_shadow_mantle",
@@ -273,6 +290,8 @@ class DeltaruneWorld(World):
             filler_pool += get_chapter_3_filler_and_trap_items(self)
         if self.options.include_chapter_4:
             filler_pool += get_chapter_4_filler_and_trap_items(self)
+        if self.options.include_chapter_5:
+            filler_pool += get_chapter_5_filler_and_trap_items(self)
 
         self.cached_filler_and_trap_weights = convert_filler_and_trap_to_weights(filler_pool, self.options)
 
@@ -295,7 +314,7 @@ class DeltaruneWorld(World):
                 )
 
         if len(self.get_playable_chapters()) == 0:
-            raise OptionError("WHAT INTERESTING BEHAVIOR. (You forgot to include at least one chapter to play.)")
+            raise OptionError("You forgot to include at least one chapter to play.")
 
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
@@ -363,6 +382,12 @@ class DeltaruneWorld(World):
 
     def is_secret_bosses_items_requirement_randomized(self):
         return self.options.include_secret_bosses_items_requirement.value == 1
+    
+    def is_mysterykey_from_pink_coins(self):
+        return self.options.mysterykey_from_pink_coins.value == 1
+    
+    def is_door_key_from_broken_keys(self):
+        return self.options.door_key_from_broken_keys.value == 1
 
     def is_chapter_1_recruit_system_enabled(self):
         return self.options.chapter_1_recruit.value == 1
@@ -481,7 +506,8 @@ class DeltaruneWorld(World):
             create_chapter_3_regions(self)
         if self.include_chapter(4):
             create_chapter_4_regions(self)
-        # if self.include_chapter(5): Ch5LocationAndRegions.create_regions(self)
+        if self.include_chapter(5): 
+            create_chapter_5_regions(self)
         # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
         # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
 
@@ -506,7 +532,9 @@ class DeltaruneWorld(World):
         if self.include_chapter(4):
             item_pool += create_chapter_4_items(self)
             handle_chapter_4_locked_items(self)
-        # if self.include_chapter(5): Ch5Items.create_items(self)
+        if self.include_chapter(5):
+            item_pool += create_chapter_5_items(self)
+            handle_chapter_5_locked_items(self)
         # if self.include_chapter(6): Ch6Items.create_items(self)
         # if self.include_chapter(7): Ch7Items.create_items(self)
 
@@ -560,6 +588,14 @@ class DeltaruneWorld(World):
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
+            )
+        if self.include_chapter(5):
+            item_data = next(
+                (item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None
+            )
+            index = item_pool.index(item_data)
+            item_pool[index] = item_data._replace(
+                amount=self.options.macguffin_chapter_5.value + self.options.macguffin_extra.value
             )
 
     def handle_chapter_keys(self, item_pool: list[ItemData]):
@@ -617,7 +653,8 @@ class DeltaruneWorld(World):
             set_chapter_3_rules(self)
         if self.include_chapter(4):
             set_chapter_4_rules(self)
-        # if self.include_chapter(5): set_chapter_5_rules(self)
+        if self.include_chapter(5):
+            set_chapter_5_rules(self)
         # if self.include_chapter(6): set_chapter_6_rules(self)
         # if self.include_chapter(7): set_chapter_7_rules(self)
 

@@ -101,6 +101,58 @@ def set_rules(world: "DeltaruneWorld"):
                 world.get_location(locations[LocationIDs.cc_castle_town_twistedsword_fusion]),
                 have_thornring & Has(items[ItemIDs.purecrystal]),
             )
+        
+        if world.can_access_ch5_fusion():   
+            if world.include_chapter(4):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_monarchrbn_fusion]),
+                    Has(items[ItemIDs.scarfmark]) | Has(items[ItemIDs.progressive_ralsei_weapons], 5)
+                    & Has(items[ItemIDs.princessrbn]),
+                )
+
+            if world.is_hidden_items_randomized() and world.include_chapter(2) and world.include_chapter(3):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]),
+                    Has(items[ItemIDs.frayedbowtie]) & Has(items[ItemIDs.tennatie]),
+                )
+
+            if world.include_chapter(3):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_tvdinner_fusion]),
+                    Has(items[ItemIDs.tvslop], 2),
+                )
+
+            if world.include_chapter(3):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_deluxedinner_fusion]),
+                    Has(items[ItemIDs.tvdinner], 2),
+                )
+
+            if world.include_chapter(4):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_punchbowl_fusion]),
+                    Has(items[ItemIDs.scarlixir]) & Has(items[ItemIDs.powerband]),
+                )
+
+            if world.include_chapter(4):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_tensionmax_fusion]),
+                    Has(items[ItemIDs.scarlixir]) & Has(items[ItemIDs.mysticband]),
+                )
+
+            if world.is_hidden_items_randomized() and world.include_chapter(4):
+                world.set_rule(
+                    world.get_location(locations[LocationIDs.cc_castle_town_dogwidow_fusion]),
+                    Has(items[ItemIDs.dogdollar]) & Has(items[ItemIDs.goldwidow]),
+                )
+
+            if not world.is_hidden_items_randomized():
+                world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]).place_locked_item(
+                    world.create_item(items[ItemIDs.truetie])
+                )
+                world.get_location(locations[LocationIDs.cc_castle_town_dogwidow_fusion]).place_locked_item(
+                    world.create_item(items[ItemIDs.dogwidow])
+                )
 
 
 def get_location(world: "DeltaruneWorld", chapter: int):

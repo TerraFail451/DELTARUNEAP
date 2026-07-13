@@ -87,6 +87,7 @@ class Regions(StrEnum):
 
     chapter_5 = "Chapter 5"
     ch5_castle_town = "CH5: Castle Town"
+    ch5_dojo = "CH5: Dojo"
     ch5_garden = "CH5: The Garden of Hopes and Dreams"
     ch5_greens_cafe = "CH5: Green's Cafe"
     ch5_dark_garden = "CH5: Dark Garden"

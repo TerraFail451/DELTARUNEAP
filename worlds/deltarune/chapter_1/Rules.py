@@ -91,3 +91,8 @@ def handle_locked_items(world: "DeltaruneWorld"):
         world.get_location(locations[LocationIDs.ch1_bake_sale_repair_door_key]).place_locked_item(
             world.create_item(items[ItemIDs.door_key])
         )
+    else: 
+        if world.is_door_key_from_broken_keys():
+            world.get_location(locations[LocationIDs.ch1_bake_sale_repair_door_key]).place_locked_item(
+                world.create_item(items[ItemIDs.door_key])
+            )
