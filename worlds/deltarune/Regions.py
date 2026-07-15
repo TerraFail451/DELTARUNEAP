@@ -91,6 +91,7 @@ class Regions(StrEnum):
     ch5_garden = "CH5: The Garden of Hopes and Dreams"
     ch5_greens_cafe = "CH5: Green's Cafe"
     ch5_dark_garden = "CH5: Dark Garden"
+    ch5_garden_aqua = "CH5: Aqua Fight"
     ch5_garden_petal_feather = "CH5: Garden (PetalFeather Required)"
     ch5_cliffs = "CH5: Cliffs"
     ch5_pinks_shop = "CH5: Pink's Shop"

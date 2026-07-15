@@ -116,12 +116,14 @@ chapter5_locations = {
             id=LocationIDs.ch5_dark_garden_end_of_garden_warp_door,
             group=LocationGroups.chapter5,
         ),
+    ],
+    Regions.ch5_garden_aqua: [
         LocationData(
-            id=LocationIDs.ch5_dark_garden_near_shrine_warp_door,
+            id=LocationIDs.ch5_dark_garden_aquas_gift,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_dark_garden_aquas_gift,
+            id=LocationIDs.ch5_dark_garden_near_shrine_warp_door,
             group=LocationGroups.chapter5,
         ),
     ],

@@ -33,6 +33,7 @@ def create_regions(world: "DeltaruneWorld"):
     garden = Region(Regions.ch5_garden, world.player, world.multiworld)
     greens_cafe = Region(Regions.ch5_greens_cafe, world.player, world.multiworld)
     dark_garden = Region(Regions.ch5_dark_garden, world.player, world.multiworld)
+    garden_aqua = Region(Regions.ch5_garden_aqua, world.player, world.multiworld)
     garden_petal_feather = Region(Regions.ch5_garden_petal_feather, world.player, world.multiworld)
     cliffs = Region(Regions.ch5_cliffs, world.player, world.multiworld)
     pinks_shop = Region(Regions.ch5_pinks_shop, world.player, world.multiworld)
@@ -51,6 +52,7 @@ def create_regions(world: "DeltaruneWorld"):
         garden,
         greens_cafe,
         dark_garden,
+        garden_aqua,
         garden_petal_feather,
         cliffs,
         pinks_shop,
@@ -73,7 +75,7 @@ def create_regions(world: "DeltaruneWorld"):
 
     castle_town.connect(
         dojo,
-        rule=have_kris_susie_or_ralsei
+        rule=have_kris_susie_and_ralsei
         & [OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")] 
     )
 
@@ -89,10 +91,12 @@ def create_regions(world: "DeltaruneWorld"):
 
     garden.connect(greens_cafe)
 
-    #aqua fight needs kris
-    garden.connect(dark_garden, rule=have_kris)
+    garden.connect(dark_garden)
 
-    dark_garden.connect(garden_petal_feather, rule=Has(items[ItemIDs.petalfeather]))
+    #aqua fight needs kris
+    dark_garden.connect(garden_aqua, rule=have_kris)
+
+    garden_aqua.connect(garden_petal_feather, rule=Has(items[ItemIDs.petalfeather]))
 
     garden_petal_feather.connect(cliffs)
     
