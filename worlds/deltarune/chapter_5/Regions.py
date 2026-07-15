@@ -113,7 +113,7 @@ def create_regions(world: "DeltaruneWorld"):
 
     pink_room.connect(
         flower_rewards,
-        rule=Has(items[ItemIDs.pinkcoin], 16) | Has(items[ItemIDs.pinkcoin]) & Has(glitched_item_name),
+        rule=Has(items[ItemIDs.pinkcoin], 16) | Has(items[ItemIDs.pinkcoin], 11) & Has(glitched_item_name),
     )
 
     secret_boss_mandatory = CanReachLocation(
