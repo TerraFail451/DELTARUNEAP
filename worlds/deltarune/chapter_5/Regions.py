@@ -102,8 +102,9 @@ def create_regions(world: "DeltaruneWorld"):
 
     flower_castle.connect(vending_machine)
 
-    flower_castle.connect(castle_east)
-    flower_castle.connect(castle_west)
+    flower_castle.connect(castle_east, rule=Has(items[ItemIDs.compliment_list_green]))
+
+    flower_castle.connect(castle_west, rule=Has(items[ItemIDs.compliment_list_yellow]))
 
     # need everyone for green & orange fight and blue & yellow fight 
     flower_castle.connect(castle_top, rule=have_kris_susie_and_ralsei)

@@ -151,7 +151,8 @@ class ItemIDs(IntEnum):
     shelter_key = 11019
     sacred_moss = 11020
     pinkcoin = 11021
-    compliment_list = 11022
+    compliment_list_yellow = 11022
+    compliment_list_green = 11023
 
     amber_card = 20001
     dice_brace = 20002
@@ -489,7 +490,8 @@ items = {
     ItemIDs.flowerydollars_50: "50 Flowery Dollars",
     ItemIDs.flowerydollars_100: "100 Flowery Dollars",
     ItemIDs.chapter_5_egg: "CH5 Egg",
-    ItemIDs.compliment_list: "Compliment List",
+    ItemIDs.compliment_list_yellow: "Yellow Compliment List",
+    ItemIDs.compliment_list_green: "Green Compliment List",
     ItemIDs.jarona_lesson: "Jarona Lesson",
 }
 

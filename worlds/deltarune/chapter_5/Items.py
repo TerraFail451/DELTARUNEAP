@@ -72,7 +72,8 @@ chapter5_items = [
         amount=1
     ),
     ItemData(ItemIDs.petalfeather, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
-    ItemData(ItemIDs.compliment_list, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
+    ItemData(ItemIDs.compliment_list_yellow, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
+    ItemData(ItemIDs.compliment_list_green, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(
         ItemIDs.jarona_lesson,
         ItemClassification.progression_skip_balancing,
