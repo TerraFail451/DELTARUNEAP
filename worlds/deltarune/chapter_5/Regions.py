@@ -93,13 +93,13 @@ def create_regions(world: "DeltaruneWorld"):
 
     garden.connect(dark_garden)
 
-    #aqua fight needs kris
+    # aqua fight needs kris
     dark_garden.connect(garden_aqua, rule=have_kris)
 
     garden_aqua.connect(garden_petal_feather, rule=Has(items[ItemIDs.petalfeather]))
 
     garden_petal_feather.connect(cliffs)
-    
+
     cliffs.connect(pinks_shop)
 
     cliffs.connect(flower_castle)
@@ -110,11 +110,12 @@ def create_regions(world: "DeltaruneWorld"):
 
     flower_castle.connect(castle_west, rule=Has(items[ItemIDs.compliment_list_yellow]))
 
-    # need everyone for green & orange fight and blue & yellow fight 
-    flower_castle.connect(castle_top,
+    # need everyone for green & orange fight and blue & yellow fight
+    flower_castle.connect(
+        castle_top,
         rule=have_kris_susie_and_ralsei
-        and Has(items[ItemIDs.compliment_list_green])
-        and Has(items[ItemIDs.compliment_list_yellow])
+        & Has(items[ItemIDs.compliment_list_green])
+        & Has(items[ItemIDs.compliment_list_yellow]),
     )
 
     castle_top.connect(pink_room, rule=Has(items[ItemIDs.pinkkey]))
