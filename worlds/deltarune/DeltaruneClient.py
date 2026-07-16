@@ -350,12 +350,6 @@ async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
             await ctx.version_mismatch()
             return
 
-
-async def send_testy():
-    """i like to test oh yeah."""
-    logger.info("I am testing yippeee...")
-
-
 def main():
     Utils.init_logging("DeltaruneClient" + ap_world_version, exception_logger="Client")
 
