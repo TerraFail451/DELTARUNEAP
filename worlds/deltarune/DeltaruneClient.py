@@ -16,7 +16,7 @@ from NetUtils import NetworkItem, ClientStatus
 from worlds import deltarune
 from MultiServer import mark_raw, Context, Client, Endpoint
 from Utils import async_start
-from worlds.deltarune.LinuxProxy import proxy, proxy_loop
+from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
 ap_world_version = "v2.0.5"
 
@@ -242,12 +242,16 @@ class DeltaruneContext(SuperContext):
     unused_items = 0
     save_game_folder = os.path.expandvars(r"%localappdata%/DELTARUNEAP")
     proxy = None
-    proxy_connected = False
+    connected = False
+    authenticated = False
     proxy_endpoint: Endpoint = None
     proxy_task = None
     proxy_autoreconnect_task = None
     proxy_server_msgs = []
     proxy_message_queue = []
+    room_info = {}
+    connected_msg = {}
+    is_processing_outgoing_messages = False
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
@@ -258,26 +262,6 @@ class DeltaruneContext(SuperContext):
 
     def is_proxy_connected(self) -> bool:
         return self.proxy_endpoint and self.proxy_endpoint.socket.open
-
-    async def send_msgs_proxy(self, msgs: typing.Iterable[dict]) -> bool:
-        """`msgs` JSON serializable"""
-        if not self.proxy_endpoint or not self.proxy_endpoint.socket.open or self.proxy_endpoint.socket.closed:
-            return False
-
-        if DEBUG:
-            self.output(f"Outgoing message: {msgs}")
-
-        # queue so that packets sent in quick succession don't get lost
-        # special thanks to profdecube for looking into this issue and writing a fix for it
-        self.proxy_message_queue.append(msgs)
-        if not self.is_processing_outgoing_messages:
-            self.is_processing_outgoing_messages = True
-            while len(self.proxy_message_queue) > 0:
-                message_to_process = self.proxy_message_queue.pop(0)
-                await self.proxy_endpoint.socket.send(message_to_process)
-                await asyncio.sleep(0.1)
-            self.is_processing_outgoing_messages = False
-        return True
 
     async def disconnect_proxy(self):
         if self.proxy_endpoint and not self.proxy_endpoint.socket.closed:
@@ -322,11 +306,20 @@ class DeltaruneContext(SuperContext):
 
     def on_package(self, cmd: str, args: dict):
         super().on_package(cmd, args)
+        print(f"Received package: {cmd} with args: {args}")
         if cmd == "Connected":
             self.game = self.slot_info[self.slot].game
             self.set_notify(
                 self.get_datastore_prefix() + "completed_chapters", self.get_datastore_prefix() + "current_location"
             )
+            self.connected_msg = args
+            self.connected = True
+            self.authenticated = True
+        elif cmd == "RoomInfo":
+            self.room_info = args
+            print(f"Room info received: {args}")
+        elif self.proxy != None:
+            self.proxy_server_msgs.append(args)
         async_start(process_deltarune_cmd(self, cmd, args))
 
     def make_gui(self):
@@ -349,6 +342,7 @@ async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
         except:
             await ctx.version_mismatch()
             return
+
 
 def main():
     Utils.init_logging("DeltaruneClient" + ap_world_version, exception_logger="Client")
