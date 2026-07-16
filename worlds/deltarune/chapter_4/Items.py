@@ -19,6 +19,7 @@ chapter4_items = [
     ItemData(ItemIDs.rhapsotea, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.revivemint, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.bittertear, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.spincake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.tensiongem, ItemClassification.filler, groups=[ItemGroups.tension_items]),
     ItemData(ItemIDs.absorbax, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.susie_weapons]),
     ItemData(ItemIDs.wingblade, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),

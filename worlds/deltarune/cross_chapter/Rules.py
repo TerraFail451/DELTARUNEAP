@@ -131,13 +131,15 @@ def set_rules(world: "DeltaruneWorld"):
             if world.include_chapter(4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_punchbowl_fusion]),
-                    Has(items[ItemIDs.scarlixir]) & Has(items[ItemIDs.powerband]),
+                    (Has(items[ItemIDs.scarlixir], 2) | Has(items[ItemIDs.scarlixir], 1) & Has(glitched_item_name))
+                    & Has(items[ItemIDs.powerband]),
                 )
 
             if world.include_chapter(4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_tensionmax_fusion]),
-                    Has(items[ItemIDs.scarlixir]) & Has(items[ItemIDs.mysticband]),
+                    (Has(items[ItemIDs.scarlixir], 2) | Has(items[ItemIDs.scarlixir], 1) & Has(glitched_item_name))
+                    & Has(items[ItemIDs.mysticband]),
                 )
 
             if world.is_hidden_items_randomized() and world.include_chapter(4):

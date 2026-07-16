@@ -33,7 +33,7 @@ cross_chapter_items = [
         ItemIDs.s_r_n_actions,
         ItemClassification.progression,
         should_be_included=lambda world: world.is_fun_gang_actions_unlockable()
-        and world.has_at_least_one_chapter_included([2, 3, 4]),
+        and world.has_at_least_one_chapter_included([2, 3, 4, 5]),
     ),
     ItemData(
         ItemIDs.kris,
@@ -159,19 +159,21 @@ cross_chapter_items = [
         ItemClassification.filler, 
         should_be_included=lambda world: world.can_access_ch5_fusion()
             and world.include_chapter(4),
-        groups=[ItemGroups.tension_items]),
+        groups=[ItemGroups.tension_items]
+    ),
     ItemData(ItemIDs.punchbowl,
         ItemClassification.filler, 
         should_be_included=lambda world: world.can_access_ch5_fusion()
             and world.include_chapter(4),
-        groups=[ItemGroups.healing_item]),
+        groups=[ItemGroups.healing_item]
+    ),
     ItemData(
         ItemIDs.monarchrbn, 
         ItemClassification.useful, 
         should_be_included=lambda world: world.can_access_ch5_fusion()
             and world.include_chapter(4),
         groups=[ItemGroups.armors]
-        ),
+    ),
     ItemData(
         ItemIDs.truetie, 
         ItemClassification.useful,
@@ -180,7 +182,7 @@ cross_chapter_items = [
             and world.is_hidden_items_randomized()
             and world.include_chapter(3),
         groups=[ItemGroups.armors]
-        ),
+    ),
     ItemData(
         ItemIDs.dogwidow, 
         ItemClassification.useful, 
@@ -188,7 +190,7 @@ cross_chapter_items = [
             and world.include_chapter(4)
             and world.is_hidden_items_randomized(),
         groups=[ItemGroups.armors]
-        ),
+    ),
     ItemData(
         ItemIDs.everybodyweapon,
         ItemClassification.useful,
