@@ -110,7 +110,10 @@ def set_rules(world: "DeltaruneWorld"):
                     & Has(items[ItemIDs.princessrbn]),
                 )
 
-            if world.is_hidden_items_randomized() and world.include_chapter(2) and world.include_chapter(3):
+            if world.is_hidden_items_randomized() and (
+                world.have_all_chapters_included([2, 3])
+                and world.is_not_weird_route_only()
+            ):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]),
                     Has(items[ItemIDs.frayedbowtie]) & Has(items[ItemIDs.tennatie]),

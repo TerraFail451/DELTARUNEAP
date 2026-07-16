@@ -180,6 +180,7 @@ cross_chapter_items = [
         should_be_included=lambda world: world.can_access_ch5_fusion()
             and world.include_chapter(2)
             and world.is_hidden_items_randomized()
+            and world.is_not_weird_route_only()
             and world.include_chapter(3),
         groups=[ItemGroups.armors]
     ),

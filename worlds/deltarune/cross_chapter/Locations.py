@@ -80,6 +80,7 @@ cross_chapter_locations: dict = {
             should_be_included=lambda world: world.can_access_ch5_fusion()
             #frayed bowtie
             and world.include_chapter(2)
+            and world.is_not_weird_route_only()
             #tennatie
             and world.include_chapter(3),
             group=LocationGroups.castle_town,

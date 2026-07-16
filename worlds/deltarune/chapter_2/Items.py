@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 chapter2_items = [
     ItemData(ItemIDs.cd_bagel, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.clubsandwich, ItemClassification.filler, groups=[ItemGroups.healing_item]),
-    ItemData(ItemIDs.lightcandy, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.revivemint, ItemClassification.filler, groups=[ItemGroups.healing_item], amount=2),
     ItemData(ItemIDs.spincake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.tensiongem, ItemClassification.filler, groups=[ItemGroups.tension_items]),
@@ -30,7 +29,6 @@ chapter2_items = [
     ItemData(ItemIDs.fiberscarf, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
     ItemData(ItemIDs.ragger2, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
     ItemData(ItemIDs.bounceblade, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
-    ItemData(ItemIDs.mannequin, ItemClassification.filler, groups=[ItemGroups.armors], blacklist_filler=True),
     # Noelle royal pin
     ItemData(ItemIDs.royalpin, ItemClassification.useful, groups=[ItemGroups.armors]),
     ItemData(
@@ -55,6 +53,12 @@ chapter2_items = [
         ItemClassification.progression_skip_balancing,
         groups=[ItemGroups.region_blockers],
         amount=0,
+    ),
+    ItemData(ItemIDs.mannequin,
+        ItemClassification.filler,
+        groups=[ItemGroups.armors],
+        should_be_included=lambda world: world.is_not_weird_route_only(),
+        blacklist_filler=True
     ),
     ItemData(
         ItemIDs.spagetticode,
