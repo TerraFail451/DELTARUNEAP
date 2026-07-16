@@ -67,4 +67,58 @@ cross_chapter_locations: dict = {
             group=LocationGroups.cross_chapter,
         ),
     ],
+    Regions.ch5_fusion: [
+        LocationData(
+            LocationIDs.cc_castle_town_monarchrbn_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #scarfmark & princessRBN
+            and world.include_chapter(4),
+            group=LocationGroups.castle_town,
+        ),
+        LocationData(
+            LocationIDs.cc_castle_town_truetie_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #frayed bowtie
+            and world.include_chapter(2)
+            and world.is_not_weird_route_only()
+            #tennatie
+            and world.include_chapter(3),
+            group=LocationGroups.castle_town,
+        ),
+        LocationData(
+            LocationIDs.cc_castle_town_tvdinner_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #tvslop
+            and world.include_chapter(3),
+            group=LocationGroups.castle_town,
+        ),
+        LocationData(
+            LocationIDs.cc_castle_town_deluxedinner_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #tvdinner
+            and world.include_chapter(3),
+            group=LocationGroups.castle_town,
+        ),
+        LocationData(
+            LocationIDs.cc_castle_town_punchbowl_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #Scarlixir & powerband
+            and world.include_chapter(4),
+            group=LocationGroups.castle_town,
+        ),
+        LocationData(
+            LocationIDs.cc_castle_town_tensionmax_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #Scarlixir & mysticband
+            and world.include_chapter(4),
+            group=LocationGroups.castle_town,
+        ),
+        LocationData(
+            LocationIDs.cc_castle_town_dogwidow_fusion,
+            should_be_included=lambda world: world.can_access_ch5_fusion()
+            #Goldwidow and dogdollar (no need to check for any more chapters since dogdollar is already in ch4)
+            and world.include_chapter(4),
+            group=LocationGroups.castle_town,
+        ),
+    ],
 }

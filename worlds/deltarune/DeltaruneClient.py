@@ -8,6 +8,7 @@ import json
 import hashlib
 import websockets
 import functools
+import shutil
 
 import Utils
 
@@ -17,7 +18,7 @@ from MultiServer import mark_raw, Context, Client, Endpoint
 from Utils import async_start
 from worlds.deltarune.LinuxProxy import proxy, proxy_loop
 
-ap_world_version = "v2.0.2"
+ap_world_version = "v2.0.5"
 
 DEBUG = True
 
@@ -49,6 +50,7 @@ except ModuleNotFoundError:
 
     if not gui_loaded_from_utils:
         from CommonClient import gui_enabled
+
 
 def guess_deltarune_path(path: str | None):
     tempInstall = ""
@@ -104,6 +106,27 @@ class DeltaruneCommandProcessor(ClientCommandProcessor):
         await self.ctx.proxy
         self.output("You should now be able to connect to localhost:1225 in game")
         await self.ctx.proxy_task
+
+    def _cmd_delete_saves(self):
+        """Delete all archipelago saves and caches."""
+
+        if isinstance(self.ctx, DeltaruneContext):
+            path = self.ctx.save_game_folder
+            for root, dirs, files in os.walk(path):
+                for dir in dirs:
+                    shutil.rmtree(os.path.join(root, dir), ignore_errors=False)
+                    self.output(f"Deleted {os.path.join(root, dir)}")
+
+    def _cmd_inspect_datastore(self, key: typing.Optional[str] = None):
+        """Inspect the contents of your datastore."""
+        if isinstance(self.ctx, DeltaruneContext):
+            if key is not None:
+                self.output(
+                    f"{self.ctx.get_datastore_prefix() + key}: {self.ctx.stored_data.get(self.ctx.get_datastore_prefix() + key)}"
+                )
+            else:
+                for data in self.ctx.stored_data:
+                    self.output(f"{data}: {self.ctx.stored_data[data]}")
 
     def _cmd_chosen_route(self):
         """Use this to figure out your chosen route, if you don't know or have forgotten."""
@@ -262,6 +285,9 @@ class DeltaruneContext(SuperContext):
         if self.proxy_task is not None:
             await self.proxy_task
 
+    def get_datastore_prefix(self):
+        return f"{self.slot}_{self.team}_"
+
     def patch_game(self):
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "rb") as f:
             patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch1.bsdiff"))
@@ -279,6 +305,10 @@ class DeltaruneContext(SuperContext):
             patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch4.bsdiff"))
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
+        with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "rb") as f:
+            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch5.bsdiff"))
+        with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "wb") as f:
+            f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "data.win"), "rb") as f:
             patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("deltarune.bsdiff"))
         with open(Utils.user_path("DELTARUNE", "data.win"), "wb") as f:
@@ -294,6 +324,9 @@ class DeltaruneContext(SuperContext):
         super().on_package(cmd, args)
         if cmd == "Connected":
             self.game = self.slot_info[self.slot].game
+            self.set_notify(
+                self.get_datastore_prefix() + "completed_chapters", self.get_datastore_prefix() + "current_location"
+            )
         async_start(process_deltarune_cmd(self, cmd, args))
 
     def make_gui(self):
@@ -303,9 +336,11 @@ class DeltaruneContext(SuperContext):
         return ui
 
     async def version_mismatch(self):
-        DeltaruneCommandProcessor.output(self, 
-            """*****\nWARNING: Incompatible DELTARUNEAP version. Unable to connect.\n*****""")
+        DeltaruneCommandProcessor.output(
+            self, """*****\nWARNING: Incompatible DELTARUNEAP version. Unable to connect.\n*****"""
+        )
         await super().disconnect(False)
+
 
 async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
     if cmd == "Connected":
@@ -314,6 +349,11 @@ async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
         except:
             await ctx.version_mismatch()
             return
+
+
+async def send_testy():
+    """i like to test oh yeah."""
+    logger.info("I am testing yippeee...")
 
 
 def main():

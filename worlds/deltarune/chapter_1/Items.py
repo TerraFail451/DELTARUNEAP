@@ -88,7 +88,8 @@ chapter1_items = [
     ItemData(
         ItemIDs.door_key,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized(),
+        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized()
+        and not world.is_door_key_from_broken_keys(),
         groups=[ItemGroups.jevil_keys],
     ),
     ItemData(

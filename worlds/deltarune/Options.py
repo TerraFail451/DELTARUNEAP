@@ -52,7 +52,7 @@ class BetterOdds(Toggle):
     """
 
     display_name = "Better Odds"
-    default = 0
+    default = 1
 
 
 class ChosenRoute(Choice):
@@ -65,7 +65,7 @@ class ChosenRoute(Choice):
     - **All Routes** *Both All Recruits and Weird Route at the same times.*
       *(Doesn't require to finish multiple times chapter, either ending would count as completing a chapter)*
 
-    (The chosen route only chooses if recruiting or loosing recruits are included or not.)
+    (The chosen route only chooses if recruiting or losing recruits are included or not.)
     (This doesn't require you to finish a chapter with a specific route yet, but will in the future.)
     """
 
@@ -115,6 +115,7 @@ class StartingChapter(Choice):
     option_chapter_2 = 2
     option_chapter_3 = 3
     option_chapter_4 = 4
+    option_chapter_5 = 5
     default = option_random_chapter
 
 
@@ -130,7 +131,7 @@ class RandomizeSecretBosses(Choice):
 
     - **Mandatory** *Secret Bosses rewards will be randomized and required to do to access the fountain*
 
-    *Secret bosses are: Jevil, Spamton Neo, Mantle/ERAM, Chapter 3 Knight, Hammer of Justice*
+    *Secret bosses are: Jevil, Spamton Neo, Shadow Mantle/ERAM, Chapter 3 Knight, Hammer of Justice, Pink*
     """
 
     display_name = "Randomize Secret Bosses"
@@ -170,7 +171,7 @@ class IncludeShadowMantle(Toggle):
     """
     THE SHADOW MANTLE WILL BE IN THE RANDOM ITEM POOL OF THE THIRD CHAPTER.
 
-    - **False** *The Shadow Mantle is the reward for beating the Shadow Mantle/ERAM*
+    - **False** *The Shadow Mantle is the reward for the Shadow Mantle/ERAM fight, but isn't in logic for the knight*
     - **True** *The Shadow Mantle will be in the itempool in logic before Knight fight*
     """
 
@@ -221,6 +222,7 @@ class IncludeHiddenItems(Toggle):
     - **Eggs**
     - **Dog Dollars**
     - **Moss**
+    - **Bromide F**
     """
 
     display_name = "Randomize Grindy/Hidden Items"
@@ -235,13 +237,38 @@ class IncludeSecretBossesItemsRequirement(Toggle):
     - **Door Key**
     - **KeyGen**
     - **Empty Disk**
+    - **Pink Coins**
+    - **Pink Key**
 
     *(For MANTLE items, see the RandomizeMANTLE option)*
     """
 
     display_name = "Randomize Items required for Secret Bosses"
+    default = 0
+
+class DoorKeyFromBrokenKeys(Toggle):
+    """
+    THE JESTER'S DOOR KEY WILL BE ACQUIRED BY FUSING THE THREE BROKEN KEY PIECES.
+
+    *(Plando "Door Key" to "CH1: Bake Sale - Repair Door Key")*
+    *(Otherwise, it could be anywhere. This option only matters if you randomize secret boss requirement items.)*
+    *(Of course, this only applies if you play Chapter 1.)*
+    """
+
+    display_name = "Door Key from Broken Keys"
     default = 1
 
+class MysteryKeyFromPinkCoins(Toggle):
+    """
+    THE MYSTERIOUS PINK KEY WILL BE PURCHASED FOR TEN PINK COINS.
+
+    *(Plando "MysteryKey" to "CH5: Pink's Shop Item #4")*
+    *(Otherwise, it could be anywhere. This option only matters if you randomize secret boss requirement items.)*
+    *(Of course, this only applies if you play Chapter 5.)*
+    """
+
+    display_name = "MysteryKey from Pink Coins"
+    default = 1
 
 class RemoveStartingEquipment(Toggle):
     """
@@ -275,7 +302,14 @@ class Chapter1Recruit(Toggle):
     display_name = "Recruits/Lost for chapter 1"
     default = 1
 
+class Chapter1Recruit(Toggle):
+    """
+    THE SYSTEM TO RECRUIT ENEMIES WILL BE PRESENT IN THE FIRST CHAPTER.
+    """
 
+    display_name = "Recruits/Lost for chapter 1"
+    default = 1
+    
 class IncludeChapter2(Toggle):
     """
     DO YOU WISH TO PLAY CHAPTER 2?
@@ -292,7 +326,7 @@ class IncludeLoseSwatchling(Toggle):
     WILL LOSING THE SWATCHLING RECRUIT BE A CHECK LOCATION?
 
     *(Since Swatchlings don't normally appear in weird route, enabling this means you have to do Singapore Wrong Warps.)*
-    *(In All Routes, it requires either reloading your save on a regular route or doing the wrong warp again.)*
+    *(In All Routes, it requires either reloading your save on a regular route or doing the wrong warp as well.)*
     """
 
     display_name = "Include Lose Swatchling"
@@ -307,7 +341,7 @@ class ExcludePostChapter2Locations(Toggle):
     - CH2: Castle Town - Ch2 All Stars Challenge
 
     *(Since you "beat" the chapter after sealing the Cyber World fountain,)*
-    *(enabling this means you can just go to the next chapter afterwards.)*
+    *(enabling this means you can just go straight to the next chapter afterwards.)*
     """
 
     display_name = "Exclude Post-Chapter 2 Locations"
@@ -333,6 +367,17 @@ class IncludeChapter4(Toggle):
     """
 
     display_name = "Include Chapter 4"
+    default = 1
+
+
+class IncludeChapter5(Toggle):
+    """
+    DO YOU WISH TO PLAY CHAPTER 5?
+
+    *(Items from this chapter will also be included)*
+    """
+
+    display_name = "Include Chapter 5"
     default = 1
 
 
@@ -391,6 +436,20 @@ class MacGuffinChapter4(Range):
     """
 
     display_name = "Macguffin Chapter 4 Amount"
+    default = 0
+    range_start = 0
+    range_end = 10
+
+class MacGuffinChapter5(Range):
+    """
+    A NEW ROADBLACK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 5.
+
+    THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
+
+    (Jarona Lessons)
+    """
+
+    display_name = "Macguffin Chapter 5 Amount"
     default = 3
     range_start = 0
     range_end = 10
@@ -508,7 +567,7 @@ class ProgressiveKrisWeapons(Toggle):
     """
 
     display_name = "Progressive Kris Weapons"
-    default = 1
+    default = 0
 
 
 class ProgressiveSusieWeapons(Toggle):
@@ -517,7 +576,7 @@ class ProgressiveSusieWeapons(Toggle):
     """
 
     display_name = "Progressive Susie Weapons"
-    default = 1
+    default = 0
 
 
 class ProgressiveRalseiWeapons(Toggle):
@@ -526,7 +585,7 @@ class ProgressiveRalseiWeapons(Toggle):
     """
 
     display_name = "Progressive Ralsei Weapons"
-    default = 1
+    default = 0
 
 
 class ProgressiveNoelleWeapons(Toggle):
@@ -535,7 +594,7 @@ class ProgressiveNoelleWeapons(Toggle):
     """
 
     display_name = "Progressive Noelle Weapons"
-    default = 1
+    default = 0
 
 
 class UnlockCharacters(Choice):
@@ -613,7 +672,7 @@ class UnlockFunGangActions(Toggle):
     """
 
     display_name = "Unlock S/R/N-Actions"
-    default = 1
+    default = 0
 
 
 deltarune_option_groups = [
@@ -640,6 +699,7 @@ deltarune_option_groups = [
         ],
     ),
     OptionGroup("Chapter 4", [IncludeChapter4, MacGuffinChapter4, IncludeMike, ExcludeMikePlatinum]),
+    OptionGroup("Chapter 5", [IncludeChapter5, MacGuffinChapter5]),
     OptionGroup(
         "Fillers",
         [
@@ -663,6 +723,8 @@ deltarune_option_groups = [
         [
             IncludeHiddenItems,
             IncludeSecretBossesItemsRequirement,
+            DoorKeyFromBrokenKeys,
+            MysteryKeyFromPinkCoins,
             IncludeUnusedItems,
             ProgressiveKrisWeapons,
             ProgressiveSusieWeapons,
@@ -684,6 +746,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_chapter_2: IncludeChapter2
     include_chapter_3: IncludeChapter3
     include_chapter_4: IncludeChapter4
+    include_chapter_5: IncludeChapter5
     randomize_chapters: RandomizeChapters
     starting_chapter: StartingChapter
     chosen_route: ChosenRoute
@@ -694,6 +757,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     macguffin_chapter_2: MacGuffinChapter2
     macguffin_chapter_3: MacGuffinChapter3
     macguffin_chapter_4: MacGuffinChapter4
+    macguffin_chapter_5: MacGuffinChapter5
     macguffin_extra: MacGuffinExtra
     randomize_secret_bosses: RandomizeSecretBosses
     randomize_mantle: RandomizeMANTLE
@@ -702,6 +766,8 @@ class DeltaruneOptions(PerGameCommonOptions):
     exclude_z_rank: ExcludeZRank
     include_hidden_items: IncludeHiddenItems
     include_secret_bosses_items_requirement: IncludeSecretBossesItemsRequirement
+    mysterykey_from_pink_coins: MysteryKeyFromPinkCoins
+    door_key_from_broken_keys: DoorKeyFromBrokenKeys
     include_unused_items: IncludeUnusedItems
     death_link: DeathLink
     filler_healing_weight: FillerHealingWeight
@@ -733,6 +799,7 @@ options_presets = {
         "macguffin_chapter_2": 10,
         "macguffin_chapter_3": 10,
         "macguffin_chapter_4": 10,
+        "macguffin_chapter_5": 10,
         "macguffin_extra": 0,
         "randomize_secret_bosses": "mandatory",
         "randomize_mantle": "true",

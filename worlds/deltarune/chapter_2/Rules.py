@@ -12,6 +12,7 @@ from worlds.deltarune.Rules import (
     can_lost_chapter2_with_noelle,
     can_recruit,
     can_recruit_with_kris_susie,
+    have_kris_or_noelle,
 )
 
 if TYPE_CHECKING:
@@ -26,6 +27,8 @@ def set_rules(world: "DeltaruneWorld"):
     world.set_rule(
         world.get_location(locations[LocationIDs.ch2_castle_town_clover_rematch_challenge]), have_kris_susie_or_ralsei
     )
+
+    world.set_rule(world.get_location(locations[LocationIDs.ch2_cyber_city_cheese_maze_chest]), have_kris_or_noelle)
 
     # Weird Route
     if world.is_weird_route():

@@ -74,11 +74,22 @@ class ItemIDs(IntEnum):
     tvslop = 37
     execbuffet = 38
     deluxedinner = 39
+    punchbowl = 40
+    flavinge = 41
+    greentea = 42
+    orangejuice = 43
 
     ancientsweet = 60
     rhapsotea = 61
     scarlixir = 62
     bittertear = 63
+    schadenbrot = 64
+    treecake = 65
+    s_potion = 66
+    raw_moon = 67
+    phanta = 68
+    flowerysoda = 69
+    shikacola = 70
 
     brokencake = 10003
     broken_key_a = 10004
@@ -95,14 +106,30 @@ class ItemIDs(IntEnum):
     odd_controller = 10016
     # nothing
     tripticket = 10018
+    # lancercon = 10019
+
+    # scissors = 10020
+    # yellowshred = 10021
+    # bootoil = 10022
+    # redsplatter = 10023
+    bromider = 10024
+    petalfeather = 10025
+    # perpbook = 10026
+    # bluestring = 10027
+    # trainplan = 10028
+    # yellowkey = 10029
 
     sheetmusic = 10030
     claimbclaws = 10031
+
+    pinkkey = 10032
+    bromidef = 10033
 
     chapter_1_egg = 10950
     chapter_2_egg = 10951
     chapter_3_egg = 10952
     chapter_4_egg = 10953
+    chapter_5_egg = 10953
 
     # great_door_key = 11000
     bake_sale_ticket = 11001
@@ -123,6 +150,9 @@ class ItemIDs(IntEnum):
     ice_key = 11018
     shelter_key = 11019
     sacred_moss = 11020
+    pinkcoin = 11021
+    compliment_list_yellow = 11022
+    compliment_list_green = 11023
 
     amber_card = 20001
     dice_brace = 20002
@@ -151,6 +181,16 @@ class ItemIDs(IntEnum):
     gingerguard = 20025
     blue_ribbon = 20026
     tennatie = 20027
+
+    monarchrbn = 20030
+    truetie = 20031
+    dogwidow = 20032
+    redribbon = 20033
+    netskiehat = 20034
+    sethspecs = 20035
+    yellowhat = 20036
+    ogloves = 20037
+    greenapron = 20038
 
     waferguard = 20050
     mysticband = 20051
@@ -185,6 +225,18 @@ class ItemIDs(IntEnum):
     flexscarf = 30025
     blackshard = 30026
 
+    woodblade2 = 30030
+    thatchet = 30031
+    blueshoes = 30032
+    aquaknife = 30033
+    floweryscarf = 30034
+    # FloweryScarf is the BrokenScarf, so we'll only have one of them.
+    # In Chapter 5 and below, you will get the floweryscarf
+    # In Chapter 6+, you'll receive brokenscarf instead
+    # brokenscarf = 30035
+    gildedrose = 30036
+    mistlewp = 30037
+
     jingleblade = 30050
     scarfmark = 30051
     justiceaxe = 30052
@@ -214,6 +266,7 @@ class ItemIDs(IntEnum):
     keygen_2_segment = 70001
     remote_battery = 70002
     combination_lock_digit = 70003
+    jarona_lesson = 70004
 
     point_1 = 80001
     points_2 = 80002
@@ -230,6 +283,11 @@ class ItemIDs(IntEnum):
     chapter_5_unlock = 90005
 
     s_r_n_actions = 100000
+
+    flowerydollars_10 = 110010
+    flowerydollars_25 = 110025
+    flowerydollars_50 = 110050
+    flowerydollars_100 = 110100
 
 
 items = {
@@ -394,6 +452,47 @@ items = {
     ItemIDs.tensionbow: "TensionBow",
     ItemIDs.shadowcrystal: "ShadowCrystal",
     ItemIDs.purecrystal: "PureCrystal",
+    ItemIDs.pinkcoin: "Pink Coin",
+    ItemIDs.pinkkey: "MysteryKey",
+    ItemIDs.chapter_5_unlock: "Chapter 5 Unlock",
+    ItemIDs.punchbowl: "PunchBowl",
+    ItemIDs.flavinge: "Flavinge",
+    ItemIDs.greentea: "GreenTea",
+    ItemIDs.orangejuice: "OrangeJuice",
+    ItemIDs.schadenbrot: "SchadenBrot",
+    ItemIDs.treecake: "TreeCake",
+    ItemIDs.s_potion: "S. Potion",
+    ItemIDs.raw_moon: "Raw Moon",
+    ItemIDs.phanta: "Phanta",
+    ItemIDs.flowerysoda: "FlowerySoda",
+    ItemIDs.shikacola: "Shikacola",
+    ItemIDs.bromider: "Bromide R",
+    ItemIDs.petalfeather: "PetalFeather",
+    ItemIDs.bromidef: "Bromide F",
+    ItemIDs.netskiehat: "NetskieHat",
+    ItemIDs.sethspecs: "SethSpecs",
+    ItemIDs.yellowhat: "YellowHat",
+    ItemIDs.ogloves: "O. Gloves",
+    ItemIDs.greenapron: "Green Apron",
+    ItemIDs.woodblade2: "Wood Blade 2",
+    ItemIDs.thatchet: "Thatchet",
+    ItemIDs.blueshoes: "BlueShoes",
+    ItemIDs.aquaknife: "AquaKnife",
+    ItemIDs.floweryscarf: "FloweryScarf",
+    ItemIDs.gildedrose: "GildedRose",
+    ItemIDs.mistlewp: "MistleWP",
+    ItemIDs.monarchrbn: "MonarchRBN",
+    ItemIDs.truetie: "TrueTie",
+    ItemIDs.dogwidow: "DogWidow",
+    ItemIDs.redribbon: "RedRibbon",
+    ItemIDs.flowerydollars_10: "10 Flowery Dollars",
+    ItemIDs.flowerydollars_25: "25 Flowery Dollars",
+    ItemIDs.flowerydollars_50: "50 Flowery Dollars",
+    ItemIDs.flowerydollars_100: "100 Flowery Dollars",
+    ItemIDs.chapter_5_egg: "CH5 Egg",
+    ItemIDs.compliment_list_yellow: "Yellow Compliment List",
+    ItemIDs.compliment_list_green: "Green Compliment List",
+    ItemIDs.jarona_lesson: "Jarona Lesson",
 }
 
 

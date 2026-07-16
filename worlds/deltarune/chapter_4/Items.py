@@ -17,19 +17,53 @@ if TYPE_CHECKING:
 chapter4_items = [
     ItemData(ItemIDs.dark_candy, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.rhapsotea, ItemClassification.filler, groups=[ItemGroups.healing_item]),
-    ItemData(ItemIDs.scarlixir, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.revivemint, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.bittertear, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.spincake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.tensiongem, ItemClassification.filler, groups=[ItemGroups.tension_items]),
-    ItemData(ItemIDs.dogdollar, ItemClassification.filler, groups=[ItemGroups.currencies], amount=0),
-    ItemData(ItemIDs.mysticband, ItemClassification.useful, groups=[ItemGroups.armors]),
-    ItemData(ItemIDs.powerband, ItemClassification.useful, groups=[ItemGroups.armors]),
-    ItemData(ItemIDs.princessrbn, ItemClassification.useful, groups=[ItemGroups.armors]),
-    ItemData(ItemIDs.goldwidow, ItemClassification.useful, groups=[ItemGroups.armors]),
-    ItemData(ItemIDs.scarfmark, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
     ItemData(ItemIDs.absorbax, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.susie_weapons]),
     ItemData(ItemIDs.wingblade, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
     ItemData(ItemIDs.claimbclaws, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(ItemIDs.sheetmusic, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
+    ItemData(
+        ItemIDs.dogdollar, 
+        ItemClassification.progression | ItemClassification.deprioritized, 
+        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient], 
+        amount=1
+    ),
+    ItemData(
+        ItemIDs.scarlixir, 
+        ItemClassification.progression | ItemClassification.deprioritized, 
+        groups=[ItemGroups.healing_item, ItemGroups.fusion_ingredient],
+        amount=5
+    ),
+    ItemData(
+        ItemIDs.goldwidow, 
+        ItemClassification.progression | ItemClassification.useful, 
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient]
+    ),
+    ItemData(
+        ItemIDs.mysticband, 
+        ItemClassification.progression | ItemClassification.useful, 
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient]
+    ),
+    ItemData(
+        ItemIDs.powerband, 
+        ItemClassification.progression | ItemClassification.useful, 
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient], 
+        amount=2
+    ),
+    ItemData(
+        ItemIDs.scarfmark, 
+        ItemClassification.progression | ItemClassification.useful, 
+        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons, ItemGroups.fusion_ingredient],
+    ),
+    ItemData(
+        ItemIDs.princessrbn,
+        ItemClassification.progression | ItemClassification.useful,
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient]
+    ),
     ItemData(
         ItemIDs.combination_lock_digit,
         ItemClassification.progression_skip_balancing,
