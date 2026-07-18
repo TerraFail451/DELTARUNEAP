@@ -18,7 +18,7 @@ from MultiServer import mark_raw, Context, Client, Endpoint
 from Utils import async_start
 from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
-ap_world_version = "v2.0.5"
+ap_world_version = "v2.0.6"
 
 DEBUG = True
 
