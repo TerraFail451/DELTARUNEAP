@@ -54,6 +54,7 @@ class Regions(StrEnum):
     ch2_lose_werewerewire = "CH2: Lose Werewerewire"
     ch2_spamton_neo = "CH2: Spamton Neo"
     ch2_post_chapter_castle_town = "CH2: Post-Chapter Castle Town"
+    ch2_fountain = "CH2: Fountain"
 
     chapter_3 = "Chapter 3"
     ch3_couch_cliffs = "CH3: Couch Cliffs"

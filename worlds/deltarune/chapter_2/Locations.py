@@ -396,10 +396,6 @@ chapter2_locations = {
     ],
     Regions.ch2_post_chapter_castle_town: [
         LocationData(
-            LocationIDs.ch2_fountain_sealed,
-            group=LocationGroups.chapter2,
-        ),
-        LocationData(
             LocationIDs.ch2_castle_town_tasque_manager_says_challenge,
             should_be_included=lambda world: world.is_all_recruits(),
             group=LocationGroups.chapter2,
@@ -407,6 +403,12 @@ chapter2_locations = {
         LocationData(
             LocationIDs.ch2_castle_town_all_stars_challenge,
             should_be_included=lambda world: world.is_all_recruits(),
+            group=LocationGroups.chapter2,
+        ),
+    ],
+    Regions.ch2_fountain: [
+        LocationData(
+            LocationIDs.ch2_fountain_sealed,
             group=LocationGroups.chapter2,
         ),
     ],
