@@ -87,7 +87,9 @@ async def send_msgs_proxy(ctx: "DeltaruneContext", msgs: Iterable[dict]) -> bool
         ctx.is_processing_outgoing_messages = True
         while len(ctx.proxy_message_queue) > 0:
             message_to_process = ctx.proxy_message_queue.pop(0)
-            await ctx.proxy_endpoint.socket.send(encode(message_to_process))
+            await ctx.proxy_endpoint.socket.send(
+                encode(message_to_process if type(message_to_process) == list else [message_to_process])
+            )
             await asyncio.sleep(0.1)
         ctx.is_processing_outgoing_messages = False
     return True
