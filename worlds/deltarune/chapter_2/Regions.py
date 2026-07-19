@@ -50,6 +50,7 @@ def create_regions(world: "DeltaruneWorld"):
     mansion_basement = Region(Regions.ch2_mansion_basement, world.player, world.multiworld)
     spamton_neo = Region(Regions.ch2_spamton_neo, world.player, world.multiworld)
     post_chapter_castle_town = Region(Regions.ch2_post_chapter_castle_town, world.player, world.multiworld)
+    fountain = Region(Regions.ch2_fountain, world.player, world.multiworld)
 
     regions = [
         castle_town,
@@ -76,6 +77,7 @@ def create_regions(world: "DeltaruneWorld"):
         mansion_basement,
         spamton_neo,
         post_chapter_castle_town,
+        fountain,
     ]
 
     for region in regions:
@@ -186,9 +188,11 @@ def create_regions(world: "DeltaruneWorld"):
     ]
 
     tunnel_of_love.connect(
-        post_chapter_castle_town,
+        fountain,
         rule=secret_boss_mandatory & Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)),
     )
+
+    fountain.connect(post_chapter_castle_town)
 
     # WEIRD ROUTE REGION CONNECTIONS
     cyber_city.connect(mansion_lobby_weird_route, rule=can_snowgrave)
@@ -208,6 +212,6 @@ def create_regions(world: "DeltaruneWorld"):
         rule=Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)) & have_kris,
     )
     mansion_lobby_weird_route.connect(
-        post_chapter_castle_town,
+        fountain,
         rule=Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)) & have_kris,
     )

@@ -136,6 +136,8 @@ chapter5_locations = {
             id=LocationIDs.ch5_garden_hopschef_gift,
             group=LocationGroups.chapter5,
         ),
+    ],
+    Regions.ch5_dark_garden_petal_feather: [
         LocationData(
             id=LocationIDs.ch5_dark_garden_pink_coin_above_shrine,
             group=LocationGroups.chapter5,

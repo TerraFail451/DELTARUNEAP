@@ -54,6 +54,7 @@ class Regions(StrEnum):
     ch2_lose_werewerewire = "CH2: Lose Werewerewire"
     ch2_spamton_neo = "CH2: Spamton Neo"
     ch2_post_chapter_castle_town = "CH2: Post-Chapter Castle Town"
+    ch2_fountain = "CH2: Fountain"
 
     chapter_3 = "Chapter 3"
     ch3_couch_cliffs = "CH3: Couch Cliffs"
@@ -93,6 +94,7 @@ class Regions(StrEnum):
     ch5_dark_garden = "CH5: Dark Garden"
     ch5_garden_aqua = "CH5: Aqua Fight"
     ch5_garden_petal_feather = "CH5: Garden (PetalFeather Required)"
+    ch5_dark_garden_petal_feather = "CH5: Dark Garden (PetalFeather Required)"
     ch5_cliffs = "CH5: Cliffs"
     ch5_pinks_shop = "CH5: Pink's Shop"
     ch5_flower_castle = "CH5: Flower Castle"
