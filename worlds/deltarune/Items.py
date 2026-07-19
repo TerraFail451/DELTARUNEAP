@@ -129,7 +129,7 @@ class ItemIDs(IntEnum):
     chapter_2_egg = 10951
     chapter_3_egg = 10952
     chapter_4_egg = 10953
-    chapter_5_egg = 10953
+    chapter_5_egg = 10954
 
     # great_door_key = 11000
     bake_sale_ticket = 11001

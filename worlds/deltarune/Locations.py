@@ -351,7 +351,7 @@ class LocationIDs(IntEnum):
     ch5_castle_top_painting_room_item = 329
     ch5_vending_machine_flowerys_secret = 330
     ch5_castle_moss = 331
-    # nothing = 332
+    ch5_castle_west_shinobeetle_chest_behind_tree = 332
     ch5_castle_top_yellow_flower_platforming_pink_coin = 333
     ch5_castle_top_annoying_dog = 334
     ch5_castle_top_pink_door_pink_coin = 335
@@ -771,6 +771,7 @@ locations = {
     LocationIDs.ch5_castle_top_painting_room_item: "CH5: Top of Castle - Painting Room Item",
     LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Vending Machine Flowery's Secret",
     LocationIDs.ch5_castle_moss: "CH5: Flower Castle - Moss",
+    LocationIDs.ch5_castle_west_shinobeetle_chest_behind_tree: "CH5: Castle West - Shinobeetle Chest Behind Tree",
     LocationIDs.ch5_castle_top_yellow_flower_platforming_pink_coin: "CH5: Top of Castle - Yellow Flower Platforming Pink Coin",
     LocationIDs.ch5_castle_top_annoying_dog: "CH5: Top of Castle - Annoying Dog...?",
     LocationIDs.ch5_castle_top_pink_door_pink_coin: "CH5: Top of Castle - Pink Door Pink Coin",

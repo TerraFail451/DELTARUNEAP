@@ -291,6 +291,10 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
         LocationData(
+            id=LocationIDs.ch5_castle_west_shinobeetle_chest_behind_tree,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
             id=LocationIDs.ch5_shinobeetle_recruit,
             should_be_included=lambda world: world.is_all_recruits(),
             group=LocationGroups.chapter5,
