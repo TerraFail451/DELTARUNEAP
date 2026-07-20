@@ -370,6 +370,18 @@ chapter5_locations = {
             id=LocationIDs.ch5_castle_top_pink_door_pink_coin,
             group=LocationGroups.chapter5,
         ),
+        LocationData(
+            id=LocationIDs.ch5_castle_top_greens_shop_warp_door,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
+            id=LocationIDs.ch5_castle_top_pink_door_warp_door,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
+            id=LocationIDs.ch5_castle_top_last_room_warp_door,
+            group=LocationGroups.chapter5,
+        ),
     ],
     Regions.ch5_pink_room: [
         LocationData(

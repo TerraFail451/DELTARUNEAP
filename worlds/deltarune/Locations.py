@@ -331,8 +331,8 @@ class LocationIDs(IntEnum):
     ch5_shinobeetle_recruit = 309
     ch5_castle_foyer_warp_door = 310
     ch5_vending_machine_1 = 311
-    ch5_vending_machine_2  = 312
-    ch5_vending_machine_3  = 313
+    ch5_vending_machine_2 = 312
+    ch5_vending_machine_3 = 313
     ch5_vending_machine_4 = 314
     ch5_castle_west_hidden_zen_garden_chest = 315
     ch5_castle_west_yellow_flower_platforming_pink_coin = 316
@@ -365,6 +365,9 @@ class LocationIDs(IntEnum):
     ch5_castle_top_flowerys_gift = 343
     ch5_fountain_sealed_1 = 344
     ch5_fountain_sealed_2 = 345
+    ch5_castle_top_greens_shop_warp_door = 346
+    ch5_castle_top_pink_door_warp_door = 347
+    ch5_castle_top_last_room_warp_door = 348
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -785,6 +788,9 @@ locations = {
     LocationIDs.ch5_castle_top_flowerys_gift: "CH5: Top of Castle - Flowery's Gift",
     LocationIDs.ch5_fountain_sealed_1: "CH5: Flower Kingdom - Fountain Sealed...?",
     LocationIDs.ch5_fountain_sealed_2: "CH5: Flower Kingdom - Fountain Sealed",
+    LocationIDs.ch5_castle_top_greens_shop_warp_door: "CH5: Top of Castle - Green's Shop Warp Door",
+    LocationIDs.ch5_castle_top_pink_door_warp_door: "CH5: Top of Castle - Pink Door Warp Door",
+    LocationIDs.ch5_castle_top_last_room_warp_door: "CH5: Top of Castle - Last Room Warp Door",
     LocationIDs.ch5_lost_floradinn: "CH5: Lost Floradinn",
     LocationIDs.ch5_lost_sheary: "CH5: Lost Sheary",
     LocationIDs.ch5_lost_netskie: "CH5: Lost Netskie",
