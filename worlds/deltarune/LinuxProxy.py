@@ -9,6 +9,11 @@ from NetUtils import decode, encode
 if TYPE_CHECKING:
     from worlds.deltarune.DeltaruneClient import DeltaruneContext
 
+# Big thanks of Pizza Tower devs for that
+# https://github.com/unsafetyskizzers/Archipelago/blob/pizza_ap/worlds/pizza_tower/Client.py
+# because without their code and help i would be lost
+# however you can see what part is mine because they are awful ~Tenebrosful
+
 
 async def proxy_loop(ctx: "DeltaruneContext"):
     logging.info("Proxy Loop start")
