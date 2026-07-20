@@ -6,16 +6,21 @@ import bsdiff4
 import shutil
 import json
 import hashlib
+import websockets
+import functools
 import shutil
 
 import Utils
 
 from NetUtils import NetworkItem, ClientStatus
 from worlds import deltarune
-from MultiServer import mark_raw, Context, Client
-from Utils import async_start
+from MultiServer import mark_raw, Context, Client, Endpoint
+from Utils import async_start, logging
+from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
-ap_world_version = "v2.0.5"
+ap_world_version = "v2.0.6"
+
+DEBUG = True
 
 # Try importing gui_enabled in Utils first before trying to import them from CommonClient
 # Core AP will be officially moving it to Utils in the future, so this is in accommodation for that
@@ -45,6 +50,7 @@ except ModuleNotFoundError:
 
     if not gui_loaded_from_utils:
         from CommonClient import gui_enabled
+
 
 def guess_deltarune_path(path: str | None):
     tempInstall = ""
@@ -85,6 +91,21 @@ class DeltaruneCommandProcessor(ClientCommandProcessor):
             os.makedirs(name=Utils.user_path("DELTARUNE"), exist_ok=True)
             self.ctx.patch_game()
             self.output("Patched.")
+
+    async def _cmd_linux_proxy(self):
+        """Use this if you're a linux user to create a proxy between Archipelago Server and your game"""
+        self.ctx.proxy = websockets.serve(
+            functools.partial(proxy, ctx=self.ctx),
+            host="localhost",
+            port=1225,
+            ping_timeout=999999,
+            ping_interval=999999,
+        )
+        self.ctx.proxy_task = asyncio.create_task(proxy_loop(self.ctx), name="ProxyLoop")
+
+        await self.ctx.proxy
+        self.output("You should now be able to connect to localhost:1225 in game")
+        await self.ctx.proxy_task
 
     def _cmd_delete_saves(self):
         """Delete all archipelago saves and caches."""
@@ -194,7 +215,7 @@ Both gaining and losing recruits have been turned into checks."""
                 if not error:
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
                     self.ctx.patch_game()
-                    self.output("Patching successful!")
+                    self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}/DELTARUNE.exe")
 
 
 class DeltaruneContext(SuperContext):
@@ -220,10 +241,33 @@ class DeltaruneContext(SuperContext):
     receivingtype = 0
     unused_items = 0
     save_game_folder = os.path.expandvars(r"%localappdata%/DELTARUNEAP")
+    proxy = None
+    connected = False
+    authenticated = False
+    proxy_endpoint: Endpoint = None
+    proxy_task = None
+    proxy_autoreconnect_task = None
+    proxy_server_msgs = []
+    proxy_message_queue = []
+    room_info = {}
+    connected_msg = {}
+    is_processing_outgoing_messages = False
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
         self.game = "DELTARUNE"
+
+    def is_connected(self) -> bool:
+        return self.server and self.server.socket.open
+
+    def is_proxy_connected(self) -> bool:
+        return self.proxy_endpoint and self.proxy_endpoint.socket.open
+
+    async def disconnect_proxy(self):
+        if self.proxy_endpoint and not self.proxy_endpoint.socket.closed:
+            await self.proxy_endpoint.socket.close()
+        if self.proxy_task is not None:
+            await self.proxy_task
 
     def get_datastore_prefix(self):
         return f"{self.slot}_{self.team}_"
@@ -262,11 +306,21 @@ class DeltaruneContext(SuperContext):
 
     def on_package(self, cmd: str, args: dict):
         super().on_package(cmd, args)
+        if self.proxy != None:
+            logging.info(f"Server -> Proxy | {args}")
         if cmd == "Connected":
             self.game = self.slot_info[self.slot].game
             self.set_notify(
                 self.get_datastore_prefix() + "completed_chapters", self.get_datastore_prefix() + "current_location"
             )
+            self.connected_msg = args
+            self.connected = True
+            self.authenticated = True
+        elif cmd == "RoomInfo":
+            self.room_info = args
+            logging.info(f"Room info received: {args}")
+        elif self.proxy != None:
+            self.proxy_server_msgs.append(args)
         async_start(process_deltarune_cmd(self, cmd, args))
 
     def make_gui(self):
@@ -289,11 +343,6 @@ async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
         except:
             await ctx.version_mismatch()
             return
-
-
-async def send_testy():
-    """i like to test oh yeah."""
-    logger.info("I am testing yippeee...")
 
 
 def main():
