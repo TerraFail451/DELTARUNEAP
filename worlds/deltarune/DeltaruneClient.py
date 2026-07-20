@@ -15,7 +15,7 @@ import Utils
 from NetUtils import NetworkItem, ClientStatus
 from worlds import deltarune
 from MultiServer import mark_raw, Context, Client, Endpoint
-from Utils import async_start
+from Utils import async_start, logging
 from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
 ap_world_version = "v2.0.6"
@@ -306,7 +306,8 @@ class DeltaruneContext(SuperContext):
 
     def on_package(self, cmd: str, args: dict):
         super().on_package(cmd, args)
-        print(f"Received package: {cmd} with args: {args}")
+        if self.proxy != None:
+            logging.info(f"Server -> Proxy | {args}")
         if cmd == "Connected":
             self.game = self.slot_info[self.slot].game
             self.set_notify(
@@ -317,7 +318,7 @@ class DeltaruneContext(SuperContext):
             self.authenticated = True
         elif cmd == "RoomInfo":
             self.room_info = args
-            print(f"Room info received: {args}")
+            logging.info(f"Room info received: {args}")
         elif self.proxy != None:
             self.proxy_server_msgs.append(args)
         async_start(process_deltarune_cmd(self, cmd, args))

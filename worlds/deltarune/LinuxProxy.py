@@ -1,18 +1,17 @@
 import asyncio
+from Utils import logging
 import websockets
 from typing import TYPE_CHECKING, Iterable
 
 from MultiServer import on_client_connected, Endpoint
 from NetUtils import decode, encode
 
-DEBUG = True
-
 if TYPE_CHECKING:
     from worlds.deltarune.DeltaruneClient import DeltaruneContext
 
 
 async def proxy_loop(ctx: "DeltaruneContext"):
-    print("Proxy Loop start")
+    logging.info("Proxy Loop start")
     try:
         while not ctx.exit_event.is_set():
             if not ctx.is_connected():
@@ -24,18 +23,16 @@ async def proxy_loop(ctx: "DeltaruneContext"):
                 ctx.proxy_server_msgs.clear()
             await asyncio.sleep(0.1)
     except Exception as e:
-        print(f"Proxy loop error: {e}")
+        logging.info(f"Proxy loop error: {e}")
 
 
 async def proxy(websocket, path: str = "/", ctx: "DeltaruneContext" = None):
-    print(f"Proxy connected: {websocket}")
+    logging.info(f"Proxy connected: {websocket}")
     ctx.proxy_endpoint = Endpoint(websocket)
     try:
         await on_client_connected(ctx)
         if ctx.is_proxy_connected():
             async for data in websocket:
-                if DEBUG:
-                    print(f"Incoming message: {data}")
                 if not ctx.is_connected() and ctx.authenticated:
                     text = encode([{"cmd": "ProxyDisconnect"}])
                     await send_msgs_proxy(ctx, text)
@@ -43,13 +40,13 @@ async def proxy(websocket, path: str = "/", ctx: "DeltaruneContext" = None):
                 await parse_game_packets(ctx, data)
     except Exception as e:
         if not isinstance(e, websockets.WebSocketException):
-            print(f"Proxy error: {e}")
+            logging.info(f"Proxy error: {e}")
     finally:
         await ctx.disconnect_proxy()
 
 
 async def on_client_connected(ctx: "DeltaruneContext"):
-    print(f"Proxy client connected")
+    logging.info(f"Proxy client connected")
     if ctx.room_info and ctx.connected:
         await send_msgs_proxy(ctx, ctx.room_info)
 
@@ -62,6 +59,7 @@ async def parse_game_packets(ctx: "DeltaruneContext", data):
             if msg["game"] != "DELTARUNE":
                 await ctx.disconnect_proxy()
                 break
+            logging.info(f"Game -> Proxy | {data}")
             # send over connection data and receiveditems if valid
             if ctx.connected_msg and ctx.is_connected():
                 await send_msgs_proxy(ctx, ctx.connected_msg)
@@ -69,7 +67,8 @@ async def parse_game_packets(ctx: "DeltaruneContext", data):
             break
         # send over any packets received from the game client to the server
         else:
-            await send_msgs_proxy(ctx, [msg])
+            logging.info(f"Game -> Proxy -> Server | {data}")
+            await ctx.send_msgs([data])
 
 
 async def send_msgs_proxy(ctx: "DeltaruneContext", msgs: Iterable[dict]) -> bool:
@@ -77,8 +76,7 @@ async def send_msgs_proxy(ctx: "DeltaruneContext", msgs: Iterable[dict]) -> bool
     if not ctx.proxy_endpoint or not ctx.proxy_endpoint.socket.open or ctx.proxy_endpoint.socket.closed:
         return False
 
-    if DEBUG:
-        print(f"Outgoing message: {msgs}")
+    logging.info(f"Proxy -> Game | {msgs}")
 
     # queue so that packets sent in quick succession don't get lost
     # special thanks to profdecube for looking into this issue and writing a fix for it
