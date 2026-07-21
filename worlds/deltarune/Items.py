@@ -503,6 +503,7 @@ class ItemData(NamedTuple):
     groups: list[ItemGroups] = []
     amount: int = 1
     blacklist_filler: bool = False
+    changing_classification: bool = False
 
 
 def generic_create_items(world: "DeltaruneWorld", items: list[ItemData]) -> list[ItemData]:
