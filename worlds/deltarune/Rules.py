@@ -1,8 +1,13 @@
+from typing import TYPE_CHECKING
+
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachRegion, Has
 from worlds.deltarune.Options import UnlockCharacters, UnlockFunGangActions
-from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
+from worlds.deltarune.Items import ItemGroups, items, ItemIDs, glitched_item_name
 from worlds.deltarune.Regions import Regions
+
+if TYPE_CHECKING:
+    from . import DeltaruneWorld
 
 have_kris = Has(items[ItemIDs.kris]) | OptionFilter(UnlockCharacters, UnlockCharacters.option_true, operator="ne")
 have_ralsei = Has(items[ItemIDs.ralsei]) | OptionFilter(UnlockCharacters, UnlockCharacters.option_false, operator="eq")
@@ -18,9 +23,18 @@ have_kris_and_susie = have_kris & have_susie
 have_susie_or_ralsei = have_susie | have_ralsei
 
 have_actions = Has(items[ItemIDs.s_r_n_actions]) | OptionFilter(UnlockFunGangActions, 0)
-have_thornring = Has(items[ItemIDs.thornring]) | Has(items[ItemIDs.progressive_noelle_weapons], 2)
 
-can_snowgrave = have_noelle & have_thornring
+
+def have_thornring(world: "DeltaruneWorld"):
+    return Has(items[ItemIDs.thornring]) | Has(
+        items[ItemIDs.progressive_noelle_weapons],
+        world.get_weapon_progression_index(ItemGroups.noelle_weapons, ItemIDs.thornring),
+    )
+
+
+def can_snowgrave(world: "DeltaruneWorld"):
+    return have_noelle & have_thornring(world)
+
 
 can_recruit_chapter1 = have_kris | have_ralsei
 can_susie_recruit = have_susie & Has(items[ItemIDs.s_r_n_actions])

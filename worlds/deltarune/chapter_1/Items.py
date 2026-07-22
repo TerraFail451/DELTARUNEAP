@@ -39,13 +39,15 @@ chapter1_items = [
     ItemData(ItemIDs.top_cake, ItemClassification.progression),
     ItemData(
         ItemIDs.ironshackle,
-        ItemClassification.progression | ItemClassification.useful,
+        ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.white_ribbon,
-        ItemClassification.progression,
+        ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.king_shape_key_piece,

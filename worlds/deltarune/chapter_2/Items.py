@@ -33,19 +33,22 @@ chapter2_items = [
     ItemData(ItemIDs.royalpin, ItemClassification.useful, groups=[ItemGroups.armors]),
     ItemData(
         ItemIDs.tensionbit,
-        ItemClassification.progression | ItemClassification.useful,
+        ItemClassification.filler,
         groups=[ItemGroups.tension_items, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.glowwrist,
-        ItemClassification.progression | ItemClassification.useful,
+        ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
         amount=2,
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.pink_ribbon,
-        ItemClassification.progression,
+        ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(ItemIDs.safety_vest, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(
@@ -54,11 +57,12 @@ chapter2_items = [
         groups=[ItemGroups.region_blockers],
         amount=0,
     ),
-    ItemData(ItemIDs.mannequin,
+    ItemData(
+        ItemIDs.mannequin,
         ItemClassification.filler,
         groups=[ItemGroups.armors],
         should_be_included=lambda world: world.is_not_weird_route_only(),
-        blacklist_filler=True
+        blacklist_filler=True,
     ),
     ItemData(
         ItemIDs.spagetticode,
@@ -116,9 +120,10 @@ chapter2_items = [
     ),
     ItemData(
         ItemIDs.frayedbowtie,
-        ItemClassification.progression,
+        ItemClassification.useful,
         should_be_included=lambda world: world.is_not_weird_route_only(),
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.glowshard,
@@ -128,11 +133,11 @@ chapter2_items = [
     ),
     ItemData(
         ItemIDs.dogdollar,
-        ItemClassification.progression | ItemClassification.deprioritized,
-        should_be_included=lambda world: world.is_not_weird_route_only()
-            and world.is_hidden_items_randomized(),
+        ItemClassification.filler,
+        should_be_included=lambda world: world.is_not_weird_route_only() and world.is_hidden_items_randomized(),
         groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
         amount=1,
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.chapter_2_egg,
@@ -169,9 +174,10 @@ chapter2_items = [
     ),
     ItemData(
         ItemIDs.bshotbowtie,
-        ItemClassification.progression | ItemClassification.useful,
+        ItemClassification.filler,
         should_be_included=lambda world: world.is_not_weird_route_only(),
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.freezering,

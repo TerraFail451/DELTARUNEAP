@@ -47,20 +47,20 @@ def set_rules(world: "DeltaruneWorld"):
         )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_lost_tasque_manager]),
-            have_kris_susie_or_ralsei & (can_snowgrave | Has(glitched_item_name)),
+            have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
         )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_lost_mauswheel]),
-            have_kris_susie_or_ralsei & (can_snowgrave | Has(glitched_item_name)),
+            have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
         )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_lost_werewerewire]),
-            have_kris_susie_or_ralsei & (can_snowgrave | Has(glitched_item_name)),
+            have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
         )
         if world.options.include_lose_swatchling.value == 1:
             world.set_rule(
                 world.get_location(locations[LocationIDs.ch2_lost_swatchlings]),
-                have_kris_susie_or_ralsei & (can_snowgrave | Has(glitched_item_name)),
+                have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
             )
 
     if world.is_all_recruits():

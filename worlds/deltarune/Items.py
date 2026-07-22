@@ -1,11 +1,19 @@
 from BaseClasses import Item, ItemClassification
 from enum import IntEnum, Enum
-from typing import TYPE_CHECKING, NamedTuple, Callable
+from typing import TYPE_CHECKING, NamedTuple, Callable, Optional
+
+from worlds.deltarune.LocationsInclusion import (
+    should_include_spike_band_fusion,
+    should_include_tensionbow_fusion,
+    should_include_truetie_fusion,
+    should_include_twin_ribbon_fusion,
+)
 
 if TYPE_CHECKING:
     from . import DeltaruneWorld, DeltaruneOptions
 
 glitched_item_name = "Glitches"
+
 
 class ItemGroups(str, Enum):
     healing_item = "Healing Items"
@@ -31,6 +39,23 @@ class ItemGroups(str, Enum):
 
 class DeltaruneItem(Item):
     game: str = "Deltarune"
+    changing_classification: bool = False
+
+    def __init__(
+        self,
+        name: str,
+        classification: ItemClassification,
+        code: Optional[int],
+        player: int,
+        changing_classification: bool = False,
+    ):
+        super().__init__(name, classification, code, player)
+        self.changing_classification = changing_classification
+
+    def __repr__(self) -> str:
+        if self.location and self.location.parent_region and self.location.parent_region.multiworld:
+            return self.location.parent_region.multiworld.get_name_string_for_object(self)
+        return f"{self.name} (Player {self.player}) {self.changing_classification}"
 
 
 class ItemIDs(IntEnum):
@@ -233,7 +258,7 @@ class ItemIDs(IntEnum):
     # FloweryScarf is the BrokenScarf, so we'll only have one of them.
     # In Chapter 5 and below, you will get the floweryscarf
     # In Chapter 6+, you'll receive brokenscarf instead
-    # brokenscarf = 30035
+    brokenscarf = 30035
     gildedrose = 30036
     mistlewp = 30037
 
@@ -409,6 +434,7 @@ items = {
     ItemIDs.scarfmark: "ScarfMark",
     ItemIDs.absorbax: "AbsorbAx",
     ItemIDs.wingblade: "Winglade",
+    ItemIDs.jingleblade: "JingleBlade",
     ItemIDs.justiceaxe: "JusticeAxe",
     ItemIDs.combination_lock_digit: "Combination Lock Digit",
     ItemIDs.claimbclaws: "ClaimbClaws",
@@ -495,6 +521,48 @@ items = {
     ItemIDs.jarona_lesson: "Jarona Lesson",
 }
 
+progressive_weapon_order: dict[ItemGroups, list[ItemIDs]] = {
+    ItemGroups.kris_weapons: [
+        ItemIDs.spookysword,
+        ItemIDs.bounceblade,
+        ItemIDs.mechasaber,
+        ItemIDs.trefoil,
+        ItemIDs.saber10,
+        ItemIDs.jingleblade,
+        ItemIDs.wingblade,
+        ItemIDs.woodblade2,
+        ItemIDs.aquaknife,
+        ItemIDs.twistedswd,
+        ItemIDs.blackshard,
+        ItemIDs.everybodyweapon,
+    ],
+    ItemGroups.susie_weapons: [
+        ItemIDs.brave_ax,
+        ItemIDs.autoaxe,
+        ItemIDs.toxicaxe,
+        ItemIDs.devilsknife,
+        ItemIDs.absorbax,
+        ItemIDs.thatchet,
+        ItemIDs.justiceaxe,
+        ItemIDs.everybodyweapon,
+    ],
+    ItemGroups.ralsei_weapons: [
+        ItemIDs.daintyscarf,
+        ItemIDs.cheerscarf,
+        ItemIDs.ragger,
+        ItemIDs.fiberscarf,
+        ItemIDs.flexscarf,
+        ItemIDs.scarfmark,
+        ItemIDs.ragger2,
+        ItemIDs.mistlewp,
+        ItemIDs.blueshoes,
+        ItemIDs.puppetscarf,
+        ItemIDs.brokenscarf,
+        ItemIDs.everybodyweapon,
+    ],
+    ItemGroups.noelle_weapons: [ItemIDs.freezering, ItemIDs.gildedrose, ItemIDs.thornring, ItemIDs.everybodyweapon],
+}
+
 
 class ItemData(NamedTuple):
     code: ItemIDs
@@ -579,3 +647,81 @@ def get_item_groups(items_data: list[ItemData]):
             groups.setdefault(group_name.value, set()).add(items[ItemIDs(item_data.code)])
 
     return groups
+
+
+def change_progression_type_in_item_pool(world: "DeltaruneWorld", itempool: list[DeltaruneItem]):
+    already_found = {}
+    modified_itempool = itempool.copy()
+
+    for item in modified_itempool:
+        if not item.changing_classification:
+            continue
+
+        match (item.code):
+            case ItemIDs.ironshackle | ItemIDs.glowwrist:
+                if item.code not in already_found and should_include_spike_band_fusion(world):
+                    already_found[item.code] = 1
+                    item.classification = ItemClassification.progression | ItemClassification.useful
+
+            case ItemIDs.white_ribbon | ItemIDs.pink_ribbon:
+                if item.code not in already_found and should_include_twin_ribbon_fusion(world):
+                    already_found[item.code] = 1
+                    item.classification = ItemClassification.progression | ItemClassification.useful
+
+            case ItemIDs.bshotbowtie | ItemIDs.tensionbit:
+                if item.code not in already_found and should_include_tensionbow_fusion(world):
+                    already_found[item.code] = 1
+                    if item.code == ItemIDs.bshotbowtie:
+                        item.classification = ItemClassification.progression | ItemClassification.useful
+                    else:
+                        item.classification = ItemClassification.progression
+
+            case ItemIDs.scarfmark | ItemIDs.progressive_ralsei_weapons | ItemIDs.princessrbn:
+                if world.can_access_ch5_fusion() and world.include_chapter(4):
+                    if ItemIDs.progressive_ralsei_weapons:
+                        if item.code not in already_found or already_found[
+                            item.code
+                        ] < world.get_weapon_progression_index(ItemGroups.ralsei_weapons, ItemIDs.scarfmark):
+                            if item.code not in already_found:
+                                already_found[item.code] = 1
+                            else:
+                                already_found[item.code] += 1
+
+                            item.classification = ItemClassification.progression | ItemClassification.useful
+                    else:
+                        if item.code not in already_found:
+                            already_found[item.code] = 1
+                            item.classification = ItemClassification.progression | ItemClassification.useful
+
+            case ItemIDs.tennatie | ItemIDs.frayedbowtie:
+                if item.code not in already_found and should_include_truetie_fusion(world):
+                    already_found[item.code] = 1
+                    item.classification = ItemClassification.progression | ItemClassification.useful
+
+            case ItemIDs.tvdinner | ItemIDs.tvslop:
+                if world.can_access_ch5_fusion() and world.include_chapter(3):
+                    if item.code not in already_found or already_found[item.code] < 2:
+                        if item.code not in already_found:
+                            already_found[item.code] = 1
+                        else:
+                            already_found[item.code] += 1
+
+                        item.classification = ItemClassification.progression
+
+            case ItemIDs.scarlixir:
+                if world.can_access_ch5_fusion() and world.include_chapter(4):
+                    if item.code not in already_found or already_found[item.code] < 4:
+                        if item.code not in already_found:
+                            already_found[item.code] = 1
+                        else:
+                            already_found[item.code] += 1
+
+                        item.classification = ItemClassification.progression
+
+            case ItemIDs.powerband | ItemIDs.mysticband | ItemIDs.goldwidow | ItemIDs.dogdollar:
+                if item.code not in already_found and world.can_access_ch5_fusion() and world.include_chapter(4):
+                    already_found[item.code] = 1
+
+                    item.classification = ItemClassification.progression | ItemClassification.useful
+
+    return modified_itempool

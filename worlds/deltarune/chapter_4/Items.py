@@ -22,47 +22,55 @@ chapter4_items = [
     ItemData(ItemIDs.spincake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.tensiongem, ItemClassification.filler, groups=[ItemGroups.tension_items]),
     ItemData(ItemIDs.absorbax, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.susie_weapons]),
+    ItemData(ItemIDs.jingleblade, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
     ItemData(ItemIDs.wingblade, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
     ItemData(ItemIDs.claimbclaws, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(ItemIDs.sheetmusic, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(
-        ItemIDs.dogdollar, 
-        ItemClassification.progression | ItemClassification.deprioritized, 
+        ItemIDs.dogdollar,
+        ItemClassification.filler,
         should_be_included=lambda world: world.is_hidden_items_randomized(),
-        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient], 
-        amount=1
+        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
+        amount=1,
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.scarlixir, 
-        ItemClassification.progression | ItemClassification.deprioritized, 
+        ItemIDs.scarlixir,
+        ItemClassification.filler,
         groups=[ItemGroups.healing_item, ItemGroups.fusion_ingredient],
-        amount=5
+        amount=2,
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.goldwidow, 
-        ItemClassification.progression | ItemClassification.useful, 
-        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient]
+        ItemIDs.goldwidow,
+        ItemClassification.useful,
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.mysticband, 
-        ItemClassification.progression | ItemClassification.useful, 
-        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient]
+        ItemIDs.mysticband,
+        ItemClassification.useful,
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.powerband, 
-        ItemClassification.progression | ItemClassification.useful, 
-        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient], 
-        amount=2
+        ItemIDs.powerband,
+        ItemClassification.useful,
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        amount=2,
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.scarfmark, 
-        ItemClassification.progression | ItemClassification.useful, 
+        ItemIDs.scarfmark,
+        ItemClassification.useful,
         groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.princessrbn,
-        ItemClassification.progression | ItemClassification.useful,
-        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient]
+        ItemClassification.useful,
+        groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.combination_lock_digit,

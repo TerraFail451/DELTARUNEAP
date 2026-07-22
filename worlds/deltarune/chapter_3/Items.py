@@ -34,32 +34,37 @@ chapter3_items = [
     ItemData(ItemIDs.flexscarf, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
     ItemData(ItemIDs.execbuffet, ItemClassification.useful, groups=[ItemGroups.healing_item]),
     ItemData(
-        ItemIDs.tvdinner, 
-        ItemClassification.progression | ItemClassification.deprioritized,
+        ItemIDs.tvdinner,
+        ItemClassification.filler,
         groups=[ItemGroups.healing_item, ItemGroups.fusion_ingredient],
-        amount=5
+        amount=3,
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.dogdollar, 
-        ItemClassification.progression | ItemClassification.deprioritized,
-        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient], 
-        amount=1
+        ItemIDs.dogdollar,
+        ItemClassification.filler,
+        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
+        amount=1,
+        changing_classification=True,
     ),
     ItemData(
-        ItemIDs.tvslop, 
-        ItemClassification.progression | ItemClassification.deprioritized,
+        ItemIDs.tvslop,
+        ItemClassification.filler,
         groups=[ItemGroups.healing_item, ItemGroups.fusion_ingredient],
-        amount=5
+        amount=5,
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.white_ribbon,
-        ItemClassification.progression,
+        ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.pink_ribbon,
-        ItemClassification.progression,
+        ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
+        changing_classification=True,
     ),
     ItemData(ItemIDs.board_2_cartridge, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(ItemIDs.vip_pass, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
@@ -71,9 +76,10 @@ chapter3_items = [
     ),
     ItemData(
         ItemIDs.tennatie,
-        ItemClassification.progression | ItemClassification.useful,
+        ItemClassification.useful,
         should_be_included=lambda world: world.is_hidden_items_randomized(),
         groups=[ItemGroups.armors],
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.blue_ribbon,

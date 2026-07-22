@@ -65,11 +65,12 @@ chapter5_items = [
     ItemData(ItemIDs.mistlewp, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
     ItemData(ItemIDs.gildedrose, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.noelle_weapons]),
     ItemData(
-        ItemIDs.dogdollar, 
-        ItemClassification.progression | ItemClassification.deprioritized, 
+        ItemIDs.dogdollar,
+        ItemClassification.progression | ItemClassification.deprioritized,
         should_be_included=lambda world: world.is_hidden_items_randomized(),
-        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient], 
-        amount=1
+        groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
+        amount=1,
+        changing_classification=True,
     ),
     ItemData(ItemIDs.petalfeather, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(ItemIDs.compliment_list_yellow, ItemClassification.progression, groups=[ItemGroups.region_blockers]),

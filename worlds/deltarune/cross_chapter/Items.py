@@ -115,6 +115,7 @@ cross_chapter_items = [
         should_be_included=lambda world: world.is_ralsei_weapons_progressive(),
         groups=[ItemGroups.weapons],
         amount=0,
+        changing_classification=True,
     ),
     ItemData(
         ItemIDs.progressive_noelle_weapons,
@@ -142,55 +143,52 @@ cross_chapter_items = [
         groups=[ItemGroups.fusion_ingredient, ItemGroups.unused_items],
     ),
     ItemData(
-        ItemIDs.deluxedinner, 
+        ItemIDs.deluxedinner,
         ItemClassification.filler,
-        should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(3),
+        should_be_included=lambda world: world.can_access_ch5_fusion() and world.include_chapter(3),
         groups=[ItemGroups.healing_item],
     ),
     ItemData(
-        ItemIDs.tvdinner, 
-        ItemClassification.progression | ItemClassification.deprioritized,
-        should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(3),
+        ItemIDs.tvdinner,
+        ItemClassification.filler,
+        should_be_included=lambda world: world.can_access_ch5_fusion() and world.include_chapter(3),
         groups=[ItemGroups.healing_item, ItemGroups.fusion_ingredient],
     ),
-    ItemData(ItemIDs.tensionmax, 
-        ItemClassification.filler, 
-        should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(4),
-        groups=[ItemGroups.tension_items]
-    ),
-    ItemData(ItemIDs.punchbowl,
-        ItemClassification.filler, 
-        should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(4),
-        groups=[ItemGroups.healing_item]
+    ItemData(
+        ItemIDs.tensionmax,
+        ItemClassification.filler,
+        should_be_included=lambda world: world.can_access_ch5_fusion() and world.include_chapter(4),
+        groups=[ItemGroups.tension_items],
     ),
     ItemData(
-        ItemIDs.monarchrbn, 
-        ItemClassification.useful, 
-        should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(4),
-        groups=[ItemGroups.armors]
+        ItemIDs.punchbowl,
+        ItemClassification.filler,
+        should_be_included=lambda world: world.can_access_ch5_fusion() and world.include_chapter(4),
+        groups=[ItemGroups.healing_item],
     ),
     ItemData(
-        ItemIDs.truetie, 
+        ItemIDs.monarchrbn,
+        ItemClassification.useful,
+        should_be_included=lambda world: world.can_access_ch5_fusion() and world.include_chapter(4),
+        groups=[ItemGroups.armors],
+    ),
+    ItemData(
+        ItemIDs.truetie,
         ItemClassification.useful,
         should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(2)
-            and world.is_hidden_items_randomized()
-            and world.is_not_weird_route_only()
-            and world.include_chapter(3),
-        groups=[ItemGroups.armors]
+        and world.include_chapter(2)
+        and world.is_hidden_items_randomized()
+        and world.is_not_weird_route_only()
+        and world.include_chapter(3),
+        groups=[ItemGroups.armors],
     ),
     ItemData(
-        ItemIDs.dogwidow, 
-        ItemClassification.useful, 
-            should_be_included=lambda world: world.can_access_ch5_fusion()
-            and world.include_chapter(4)
-            and world.is_hidden_items_randomized(),
-        groups=[ItemGroups.armors]
+        ItemIDs.dogwidow,
+        ItemClassification.useful,
+        should_be_included=lambda world: world.can_access_ch5_fusion()
+        and world.include_chapter(4)
+        and world.is_hidden_items_randomized(),
+        groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.everybodyweapon,

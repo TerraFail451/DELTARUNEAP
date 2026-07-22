@@ -12,10 +12,12 @@ from worlds.deltarune.Items import (
     ItemData,
     ItemIDs,
     ItemGroups,
+    change_progression_type_in_item_pool,
     convert_filler_and_trap_to_weights,
     get_item_groups,
     items,
     glitched_item_name,
+    progressive_weapon_order,
 )
 from worlds.deltarune.Goals import set_completion_goal
 from worlds.deltarune.Options import (
@@ -31,6 +33,7 @@ from worlds.deltarune.Options import (
     IncludeUnusedItemsOptions,
 )
 from worlds.deltarune.Regions import Regions
+from worlds.deltarune.Rules import can_snowgrave
 from worlds.deltarune.cross_chapter.Items import (
     get_filler_and_trap_items as get_cross_chapter_filler_and_trap_items,
     create_items as create_cross_chapter_items,
@@ -194,6 +197,8 @@ class DeltaruneWorld(World):
 
     cached_filler_and_trap_weights: dict[int, float] = {}
 
+    weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
+
     tracker_world: ClassVar = {
         "map_page_folder": "tracker",
         "map_page_maps": "maps/maps.json",
@@ -266,7 +271,9 @@ class DeltaruneWorld(World):
         if item_data is None:
             raise ValueError(f"Item name '{name}' not found in item data.")
 
-        return DeltaruneItem(name, item_data.classification, item_data.code.value, self.player)
+        return DeltaruneItem(
+            name, item_data.classification, item_data.code.value, self.player, item_data.changing_classification
+        )
 
     def get_filler_item_name(self):
         if len(self.cached_filler_and_trap_weights) == 0:
@@ -278,6 +285,9 @@ class DeltaruneWorld(World):
                 weights=list(self.cached_filler_and_trap_weights.values()),
             )[0]
         ]
+
+    def get_weapon_progression_index(self, character: ItemGroups, weapon: ItemIDs):
+        return self.weapon_to_progressive_weapon_index[character][weapon]
 
     def fill_weighted_fillers_and_traps(self):
         filler_pool = get_cross_chapter_filler_and_trap_items(self)
@@ -382,10 +392,10 @@ class DeltaruneWorld(World):
 
     def is_secret_bosses_items_requirement_randomized(self):
         return self.options.include_secret_bosses_items_requirement.value == 1
-    
+
     def is_mysterykey_from_pink_coins(self):
         return self.options.mysterykey_from_pink_coins.value == 1
-    
+
     def is_door_key_from_broken_keys(self):
         return self.options.door_key_from_broken_keys.value == 1
 
@@ -436,7 +446,7 @@ class DeltaruneWorld(World):
         result = self.has_at_least_one_chapter_included(fusion_access_chapter)
         return result
 
-    # I'm guessing chapter 6 and 7 will let you fuse this stuff as well, so i'll make it bc i dont want to later 
+    # I'm guessing chapter 6 and 7 will let you fuse this stuff as well, so i'll make it bc i dont want to later
     def can_access_ch5_fusion(self) -> bool:
         result = self.has_at_least_one_chapter_included(ch5_fusion_access_chapter)
         return result
@@ -506,7 +516,7 @@ class DeltaruneWorld(World):
             create_chapter_3_regions(self)
         if self.include_chapter(4):
             create_chapter_4_regions(self)
-        if self.include_chapter(5): 
+        if self.include_chapter(5):
             create_chapter_5_regions(self)
         # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
         # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
@@ -556,6 +566,7 @@ class DeltaruneWorld(World):
             item_pool_names_and_amounts += [items[item_data.code]] * item_data.amount
 
         item_pool_converted = [self.create_item(item) for item in item_pool_names_and_amounts]
+        item_pool_converted = change_progression_type_in_item_pool(self, item_pool_converted)
         self.handle_item_unfill_and_overflows(item_pool_converted)
 
         self.multiworld.itempool += item_pool_converted
@@ -590,9 +601,7 @@ class DeltaruneWorld(World):
                 amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
             )
         if self.include_chapter(5):
-            item_data = next(
-                (item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None
-            )
+            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_5.value + self.options.macguffin_extra.value
@@ -644,10 +653,14 @@ class DeltaruneWorld(World):
             item_pool.append(self.create_filler())
 
     def set_rules(self):
+
         set_cross_chapter_rules(self)
         if self.include_chapter(1):
             set_chapter_1_rules(self)
         if self.include_chapter(2):
+            self.get_region(Regions.ch2_cyber_city).connect(
+                self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
+            )
             set_chapter_2_rules(self)
         if self.include_chapter(3):
             set_chapter_3_rules(self)
@@ -671,13 +684,25 @@ class DeltaruneWorld(World):
         itempool: list[ItemData],
         character: ItemGroups,
     ):
+        self.weapon_to_progressive_weapon_index[character] = {}
         weapons_character_in_pool = [
             item for item in itempool if character in item.groups and item.classification != ItemClassification.filler
         ]
 
+        weapons_with_index = []
+
         # Remove them from the item pool
         for weapon in weapons_character_in_pool:
+            weapons_with_index.append((weapon.code, progressive_weapon_order[character].index(weapon.code)))
             itempool.remove(weapon)
+
+        weapons_with_index.sort(key=lambda w: w[1])
+
+        index = 1
+
+        for weapon in weapons_with_index:
+            self.weapon_to_progressive_weapon_index[character][weapon[0]] = index
+            index += 1
 
         match character:
             case ItemGroups.kris_weapons:
@@ -705,6 +730,7 @@ class DeltaruneWorld(World):
                         ItemClassification.useful,
                         groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
                         amount=len(weapons_character_in_pool),
+                        changing_classification=True,
                     )
                 ]
             case ItemGroups.noelle_weapons:

@@ -195,7 +195,8 @@ def create_regions(world: "DeltaruneWorld"):
     fountain.connect(post_chapter_castle_town)
 
     # WEIRD ROUTE REGION CONNECTIONS
-    cyber_city.connect(mansion_lobby_weird_route, rule=can_snowgrave)
+    # Moved after creating items because we don't know yet how many progressive item is the thornring
+    # cyber_city.connect(mansion_lobby_weird_route, rule=can_snowgrave(world))
 
     mansion_lobby_weird_route.connect(mansion_lobby_warp_door)
     mansion_lobby_weird_route.connect(mansion_losts)
