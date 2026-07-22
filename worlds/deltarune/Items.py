@@ -383,7 +383,6 @@ items = {
     ItemIDs.chapter_2_egg: "CH2 Egg",
     ItemIDs.joe_life_savings: "Jigsaw Joe's Life Savings",
     ItemIDs.city_moss: "City Moss",
-    ItemIDs.dogdollar: "DogDollar",
     ItemIDs.emptydisk: "EmptyDisk",
     ItemIDs.keygen: "KeyGen",
     ItemIDs.safety_vest: "Safety Vest",
@@ -651,12 +650,12 @@ def get_item_groups(items_data: list[ItemData]):
 
 def change_progression_type_in_item_pool(world: "DeltaruneWorld", itempool: list[DeltaruneItem]):
     already_found = {}
-    modified_itempool = itempool.copy()
 
-    for item in modified_itempool:
+    for item in itempool:
         if not item.changing_classification:
             continue
 
+        print(f"Looking to change {item.name}")
         match (item.code):
             case ItemIDs.ironshackle | ItemIDs.glowwrist:
                 if item.code not in already_found and should_include_spike_band_fusion(world):
@@ -707,6 +706,7 @@ def change_progression_type_in_item_pool(world: "DeltaruneWorld", itempool: list
                             already_found[item.code] += 1
 
                         item.classification = ItemClassification.progression
+                        print(f"Changed {item.name}")
 
             case ItemIDs.scarlixir:
                 if world.can_access_ch5_fusion() and world.include_chapter(4):
@@ -722,6 +722,7 @@ def change_progression_type_in_item_pool(world: "DeltaruneWorld", itempool: list
                 if item.code not in already_found and world.can_access_ch5_fusion() and world.include_chapter(4):
                     already_found[item.code] = 1
 
-                    item.classification = ItemClassification.progression | ItemClassification.useful
-
-    return modified_itempool
+                    if item.code == ItemIDs.dogdollar:
+                        item.classification = ItemClassification.progression
+                    else:
+                        item.classification = ItemClassification.progression | ItemClassification.useful

@@ -287,6 +287,12 @@ class DeltaruneWorld(World):
         ]
 
     def get_weapon_progression_index(self, character: ItemGroups, weapon: ItemIDs):
+        if character not in self.weapon_to_progressive_weapon_index:
+            return 666
+
+        if weapon not in self.weapon_to_progressive_weapon_index[character]:
+            return 666
+
         return self.weapon_to_progressive_weapon_index[character][weapon]
 
     def fill_weighted_fillers_and_traps(self):
@@ -566,7 +572,12 @@ class DeltaruneWorld(World):
             item_pool_names_and_amounts += [items[item_data.code]] * item_data.amount
 
         item_pool_converted = [self.create_item(item) for item in item_pool_names_and_amounts]
-        item_pool_converted = change_progression_type_in_item_pool(self, item_pool_converted)
+        change_progression_type_in_item_pool(self, item_pool_converted)
+
+        change_progression_type_in_item_pool(
+            self, [location.item for location in self.multiworld.get_filled_locations(self.player)]
+        )
+
         self.handle_item_unfill_and_overflows(item_pool_converted)
 
         self.multiworld.itempool += item_pool_converted

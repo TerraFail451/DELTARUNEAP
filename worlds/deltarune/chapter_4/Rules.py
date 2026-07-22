@@ -51,9 +51,6 @@ def set_rules(world: "DeltaruneWorld"):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    player = world.player
-    multiworld = world.multiworld
-
     if not world.is_secret_bosses_randomized():
         world.get_location(locations[LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1]).place_locked_item(
             world.create_item(items[ItemIDs.justiceaxe])
@@ -69,4 +66,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
         )
         world.get_location(locations[LocationIDs.ch4_second_sanctuary_moss]).place_locked_item(
             world.create_item(items[ItemIDs.sacred_moss])
+        )
+        world.get_location(locations[LocationIDs.ch4_third_sanctuary_annoying_dog]).place_locked_item(
+            world.create_item(items[ItemIDs.dogdollar])
         )
