@@ -16,6 +16,7 @@ if TYPE_CHECKING:
 
 chapter4_items = [
     ItemData(ItemIDs.dark_candy, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.ancientsweet, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.rhapsotea, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.revivemint, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.bittertear, ItemClassification.filler, groups=[ItemGroups.healing_item]),
