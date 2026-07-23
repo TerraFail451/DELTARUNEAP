@@ -1,6 +1,6 @@
 from typing import Any, ClassVar, Optional
 
-from BaseClasses import ItemClassification, Tutorial
+from BaseClasses import ItemClassification, MultiWorld, Tutorial
 from Options import Option, OptionError
 from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, Type, icon_paths
@@ -12,8 +12,10 @@ from worlds.deltarune.Items import (
     ItemData,
     ItemIDs,
     ItemGroups,
-    change_progression_type_in_item_pool,
+    change_progression_type,
     convert_filler_and_trap_to_weights,
+    custom_print_itempool,
+    flag_into_string,
     get_item_groups,
     items,
     glitched_item_name,
@@ -195,9 +197,12 @@ class DeltaruneWorld(World):
 
     origin_region_name = Regions.chapter_select
 
-    cached_filler_and_trap_weights: dict[int, float] = {}
+    def __init__(self, multiworld: "MultiWorld", player: int):
+        super().__init__(multiworld, player)
 
-    weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
+        self.cached_filler_and_trap_weights: dict[int, float] = {}
+        self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
+        self.already_changed_classification_item: dict[ItemIDs, int] = {}
 
     tracker_world: ClassVar = {
         "map_page_folder": "tracker",
@@ -271,8 +276,14 @@ class DeltaruneWorld(World):
         if item_data is None:
             raise ValueError(f"Item name '{name}' not found in item data.")
 
+        new_item_data = change_progression_type(self, item_data)
+
         return DeltaruneItem(
-            name, item_data.classification, item_data.code.value, self.player, item_data.changing_classification
+            name,
+            new_item_data.classification,
+            new_item_data.code.value,
+            self.player,
+            new_item_data.changing_classification,
         )
 
     def get_filler_item_name(self):
@@ -572,13 +583,14 @@ class DeltaruneWorld(World):
             item_pool_names_and_amounts += [items[item_data.code]] * item_data.amount
 
         item_pool_converted = [self.create_item(item) for item in item_pool_names_and_amounts]
-        change_progression_type_in_item_pool(self, item_pool_converted)
 
-        change_progression_type_in_item_pool(
-            self, [location.item for location in self.multiworld.get_filled_locations(self.player)]
-        )
+        filled = [location.item for location in self.multiworld.get_filled_locations(self.player)]
 
+        print("=== BEFORE ===")
+        custom_print_itempool(item_pool_converted, filled)
         self.handle_item_unfill_and_overflows(item_pool_converted)
+        print("=== AFTER ===")
+        custom_print_itempool(item_pool_converted, filled)
 
         self.multiworld.itempool += item_pool_converted
 
@@ -644,20 +656,21 @@ class DeltaruneWorld(World):
         self.multiworld.push_precollected(self.create_item(item_name))
 
     def handle_item_unfill_and_overflows(self, item_pool: list[DeltaruneItem]):
+        unfilled = len(self.multiworld.get_unfilled_locations(self.player))
         # Remove random junk items if the item pool overflows
-        if len(item_pool) > len(self.multiworld.get_unfilled_locations(self.player)):
-            print(f"Item pool overflow: {len(item_pool) - len(self.multiworld.get_unfilled_locations(self.player))}")
-            while len(item_pool) > len(self.multiworld.get_unfilled_locations(self.player)):
-                item_pool.remove(
-                    self.random.choice(
-                        [
-                            item
-                            for item in item_pool
-                            if item.classification == ItemClassification.filler
-                            or item.classification == ItemClassification.trap
-                        ]
-                    )
+        if len(item_pool) > unfilled:
+            print(f"Item pool overflow: {len(item_pool) - unfilled}")
+            while len(item_pool) > unfilled:
+                chosen = self.random.choice(
+                    [
+                        item
+                        for item in item_pool
+                        if item.classification == ItemClassification.filler
+                        or item.classification == ItemClassification.trap
+                    ]
                 )
+                print(f"Removing {chosen.name} ({flag_into_string(chosen.flags)})")
+                item_pool.remove(chosen)
 
         # Fill remaining items with randomly generated junk
         while len(item_pool) < len(self.multiworld.get_unfilled_locations(self.player)):

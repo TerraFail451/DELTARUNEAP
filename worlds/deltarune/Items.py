@@ -1,3 +1,5 @@
+from copy import copy
+
 from BaseClasses import Item, ItemClassification
 from enum import IntEnum, Enum
 from typing import TYPE_CHECKING, NamedTuple, Callable, Optional
@@ -52,10 +54,10 @@ class DeltaruneItem(Item):
         super().__init__(name, classification, code, player)
         self.changing_classification = changing_classification
 
-    def __repr__(self) -> str:
-        if self.location and self.location.parent_region and self.location.parent_region.multiworld:
-            return self.location.parent_region.multiworld.get_name_string_for_object(self)
-        return f"{self.name} (Player {self.player}) {self.changing_classification}"
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Item):
+            return NotImplemented
+        return super().__eq__(other) and self.classification == other.classification
 
 
 class ItemIDs(IntEnum):
@@ -648,81 +650,148 @@ def get_item_groups(items_data: list[ItemData]):
     return groups
 
 
-def change_progression_type_in_item_pool(world: "DeltaruneWorld", itempool: list[DeltaruneItem]):
-    already_found = {}
+def change_progression_type(world: "DeltaruneWorld", item: ItemData):
+    if not item.changing_classification:
+        return item
 
+    print(world.already_changed_classification_item)
+
+    new_classification = item.classification
+
+    print(f"Looking to change {items[item.code]}")
+    match (item.code):
+        case ItemIDs.ironshackle | ItemIDs.glowwrist:
+            if item.code not in world.already_changed_classification_item and should_include_spike_band_fusion(world):
+                world.already_changed_classification_item[item.code] = 1
+                new_classification = ItemClassification.progression | ItemClassification.useful
+
+        case ItemIDs.white_ribbon | ItemIDs.pink_ribbon:
+            if item.code not in world.already_changed_classification_item and should_include_twin_ribbon_fusion(world):
+                world.already_changed_classification_item[item.code] = 1
+                new_classification = ItemClassification.progression | ItemClassification.useful
+
+        case ItemIDs.bshotbowtie | ItemIDs.tensionbit:
+            if item.code not in world.already_changed_classification_item and should_include_tensionbow_fusion(world):
+                world.already_changed_classification_item[item.code] = 1
+                if item.code == ItemIDs.bshotbowtie:
+                    new_classification = ItemClassification.progression | ItemClassification.useful
+                else:
+                    new_classification = ItemClassification.progression
+
+        case ItemIDs.scarfmark | ItemIDs.progressive_ralsei_weapons | ItemIDs.princessrbn:
+            if world.can_access_ch5_fusion() and world.include_chapter(4):
+                if ItemIDs.progressive_ralsei_weapons:
+                    if (
+                        item.code not in world.already_changed_classification_item
+                        or world.already_changed_classification_item[item.code]
+                        < world.get_weapon_progression_index(ItemGroups.ralsei_weapons, ItemIDs.scarfmark)
+                    ):
+                        if item.code not in world.already_changed_classification_item:
+                            world.already_changed_classification_item[item.code] = 1
+                        else:
+                            world.already_changed_classification_item[item.code] += 1
+
+                        new_classification = ItemClassification.progression | ItemClassification.useful
+                else:
+                    if item.code not in world.already_changed_classification_item:
+                        world.already_changed_classification_item[item.code] = 1
+                        new_classification = ItemClassification.progression | ItemClassification.useful
+
+        case ItemIDs.tennatie | ItemIDs.frayedbowtie:
+            if item.code not in world.already_changed_classification_item and should_include_truetie_fusion(world):
+                world.already_changed_classification_item[item.code] = 1
+                new_classification = ItemClassification.progression | ItemClassification.useful
+
+        case ItemIDs.tvdinner | ItemIDs.tvslop:
+            if world.can_access_ch5_fusion() and world.include_chapter(3):
+                if (
+                    item.code not in world.already_changed_classification_item
+                    or world.already_changed_classification_item[item.code] < 2
+                ):
+                    if item.code not in world.already_changed_classification_item:
+                        world.already_changed_classification_item[item.code] = 1
+                    else:
+                        world.already_changed_classification_item[item.code] += 1
+
+                    new_classification = ItemClassification.progression
+
+        case ItemIDs.scarlixir:
+            if world.can_access_ch5_fusion() and world.include_chapter(4):
+                if (
+                    item.code not in world.already_changed_classification_item
+                    or world.already_changed_classification_item[item.code] < 4
+                ):
+                    if item.code not in world.already_changed_classification_item:
+                        world.already_changed_classification_item[item.code] = 1
+                    else:
+                        world.already_changed_classification_item[item.code] += 1
+
+                    new_classification = ItemClassification.progression
+
+        case ItemIDs.powerband | ItemIDs.mysticband | ItemIDs.goldwidow | ItemIDs.dogdollar:
+            if (
+                item.code not in world.already_changed_classification_item
+                and world.can_access_ch5_fusion()
+                and world.include_chapter(4)
+            ):
+                world.already_changed_classification_item[item.code] = 1
+
+                if item.code == ItemIDs.dogdollar:
+                    new_classification = ItemClassification.progression
+                else:
+                    new_classification = ItemClassification.progression | ItemClassification.useful
+
+        case (
+            ItemIDs.king_shape_key_piece
+            | ItemIDs.keygen_2_segment
+            | ItemIDs.remote_battery
+            | ItemIDs.combination_lock_digit
+            | ItemIDs.jarona_lesson
+        ):
+            if world.options.macguffin_extra > 0 and (
+                item.code not in world.already_changed_classification_item
+                or world.already_changed_classification_item[item.code] < world.options.macguffin_extra
+            ):
+                if item.code not in world.already_changed_classification_item:
+                    world.already_changed_classification_item[item.code] = 1
+                else:
+                    world.already_changed_classification_item[item.code] += 1
+
+                new_classification = ItemClassification.useful
+
+    print(f"{items[item.code]} classification is now {flag_into_string(new_classification)}")
+    return ItemData(
+        item.code,
+        new_classification,
+        item.should_be_included,
+        item.groups,
+        item.amount,
+        item.blacklist_filler,
+        item.changing_classification,
+    )
+
+
+def custom_print_itempool(itempool: list[DeltaruneItem], filled_location_items: list[DeltaruneItem]):
     for item in itempool:
-        if not item.changing_classification:
-            continue
+        print(f"{item.name} ({flag_into_string(item.flags)})")
 
-        print(f"Looking to change {item.name}")
-        match (item.code):
-            case ItemIDs.ironshackle | ItemIDs.glowwrist:
-                if item.code not in already_found and should_include_spike_band_fusion(world):
-                    already_found[item.code] = 1
-                    item.classification = ItemClassification.progression | ItemClassification.useful
+    print("=====")
 
-            case ItemIDs.white_ribbon | ItemIDs.pink_ribbon:
-                if item.code not in already_found and should_include_twin_ribbon_fusion(world):
-                    already_found[item.code] = 1
-                    item.classification = ItemClassification.progression | ItemClassification.useful
+    for item in filled_location_items:
+        print(f"{item.name} ({flag_into_string(item.flags)})")
 
-            case ItemIDs.bshotbowtie | ItemIDs.tensionbit:
-                if item.code not in already_found and should_include_tensionbow_fusion(world):
-                    already_found[item.code] = 1
-                    if item.code == ItemIDs.bshotbowtie:
-                        item.classification = ItemClassification.progression | ItemClassification.useful
-                    else:
-                        item.classification = ItemClassification.progression
 
-            case ItemIDs.scarfmark | ItemIDs.progressive_ralsei_weapons | ItemIDs.princessrbn:
-                if world.can_access_ch5_fusion() and world.include_chapter(4):
-                    if ItemIDs.progressive_ralsei_weapons:
-                        if item.code not in already_found or already_found[
-                            item.code
-                        ] < world.get_weapon_progression_index(ItemGroups.ralsei_weapons, ItemIDs.scarfmark):
-                            if item.code not in already_found:
-                                already_found[item.code] = 1
-                            else:
-                                already_found[item.code] += 1
+def flag_into_string(flag: int):
+    final = []
 
-                            item.classification = ItemClassification.progression | ItemClassification.useful
-                    else:
-                        if item.code not in already_found:
-                            already_found[item.code] = 1
-                            item.classification = ItemClassification.progression | ItemClassification.useful
+    if flag & ItemClassification.useful:
+        final.append("useful")
+    if flag & ItemClassification.progression:
+        final.append("progression")
+    if flag & ItemClassification.trap:
+        final.append("trap")
 
-            case ItemIDs.tennatie | ItemIDs.frayedbowtie:
-                if item.code not in already_found and should_include_truetie_fusion(world):
-                    already_found[item.code] = 1
-                    item.classification = ItemClassification.progression | ItemClassification.useful
+    if len(final) == 0:
+        final.append("filler")
 
-            case ItemIDs.tvdinner | ItemIDs.tvslop:
-                if world.can_access_ch5_fusion() and world.include_chapter(3):
-                    if item.code not in already_found or already_found[item.code] < 2:
-                        if item.code not in already_found:
-                            already_found[item.code] = 1
-                        else:
-                            already_found[item.code] += 1
-
-                        item.classification = ItemClassification.progression
-                        print(f"Changed {item.name}")
-
-            case ItemIDs.scarlixir:
-                if world.can_access_ch5_fusion() and world.include_chapter(4):
-                    if item.code not in already_found or already_found[item.code] < 4:
-                        if item.code not in already_found:
-                            already_found[item.code] = 1
-                        else:
-                            already_found[item.code] += 1
-
-                        item.classification = ItemClassification.progression
-
-            case ItemIDs.powerband | ItemIDs.mysticband | ItemIDs.goldwidow | ItemIDs.dogdollar:
-                if item.code not in already_found and world.can_access_ch5_fusion() and world.include_chapter(4):
-                    already_found[item.code] = 1
-
-                    if item.code == ItemIDs.dogdollar:
-                        item.classification = ItemClassification.progression
-                    else:
-                        item.classification = ItemClassification.progression | ItemClassification.useful
+    return ",".join(final)
