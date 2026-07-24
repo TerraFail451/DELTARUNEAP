@@ -451,6 +451,7 @@ items = {
     ItemIDs.dark_burger: "Dark Burger",
     ItemIDs.dd_burger: "DD-Burger",
     ItemIDs.lancer_cookie: "Lancer Cookie",
+    ItemIDs.ancientsweet: "AncientSweet",
     ItemIDs.spincake: "Spincake",
     ItemIDs.revivemint: "Revive Mint",
     ItemIDs.execbuffet: "ExecBuffet",
@@ -645,7 +646,7 @@ def get_item_groups(items_data: list[ItemData]):
 
     for item_data in items_data:
         for group_name in item_data.groups:
-            groups.setdefault(group_name.value, set()).add(items[ItemIDs(item_data.code)])
+            groups.setdefault(group_name.value, set()).add(items[item_data.code])
 
     return groups
 
