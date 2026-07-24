@@ -54,6 +54,7 @@ class BetterOdds(Toggle):
     display_name = "Better Odds"
     default = 1
 
+
 class HaveStarwalker(Toggle):
     """
     THE ORIGINAL ONE BE PRESENT UPON STARTING A NEW SAVE.
@@ -63,6 +64,27 @@ class HaveStarwalker(Toggle):
 
     display_name = "Always Have Starwalker"
     default = 1
+
+
+class RandomizeMusic(Choice):
+    """
+    SHOULD BACKGROUND AUDIO BE RANDOM?
+    
+    - **Include Unused** *Adds normally unused songs to the music pool.*
+    """
+
+    display_name = "Randomize Music"
+    option_false = 0
+    option_true = 1
+    option_include_unused = 2
+    default = option_false
+
+
+class RandomizeMusicOptions(StrEnum):
+    false = "false"
+    true = "true"
+    include_unused = "include_unused"
+
 
 class ChosenRoute(Choice):
     """
@@ -773,6 +795,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_chapter_4: IncludeChapter4
     include_chapter_5: IncludeChapter5
     randomize_chapters: RandomizeChapters
+    randomize_music: RandomizeMusic
     starting_chapter: StartingChapter
     chosen_route: ChosenRoute
     recruits_sanity: RecruitsSanity
