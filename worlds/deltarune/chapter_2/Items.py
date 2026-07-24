@@ -78,12 +78,6 @@ chapter2_items = [
         groups=[ItemGroups.healing_item],
     ),
     ItemData(
-        ItemIDs.spoison,
-        ItemClassification.trap,
-        should_be_included=lambda world: world.is_not_weird_route_only(),
-        groups=[ItemGroups.traps],
-    ),
-    ItemData(
         ItemIDs.kris_tea,
         ItemClassification.filler,
         should_be_included=lambda world: world.is_not_weird_route_only(),

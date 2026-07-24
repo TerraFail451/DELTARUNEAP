@@ -15,6 +15,23 @@ if TYPE_CHECKING:
 
 
 cross_chapter_items = [
+    # Traps
+    ItemData(
+        ItemIDs.spoison,
+        ItemClassification.trap,
+        groups=[ItemGroups.traps],
+    ),
+    ItemData(
+        ItemIDs.bromider,
+        ItemClassification.trap,
+        groups=[ItemGroups.traps],
+    ),
+    ItemData(
+        ItemIDs.bromidef,
+        ItemClassification.trap,
+        groups=[ItemGroups.traps],
+    ),
+    # The rest
     ItemData(
         ItemIDs.lancer_cookie,
         ItemClassification.filler,

@@ -27,7 +27,6 @@ chapter5_items = [
     ItemData(ItemIDs.shikacola, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.schadenbrot, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.treecake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
-    ItemData(ItemIDs.bromider, ItemClassification.filler, blacklist_filler=True),
     ItemData(ItemIDs.flowerydollars_10, ItemClassification.filler, groups=[ItemGroups.currencies]),
     ItemData(ItemIDs.flowerydollars_25, ItemClassification.filler, groups=[ItemGroups.currencies]),
     ItemData(ItemIDs.flowerydollars_50, ItemClassification.filler, groups=[ItemGroups.currencies]),
@@ -46,12 +45,6 @@ chapter5_items = [
         ItemClassification.filler,
         should_be_included=lambda world: world.is_hidden_items_randomized(),
         groups=[ItemGroups.moss],
-        blacklist_filler=True,
-    ),
-    ItemData(
-        ItemIDs.bromidef,
-        ItemClassification.filler,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
         blacklist_filler=True,
     ),
     ItemData(
