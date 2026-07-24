@@ -71,6 +71,8 @@ class RandomizeMusic(Choice):
     SHOULD BACKGROUND AUDIO BE RANDOM?
     
     - **Include Unused** *Adds normally unused songs to the music pool.*
+    
+    (In instances where the music has too big an impact on gameplay, music will not be randomized.)
     """
 
     display_name = "Randomize Music"
