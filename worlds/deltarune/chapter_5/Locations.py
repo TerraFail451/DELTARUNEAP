@@ -28,14 +28,6 @@ chapter5_locations = {
         ),
         LocationData(id=LocationIDs.ch5_garden_first_chest_susie_accepting_herself, group=LocationGroups.chapter5),
         LocationData(
-            id=LocationIDs.ch5_garden_chest_under_flowery_face_1,
-            group=LocationGroups.chapter5,
-        ),
-        LocationData(
-            id=LocationIDs.ch5_garden_chest_under_flowery_face_2,
-            group=LocationGroups.chapter5,
-        ),
-        LocationData(
             id=LocationIDs.ch5_garden_netskie_chest,
             group=LocationGroups.chapter5,
         ),
@@ -55,6 +47,14 @@ chapter5_locations = {
         ),
         LocationData(
             id=LocationIDs.ch5_garden_water_can_pink_coin,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
+            id=LocationIDs.ch5_garden_chest_under_flowery_face_1,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
+            id=LocationIDs.ch5_garden_chest_under_flowery_face_2,
             group=LocationGroups.chapter5,
         ),
         LocationData(
