@@ -68,6 +68,7 @@ async def parse_game_packets(ctx: "DeltaruneContext", data):
             # send over connection data and receiveditems if valid
             if ctx.connected_msg and ctx.is_connected():
                 await send_msgs_proxy(ctx, ctx.connected_msg)
+                await send_msgs_proxy(ctx, {"cmd": "ReceivedItems", "items": ctx.items_received})
         elif not ctx.is_proxy_connected():
             break
         # send over any packets received from the game client to the server
