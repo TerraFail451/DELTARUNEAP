@@ -102,6 +102,7 @@ class DeltaruneCommandProcessor(ClientCommandProcessor):
             ping_interval=999999,
         )
         self.ctx.proxy_task = asyncio.create_task(proxy_loop(self.ctx), name="ProxyLoop")
+        self.tags = {"AP"}
 
         await self.ctx.proxy
         self.output("You should now be able to connect to localhost:1225 in game")
