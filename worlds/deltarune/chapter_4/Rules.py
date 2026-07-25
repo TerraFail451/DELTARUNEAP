@@ -60,18 +60,18 @@ def set_rules(world: "DeltaruneWorld"):
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_bibliox]), can_recruit_bibliox)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_mizzle]), can_recruit_mizzle)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_miss_mizzle]), can_recruit_miss_mizzle)
-        world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_organikk]), can_recruit_wicabel)
-        world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_wicabel]), can_recruit_winglade)
-        world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_winglade]), can_recruit_organikk)
+        world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_winglade]), can_recruit_winglade)
+        world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_organikk]), can_recruit_organikk)
+        world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_wicabel]), can_recruit_wicabel)
     if world.is_weird_route():
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_guei]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_balthizard]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_bibliox]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_mizzle]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_miss_mizzle]), can_lost_chapter4)
+        world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_winglade]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_organikk]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_wicabel]), can_lost_chapter4)
-        world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_winglade]), can_lost_chapter4)
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
