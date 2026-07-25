@@ -53,6 +53,7 @@ chapter5_items = [
         should_be_included=lambda world: world.is_secret_bosses_randomized(),
         blacklist_filler=True,
     ),
+    ItemData(ItemIDs.susie_can_wear_ribbons, ItemClassification.useful),
     ItemData(ItemIDs.woodblade2, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
     ItemData(ItemIDs.thatchet, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.susie_weapons]),
     ItemData(ItemIDs.mistlewp, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),

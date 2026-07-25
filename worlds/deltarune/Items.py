@@ -310,6 +310,7 @@ class ItemIDs(IntEnum):
     chapter_5_unlock = 90005
 
     s_r_n_actions = 100000
+    susie_can_wear_ribbons = 100001
 
     flowerydollars_10 = 110010
     flowerydollars_25 = 110025
@@ -521,6 +522,7 @@ items = {
     ItemIDs.compliment_list_yellow: "Yellow Compliment List",
     ItemIDs.compliment_list_green: "Green Compliment List",
     ItemIDs.jarona_lesson: "Jarona Lesson",
+    ItemIDs.susie_can_wear_ribbons: "Susie can wear Ribbons",
 }
 
 progressive_weapon_order: dict[ItemGroups, list[ItemIDs]] = {
