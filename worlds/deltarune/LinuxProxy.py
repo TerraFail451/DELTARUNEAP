@@ -64,7 +64,7 @@ async def parse_game_packets(ctx: "DeltaruneContext", data):
             if msg["game"] != "DELTARUNE":
                 await ctx.disconnect_proxy()
                 break
-            logging.info(f"Game -> Proxy | {data}")
+            logging.info(f"Game -> Proxy | {msg}")
             # send over connection data and receiveditems if valid
             if ctx.connected_msg and ctx.is_connected():
                 await send_msgs_proxy(ctx, ctx.connected_msg)
@@ -72,8 +72,8 @@ async def parse_game_packets(ctx: "DeltaruneContext", data):
             break
         # send over any packets received from the game client to the server
         else:
-            logging.info(f"Game -> Proxy -> Server | {data}")
-            await ctx.send_msgs([data])
+            logging.info(f"Game -> Proxy -> Server | {msg}")
+            await ctx.send_msgs([msg])
 
 
 async def send_msgs_proxy(ctx: "DeltaruneContext", msgs: Iterable[dict]) -> bool:
