@@ -26,6 +26,7 @@ chapter5_locations = {
             id=LocationIDs.ch5_garden_first_chest,
             group=LocationGroups.chapter5,
         ),
+        LocationData(id=LocationIDs.ch5_garden_first_chest_susie_accepting_herself, group=LocationGroups.chapter5),
         LocationData(
             id=LocationIDs.ch5_garden_chest_past_waterfall,
             group=LocationGroups.chapter5,

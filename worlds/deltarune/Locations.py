@@ -368,6 +368,7 @@ class LocationIDs(IntEnum):
     ch5_castle_top_greens_shop_warp_door = 346
     ch5_castle_top_pink_door_warp_door = 347
     ch5_castle_top_last_room_warp_door = 348
+    ch5_garden_first_chest_susie_accepting_herself = 349
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -711,6 +712,7 @@ locations = {
     LocationIDs.ch5_castle_town_trashy_trio_challenge: "CH5: Castle Town - Trashy Trio Challenge",
     LocationIDs.ch5_floradinn_recruit: "CH5: Recruit Floradinn",
     LocationIDs.ch5_garden_first_chest: "CH5: Garden - First Chest",
+    LocationIDs.ch5_garden_first_chest_susie_accepting_herself: "CH5: Garden - First Chest (Susie Accepting Herself)",
     LocationIDs.ch5_garden_netskie_chest: "CH5: Garden - Netskie Chest",
     LocationIDs.ch5_garden_hopschef_warp_door: "CH5: Garden - Hopschef Warp Door",
     LocationIDs.ch5_garden_shears_chest: "CH5: Garden - Shears Chest",
