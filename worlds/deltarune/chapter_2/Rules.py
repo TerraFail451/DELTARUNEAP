@@ -8,11 +8,20 @@ from worlds.deltarune.Rules import (
     have_kris_susie_or_ralsei,
     have_noelle,
     can_snowgrave,
-    have_kris_or_susie,
     can_lost_chapter2_with_noelle,
-    can_recruit,
-    can_recruit_with_kris_susie,
     have_kris_or_noelle,
+    can_recruit_werewire,
+    can_recruit_tasque,
+    can_recruit_virovirokun,
+    can_recruit_poppup,
+    can_recruit_ambuy_lance,
+    can_recruit_maus,
+    can_recruit_swatchling,
+    can_recruit_tasque_manager,
+    can_recruit_mauswheel,
+    can_recruit_werewerewire,
+    can_lost_chapter2,
+    can_lost_chapter2_with_noelle,
 )
 
 if TYPE_CHECKING:
@@ -32,9 +41,9 @@ def set_rules(world: "DeltaruneWorld"):
 
     # Weird Route
     if world.is_weird_route():
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_werewire]), have_kris_or_susie)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_tasque]), have_kris_susie_or_ralsei)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_virovirokun]), have_kris_susie_or_ralsei)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_werewire]), can_lost_chapter2)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_tasque]), can_lost_chapter2)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_virovirokun]), can_lost_chapter2)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_poppup]), can_lost_chapter2_with_noelle)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_ambyu_lance]), can_lost_chapter2_with_noelle)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_maus]), can_lost_chapter2_with_noelle)
@@ -47,36 +56,35 @@ def set_rules(world: "DeltaruneWorld"):
         )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_lost_tasque_manager]),
-            have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
+            can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
         )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_lost_mauswheel]),
-            have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
+            can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
         )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_lost_werewerewire]),
-            have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
+            can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
         )
         if world.options.include_lose_swatchling.value == 1:
             world.set_rule(
                 world.get_location(locations[LocationIDs.ch2_lost_swatchlings]),
-                have_kris_susie_or_ralsei & (can_snowgrave(world) | Has(glitched_item_name)),
+                can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
             )
 
     if world.is_all_recruits():
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewire]), can_recruit_with_kris_susie)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_tasque]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_virovirokun]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_poppup]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_ambyu_lance]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_maus]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_tasque_manager]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_mauswheel]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewerewire]), can_recruit)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_swatchling]), can_recruit)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewire]), can_recruit_werewire)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_tasque]), can_recruit_tasque)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_virovirokun]), can_recruit_virovirokun)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_poppup]), can_recruit_poppup)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_ambyu_lance]), can_recruit_ambuy_lance)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_maus]), can_recruit_maus)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_swatchling]), can_recruit_swatchling)
         world.set_rule(
-            world.get_location(locations[LocationIDs.ch2_recruit_ambyu_lance]), can_lost_chapter2_with_noelle
+            world.get_location(locations[LocationIDs.ch2_recruit_tasque_manager]), can_recruit_tasque_manager
         )
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_mauswheel]), can_recruit_mauswheel)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewerewire]), can_recruit_werewerewire)
 
         if world.options.exclude_post_chapter_2_locations.value == 1:
             world.get_location(locations[LocationIDs.ch2_castle_town_tasque_manager_says_challenge]).progress_type = (

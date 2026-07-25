@@ -227,20 +227,7 @@ chapter4_locations = {
             group=LocationGroups.chapter4,
         ),
         LocationData(
-            LocationIDs.ch4_second_sanctuary_gallery_prophecy_chest,
-            group=LocationGroups.chapter4,
-        ),
-        LocationData(
-            LocationIDs.ch4_second_sanctuary_fountain_sealed,
-            group=LocationGroups.chapter4,
-        ),
-        LocationData(
             LocationIDs.ch4_second_sanctuary_destroyed_piano_block_chest,
-            group=LocationGroups.chapter4,
-        ),
-        LocationData(
-            LocationIDs.ch4_recruit_wicabel,
-            should_be_included=lambda world: world.is_all_recruits(),
             group=LocationGroups.chapter4,
         ),
         LocationData(
@@ -254,17 +241,32 @@ chapter4_locations = {
             group=LocationGroups.chapter4,
         ),
         LocationData(
-            LocationIDs.ch4_lost_wicabel,
-            should_be_included=lambda world: world.is_weird_route(),
-            group=LocationGroups.chapter4,
-        ),
-        LocationData(
             LocationIDs.ch4_lost_winglade,
             should_be_included=lambda world: world.is_weird_route(),
             group=LocationGroups.chapter4,
         ),
         LocationData(
             LocationIDs.ch4_lost_organikk,
+            should_be_included=lambda world: world.is_weird_route(),
+            group=LocationGroups.chapter4,
+        ),
+    ],
+    Regions.ch4_second_sanctuary_post_wicabel: [
+        LocationData(
+            LocationIDs.ch4_second_sanctuary_gallery_prophecy_chest,
+            group=LocationGroups.chapter4,
+        ),
+        LocationData(
+            LocationIDs.ch4_second_sanctuary_fountain_sealed,
+            group=LocationGroups.chapter4,
+        ),
+        LocationData(
+            LocationIDs.ch4_recruit_wicabel,
+            should_be_included=lambda world: world.is_all_recruits(),
+            group=LocationGroups.chapter4,
+        ),
+        LocationData(
+            LocationIDs.ch4_lost_wicabel,
             should_be_included=lambda world: world.is_weird_route(),
             group=LocationGroups.chapter4,
         ),

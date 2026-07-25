@@ -15,8 +15,7 @@ from worlds.deltarune.Rules import (
     have_kris_or_noelle,
     have_kris_or_ralsei,
     have_kris_susie_or_ralsei,
-    can_recruit_with_kris_susie,
-    have_susie,
+    can_act_spare_susie,
 )
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.Locations import LocationIDs, locations
@@ -31,6 +30,9 @@ def create_regions(world: "DeltaruneWorld"):
     cyber_field = Region(Regions.ch2_cyber_field, world.player, world.multiworld)
     cyber_field_post_dj = Region(Regions.ch2_cyber_field_post_dj, world.player, world.multiworld)
     music_shop = Region(Regions.ch2_music_shop, world.player, world.multiworld)
+    trash_zone_no_character_requirement = Region(
+        Regions.ch2_trash_zone_no_character_required, world.player, world.multiworld
+    )
     trash_zone = Region(Regions.ch2_trash_zone, world.player, world.multiworld)
     spamton_shop = Region(Regions.ch2_spamton_shop, world.player, world.multiworld)
     cyber_city = Region(Regions.ch2_cyber_city, world.player, world.multiworld)
@@ -58,6 +60,7 @@ def create_regions(world: "DeltaruneWorld"):
         cyber_field,
         cyber_field_post_dj,
         music_shop,
+        trash_zone_no_character_requirement,
         trash_zone,
         spamton_shop,
         cyber_city,
@@ -89,7 +92,7 @@ def create_regions(world: "DeltaruneWorld"):
 
     access_to_cyber_field = (
         (
-            can_recruit_with_kris_susie
+            (have_kris | can_act_spare_susie)
             & OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")
         )
         | (have_kris_or_susie & Has(glitched_item_name))
@@ -117,7 +120,9 @@ def create_regions(world: "DeltaruneWorld"):
         rule=(have_actions & have_kris_susie_or_ralsei),
     )
     cyber_field.connect(
-        trash_zone, get_entrance_name(cyber_field_post_dj, trash_zone, "BagelOverflow"), Has(glitched_item_name)
+        trash_zone,
+        get_entrance_name(cyber_field_post_dj, trash_zone_no_character_requirement, "BagelOverflow"),
+        Has(glitched_item_name),
     )
     cyber_field.connect(
         mansion_lobby_main_route,
@@ -132,12 +137,16 @@ def create_regions(world: "DeltaruneWorld"):
     cyber_field_post_dj.connect(music_shop)
     # Require Safety vest and at least one character for berdly fight or Bagel Overflow to Trash Zone
     cyber_field_post_dj.connect(
-        trash_zone,
+        trash_zone_no_character_requirement,
         rule=(Has(items[ItemIDs.safety_vest]) & have_kris_susie_or_ralsei),
     )
 
+    trash_zone_no_character_requirement.connect(trash_zone, rule=have_kris_or_noelle)
+
     # Require Kris or Noelle for the Virovirokun after noelle
-    trash_zone.connect(cyber_city, rule=have_kris_or_noelle | (have_kris_susie_or_ralsei & Has(glitched_item_name)))
+    trash_zone_no_character_requirement.connect(
+        cyber_city, rule=have_kris_or_noelle | (have_kris_susie_or_ralsei & Has(glitched_item_name))
+    )
 
     # MAIN ROUTE REGION CONNECTIONS
     # Require Kris for Spamton fight unless you skip it with an Interaction Slide

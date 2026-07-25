@@ -17,7 +17,7 @@ from worlds.deltarune.Rules import (
     have_kris,
     have_kris_and_susie,
     have_susie,
-    can_recruit,
+    can_recruit_guei,
 )
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.Locations import locations, LocationIDs
@@ -35,6 +35,7 @@ def create_regions(world: "DeltaruneWorld"):
     dark_sanctuary_claimbclaws = Region(Regions.ch4_dark_sanctuary_claimbclaws, world.player, world.multiworld)
     gerson = Region(Regions.ch4_gerson, world.player, world.multiworld)
     second_sanctuary = Region(Regions.ch4_second_sanctuary, world.player, world.multiworld)
+    second_sanctuary_post_wicabel = Region(Regions.ch4_second_sanctuary_post_wicabel, world.player, world.multiworld)
     third_sanctuary = Region(Regions.ch4_third_sanctuary, world.player, world.multiworld)
     titan_fight = Region(Regions.ch4_titan_fight, world.player, world.multiworld)
     light_world = Region(Regions.ch4_light_world, world.player, world.multiworld)
@@ -48,6 +49,7 @@ def create_regions(world: "DeltaruneWorld"):
         dark_sanctuary_claimbclaws,
         gerson,
         second_sanctuary,
+        second_sanctuary_post_wicabel,
         third_sanctuary,
         titan_fight,
         light_world,
@@ -66,7 +68,7 @@ def create_regions(world: "DeltaruneWorld"):
     # Require at least one character for Guei fight
     castle_town.connect(
         dark_sanctuary,
-        rule=can_recruit
+        rule=can_recruit_guei
         | have_kris_susie_or_ralsei
         & [
             OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_neutral_route], operator="in")
@@ -94,7 +96,9 @@ def create_regions(world: "DeltaruneWorld"):
     )
     dark_sanctuary_claimbclaws.connect(gerson, rule=have_susie | Has(glitched_item_name))
 
-    second_sanctuary.connect(third_sanctuary, rule=have_susie | Has(glitched_item_name))
+    second_sanctuary.connect(second_sanctuary_post_wicabel, rule=have_kris)
+
+    second_sanctuary_post_wicabel.connect(third_sanctuary, rule=have_susie | Has(glitched_item_name))
 
     third_sanctuary.connect(gerson, rule=have_susie | Has(glitched_item_name))
 

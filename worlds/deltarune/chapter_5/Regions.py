@@ -3,10 +3,11 @@ from typing import TYPE_CHECKING
 from BaseClasses import Region
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
-from rule_builder.rules import CanReachEntrance, CanReachLocation, CanReachRegion, Has
+from rule_builder.rules import CanReachEntrance, CanReachLocation, CanReachRegion, Has, True_
 from worlds.deltarune.Options import (
     ChosenRoute,
     MacGuffinChapter5,
+    RandomizeChapters,
     RandomizeSecretBosses,
 )
 from worlds.deltarune.Regions import Regions, add_location_to_region, get_entrance_name
@@ -16,11 +17,7 @@ from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Rules import (
     have_kris_susie_or_ralsei,
     have_kris_susie_and_ralsei,
-    have_kris_or_susie,
     have_kris,
-    have_kris_and_susie,
-    have_susie,
-    can_recruit,
 )
 
 if TYPE_CHECKING:
@@ -30,6 +27,7 @@ if TYPE_CHECKING:
 def create_regions(world: "DeltaruneWorld"):
     castle_town = Region(Regions.ch5_castle_town, world.player, world.multiworld)
     dojo = Region(Regions.ch5_dojo, world.player, world.multiworld)
+    garden_no_character_required = Region(Regions.ch5_garden_no_character_required, world.player, world.multiworld)
     garden = Region(Regions.ch5_garden, world.player, world.multiworld)
     greens_cafe = Region(Regions.ch5_greens_cafe, world.player, world.multiworld)
     dark_garden = Region(Regions.ch5_dark_garden, world.player, world.multiworld)
@@ -46,10 +44,13 @@ def create_regions(world: "DeltaruneWorld"):
     pink_room = Region(Regions.ch5_pink_room, world.player, world.multiworld)
     flower_rewards = Region(Regions.ch5_flower_rewards, world.player, world.multiworld)
     fountains = Region(Regions.ch5_fountains, world.player, world.multiworld)
+    weird_route = Region(Regions.ch5_weird_route, world.player, world.multiworld)
+    complete_chapter = Region(Regions.ch5_complete_chapter, world.player, world.multiworld)
 
     regions = [
         castle_town,
         dojo,
+        garden_no_character_required,
         garden,
         greens_cafe,
         dark_garden,
@@ -66,6 +67,8 @@ def create_regions(world: "DeltaruneWorld"):
         pink_room,
         flower_rewards,
         fountains,
+        weird_route,
+        complete_chapter,
     ]
 
     for region in regions:
@@ -74,27 +77,30 @@ def create_regions(world: "DeltaruneWorld"):
         world.multiworld.regions.append(region)
 
     world.get_region(Regions.chapter_5).connect(castle_town)
+    world.get_region(Regions.chapter_5).connect(
+        weird_route,
+        rule=(
+            Has(items[ItemIDs.chapter_5_unlock])
+            | OptionFilter(RandomizeChapters, RandomizeChapters.option_all_unlocked)
+        )
+        & [OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_all_routes], operator="in")],
+    )
+    weird_route.connect(complete_chapter)
 
     castle_town.connect(
         dojo,
         rule=have_kris_susie_and_ralsei
-        & [OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")] 
+        & [OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")],
     )
 
-    # Require at least one character for Floradinn fight
-    castle_town.connect(
-        garden,
-        rule=can_recruit
-        | have_kris_susie_or_ralsei
-        & [
-            OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_neutral_route], operator="in")
-        ],
-    )
+    castle_town.connect(garden_no_character_required)
+
+    garden_no_character_required.connect(garden, rule=have_kris_susie_or_ralsei)
 
     garden.connect(greens_cafe)
 
     garden.connect(dark_garden)
-    
+
     garden.connect(garden_petal_feather, rule=Has(items[ItemIDs.petalfeather]))
 
     # aqua fight needs kris
@@ -129,11 +135,13 @@ def create_regions(world: "DeltaruneWorld"):
         rule=Has(items[ItemIDs.pinkcoin], 16) | Has(items[ItemIDs.pinkcoin], 11) & Has(glitched_item_name),
     )
 
-    secret_boss_mandatory = CanReachLocation(
-        locations[LocationIDs.ch5_castle_top_pink_defeat]
-    ) | [OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")]
+    secret_boss_mandatory = CanReachLocation(locations[LocationIDs.ch5_castle_top_pink_defeat]) | [
+        OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")
+    ]
 
     castle_top.connect(
         fountains,
         rule=secret_boss_mandatory & Has(items[ItemIDs.jarona_lesson], FromOption(MacGuffinChapter5)),
     )
+
+    fountains.connect(complete_chapter)

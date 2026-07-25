@@ -36,6 +36,7 @@ class Regions(StrEnum):
     ch2_cyber_field_post_dj = "CH2: Cyber Field (Post-DJ)"
     ch2_music_shop = "CH2: Music Shop"
     ch2_trash_zone = "CH2: Trash Zone"
+    ch2_trash_zone_no_character_required = "CH2: Trash Zone (No Character required)"
     ch2_spamton_shop = "CH2: Spamton's Shop"
     ch2_cyber_city = "CH2: Cyber City"
     ch2_cyber_city_spamton_fight = "CH2: Cyber City (Spamton fight)"
@@ -82,6 +83,7 @@ class Regions(StrEnum):
     ch4_dark_sanctuary_claimbclaws = "CH4: Dark Sanctuary (ClaimbClaws Required)"
     ch4_gerson = "CH4: Gerson"
     ch4_second_sanctuary = "CH4: Second Sanctuary"
+    ch4_second_sanctuary_post_wicabel = "CH4: Second Sanctuary (Post-Wicabel)"
     ch4_third_sanctuary = "CH4: Third Sanctuary"
     ch4_titan_fight = "CH4: Titan Fight"
     ch4_light_world = "CH4: Light World"
@@ -89,6 +91,7 @@ class Regions(StrEnum):
     chapter_5 = "Chapter 5"
     ch5_castle_town = "CH5: Castle Town"
     ch5_dojo = "CH5: Dojo"
+    ch5_garden_no_character_required = "CH5: The Garden of Hopes and Dreams (No Character required)"
     ch5_garden = "CH5: The Garden of Hopes and Dreams"
     ch5_greens_cafe = "CH5: Green's Cafe"
     ch5_dark_garden = "CH5: Dark Garden"
@@ -105,6 +108,8 @@ class Regions(StrEnum):
     ch5_pink_room = "CH5: Pink Room"
     ch5_flower_rewards = "CH5: Flower Rewards"
     ch5_fountains = "CH5: Fountains"
+    ch5_weird_route = "CH5: Weird Route"
+    ch5_complete_chapter = "CH5: Complete Chapter"
 
 
 def add_location_to_region(region: Region, locations: list[LocationData], world: "DeltaruneWorld"):

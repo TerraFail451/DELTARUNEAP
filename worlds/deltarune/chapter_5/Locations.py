@@ -21,16 +21,12 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
     ],
-    Regions.ch5_garden: [
+    Regions.ch5_garden_no_character_required: [
         LocationData(
             id=LocationIDs.ch5_garden_first_chest,
             group=LocationGroups.chapter5,
         ),
         LocationData(id=LocationIDs.ch5_garden_first_chest_susie_accepting_herself, group=LocationGroups.chapter5),
-        LocationData(
-            id=LocationIDs.ch5_garden_chest_past_waterfall,
-            group=LocationGroups.chapter5,
-        ),
         LocationData(
             id=LocationIDs.ch5_garden_chest_under_flowery_face_1,
             group=LocationGroups.chapter5,
@@ -40,15 +36,21 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_garden_shears_chest,
+            id=LocationIDs.ch5_garden_netskie_chest,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_garden_hopschef_warp_door,
             group=LocationGroups.chapter5,
         ),
+    ],
+    Regions.ch5_garden: [
         LocationData(
-            id=LocationIDs.ch5_garden_netskie_chest,
+            id=LocationIDs.ch5_garden_chest_past_waterfall,
+            group=LocationGroups.chapter5,
+        ),
+        LocationData(
+            id=LocationIDs.ch5_garden_shears_chest,
             group=LocationGroups.chapter5,
         ),
         LocationData(
@@ -427,6 +429,24 @@ chapter5_locations = {
         ),
         LocationData(
             id=LocationIDs.ch5_fountain_sealed_2,
+            group=LocationGroups.chapter5,
+        ),
+    ],
+    Regions.ch5_weird_route: [
+        LocationData(
+            id=LocationIDs.ch5_weird_route_sans_gift,
+            group=LocationGroups.chapter5,
+            should_be_included=lambda world: world.is_weird_route(),
+        ),
+        LocationData(
+            id=LocationIDs.ch5_weird_route_sinking,
+            group=LocationGroups.chapter5,
+            should_be_included=lambda world: world.is_weird_route(),
+        ),
+    ],
+    Regions.ch5_complete_chapter: [
+        LocationData(
+            id=LocationIDs.ch5_complete_chapter,
             group=LocationGroups.chapter5,
         ),
     ],

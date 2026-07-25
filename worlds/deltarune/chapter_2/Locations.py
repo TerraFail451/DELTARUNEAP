@@ -118,7 +118,7 @@ chapter2_locations = {
             group=LocationGroups.chapter2,
         ),
     ],
-    Regions.ch2_trash_zone: [
+    Regions.ch2_trash_zone_no_character_required: [
         LocationData(
             LocationIDs.ch2_trash_zone_warp_door,
             group=LocationGroups.chapter2,
@@ -127,6 +127,8 @@ chapter2_locations = {
             LocationIDs.ch2_trash_zone_trash_can,
             group=LocationGroups.chapter2,
         ),
+    ],
+    Regions.ch2_trash_zone: [
         LocationData(
             LocationIDs.ch2_cyber_city_trash_can_2,
             group=LocationGroups.chapter2,
