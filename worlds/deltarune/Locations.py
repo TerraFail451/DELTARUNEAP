@@ -369,9 +369,7 @@ class LocationIDs(IntEnum):
     ch5_castle_top_pink_door_warp_door = 347
     ch5_castle_top_last_room_warp_door = 348
     ch5_garden_first_chest_susie_accepting_herself = 349
-    ch5_weird_route_sans_gift = 350
-    ch5_weird_route_sinking = 351
-    ch5_complete_chapter = 352
+    ch5_weird_route_sinking = 350
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -804,9 +802,7 @@ locations = {
     LocationIDs.ch5_lost_kawkaw: "CH5: Lost Kawkaw",
     LocationIDs.ch5_lost_shinobeetle: "CH5: Lost Shinobeetle",
     LocationIDs.ch5_lost_terakota: "CH5: Lost Terakota",
-    LocationIDs.ch5_weird_route_sans_gift: "CH5: Weird Route - Sans' gift",
-    LocationIDs.ch5_weird_route_sinking: "CH5: Weird Route - Sinking",
-    LocationIDs.ch5_complete_chapter: "CH5: Complete Chapter",
+    LocationIDs.ch5_weird_route_sinking: "CH5: Weird Route - Sinking into the lake",
 }
 
 

@@ -109,7 +109,6 @@ class Regions(StrEnum):
     ch5_flower_rewards = "CH5: Flower Rewards"
     ch5_fountains = "CH5: Fountains"
     ch5_weird_route = "CH5: Weird Route"
-    ch5_complete_chapter = "CH5: Complete Chapter"
 
 
 def add_location_to_region(region: Region, locations: list[LocationData], world: "DeltaruneWorld"):

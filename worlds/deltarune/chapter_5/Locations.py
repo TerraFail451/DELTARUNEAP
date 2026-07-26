@@ -434,20 +434,9 @@ chapter5_locations = {
     ],
     Regions.ch5_weird_route: [
         LocationData(
-            id=LocationIDs.ch5_weird_route_sans_gift,
-            group=LocationGroups.chapter5,
-            should_be_included=lambda world: world.is_weird_route(),
-        ),
-        LocationData(
             id=LocationIDs.ch5_weird_route_sinking,
             group=LocationGroups.chapter5,
             should_be_included=lambda world: world.is_weird_route(),
-        ),
-    ],
-    Regions.ch5_complete_chapter: [
-        LocationData(
-            id=LocationIDs.ch5_complete_chapter,
-            group=LocationGroups.chapter5,
         ),
     ],
 }

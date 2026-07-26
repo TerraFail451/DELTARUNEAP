@@ -45,7 +45,6 @@ def create_regions(world: "DeltaruneWorld"):
     flower_rewards = Region(Regions.ch5_flower_rewards, world.player, world.multiworld)
     fountains = Region(Regions.ch5_fountains, world.player, world.multiworld)
     weird_route = Region(Regions.ch5_weird_route, world.player, world.multiworld)
-    complete_chapter = Region(Regions.ch5_complete_chapter, world.player, world.multiworld)
 
     regions = [
         castle_town,
@@ -68,7 +67,6 @@ def create_regions(world: "DeltaruneWorld"):
         flower_rewards,
         fountains,
         weird_route,
-        complete_chapter,
     ]
 
     for region in regions:
@@ -85,7 +83,6 @@ def create_regions(world: "DeltaruneWorld"):
         )
         & [OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_all_routes], operator="in")],
     )
-    weird_route.connect(complete_chapter)
 
     castle_town.connect(
         dojo,
