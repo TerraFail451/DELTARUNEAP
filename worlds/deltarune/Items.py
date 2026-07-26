@@ -4,7 +4,7 @@ from BaseClasses import Item, ItemClassification
 from enum import IntEnum, Enum
 from typing import TYPE_CHECKING, NamedTuple, Callable, Optional
 
-from worlds.deltarune.LocationsInclusion import (
+from worlds.deltarune.InclusionLogic import (
     should_include_spike_band_fusion,
     should_include_tensionbow_fusion,
     should_include_truetie_fusion,

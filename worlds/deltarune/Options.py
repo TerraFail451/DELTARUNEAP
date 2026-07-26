@@ -358,15 +358,14 @@ class IncludeChapter2(Toggle):
     default = 1
 
 
-class IncludeLoseSwatchling(Toggle):
+class IncludeSwatchlingWeirdRoute(Toggle):
     """
-    WILL LOSING THE SWATCHLING RECRUIT BE A CHECK LOCATION?
+    WILL THE SWATCHLING DURING WEIRD ROUTE BE CONSIDERED FOR LOSE OR RECRUIT?
 
     *(Since Swatchlings don't normally appear in weird route, enabling this means you have to do Singapore Wrong Warps.)*
-    *(In All Routes, it requires either reloading your save on a regular route or doing the wrong warp as well.)*
     """
 
-    display_name = "Include Lose Swatchling"
+    display_name = "[GLITCHES] Include Swatchling during Weird Route"
     default = 0
 
 
@@ -733,7 +732,9 @@ deltarune_option_groups = [
         ],
     ),
     OptionGroup("Chapter 1", [IncludeChapter1, MacGuffinChapter1, Chapter1Recruit]),
-    OptionGroup("Chapter 2", [IncludeChapter2, MacGuffinChapter2, IncludeLoseSwatchling, ExcludePostChapter2Locations]),
+    OptionGroup(
+        "Chapter 2", [IncludeChapter2, MacGuffinChapter2, IncludeSwatchlingWeirdRoute, ExcludePostChapter2Locations]
+    ),
     OptionGroup(
         "Chapter 3",
         [
@@ -792,7 +793,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     chosen_route: ChosenRoute
     recruits_sanity: RecruitsSanity
     lose_recruits_sanity: LoseRecruitsSanity
-    include_lose_swatchling: IncludeLoseSwatchling
+    include_swatchling_during_weird_route: IncludeSwatchlingWeirdRoute
     exclude_post_chapter_2_locations: ExcludePostChapter2Locations
     item_balancing: ItemBalancing
     macguffin_chapter_1: MacGuffinChapter1

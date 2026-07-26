@@ -1,5 +1,5 @@
 from worlds.deltarune.Locations import LocationData, LocationData, LocationGroups, LocationIDs
-from worlds.deltarune.LocationsInclusion import should_include_lose_recruits_chapter1, should_include_recruits_chapter1
+from worlds.deltarune.InclusionLogic import should_include_lose_recruits_chapter1, should_include_recruits_chapter1
 from worlds.deltarune.Regions import Regions
 
 chapter1_locations = {

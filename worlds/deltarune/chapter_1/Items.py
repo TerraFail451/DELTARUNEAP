@@ -1,5 +1,13 @@
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
+from worlds.deltarune.InclusionLogic import (
+    is_chapter_randomized,
+    should_include_chapter1_door_key,
+    should_include_hidden_items,
+    should_include_secret_bosses_items_requirement,
+    should_include_secret_bosses_items_reward,
+    should_include_unused_items,
+)
 from worlds.deltarune.Items import (
     ItemData,
     ItemGroups,
@@ -59,94 +67,93 @@ chapter1_items = [
     ItemData(
         ItemIDs.chapter_1_egg,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=should_include_hidden_items,
         groups=[ItemGroups.eggs],
         blacklist_filler=True,
     ),
     ItemData(
         ItemIDs.castle_moss,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=should_include_hidden_items,
         groups=[ItemGroups.moss],
         blacklist_filler=True,
     ),
     ItemData(
         ItemIDs.broken_key_a,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized(),
+        should_be_included=should_include_secret_bosses_items_requirement,
         groups=[ItemGroups.jevil_keys],
     ),
     ItemData(
         ItemIDs.broken_key_b,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized(),
+        should_be_included=should_include_secret_bosses_items_requirement,
         groups=[ItemGroups.jevil_keys],
     ),
     ItemData(
         ItemIDs.broken_key_c,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized(),
+        should_be_included=should_include_secret_bosses_items_requirement,
         groups=[ItemGroups.jevil_keys],
     ),
     ItemData(
         ItemIDs.door_key,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized()
-        and not world.is_door_key_from_broken_keys(),
+        should_be_included=should_include_chapter1_door_key,
         groups=[ItemGroups.jevil_keys],
     ),
     ItemData(
         ItemIDs.jevilstail,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=should_include_secret_bosses_items_reward,
         groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.devilsknife,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=should_include_secret_bosses_items_reward,
         groups=[ItemGroups.weapons, ItemGroups.susie_weapons],
     ),
     ItemData(
         ItemIDs.shadowcrystal,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=should_include_secret_bosses_items_reward,
         blacklist_filler=True,
     ),
     ItemData(
         ItemIDs.chapter_1_unlock,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_chapters_randomized(),
+        should_be_included=is_chapter_randomized,
         groups=[ItemGroups.region_blockers],
     ),
     ItemData(
         ItemIDs.brokencake_consumable,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_unused_items_included(),
+        should_be_included=should_include_unused_items,
         groups=[ItemGroups.healing_item, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.gigasalad,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_unused_items_included(),
+        should_be_included=should_include_unused_items,
         groups=[ItemGroups.healing_item, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.favsandwich,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_unused_items_included(),
+        should_be_included=should_include_unused_items,
         groups=[ItemGroups.healing_item, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.mouse_token,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_unused_items_included(),
+        should_be_included=should_include_unused_items,
         groups=[ItemGroups.armors, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.trefoil,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_unused_items_included(),
+        should_be_included=should_include_unused_items,
         groups=[ItemGroups.weapons, ItemGroups.kris_weapons, ItemGroups.unused_items],
     ),
 ]

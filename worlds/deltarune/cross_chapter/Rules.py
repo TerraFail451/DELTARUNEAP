@@ -1,7 +1,7 @@
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_
 
-from worlds.deltarune.LocationsInclusion import (
+from worlds.deltarune.InclusionLogic import (
     should_include_spike_band_fusion,
     should_include_tensionbow_fusion,
     should_include_truetie_fusion,
