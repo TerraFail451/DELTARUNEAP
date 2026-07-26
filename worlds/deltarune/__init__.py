@@ -1,3 +1,4 @@
+import logging
 from typing import Any, ClassVar, Optional
 
 from BaseClasses import ItemClassification, MultiWorld, Tutorial
@@ -149,7 +150,6 @@ components.append(
 # I apologize for the name of the icon - Emerald
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
-max_deltarune_chapter = 5
 fusion_access_chapter = [2, 4, 5]
 ch5_fusion_access_chapter = [5]
 
@@ -179,9 +179,10 @@ class DeltaruneWeb(WebWorld):
 
 class DeltaruneWorld(World):
     """
-    DELTARUNE is an RPG.
+    Deltarune is an episodic role-playing video game created by American indie developer Toby Fox.
     """
 
+    # region Archipelago World properties
     game = "DELTARUNE"
     options_dataclass = DeltaruneOptions
     options: DeltaruneOptions
@@ -193,17 +194,13 @@ class DeltaruneWorld(World):
     location_name_to_id = {name: id.value for id, name in locations.items()}
     location_name_groups = get_location_groups(all_locations)
 
-    glitches_item_name = glitched_item_name
-    ut_can_gen_without_yaml = True
-
     origin_region_name = Regions.chapter_select
+    # endregion
 
-    def __init__(self, multiworld: "MultiWorld", player: int):
-        super().__init__(multiworld, player)
+    # region Universal Tracker properties
+    glitches_item_name = glitched_item_name
 
-        self.cached_filler_and_trap_weights: dict[int, float] = {}
-        self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
-        self.already_changed_classification_item: dict[ItemIDs, int] = {}
+    ut_can_gen_without_yaml = True
 
     tracker_world: ClassVar = {
         "map_page_folder": "tracker",
@@ -220,6 +217,38 @@ class DeltaruneWorld(World):
         "location_icon_coords": handle_player_icon_position,
         "location_setting_key": "{player}_{team}_current_location",
     }
+    # endregion
+
+    # region DELTARUNE properties
+    max_deltarune_chapter = 5
+    # endregion
+
+    def __init__(self, multiworld: "MultiWorld", player: int):
+        super().__init__(multiworld, player)
+
+        self.cached_filler_and_trap_weights: dict[int, float] = {}
+        self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
+        self.already_changed_classification_item: dict[ItemIDs, int] = {}
+
+    # region Archipelago Functions
+    def create_item(self, name: str) -> DeltaruneItem:
+        if name == glitched_item_name:
+            return DeltaruneItem(name, ItemClassification.progression, -1, self.player)
+
+        item_data = next((item_data for item_data in all_item_data if items[item_data.code] == name), None)
+
+        if item_data is None:
+            raise ValueError(f"Item name '{name}' not found in item data.")
+
+        new_item_data = change_progression_type(self, item_data)
+
+        return DeltaruneItem(
+            name,
+            new_item_data.classification,
+            new_item_data.code.value,
+            self.player,
+            new_item_data.changing_classification,
+        )
 
     def _get_deltarune_data(self):
         return {
@@ -240,6 +269,8 @@ class DeltaruneWorld(World):
                 "exclude_t_rank",
                 "exclude_z_rank",
                 "chosen_route",
+                "recruits_sanity",
+                "lose_recruits_sanity",
                 "include_lose_swatchling",
                 "exclude_post_chapter_2_locations",
                 "randomize_chapters",
@@ -268,24 +299,24 @@ class DeltaruneWorld(World):
             "race": self.multiworld.is_race,
         }
 
-    def create_item(self, name: str) -> DeltaruneItem:
-        if name == glitched_item_name:
-            return DeltaruneItem(name, ItemClassification.progression, -1, self.player)
+    def fill_slot_data(self):
+        return self._get_deltarune_data()
 
-        item_data = next((item_data for item_data in all_item_data if items[item_data.code] == name), None)
+    def generate_early(self) -> None:
+        validate_options(self)
 
-        if item_data is None:
-            raise ValueError(f"Item name '{name}' not found in item data.")
+        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
+        if re_gen_passthrough and self.game in re_gen_passthrough:
+            # Get the passed through slot data from the real generation
+            slot_data: dict[str, Any] = re_gen_passthrough[self.game]
 
-        new_item_data = change_progression_type(self, item_data)
-
-        return DeltaruneItem(
-            name,
-            new_item_data.classification,
-            new_item_data.code.value,
-            self.player,
-            new_item_data.changing_classification,
-        )
+            slot_options: dict[str, Any] = slot_data.get("options", {})
+            # Set all your options here instead of getting them from the yaml
+            for key, value in slot_options.items():
+                opt: Optional[Option] = getattr(self.options, key, None)
+                if opt is not None:
+                    # You can also set .value directly but that won't work if you have OptionSets
+                    setattr(self.options, key, opt.from_any(value))
 
     def get_filler_item_name(self):
         if len(self.cached_filler_and_trap_weights) == 0:
@@ -298,6 +329,114 @@ class DeltaruneWorld(World):
             )[0]
         ]
 
+    # endregion
+
+    # region Universal Tracker Functions
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
+        # Trigger a regen in UT
+        return slot_data
+
+    # endregion
+
+    # region Archipelago Generation process functions
+    def create_regions(self):
+        # every_connections = CCLocationsAndRegions.get_cross_chapter_mandatory_connection(self)
+
+        create_cross_chapter_regions(self)
+        if self.include_chapter(1):
+            create_chapter_1_regions(self)
+        if self.include_chapter(2):
+            create_chapter_2_regions(self)
+        if self.include_chapter(3):
+            create_chapter_3_regions(self)
+        if self.include_chapter(4):
+            create_chapter_4_regions(self)
+        if self.include_chapter(5):
+            create_chapter_5_regions(self)
+        # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
+        # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
+
+    def set_rules(self):
+
+        set_cross_chapter_rules(self)
+        if self.include_chapter(1):
+            set_chapter_1_rules(self)
+        if self.include_chapter(2):
+            self.get_region(Regions.ch2_cyber_city).connect(
+                self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
+            )
+            set_chapter_2_rules(self)
+        if self.include_chapter(3):
+            set_chapter_3_rules(self)
+        if self.include_chapter(4):
+            set_chapter_4_rules(self)
+        if self.include_chapter(5):
+            set_chapter_5_rules(self)
+        # if self.include_chapter(6): set_chapter_6_rules(self)
+        # if self.include_chapter(7): set_chapter_7_rules(self)
+
+        set_completion_goal(self)
+
+        # from Utils import visualize_regions
+
+        # state = self.multiworld.get_all_state(False)
+        # state.update_reachable_regions(self.player)
+        # visualize_regions(self.get_region(self.origin_region_name), f"deltarune_regions{self.player}.puml")
+
+    def create_items(self):
+        if self.get_playable_chapters() == []:
+            self.multiworld.push_precollected(self.create_item(items[ItemIDs.what_interesting_behavior]))
+            return
+
+        item_pool: list[ItemData] = []
+
+        item_pool += create_cross_chapter_items(self)
+        handle_cross_chapter_locked_items(self)
+        if self.include_chapter(1):
+            item_pool += create_chapter_1_items(self)
+            handle_chapter_1_locked_items(self)
+        if self.include_chapter(2):
+            item_pool += create_chapter_2_items(self)
+            handle_chapter_2_locked_items(self)
+        if self.include_chapter(3):
+            item_pool += create_chapter_3_items(self)
+            handle_chapter_3_locked_items(self)
+        if self.include_chapter(4):
+            item_pool += create_chapter_4_items(self)
+            handle_chapter_4_locked_items(self)
+        if self.include_chapter(5):
+            item_pool += create_chapter_5_items(self)
+            handle_chapter_5_locked_items(self)
+        # if self.include_chapter(6): Ch6Items.create_items(self)
+        # if self.include_chapter(7): Ch7Items.create_items(self)
+
+        if self.is_kris_weapons_progressive():
+            self.handle_progressive_weapon(item_pool, ItemGroups.kris_weapons)
+        if self.is_susie_weapons_progressive():
+            self.handle_progressive_weapon(item_pool, ItemGroups.susie_weapons)
+        if self.is_ralsei_weapons_progressive():
+            self.handle_progressive_weapon(item_pool, ItemGroups.ralsei_weapons)
+        if self.is_noelle_weapons_progressive():
+            self.handle_progressive_weapon(item_pool, ItemGroups.noelle_weapons)
+
+        self.handle_chapter_keys(item_pool)
+        self.handle_macguffins_items(item_pool)
+
+        item_pool_names_and_amounts = []
+
+        for item_data in item_pool:
+            item_pool_names_and_amounts += [items[item_data.code]] * item_data.amount
+
+        item_pool_converted = [self.create_item(item) for item in item_pool_names_and_amounts]
+
+        self.handle_item_unfill_and_overflows(item_pool_converted)
+
+        self.multiworld.itempool += item_pool_converted
+
+    # endregion
+
+    # region DELTARUNE Generation functions
     def get_weapon_progression_index(self, character: ItemGroups, weapon: ItemIDs):
         if character not in self.weapon_to_progressive_weapon_index:
             return 666
@@ -323,30 +462,157 @@ class DeltaruneWorld(World):
 
         self.cached_filler_and_trap_weights = convert_filler_and_trap_to_weights(filler_pool, self.options)
 
-    @staticmethod
-    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
-        # Trigger a regen in UT
-        return slot_data
+    def handle_macguffins_items(self, item_pool: list[ItemData]):
+        if self.include_chapter(1):
+            item_data = next(
+                (item_data for item_data in item_pool if item_data.code == ItemIDs.king_shape_key_piece), None
+            )
+            index = item_pool.index(item_data)
+            item_pool[index] = item_data._replace(
+                amount=self.options.macguffin_chapter_1.value + self.options.macguffin_extra.value
+            )
+        if self.include_chapter(2):
+            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.keygen_2_segment), None)
+            index = item_pool.index(item_data)
+            item_pool[index] = item_data._replace(
+                amount=self.options.macguffin_chapter_2.value + self.options.macguffin_extra.value
+            )
+        if self.include_chapter(3):
+            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.remote_battery), None)
+            index = item_pool.index(item_data)
+            item_pool[index] = item_data._replace(
+                amount=self.options.macguffin_chapter_3.value + self.options.macguffin_extra.value
+            )
+        if self.include_chapter(4):
+            item_data = next(
+                (item_data for item_data in item_pool if item_data.code == ItemIDs.combination_lock_digit), None
+            )
+            index = item_pool.index(item_data)
+            item_pool[index] = item_data._replace(
+                amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
+            )
+        if self.include_chapter(5):
+            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None)
+            index = item_pool.index(item_data)
+            item_pool[index] = item_data._replace(
+                amount=self.options.macguffin_chapter_5.value + self.options.macguffin_extra.value
+            )
 
-    def fill_slot_data(self):
-        return self._get_deltarune_data()
+    def handle_chapter_keys(self, item_pool: list[ItemData]):
+        if self.is_all_chapters_unlocked():
+            return
 
-    def generate_early(self) -> None:
-        validate_options(self)
+        starting_chapter = -1
 
-        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
-        if re_gen_passthrough and self.game in re_gen_passthrough:
-            # Get the passed through slot data from the real generation
-            slot_data: dict[str, Any] = re_gen_passthrough[self.game]
+        if self.is_chapters_in_order():
+            starting_chapter = self.get_first_chapter()
+        elif self.is_chapters_randomized():
+            if self.options.starting_chapter.value == 0:
+                starting_chapter = self.random.choice(self.get_playable_chapters())
+            else:
+                starting_chapter = self.options.starting_chapter.value
 
-            slot_options: dict[str, Any] = slot_data.get("options", {})
-            # Set all your options here instead of getting them from the yaml
-            for key, value in slot_options.items():
-                opt: Optional[Option] = getattr(self.options, key, None)
-                if opt is not None:
-                    # You can also set .value directly but that won't work if you have OptionSets
-                    setattr(self.options, key, opt.from_any(value))
+        if starting_chapter == -1:
+            return
 
+        item_name = f"Chapter {starting_chapter} Unlock"
+
+        if self.is_chapters_randomized():
+            item_id = self.item_name_to_id[item_name]
+            item_pool.remove(next((item_data for item_data in item_pool if item_data.code == item_id), None))
+
+        self.multiworld.push_precollected(self.create_item(item_name))
+
+    def handle_item_unfill_and_overflows(self, item_pool: list[DeltaruneItem]):
+        unfilled = len(self.multiworld.get_unfilled_locations(self.player))
+        # Remove random junk items if the item pool overflows
+        if len(item_pool) > unfilled:
+            logging.info(f"[DELTARUNE] Item pool overflow: {len(item_pool) - unfilled}")
+            while len(item_pool) > unfilled:
+                chosen = self.random.choice(
+                    [
+                        item
+                        for item in item_pool
+                        if item.classification == ItemClassification.filler
+                        or item.classification == ItemClassification.trap
+                    ]
+                )
+                logging.info(f"[DELTARUNE] Removing {chosen.name} ({flag_into_string(chosen.flags)}) from itempool")
+                item_pool.remove(chosen)
+
+        # Fill remaining items with randomly generated junk
+        while len(item_pool) < len(self.multiworld.get_unfilled_locations(self.player)):
+            item_pool.append(self.create_filler())
+
+    def handle_progressive_weapon(
+        self,
+        itempool: list[ItemData],
+        character: ItemGroups,
+    ):
+        self.weapon_to_progressive_weapon_index[character] = {}
+        weapons_character_in_pool = [
+            item for item in itempool if character in item.groups and item.classification != ItemClassification.filler
+        ]
+
+        weapons_with_index = []
+
+        # Remove them from the item pool
+        for weapon in weapons_character_in_pool:
+            weapons_with_index.append((weapon.code, progressive_weapon_order[character].index(weapon.code)))
+            itempool.remove(weapon)
+
+        weapons_with_index.sort(key=lambda w: w[1])
+
+        index = 1
+
+        for weapon in weapons_with_index:
+            self.weapon_to_progressive_weapon_index[character][weapon[0]] = index
+            index += 1
+
+        match character:
+            case ItemGroups.kris_weapons:
+                itempool += [
+                    ItemData(
+                        ItemIDs.progressive_kris_weapons,
+                        ItemClassification.useful,
+                        groups=[ItemGroups.weapons, ItemGroups.kris_weapons],
+                        amount=len(weapons_character_in_pool),
+                    )
+                ]
+            case ItemGroups.susie_weapons:
+                itempool += [
+                    ItemData(
+                        ItemIDs.progressive_susie_weapons,
+                        ItemClassification.useful,
+                        groups=[ItemGroups.weapons, ItemGroups.susie_weapons],
+                        amount=len(weapons_character_in_pool),
+                    )
+                ]
+            case ItemGroups.ralsei_weapons:
+                itempool += [
+                    ItemData(
+                        ItemIDs.progressive_ralsei_weapons,
+                        ItemClassification.useful,
+                        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
+                        amount=len(weapons_character_in_pool),
+                        changing_classification=True,
+                    )
+                ]
+            case ItemGroups.noelle_weapons:
+                itempool += [
+                    ItemData(
+                        ItemIDs.progressive_noelle_weapons,
+                        ItemClassification.useful | ItemClassification.progression,
+                        groups=[ItemGroups.weapons, ItemGroups.noelle_weapons],
+                        amount=len(weapons_character_in_pool),
+                    )
+                ]
+            case _:
+                raise ValueError("Invalid character for progressive weapon")
+
+    # endregion
+
+    # region DELTARUNE Option helpers
     def include_chapter(self, chapter: int) -> bool:
         return getattr(self.options, f"include_chapter_{chapter}").value == 1
 
@@ -359,9 +625,6 @@ class DeltaruneWorld(World):
     def is_chapters_randomized(self):
         return self.options.randomize_chapters == RandomizeChapterOptions.randomized
 
-    def is_not_weird_route_only(self):
-        return self.options.chosen_route != ChosenRouteOptions.weird_route or self.is_all_routes()
-
     def is_neutral_route(self):
         return self.options.chosen_route == ChosenRouteOptions.neutral_route or self.is_all_routes()
 
@@ -373,6 +636,12 @@ class DeltaruneWorld(World):
 
     def is_all_routes(self):
         return self.options.chosen_route == ChosenRouteOptions.all_routes
+
+    def recruit_sanity_enabled(self):
+        return self.options.recruits_sanity == True
+
+    def lose_recruit_sanity_enabled(self):
+        return self.options.lose_recruits_sanity
 
     def is_starting_equipment_removed(self):
         return self.options.remove_starting_equipment.value == 1
@@ -474,14 +743,14 @@ class DeltaruneWorld(World):
         return all(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)
 
     def get_first_chapter(self) -> int:
-        for chapterToCheck in range(1, max_deltarune_chapter + 1, 1):
+        for chapterToCheck in range(1, self.max_deltarune_chapter + 1, 1):
             if self.include_chapter(chapterToCheck):
                 return chapterToCheck
         return -1
 
     def get_playable_chapters(self) -> list[int]:
         playable_chapters = []
-        for chapterToCheck in range(1, max_deltarune_chapter + 1, 1):
+        for chapterToCheck in range(1, self.max_deltarune_chapter + 1, 1):
             if getattr(self.options, f"include_chapter_{chapterToCheck}"):
                 playable_chapters.append(chapterToCheck)
         return playable_chapters
@@ -503,259 +772,13 @@ class DeltaruneWorld(World):
         return self.options.exclude_z_rank == 1
 
     def get_next_in_order_chapter(self, chapter: int):
-        if chapter > max_deltarune_chapter:
+        if chapter > self.max_deltarune_chapter:
             return -1
 
-        for chapterToCheck in range(chapter + 1, max_deltarune_chapter + 1, 1):
+        for chapterToCheck in range(chapter + 1, self.max_deltarune_chapter + 1, 1):
             if getattr(self.options, f"include_chapter_{chapterToCheck}"):
                 return chapterToCheck
 
         return -1
 
-    def create_regions(self):
-        # every_connections = CCLocationsAndRegions.get_cross_chapter_mandatory_connection(self)
-
-        create_cross_chapter_regions(self)
-        if self.include_chapter(1):
-            create_chapter_1_regions(self)
-        if self.include_chapter(2):
-            create_chapter_2_regions(self)
-        if self.include_chapter(3):
-            create_chapter_3_regions(self)
-        if self.include_chapter(4):
-            create_chapter_4_regions(self)
-        if self.include_chapter(5):
-            create_chapter_5_regions(self)
-        # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
-        # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
-
-    def create_items(self):
-        if self.get_playable_chapters() == []:
-            self.multiworld.push_precollected(self.create_item(items[ItemIDs.what_interesting_behavior]))
-            return
-
-        item_pool: list[ItemData] = []
-
-        item_pool += create_cross_chapter_items(self)
-        handle_cross_chapter_locked_items(self)
-        if self.include_chapter(1):
-            item_pool += create_chapter_1_items(self)
-            handle_chapter_1_locked_items(self)
-        if self.include_chapter(2):
-            item_pool += create_chapter_2_items(self)
-            handle_chapter_2_locked_items(self)
-        if self.include_chapter(3):
-            item_pool += create_chapter_3_items(self)
-            handle_chapter_3_locked_items(self)
-        if self.include_chapter(4):
-            item_pool += create_chapter_4_items(self)
-            handle_chapter_4_locked_items(self)
-        if self.include_chapter(5):
-            item_pool += create_chapter_5_items(self)
-            handle_chapter_5_locked_items(self)
-        # if self.include_chapter(6): Ch6Items.create_items(self)
-        # if self.include_chapter(7): Ch7Items.create_items(self)
-
-        if self.is_kris_weapons_progressive():
-            self.handle_progressive_weapon(item_pool, ItemGroups.kris_weapons)
-        if self.is_susie_weapons_progressive():
-            self.handle_progressive_weapon(item_pool, ItemGroups.susie_weapons)
-        if self.is_ralsei_weapons_progressive():
-            self.handle_progressive_weapon(item_pool, ItemGroups.ralsei_weapons)
-        if self.is_noelle_weapons_progressive():
-            self.handle_progressive_weapon(item_pool, ItemGroups.noelle_weapons)
-
-        self.handle_chapter_keys(item_pool)
-        self.handle_macguffins_items(item_pool)
-
-        item_pool_names_and_amounts = []
-
-        for item_data in item_pool:
-            item_pool_names_and_amounts += [items[item_data.code]] * item_data.amount
-
-        item_pool_converted = [self.create_item(item) for item in item_pool_names_and_amounts]
-
-        filled = [location.item for location in self.multiworld.get_filled_locations(self.player)]
-
-        print("=== BEFORE ===")
-        custom_print_itempool(item_pool_converted, filled)
-        self.handle_item_unfill_and_overflows(item_pool_converted)
-        print("=== AFTER ===")
-        custom_print_itempool(item_pool_converted, filled)
-
-        self.multiworld.itempool += item_pool_converted
-
-    def handle_macguffins_items(self, item_pool: list[ItemData]):
-        if self.include_chapter(1):
-            item_data = next(
-                (item_data for item_data in item_pool if item_data.code == ItemIDs.king_shape_key_piece), None
-            )
-            index = item_pool.index(item_data)
-            item_pool[index] = item_data._replace(
-                amount=self.options.macguffin_chapter_1.value + self.options.macguffin_extra.value
-            )
-        if self.include_chapter(2):
-            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.keygen_2_segment), None)
-            index = item_pool.index(item_data)
-            item_pool[index] = item_data._replace(
-                amount=self.options.macguffin_chapter_2.value + self.options.macguffin_extra.value
-            )
-        if self.include_chapter(3):
-            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.remote_battery), None)
-            index = item_pool.index(item_data)
-            item_pool[index] = item_data._replace(
-                amount=self.options.macguffin_chapter_3.value + self.options.macguffin_extra.value
-            )
-        if self.include_chapter(4):
-            item_data = next(
-                (item_data for item_data in item_pool if item_data.code == ItemIDs.combination_lock_digit), None
-            )
-            index = item_pool.index(item_data)
-            item_pool[index] = item_data._replace(
-                amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
-            )
-        if self.include_chapter(5):
-            item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None)
-            index = item_pool.index(item_data)
-            item_pool[index] = item_data._replace(
-                amount=self.options.macguffin_chapter_5.value + self.options.macguffin_extra.value
-            )
-
-    def handle_chapter_keys(self, item_pool: list[ItemData]):
-        if self.is_all_chapters_unlocked():
-            return
-
-        starting_chapter = -1
-
-        if self.is_chapters_in_order():
-            starting_chapter = self.get_first_chapter()
-        elif self.is_chapters_randomized():
-            if self.options.starting_chapter.value == 0:
-                starting_chapter = self.random.choice(self.get_playable_chapters())
-            else:
-                starting_chapter = self.options.starting_chapter.value
-
-        if starting_chapter == -1:
-            return
-
-        item_name = f"Chapter {starting_chapter} Unlock"
-
-        if self.is_chapters_randomized():
-            item_id = self.item_name_to_id[item_name]
-            item_pool.remove(next((item_data for item_data in item_pool if item_data.code == item_id), None))
-
-        self.multiworld.push_precollected(self.create_item(item_name))
-
-    def handle_item_unfill_and_overflows(self, item_pool: list[DeltaruneItem]):
-        unfilled = len(self.multiworld.get_unfilled_locations(self.player))
-        # Remove random junk items if the item pool overflows
-        if len(item_pool) > unfilled:
-            print(f"Item pool overflow: {len(item_pool) - unfilled}")
-            while len(item_pool) > unfilled:
-                chosen = self.random.choice(
-                    [
-                        item
-                        for item in item_pool
-                        if item.classification == ItemClassification.filler
-                        or item.classification == ItemClassification.trap
-                    ]
-                )
-                print(f"Removing {chosen.name} ({flag_into_string(chosen.flags)})")
-                item_pool.remove(chosen)
-
-        # Fill remaining items with randomly generated junk
-        while len(item_pool) < len(self.multiworld.get_unfilled_locations(self.player)):
-            item_pool.append(self.create_filler())
-
-    def set_rules(self):
-
-        set_cross_chapter_rules(self)
-        if self.include_chapter(1):
-            set_chapter_1_rules(self)
-        if self.include_chapter(2):
-            self.get_region(Regions.ch2_cyber_city).connect(
-                self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
-            )
-            set_chapter_2_rules(self)
-        if self.include_chapter(3):
-            set_chapter_3_rules(self)
-        if self.include_chapter(4):
-            set_chapter_4_rules(self)
-        if self.include_chapter(5):
-            set_chapter_5_rules(self)
-        # if self.include_chapter(6): set_chapter_6_rules(self)
-        # if self.include_chapter(7): set_chapter_7_rules(self)
-
-        set_completion_goal(self)
-
-        # from Utils import visualize_regions
-
-        # state = self.multiworld.get_all_state(False)
-        # state.update_reachable_regions(self.player)
-        # visualize_regions(self.get_region(self.origin_region_name), f"deltarune_regions{self.player}.puml")
-
-    def handle_progressive_weapon(
-        self,
-        itempool: list[ItemData],
-        character: ItemGroups,
-    ):
-        self.weapon_to_progressive_weapon_index[character] = {}
-        weapons_character_in_pool = [
-            item for item in itempool if character in item.groups and item.classification != ItemClassification.filler
-        ]
-
-        weapons_with_index = []
-
-        # Remove them from the item pool
-        for weapon in weapons_character_in_pool:
-            weapons_with_index.append((weapon.code, progressive_weapon_order[character].index(weapon.code)))
-            itempool.remove(weapon)
-
-        weapons_with_index.sort(key=lambda w: w[1])
-
-        index = 1
-
-        for weapon in weapons_with_index:
-            self.weapon_to_progressive_weapon_index[character][weapon[0]] = index
-            index += 1
-
-        match character:
-            case ItemGroups.kris_weapons:
-                itempool += [
-                    ItemData(
-                        ItemIDs.progressive_kris_weapons,
-                        ItemClassification.useful,
-                        groups=[ItemGroups.weapons, ItemGroups.kris_weapons],
-                        amount=len(weapons_character_in_pool),
-                    )
-                ]
-            case ItemGroups.susie_weapons:
-                itempool += [
-                    ItemData(
-                        ItemIDs.progressive_susie_weapons,
-                        ItemClassification.useful,
-                        groups=[ItemGroups.weapons, ItemGroups.susie_weapons],
-                        amount=len(weapons_character_in_pool),
-                    )
-                ]
-            case ItemGroups.ralsei_weapons:
-                itempool += [
-                    ItemData(
-                        ItemIDs.progressive_ralsei_weapons,
-                        ItemClassification.useful,
-                        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
-                        amount=len(weapons_character_in_pool),
-                        changing_classification=True,
-                    )
-                ]
-            case ItemGroups.noelle_weapons:
-                itempool += [
-                    ItemData(
-                        ItemIDs.progressive_noelle_weapons,
-                        ItemClassification.useful | ItemClassification.progression,
-                        groups=[ItemGroups.weapons, ItemGroups.noelle_weapons],
-                        amount=len(weapons_character_in_pool),
-                    )
-                ]
-            case _:
-                raise ValueError("Invalid character for progressive weapon")
+    # endregion
