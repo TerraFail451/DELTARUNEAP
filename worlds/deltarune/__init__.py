@@ -332,6 +332,7 @@ class DeltaruneWorld(World):
         return self._get_deltarune_data()
 
     def generate_early(self) -> None:
+        validate_options(self)
 
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
