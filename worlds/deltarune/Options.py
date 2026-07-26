@@ -60,10 +60,9 @@ class ChosenRoute(Choice):
     CHOOSE THE ROUTE THAT YOU PREFER.
 
     - **Neutral Route** *Proceed through the story normally.*
-    - **Weird Route** *Proceed through the "Weird Route" storyline while losing all possible recruits.*
-    - **All Recruits** *Progress through the story by recruiting everyone.*
-    - **All Routes** *Both All Recruits and Weird Route at the same times.*
-      *(Doesn't require to finish multiple times chapter, either ending would count as completing a chapter)*
+    - **Weird Route** *Proceed through the "Weird Route" storyline.*
+    - **All Recruits** *Progress through the story by recruiting everyone to complete the chapter.*
+    - **[DISABLED]** **All Routes**
 
     (The chosen route only chooses if recruiting or losing recruits are included or not.)
     (This doesn't require you to finish a chapter with a specific route yet, but will in the future.)
@@ -74,7 +73,7 @@ class ChosenRoute(Choice):
     option_weird_route = 1
     option_all_routes = 2
     option_neutral_route = 3
-    default = option_all_recruits
+    default = option_neutral_route
 
 
 class ChosenRouteOptions(StrEnum):
@@ -82,6 +81,28 @@ class ChosenRouteOptions(StrEnum):
     weird_route = "weird_route"
     all_routes = "all_routes"
     neutral_route = "neutral_route"
+
+
+class RecruitsSanity(Toggle):
+    """
+    Recruits are checks
+
+    (Forced enabled if All recruits is selected)
+    """
+
+    display_name = "Recruits Sanity"
+    default = True
+
+
+class LoseRecruitsSanity(Toggle):
+    """
+    Losing recruits are checks
+
+    (Forced disabled if All recruits is selected)
+    """
+
+    display_name = "Lose recruits Sanity"
+    default = False
 
 
 class RandomizeChapters(Choice):
@@ -257,6 +278,7 @@ class IncludeSecretBossesItemsRequirement(Toggle):
     display_name = "Randomize Items required for Secret Bosses"
     default = 0
 
+
 class DoorKeyFromBrokenKeys(Toggle):
     """
     THE JESTER'S DOOR KEY WILL BE ACQUIRED BY FUSING THE THREE BROKEN KEY PIECES.
@@ -269,6 +291,7 @@ class DoorKeyFromBrokenKeys(Toggle):
     display_name = "Door Key from Broken Keys"
     default = 1
 
+
 class MysteryKeyFromPinkCoins(Toggle):
     """
     THE MYSTERIOUS PINK KEY WILL BE PURCHASED FOR TEN PINK COINS.
@@ -280,6 +303,7 @@ class MysteryKeyFromPinkCoins(Toggle):
 
     display_name = "MysteryKey from Pink Coins"
     default = 1
+
 
 class RemoveStartingEquipment(Toggle):
     """
@@ -313,6 +337,7 @@ class Chapter1Recruit(Toggle):
     display_name = "Recruits/Lost for chapter 1"
     default = 1
 
+
 class Chapter1Recruit(Toggle):
     """
     THE SYSTEM TO RECRUIT ENEMIES WILL BE PRESENT IN THE FIRST CHAPTER.
@@ -320,7 +345,8 @@ class Chapter1Recruit(Toggle):
 
     display_name = "Recruits/Lost for chapter 1"
     default = 1
-    
+
+
 class IncludeChapter2(Toggle):
     """
     DO YOU WISH TO PLAY CHAPTER 2?
@@ -688,6 +714,15 @@ class UnlockFunGangActions(Toggle):
 
 deltarune_option_groups = [
     OptionGroup(
+        "Goal",
+        [
+            ChosenRoute,
+            RecruitsSanity,
+            LoseRecruitsSanity,
+            RandomizeSecretBosses,
+        ],
+    ),
+    OptionGroup(
         "Chapters",
         [
             RandomizeChapters,
@@ -724,13 +759,6 @@ deltarune_option_groups = [
         ],
     ),
     OptionGroup(
-        "Goal",
-        [
-            ChosenRoute,
-            RandomizeSecretBosses,
-        ],
-    ),
-    OptionGroup(
         "Items",
         [
             IncludeHiddenItems,
@@ -762,6 +790,8 @@ class DeltaruneOptions(PerGameCommonOptions):
     randomize_chapters: RandomizeChapters
     starting_chapter: StartingChapter
     chosen_route: ChosenRoute
+    recruits_sanity: RecruitsSanity
+    lose_recruits_sanity: LoseRecruitsSanity
     include_lose_swatchling: IncludeLoseSwatchling
     exclude_post_chapter_2_locations: ExcludePostChapter2Locations
     item_balancing: ItemBalancing
@@ -801,7 +831,6 @@ class DeltaruneOptions(PerGameCommonOptions):
 
     random_safety_chapter_inclusion: RandomSafetyChapterIncluded
 
-#    include_traps: IncludeTraps
 
 options_presets = {
     "Complete Experience": {
