@@ -641,7 +641,7 @@ class DeltaruneWorld(World):
         return self.options.recruits_sanity == True
 
     def lose_recruit_sanity_enabled(self):
-        return self.options.lose_recruits_sanity
+        return self.options.lose_recruits_sanity == True
 
     def is_starting_equipment_removed(self):
         return self.options.remove_starting_equipment.value == 1
