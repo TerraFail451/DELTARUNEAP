@@ -119,6 +119,17 @@ class StartingChapter(Choice):
     default = option_random_chapter
 
 
+class RandomSafetyChapterIncluded(Toggle):
+    """
+    When enabled, will choose a random chapter to be included if none.
+
+    Should be used if you randomized
+    """
+
+    display_name = "RANDOM SAFETY : Chapter inclusion"
+    default = False
+
+
 class RandomizeChapterOptions(StrEnum):
     in_order = "in_order"
     randomized = "randomized"
@@ -680,6 +691,7 @@ deltarune_option_groups = [
         "Chapters",
         [
             RandomizeChapters,
+            RandomSafetyChapterIncluded,
             StartingChapter,
             RemoveStartingEquipment,
             MacGuffinExtra,
@@ -787,6 +799,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     unlock_fun_gang_actions: UnlockFunGangActions
     chapter_1_recruit: Chapter1Recruit
 
+    random_safety_chapter_inclusion: RandomSafetyChapterIncluded
 
 #    include_traps: IncludeTraps
 
