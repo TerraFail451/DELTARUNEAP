@@ -34,6 +34,7 @@ from worlds.deltarune.Options import (
     UnlockCharactersOptions,
     IncludeUnusedItemsOptions,
 )
+from worlds.deltarune.OptionsValidator import validate_options
 from worlds.deltarune.Regions import Regions
 from worlds.deltarune.Rules import can_snowgrave
 from worlds.deltarune.cross_chapter.Items import (
@@ -331,17 +332,6 @@ class DeltaruneWorld(World):
         return self._get_deltarune_data()
 
     def generate_early(self) -> None:
-        if (
-            self.options.randomize_chapters == RandomizeChapterOptions.randomized
-            and self.options.starting_chapter.value != 0
-        ):
-            if getattr(self.options, f"include_chapter_{self.options.starting_chapter.value}").value == 0:
-                raise OptionError(
-                    f"Your random starting chapter is set to {self.options.starting_chapter.value} but it isn't included"
-                )
-
-        if len(self.get_playable_chapters()) == 0:
-            raise OptionError("You forgot to include at least one chapter to play.")
 
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
