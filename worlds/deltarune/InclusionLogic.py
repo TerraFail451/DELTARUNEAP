@@ -4,6 +4,10 @@ if TYPE_CHECKING:
     from . import DeltaruneWorld
 
 
+def should_include_hidden_items_chapter2_weird_route_exclusion(world: "DeltaruneWorld"):
+    return world.is_hidden_items_randomized() and not world.is_weird_route()
+
+
 def should_include_hidden_items(world: "DeltaruneWorld"):
     return world.is_hidden_items_randomized()
 
@@ -12,12 +16,20 @@ def should_include_secret_bosses_items_requirement(world: "DeltaruneWorld"):
     return world.is_secret_bosses_items_requirement_randomized()
 
 
+def should_include_secret_bosses_items_requirement_chapter2_weird_route_exclusion(world: "DeltaruneWorld"):
+    return world.is_secret_bosses_items_requirement_randomized() and not world.is_weird_route()
+
+
 def should_include_chapter1_door_key(world: "DeltaruneWorld"):
     return world.is_secret_bosses_items_requirement_randomized() and world.is_door_key_from_broken_keys()
 
 
 def should_include_secret_bosses_items_reward(world: "DeltaruneWorld"):
     return world.is_secret_bosses_randomized()
+
+
+def should_include_secret_bosses_items_reward_chapter2_weird_route_exclusion(world: "DeltaruneWorld"):
+    return world.is_secret_bosses_randomized() and not world.is_weird_route()
 
 
 def should_include_unused_items(world: "DeltaruneWorld"):
