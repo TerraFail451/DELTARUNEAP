@@ -140,5 +140,3 @@ def create_regions(world: "DeltaruneWorld"):
         fountains,
         rule=secret_boss_mandatory & Has(items[ItemIDs.jarona_lesson], FromOption(MacGuffinChapter5)),
     )
-
-    fountains.connect(complete_chapter)
