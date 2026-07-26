@@ -4,6 +4,14 @@ if TYPE_CHECKING:
     from . import DeltaruneWorld
 
 
+def should_include_recruits_chapter1(world: "DeltaruneWorld"):
+    return world.is_chapter_1_recruit_system_enabled() and world.recruit_sanity_enabled()
+
+
+def should_include_lose_recruits_chapter1(world: "DeltaruneWorld"):
+    return world.is_chapter_1_recruit_system_enabled() and world.lose_recruit_sanity_enabled()
+
+
 def should_include_twin_ribbon_fusion(world: "DeltaruneWorld"):
     return (
         world.can_access_fusion()
