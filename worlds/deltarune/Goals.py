@@ -6,7 +6,6 @@ from worlds.deltarune.Locations import LocationIDs, locations
 if TYPE_CHECKING:
     from . import DeltaruneWorld
 
-
 def set_completion_goal(world: "DeltaruneWorld"):
     locations_goal = []
 
@@ -19,7 +18,10 @@ def set_completion_goal(world: "DeltaruneWorld"):
     if world.include_chapter(4):
         locations_goal.append(locations[LocationIDs.ch4_third_sanctuary_fountain_sealed])
     if world.include_chapter(5):
-        locations_goal.append(locations[LocationIDs.ch5_complete_chapter])
+        if world.is_weird_route():
+            locations_goal.append(locations[LocationIDs.ch5_weird_route_sinking])
+        else:
+            locations_goal.append(locations[LocationIDs.ch5_fountain_sealed_2])
 
     def complete_chapters_goal(state: CollectionState):
         for location in locations_goal:

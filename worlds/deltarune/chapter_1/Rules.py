@@ -42,7 +42,7 @@ def set_rules(world: "DeltaruneWorld"):
     )
 
     if world.is_chapter_1_recruit_system_enabled():
-        if world.is_all_recruits():
+        if world.recruit_sanity_enabled():
             world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_rudinn]), can_recruit_ruddin)
             world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_hathy]), can_recruit_hathy)
             world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_jigsawry]), can_recruit_jigsawry)
@@ -54,7 +54,7 @@ def set_rules(world: "DeltaruneWorld"):
                 world.get_location(locations[LocationIDs.ch1_recruit_rudinn_ranger]), can_recruit_rudinn_ranger
             )
 
-        if world.is_weird_route():
+        if world.lose_recruit_sanity_enabled():
             world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_rudinn]), can_lose_chapter1)
             world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_hathy]), can_lose_chapter1)
             world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_jigsawry]), can_lose_chapter1)

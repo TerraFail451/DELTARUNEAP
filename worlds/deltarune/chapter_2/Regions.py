@@ -11,11 +11,11 @@ from worlds.deltarune.Rules import (
     have_actions,
     have_kris_or_susie,
     have_kris,
-    can_snowgrave,
     have_kris_or_noelle,
     have_kris_or_ralsei,
     have_kris_susie_or_ralsei,
     can_act_spare_susie,
+    all_recruits_per_chapter,
 )
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.Locations import LocationIDs, locations
@@ -192,13 +192,17 @@ def create_regions(world: "DeltaruneWorld"):
         spamton_neo, get_entrance_name(mansion_basement, spamton_neo), rule=Has(items[ItemIDs.emptydisk])
     )
 
+    all_recruits = all_recruits_per_chapter[2] | OptionFilter(
+        ChosenRoute, ChosenRoute.option_all_recruits, operator="ne"
+    )
+
     secret_boss_mandatory = CanReachEntrance(get_entrance_name(mansion_basement, spamton_neo)) | [
         OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")
     ]
 
     tunnel_of_love.connect(
         fountain,
-        rule=secret_boss_mandatory & Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)),
+        rule=all_recruits & secret_boss_mandatory & Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)),
     )
 
     fountain.connect(post_chapter_castle_town)

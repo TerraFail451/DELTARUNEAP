@@ -1,10 +1,11 @@
 from typing import TYPE_CHECKING
 
 from rule_builder.options import OptionFilter
-from rule_builder.rules import CanReachRegion, Has
+from rule_builder.rules import CanReachLocation, CanReachRegion, Has
 from worlds.deltarune.Options import ChosenRoute, UnlockCharacters, UnlockFunGangActions
 from worlds.deltarune.Items import ItemGroups, items, ItemIDs, glitched_item_name
 from worlds.deltarune.Regions import Regions
+from worlds.deltarune.Locations import LocationIDs, locations
 
 if TYPE_CHECKING:
     from . import DeltaruneWorld
@@ -36,6 +37,26 @@ def have_thornring(world: "DeltaruneWorld"):
 def can_snowgrave(world: "DeltaruneWorld"):
     return have_noelle & have_thornring(world)
 
+all_recruits_per_chapter = {
+    1: CanReachLocation(locations[LocationIDs.ch1_recruit_rudinn])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_hathy])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_jigsawry])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_ponman])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_rabbick])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_bloxer])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_head_hathy])
+    & CanReachLocation(locations[LocationIDs.ch1_recruit_rudinn_ranger]),
+    2: CanReachLocation(locations[LocationIDs.ch2_recruit_werewire])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_tasque])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_virovirokun])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_poppup])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_ambyu_lance])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_maus])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_swatchling])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_tasque_manager])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_mauswheel])
+    & CanReachLocation(locations[LocationIDs.ch2_recruit_werewerewire]),
+}
 
 ### RECRUITMENT GENERIC LOGIC
 can_recruit_with_violence_ralsei = have_ralsei

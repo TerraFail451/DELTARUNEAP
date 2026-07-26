@@ -5,9 +5,9 @@ from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachLocation, Has
 from worlds.deltarune.Items import ItemIDs, items, glitched_item_name
-from worlds.deltarune.Options import MacGuffinChapter1, RandomizeSecretBosses
+from worlds.deltarune.Options import ChosenRoute, MacGuffinChapter1, RandomizeSecretBosses
 from worlds.deltarune.Regions import add_location_to_region, Regions, get_entrance_name
-from worlds.deltarune.Rules import have_kris_or_ralsei, have_kris_susie_or_ralsei, have_kris
+from worlds.deltarune.Rules import have_kris_or_ralsei, have_kris_susie_or_ralsei, have_kris, all_recruits_per_chapter
 from worlds.deltarune.Locations import LocationIDs, locations
 from worlds.deltarune.chapter_1.Locations import chapter1_locations
 
@@ -90,9 +90,14 @@ def create_regions(world: "DeltaruneWorld"):
         RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne"
     )
 
+    all_recruits = all_recruits_per_chapter[1] | OptionFilter(
+        ChosenRoute, ChosenRoute.option_all_recruits, operator="ne"
+    )
+
     card_castle.connect(
         light_world,
         rule=secret_boss_mandatory
+        & all_recruits
         & Has(items[ItemIDs.king_shape_key_piece], FromOption(MacGuffinChapter1))
         & have_kris,
     )

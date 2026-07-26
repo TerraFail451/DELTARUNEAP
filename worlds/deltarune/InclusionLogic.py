@@ -49,7 +49,7 @@ def is_weird_route(world: "DeltaruneWorld"):
 
 
 def is_normal_route(world: "DeltaruneWorld"):
-    return world.is_neutral_route() or world.is_all_recruits()
+    return world.is_normal_route()
 
 
 def is_all_recruits_route(world: "DeltaruneWorld"):
