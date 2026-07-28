@@ -2,7 +2,7 @@ from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from worlds.deltarune.Locations import LocationData, LocationGroups, LocationIDs
-from worlds.deltarune.InclusionLogic import (
+from worlds.deltarune.LogicHelper import (
     should_include_spike_band_fusion,
     should_include_tensionbow_fusion,
     should_include_truetie_fusion,

@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
+from worlds.deltarune.LogicHelper import include_hidden_items
 from worlds.deltarune.Items import (
     DeltaruneItem,
     ItemData,
@@ -78,14 +79,14 @@ chapter3_items = [
     ItemData(
         ItemIDs.tennatie,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.armors],
         changing_classification=True,
     ),
     ItemData(
         ItemIDs.blue_ribbon,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.armors],
     ),
     ItemData(
@@ -117,8 +118,7 @@ chapter3_items = [
     ItemData(
         ItemIDs.board_moss,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_hidden_items_randomized()
-        and ((not world.is_weird_route()) or world.is_all_routes()),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.moss],
         blacklist_filler=True,
     ),
@@ -149,8 +149,7 @@ chapter3_items = [
     ItemData(
         ItemIDs.tripticket,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_hidden_items_randomized()
-        and ((not world.is_weird_route()) or world.is_all_routes()),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.mantle_items],
     ),
 ]

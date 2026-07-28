@@ -54,7 +54,7 @@ def set_rules(world: "DeltaruneWorld"):
             LocationProgressType.EXCLUDED
         )
 
-    if world.is_all_recruits():
+    if world.recruit_sanity_enabled():
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_guei]), can_recruit_guei)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_balthizard]), can_recruit_balthizard)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_bibliox]), can_recruit_bibliox)
@@ -63,7 +63,8 @@ def set_rules(world: "DeltaruneWorld"):
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_winglade]), can_recruit_winglade)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_organikk]), can_recruit_organikk)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_wicabel]), can_recruit_wicabel)
-    if world.is_weird_route():
+
+    if world.lose_recruit_sanity_enabled():
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_guei]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_balthizard]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_bibliox]), can_lost_chapter4)

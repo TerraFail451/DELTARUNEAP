@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 def set_rules(world: "DeltaruneWorld"):
-    if world.is_all_recruits():
+    if world.recruit_sanity_enabled():
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_shadowguy]), can_recruit_shadowguy)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_pippins]), can_recruit_pippins)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_shuttah]), can_recruit_shuttah)
@@ -29,14 +29,13 @@ def set_rules(world: "DeltaruneWorld"):
             can_recruit_zapper,
         )
 
-    if world.is_weird_route() and not world.is_all_routes():
+    if world.lose_recruit_sanity_enabled() and not world.recruit_sanity_enabled():
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_shadowguy]), can_lost_chapter3)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_pippins]), can_lost_chapter3)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_shuttah]), can_lost_chapter3)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_water_cooler]), can_lost_chapter3)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_zapper]), can_lost_chapter3)
-
-    if world.is_all_routes():
+    elif world.lose_recruit_sanity_enabled():
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_lost_shadowguy]),
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
@@ -62,8 +61,7 @@ def set_rules(world: "DeltaruneWorld"):
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
         )
 
-    if world.is_not_weird_route_only():
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_tv_world_man]), Has(items[ItemIDs.tripticket]))
+    world.set_rule(world.get_location(locations[LocationIDs.ch3_tv_world_man]), Has(items[ItemIDs.tripticket]))
 
     if world.is_t_rank_excluded():
         world.get_location(locations[LocationIDs.ch3_board_1_t_rank]).progress_type = LocationProgressType.EXCLUDED
@@ -73,10 +71,8 @@ def set_rules(world: "DeltaruneWorld"):
         world.get_location(locations[LocationIDs.ch3_board_1_z_rank]).progress_type = LocationProgressType.EXCLUDED
         world.get_location(locations[LocationIDs.ch3_board_2_z_rank]).progress_type = LocationProgressType.EXCLUDED
 
-def handle_locked_items(world: "DeltaruneWorld"):
-    player = world.player
-    multiworld = world.multiworld
 
+def handle_locked_items(world: "DeltaruneWorld"):
     # MANTLE
     if not (world.is_mantle_randomized() or world.is_mantleless()):
         if world.is_shadow_mantle_included():
@@ -125,11 +121,10 @@ def handle_locked_items(world: "DeltaruneWorld"):
         world.get_location(locations[LocationIDs.ch3_b_rank_room_golden_prize_5]).place_locked_item(
             world.create_item(items[ItemIDs.revivemint])
         )
-        # Location not available in weird route to avoid potential soft-lock due to Zapper Lost
-        if world.is_not_weird_route_only():
-            world.get_location(locations[LocationIDs.ch3_tv_world_man]).place_locked_item(
-                world.create_item(items[ItemIDs.chapter_3_egg])
-            )
-            world.get_location(locations[LocationIDs.ch3_tv_world_tripticket]).place_locked_item(
-                world.create_item(items[ItemIDs.tripticket])
-            )
+
+        world.get_location(locations[LocationIDs.ch3_tv_world_man]).place_locked_item(
+            world.create_item(items[ItemIDs.chapter_3_egg])
+        )
+        world.get_location(locations[LocationIDs.ch3_tv_world_tripticket]).place_locked_item(
+            world.create_item(items[ItemIDs.tripticket])
+        )

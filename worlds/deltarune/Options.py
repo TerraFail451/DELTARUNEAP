@@ -59,7 +59,7 @@ class ChosenRoute(Choice):
     """
     CHOOSE THE ROUTE THAT YOU PREFER.
 
-    - **Neutral Route** *Proceed through the story normally.*
+    - **Normal Route** *Proceed through the story normally.*
     - **Weird Route** *Proceed through the "Weird Route" storyline.*
     - **All Recruits** *Progress through the story by recruiting everyone to complete the chapter.*
     - **[DISABLED]** **All Routes**
@@ -71,16 +71,9 @@ class ChosenRoute(Choice):
     display_name = "Chosen Route"
     option_all_recruits = 0
     option_weird_route = 1
-    option_all_routes = 2
-    option_neutral_route = 3
-    default = option_neutral_route
-
-
-class ChosenRouteOptions(StrEnum):
-    all_recruits = "all_recruits"
-    weird_route = "weird_route"
-    all_routes = "all_routes"
-    neutral_route = "neutral_route"
+    option_both_all_recruits_and_weird_route = 2
+    option_normal_route = 3
+    default = option_normal_route
 
 
 class RecruitsSanity(Toggle):
@@ -151,12 +144,6 @@ class RandomSafetyChapterIncluded(Toggle):
     default = False
 
 
-class RandomizeChapterOptions(StrEnum):
-    in_order = "in_order"
-    randomized = "randomized"
-    all_unlocked = "all_unlocked"
-
-
 class RandomizeSecretBosses(Choice):
     """
     ITEMS GIVEN BY SECRET BOSSES WILL BE RANDOMIZED OR EVEN REQUIRED.
@@ -173,12 +160,6 @@ class RandomizeSecretBosses(Choice):
     default = option_false
 
 
-class RandomizeSecretBossesOptions(StrEnum):
-    false = "false"
-    true = "true"
-    mandatory = "mandatory"
-
-
 class RandomizeMANTLE(Choice):
     """
     CHECKS RECIEVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
@@ -191,12 +172,6 @@ class RandomizeMANTLE(Choice):
     option_true = 1
     option_mantleless = 2
     default = option_false
-
-
-class RandomizeMANTLEOptions(StrEnum):
-    false = "false"
-    true = "true"
-    mantleless = "mantleless"
 
 
 class IncludeShadowMantle(Toggle):
@@ -860,5 +835,7 @@ options_presets = {
         "unlock_characters": "true",
         "include_mike": "battle_and_games",
         "chapter_1_recruit": True,
-    }
+    },
+    "Classic All Recruits": {"chosen_route": "all_recruits", "recruits_sanity": True},
+    "Classic Weird Route": {"chosen_route": "weird_route", "recruits_sanity": False, "lose_recruits_sanity": True},
 }

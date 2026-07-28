@@ -120,7 +120,7 @@ def create_regions(world: "DeltaruneWorld"):
         rule=(have_actions & have_kris_susie_or_ralsei),
     )
     cyber_field.connect(
-        trash_zone,
+        trash_zone_no_character_requirement,
         get_entrance_name(cyber_field_post_dj, trash_zone_no_character_requirement, "BagelOverflow"),
         Has(glitched_item_name),
     )
