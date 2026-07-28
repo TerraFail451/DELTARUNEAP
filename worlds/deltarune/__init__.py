@@ -23,6 +23,7 @@ from worlds.deltarune.Items import (
     progressive_weapon_order,
 )
 from worlds.deltarune.Goals import set_completion_goal
+from worlds.deltarune.LogicHelper import included_chapter
 from worlds.deltarune.Options import (
     DeltaruneOptions,
     deltarune_option_groups,
@@ -150,9 +151,6 @@ components.append(
 # I apologize for the name of the icon - Emerald
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
-fusion_access_chapter = [2, 4, 5]
-ch5_fusion_access_chapter = [5]
-
 def data_path(file_name: str):
     import pkgutil
 
@@ -229,6 +227,7 @@ class DeltaruneWorld(World):
         self.cached_filler_and_trap_weights: dict[int, float] = {}
         self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
         self.already_changed_classification_item: dict[ItemIDs, int] = {}
+        self.included_chapters: list[int] = None
 
     # region Archipelago Functions
     def create_item(self, name: str) -> DeltaruneItem:
@@ -305,6 +304,8 @@ class DeltaruneWorld(World):
     def generate_early(self) -> None:
         validate_options(self)
 
+        self.fill_chapter_included_array()
+
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
             # Get the passed through slot data from the real generation
@@ -344,37 +345,37 @@ class DeltaruneWorld(World):
         # every_connections = CCLocationsAndRegions.get_cross_chapter_mandatory_connection(self)
 
         create_cross_chapter_regions(self)
-        if self.include_chapter(1):
+        if included_chapter(1):
             create_chapter_1_regions(self)
-        if self.include_chapter(2):
+        if included_chapter(2):
             create_chapter_2_regions(self)
-        if self.include_chapter(3):
+        if included_chapter(3):
             create_chapter_3_regions(self)
-        if self.include_chapter(4):
+        if included_chapter(4):
             create_chapter_4_regions(self)
-        if self.include_chapter(5):
+        if included_chapter(5):
             create_chapter_5_regions(self)
-        # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
-        # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
+        # if included_chapter(6): Ch6LocationAndRegions.create_regions(self)
+        # if included_chapter(7): Ch7LocationAndRegions.create_regions(self)
 
     def set_rules(self):
 
         set_cross_chapter_rules(self)
-        if self.include_chapter(1):
+        if included_chapter(1):
             set_chapter_1_rules(self)
-        if self.include_chapter(2):
+        if included_chapter(2):
             self.get_region(Regions.ch2_cyber_city).connect(
                 self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
             )
             set_chapter_2_rules(self)
-        if self.include_chapter(3):
+        if included_chapter(3):
             set_chapter_3_rules(self)
-        if self.include_chapter(4):
+        if included_chapter(4):
             set_chapter_4_rules(self)
-        if self.include_chapter(5):
+        if included_chapter(5):
             set_chapter_5_rules(self)
-        # if self.include_chapter(6): set_chapter_6_rules(self)
-        # if self.include_chapter(7): set_chapter_7_rules(self)
+        # if included_chapter(6): set_chapter_6_rules(self)
+        # if included_chapter(7): set_chapter_7_rules(self)
 
         set_completion_goal(self)
 
@@ -393,23 +394,23 @@ class DeltaruneWorld(World):
 
         item_pool += create_cross_chapter_items(self)
         handle_cross_chapter_locked_items(self)
-        if self.include_chapter(1):
+        if included_chapter(1):
             item_pool += create_chapter_1_items(self)
             handle_chapter_1_locked_items(self)
-        if self.include_chapter(2):
+        if included_chapter(2):
             item_pool += create_chapter_2_items(self)
             handle_chapter_2_locked_items(self)
-        if self.include_chapter(3):
+        if included_chapter(3):
             item_pool += create_chapter_3_items(self)
             handle_chapter_3_locked_items(self)
-        if self.include_chapter(4):
+        if included_chapter(4):
             item_pool += create_chapter_4_items(self)
             handle_chapter_4_locked_items(self)
-        if self.include_chapter(5):
+        if included_chapter(5):
             item_pool += create_chapter_5_items(self)
             handle_chapter_5_locked_items(self)
-        # if self.include_chapter(6): Ch6Items.create_items(self)
-        # if self.include_chapter(7): Ch7Items.create_items(self)
+        # if included_chapter(6): Ch6Items.create_items(self)
+        # if included_chapter(7): Ch7Items.create_items(self)
 
         if self.is_kris_weapons_progressive():
             self.handle_progressive_weapon(item_pool, ItemGroups.kris_weapons)
@@ -437,6 +438,15 @@ class DeltaruneWorld(World):
     # endregion
 
     # region DELTARUNE Generation functions
+
+    def fill_chapter_included_array(self):
+        if self.included_chapters != None:
+            return
+
+        for chapterToCheck in range(1, self.max_deltarune_chapter + 1, 1):
+            if getattr(self.options, f"include_chapter_{chapterToCheck}"):
+                self.included_chapters.append(chapterToCheck)
+
     def get_weapon_progression_index(self, character: ItemGroups, weapon: ItemIDs):
         if character not in self.weapon_to_progressive_weapon_index:
             return 666
@@ -463,7 +473,7 @@ class DeltaruneWorld(World):
         self.cached_filler_and_trap_weights = convert_filler_and_trap_to_weights(filler_pool, self.options)
 
     def handle_macguffins_items(self, item_pool: list[ItemData]):
-        if self.include_chapter(1):
+        if included_chapter(1):
             item_data = next(
                 (item_data for item_data in item_pool if item_data.code == ItemIDs.king_shape_key_piece), None
             )
@@ -471,19 +481,19 @@ class DeltaruneWorld(World):
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_1.value + self.options.macguffin_extra.value
             )
-        if self.include_chapter(2):
+        if included_chapter(2):
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.keygen_2_segment), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_2.value + self.options.macguffin_extra.value
             )
-        if self.include_chapter(3):
+        if included_chapter(3):
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.remote_battery), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_3.value + self.options.macguffin_extra.value
             )
-        if self.include_chapter(4):
+        if included_chapter(4):
             item_data = next(
                 (item_data for item_data in item_pool if item_data.code == ItemIDs.combination_lock_digit), None
             )
@@ -491,7 +501,7 @@ class DeltaruneWorld(World):
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
             )
-        if self.include_chapter(5):
+        if included_chapter(5):
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
@@ -613,173 +623,26 @@ class DeltaruneWorld(World):
     # endregion
 
     # region DELTARUNE Option helpers
-    def include_chapter(self, chapter: int) -> bool:
-        return getattr(self.options, f"include_chapter_{chapter}").value == 1
-
-    def is_chapters_in_order(self):
-        return self.options.randomize_chapters == RandomizeChapterOptions.in_order
-
-    def is_all_chapters_unlocked(self):
-        return self.options.randomize_chapters == RandomizeChapterOptions.all_unlocked
-
-    def is_chapters_randomized(self):
-        return self.options.randomize_chapters == RandomizeChapterOptions.randomized
-
-    def is_normal_route(self):
-        return self.is_neutral_route() or self.is_all_recruits()
-
-    def is_neutral_route(self):
-        return self.options.chosen_route == ChosenRouteOptions.neutral_route or self.is_all_routes()
-
-    def is_all_recruits(self):
-        return self.options.chosen_route == ChosenRouteOptions.all_recruits or self.is_all_routes()
-
-    def is_weird_route(self):
-        return self.options.chosen_route == ChosenRouteOptions.weird_route or self.is_all_routes()
-
-    def is_all_routes(self):
-        return self.options.chosen_route == ChosenRouteOptions.all_routes
-
-    def recruit_sanity_enabled(self):
-        return self.options.recruits_sanity == True
-
-    def lose_recruit_sanity_enabled(self):
-        return self.options.lose_recruits_sanity == True
-
-    def is_starting_equipment_removed(self):
-        return self.options.remove_starting_equipment.value == 1
-
-    def is_secret_bosses_randomized(self):
-        return (
-            self.options.randomize_secret_bosses == RandomizeSecretBossesOptions.true
-            or self.is_secret_bosses_mandatory()
-        )
-
-    def is_secret_bosses_mandatory(self):
-        return self.options.randomize_secret_bosses == RandomizeSecretBossesOptions.mandatory
-
-    def is_mantle_randomized(self):
-        return self.options.randomize_mantle == RandomizeMANTLEOptions.true
-
-    def is_mantleless(self):
-        return self.options.randomize_mantle == RandomizeMANTLEOptions.mantleless
-
-    def is_shadow_mantle_included(self):
-        return self.options.include_shadow_mantle.value == 1
-
-    def is_hidden_items_randomized(self):
-        return self.options.include_hidden_items.value == 1
-
-    def is_secret_bosses_items_requirement_randomized(self):
-        return self.options.include_secret_bosses_items_requirement.value == 1
-
-    def is_mysterykey_from_pink_coins(self):
-        return self.options.mysterykey_from_pink_coins.value == 1
-
-    def is_door_key_from_broken_keys(self):
-        return self.options.door_key_from_broken_keys.value == 1
-
-    def is_chapter_1_recruit_system_enabled(self):
-        return self.options.chapter_1_recruit.value == 1
-
-    def is_mike_battle_included(self):
-        return self.options.include_mike == IncludeMikeOptions.battle_only or self.is_mike_games_included()
-
-    def is_mike_games_included(self):
-        return self.options.include_mike == IncludeMikeOptions.battle_and_games
-
-    def is_kris_weapons_progressive(self):
-        return self.options.progressive_kris_weapons.value == 1
-
-    def is_susie_weapons_progressive(self):
-        return self.options.progressive_susie_weapons.value == 1
-
-    def is_ralsei_weapons_progressive(self):
-        return self.options.progressive_ralsei_weapons.value == 1
-
-    def is_noelle_weapons_progressive(self):
-        return self.options.progressive_noelle_weapons.value == 1 and self.include_chapter(2)
-
-    def is_characters_unlockables(self):
-        return (
-            self.options.unlock_characters == UnlockCharactersOptions.true
-            or self.options.unlock_characters == UnlockCharactersOptions.except_kris
-        )
-
-    def is_kris_unlockable(self):
-        return self.options.unlock_characters == UnlockCharactersOptions.true
-
-    def is_fun_gang_actions_unlockable(self):
-        return self.options.unlock_fun_gang_actions.value == 1
-
-    def is_unused_items_included(self):
-        return (
-            self.options.include_unused_items == IncludeUnusedItemsOptions.true_without_everybodyweapon
-            or self.is_everybodyweapon_included()
-        )
-
-    def is_everybodyweapon_included(self):
-        return self.options.include_unused_items == IncludeUnusedItemsOptions.true
-
-    # Check if you have at least one chapter that give you access to fusions
-    def can_access_fusion(self) -> bool:
-        result = self.has_at_least_one_chapter_included(fusion_access_chapter)
-        return result
-
-    # I'm guessing chapter 6 and 7 will let you fuse this stuff as well, so i'll make it bc i dont want to later
-    def can_access_ch5_fusion(self) -> bool:
-        result = self.has_at_least_one_chapter_included(ch5_fusion_access_chapter)
-        return result
-
-    def count_chapter_included(self, chapters=list(range(1, max_deltarune_chapter + 1))):
-        count = 0
-        for chapterToCheck in chapters:
-            if getattr(self.options, f"include_chapter_{chapterToCheck}").value == 1:
-                count += 1
-        return count
-
-    # Check if at least one of specified chapters is included
-    def has_at_least_one_chapter_included(self, chapters: list[int]) -> bool:
-        return any(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)
-
-    def have_all_chapters_included(self, chapters: list[int]) -> bool:
-        return all(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)
 
     def get_first_chapter(self) -> int:
-        for chapterToCheck in range(1, self.max_deltarune_chapter + 1, 1):
-            if self.include_chapter(chapterToCheck):
-                return chapterToCheck
-        return -1
-
-    def get_playable_chapters(self) -> list[int]:
-        playable_chapters = []
-        for chapterToCheck in range(1, self.max_deltarune_chapter + 1, 1):
-            if getattr(self.options, f"include_chapter_{chapterToCheck}"):
-                playable_chapters.append(chapterToCheck)
-        return playable_chapters
+        return self.included_chapters[0]
 
     def get_previous_in_order_chapter(self, chapter: int):
         if chapter <= 1:
             return -1
 
         for chapterToCheck in range(chapter - 1, 0, -1):
-            if getattr(self.options, f"include_chapter_{chapterToCheck}"):
+            if chapterToCheck in self.included_chapters:
                 return chapterToCheck
 
         return -1
-
-    def is_t_rank_excluded(self):
-        return self.options.exclude_t_rank == 1
-
-    def is_z_rank_excluded(self):
-        return self.options.exclude_z_rank == 1
 
     def get_next_in_order_chapter(self, chapter: int):
         if chapter > self.max_deltarune_chapter:
             return -1
 
         for chapterToCheck in range(chapter + 1, self.max_deltarune_chapter + 1, 1):
-            if getattr(self.options, f"include_chapter_{chapterToCheck}"):
+            if chapterToCheck in self.included_chapters:
                 return chapterToCheck
 
         return -1
