@@ -5,6 +5,12 @@ from rule_builder.rules import Has
 
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
+from worlds.deltarune.LogicHelper import (
+    include_hidden_items,
+    include_secret_bosses_items_requirement,
+    include_secret_bosses_items_reward,
+    mysterykey_from_pink_coins,
+)
 from worlds.deltarune.Rules import have_susie, have_kris_susie_or_ralsei, have_kris
 
 if TYPE_CHECKING:
@@ -18,7 +24,7 @@ def set_rules(world: "DeltaruneWorld"):
         )
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if not world.is_secret_bosses_randomized():
+    if not include_secret_bosses_items_reward(world):
         world.get_location(locations[LocationIDs.ch5_castle_top_pink_defeat]).place_locked_item(
             world.create_item(items[ItemIDs.shadowcrystal])
         )
@@ -44,7 +50,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
             world.create_item(items[ItemIDs.floweryscarf])
         )
 
-    if not world.is_secret_bosses_items_requirement_randomized():
+    if not include_secret_bosses_items_requirement(world):
         world.get_location(locations[LocationIDs.ch5_pinks_shop_4]).place_locked_item(
             world.create_item(items[ItemIDs.pinkkey])
         )
@@ -107,13 +113,13 @@ def handle_locked_items(world: "DeltaruneWorld"):
             world.create_item(items[ItemIDs.pinkcoin])
         )
     else: 
-        if world.is_mysterykey_from_pink_coins():
+        if mysterykey_from_pink_coins(world):
             world.get_location(locations[LocationIDs.ch5_pinks_shop_4]).place_locked_item(
                 world.create_item(items[ItemIDs.pinkkey])
             )
 
     # Hidden Items
-    if not world.is_hidden_items_randomized():
+    if not include_hidden_items(world):
         world.get_location(locations[LocationIDs.ch5_castle_moss]).place_locked_item(
             world.create_item(items[ItemIDs.castle_moss])
         )

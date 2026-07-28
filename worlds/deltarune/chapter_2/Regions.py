@@ -93,12 +93,20 @@ def create_regions(world: "DeltaruneWorld"):
     access_to_cyber_field = (
         (
             (have_kris | can_act_spare_susie)
-            & OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")
+            & OptionFilter(
+                ChosenRoute,
+                [ChosenRoute.option_all_recruits, ChosenRoute.option_both_all_recruits_and_weird_route],
+                operator="in",
+            )
         )
         | (have_kris_or_susie & Has(glitched_item_name))
     ) | (
         have_kris_or_susie
-        & OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_neutral_route], operator="in")
+        & OptionFilter(
+            ChosenRoute,
+            [ChosenRoute.option_weird_route, ChosenRoute.option_both_all_recruits_and_weird_route],
+            operator="in",
+        )
     )
 
     # Require Kris or Susie for the werewire fight

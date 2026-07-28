@@ -23,19 +23,17 @@ from worlds.deltarune.Items import (
     progressive_weapon_order,
 )
 from worlds.deltarune.Goals import set_completion_goal
-from worlds.deltarune.LogicHelper import included_chapter
-from worlds.deltarune.Options import (
-    DeltaruneOptions,
-    deltarune_option_groups,
-    options_presets,
-    RandomizeChapterOptions,
-    ChosenRouteOptions,
-    RandomizeSecretBossesOptions,
-    RandomizeMANTLEOptions,
-    IncludeMikeOptions,
-    UnlockCharactersOptions,
-    IncludeUnusedItemsOptions,
+from worlds.deltarune.LogicHelper import (
+    all_chapter_unlocked,
+    chapters_in_order,
+    included_chapter,
+    progressive_weapons_kris,
+    progressive_weapons_noelle,
+    progressive_weapons_ralsei,
+    progressive_weapons_susie,
+    randomized_chapters,
 )
+from worlds.deltarune.Options import DeltaruneOptions, deltarune_option_groups, options_presets
 from worlds.deltarune.OptionsValidator import validate_options
 from worlds.deltarune.Regions import Regions
 from worlds.deltarune.Rules import can_snowgrave
@@ -302,8 +300,11 @@ class DeltaruneWorld(World):
         return self._get_deltarune_data()
 
     def generate_early(self) -> None:
+        self.fill_chapter_included_array()
+
         validate_options(self)
 
+        # Recall in case of option change
         self.fill_chapter_included_array()
 
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
@@ -345,15 +346,15 @@ class DeltaruneWorld(World):
         # every_connections = CCLocationsAndRegions.get_cross_chapter_mandatory_connection(self)
 
         create_cross_chapter_regions(self)
-        if included_chapter(1):
+        if included_chapter(self, 1):
             create_chapter_1_regions(self)
-        if included_chapter(2):
+        if included_chapter(self, 2):
             create_chapter_2_regions(self)
-        if included_chapter(3):
+        if included_chapter(self, 3):
             create_chapter_3_regions(self)
-        if included_chapter(4):
+        if included_chapter(self, 4):
             create_chapter_4_regions(self)
-        if included_chapter(5):
+        if included_chapter(self, 5):
             create_chapter_5_regions(self)
         # if included_chapter(6): Ch6LocationAndRegions.create_regions(self)
         # if included_chapter(7): Ch7LocationAndRegions.create_regions(self)
@@ -361,18 +362,18 @@ class DeltaruneWorld(World):
     def set_rules(self):
 
         set_cross_chapter_rules(self)
-        if included_chapter(1):
+        if included_chapter(self, 1):
             set_chapter_1_rules(self)
-        if included_chapter(2):
+        if included_chapter(self, 2):
             self.get_region(Regions.ch2_cyber_city).connect(
                 self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
             )
             set_chapter_2_rules(self)
-        if included_chapter(3):
+        if included_chapter(self, 3):
             set_chapter_3_rules(self)
-        if included_chapter(4):
+        if included_chapter(self, 4):
             set_chapter_4_rules(self)
-        if included_chapter(5):
+        if included_chapter(self, 5):
             set_chapter_5_rules(self)
         # if included_chapter(6): set_chapter_6_rules(self)
         # if included_chapter(7): set_chapter_7_rules(self)
@@ -386,7 +387,7 @@ class DeltaruneWorld(World):
         # visualize_regions(self.get_region(self.origin_region_name), f"deltarune_regions{self.player}.puml")
 
     def create_items(self):
-        if self.get_playable_chapters() == []:
+        if self.included_chapters == []:
             self.multiworld.push_precollected(self.create_item(items[ItemIDs.what_interesting_behavior]))
             return
 
@@ -394,31 +395,31 @@ class DeltaruneWorld(World):
 
         item_pool += create_cross_chapter_items(self)
         handle_cross_chapter_locked_items(self)
-        if included_chapter(1):
+        if included_chapter(self, 1):
             item_pool += create_chapter_1_items(self)
             handle_chapter_1_locked_items(self)
-        if included_chapter(2):
+        if included_chapter(self, 2):
             item_pool += create_chapter_2_items(self)
             handle_chapter_2_locked_items(self)
-        if included_chapter(3):
+        if included_chapter(self, 3):
             item_pool += create_chapter_3_items(self)
             handle_chapter_3_locked_items(self)
-        if included_chapter(4):
+        if included_chapter(self, 4):
             item_pool += create_chapter_4_items(self)
             handle_chapter_4_locked_items(self)
-        if included_chapter(5):
+        if included_chapter(self, 5):
             item_pool += create_chapter_5_items(self)
             handle_chapter_5_locked_items(self)
         # if included_chapter(6): Ch6Items.create_items(self)
         # if included_chapter(7): Ch7Items.create_items(self)
 
-        if self.is_kris_weapons_progressive():
+        if progressive_weapons_kris(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.kris_weapons)
-        if self.is_susie_weapons_progressive():
+        if progressive_weapons_susie(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.susie_weapons)
-        if self.is_ralsei_weapons_progressive():
+        if progressive_weapons_ralsei(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.ralsei_weapons)
-        if self.is_noelle_weapons_progressive():
+        if progressive_weapons_noelle(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.noelle_weapons)
 
         self.handle_chapter_keys(item_pool)
@@ -440,8 +441,7 @@ class DeltaruneWorld(World):
     # region DELTARUNE Generation functions
 
     def fill_chapter_included_array(self):
-        if self.included_chapters != None:
-            return
+        self.included_chapters = []
 
         for chapterToCheck in range(1, self.max_deltarune_chapter + 1, 1):
             if getattr(self.options, f"include_chapter_{chapterToCheck}"):
@@ -459,15 +459,15 @@ class DeltaruneWorld(World):
     def fill_weighted_fillers_and_traps(self):
         filler_pool = get_cross_chapter_filler_and_trap_items(self)
 
-        if self.options.include_chapter_1:
+        if included_chapter(self, 1):
             filler_pool += get_chapter_1_filler_and_trap_items(self)
-        if self.options.include_chapter_2:
+        if included_chapter(self, 2):
             filler_pool += get_chapter_2_filler_and_trap_items(self)
-        if self.options.include_chapter_3:
+        if included_chapter(self, 3):
             filler_pool += get_chapter_3_filler_and_trap_items(self)
-        if self.options.include_chapter_4:
+        if included_chapter(self, 4):
             filler_pool += get_chapter_4_filler_and_trap_items(self)
-        if self.options.include_chapter_5:
+        if included_chapter(self, 5):
             filler_pool += get_chapter_5_filler_and_trap_items(self)
 
         self.cached_filler_and_trap_weights = convert_filler_and_trap_to_weights(filler_pool, self.options)
@@ -509,16 +509,16 @@ class DeltaruneWorld(World):
             )
 
     def handle_chapter_keys(self, item_pool: list[ItemData]):
-        if self.is_all_chapters_unlocked():
+        if all_chapter_unlocked(self):
             return
 
         starting_chapter = -1
 
-        if self.is_chapters_in_order():
+        if chapters_in_order(self):
             starting_chapter = self.get_first_chapter()
-        elif self.is_chapters_randomized():
+        elif randomized_chapters(self):
             if self.options.starting_chapter.value == 0:
-                starting_chapter = self.random.choice(self.get_playable_chapters())
+                starting_chapter = self.random.choice(self.included_chapters)
             else:
                 starting_chapter = self.options.starting_chapter.value
 
@@ -527,7 +527,7 @@ class DeltaruneWorld(World):
 
         item_name = f"Chapter {starting_chapter} Unlock"
 
-        if self.is_chapters_randomized():
+        if randomized_chapters(self):
             item_id = self.item_name_to_id[item_name]
             item_pool.remove(next((item_data for item_data in item_pool if item_data.code == item_id), None))
 

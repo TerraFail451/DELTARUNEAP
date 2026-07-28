@@ -4,6 +4,13 @@ from rule_builder.rules import Has
 from typing import TYPE_CHECKING
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import ItemIDs, items, glitched_item_name
+from worlds.deltarune.LogicHelper import (
+    include_actions,
+    include_hidden_items,
+    include_secret_bosses_items_requirement,
+    include_secret_bosses_items_reward,
+    not_weird_route_only,
+)
 from worlds.deltarune.Rules import (
     have_kris_susie_or_ralsei,
     have_noelle,
@@ -97,26 +104,26 @@ def set_rules(world: "DeltaruneWorld"):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if not world.is_fun_gang_actions_unlockable():
+    if include_actions(world):
         world.get_location(locations[LocationIDs.ch2_cyber_field_fun_gang_actions_unlock]).place_locked_item(
             world.create_item(items[ItemIDs.s_r_n_actions])
         )
 
-    if not world.is_secret_bosses_randomized():
+    if not include_secret_bosses_items_reward(world):
         world.get_location(locations[LocationIDs.ch2_mansion_spamton_neo_defeat_item_1]).place_locked_item(
             world.create_item(items[ItemIDs.puppetscarf])
         )
         world.get_location(locations[LocationIDs.ch2_mansion_spamton_neo_defeat_item_2]).place_locked_item(
             world.create_item(items[ItemIDs.shadowcrystal])
         )
-        if world.is_not_weird_route_only():
+        if not_weird_route_only(world):
             world.get_location(locations[LocationIDs.ch2_mansion_spamton_neo_defeat_item_3]).place_locked_item(
                 world.create_item(items[ItemIDs.dealmaker])
             )
 
     # Hidden items
-    if world.is_not_weird_route_only():
-        if not world.is_hidden_items_randomized():
+    if not_weird_route_only(world):
+        if not include_hidden_items(world):
             world.get_location(locations[LocationIDs.ch2_cyber_city_man]).place_locked_item(
                 world.create_item(items[ItemIDs.chapter_2_egg])
             )
@@ -127,7 +134,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
                 world.create_item(items[ItemIDs.dogdollar])
             )
 
-        if not world.is_secret_bosses_items_requirement_randomized():
+        if not include_secret_bosses_items_requirement(world):
             world.get_location(locations[LocationIDs.ch2_spamton_shop_1]).place_locked_item(
                 world.create_item(items[ItemIDs.keygen])
             )

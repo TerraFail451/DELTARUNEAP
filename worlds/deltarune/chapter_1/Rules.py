@@ -2,6 +2,12 @@ from typing import TYPE_CHECKING
 from rule_builder.rules import CanReachRegion, Has
 from worlds.deltarune.Items import ItemIDs, items
 from worlds.deltarune.Locations import LocationIDs, locations
+from worlds.deltarune.LogicHelper import (
+    doorkey_from_broken_keys,
+    include_hidden_items,
+    include_secret_bosses_items_requirement,
+    include_secret_bosses_items_reward,
+)
 from worlds.deltarune.Regions import Regions
 from worlds.deltarune.Rules import (
     can_recruit_ruddin,
@@ -66,7 +72,7 @@ def set_rules(world: "DeltaruneWorld"):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if not world.is_secret_bosses_randomized():
+    if include_secret_bosses_items_reward(world):
         world.get_location(locations[LocationIDs.ch1_card_castle_jevil_1]).place_locked_item(
             world.create_item(items[ItemIDs.jevilstail])
         )
@@ -78,7 +84,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
         )
 
     # Hidden items
-    if not world.is_hidden_items_randomized():
+    if not include_hidden_items(world):
         world.get_location(locations[LocationIDs.ch1_forest_man]).place_locked_item(
             world.create_item(items[ItemIDs.chapter_1_egg])
         )
@@ -86,7 +92,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
             world.create_item(items[ItemIDs.castle_moss])
         )
 
-    if not world.is_secret_bosses_items_requirement_randomized():
+    if not include_secret_bosses_items_requirement(world):
         world.get_location(locations[LocationIDs.ch1_seam_seap_talk_about_strange_prisoner]).place_locked_item(
             world.create_item(items[ItemIDs.broken_key_a])
         )
@@ -100,7 +106,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
             world.create_item(items[ItemIDs.door_key])
         )
     else: 
-        if world.is_door_key_from_broken_keys():
+        if doorkey_from_broken_keys(world):
             world.get_location(locations[LocationIDs.ch1_bake_sale_repair_door_key]).place_locked_item(
                 world.create_item(items[ItemIDs.door_key])
             )

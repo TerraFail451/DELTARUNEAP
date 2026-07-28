@@ -3,7 +3,7 @@ from worlds.deltarune.LogicHelper import (
     normal_route,
     weird_route,
     include_lose_recruits,
-    should_include_lose_swatchlings_weird_route,
+    include_lose_swatchlings_weird_route,
     include_recruit_swatchlings_weird_route,
     include_recruits,
     include_recruits_chapter2_weird_route_exclusion,
@@ -376,7 +376,7 @@ chapter2_locations = {
     Regions.ch2_mansion_losts: [
         LocationData(
             LocationIDs.ch2_lost_swatchlings,
-            should_be_included=should_include_lose_swatchlings_weird_route,
+            should_be_included=include_lose_swatchlings_weird_route,
             group=LocationGroups.chapter2,
         ),
         LocationData(

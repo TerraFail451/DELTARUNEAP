@@ -2,11 +2,13 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_
 
 from worlds.deltarune.LogicHelper import (
-    should_include_spike_band_fusion,
-    should_include_tensionbow_fusion,
-    should_include_truetie_fusion,
-    should_include_twin_ribbon_fusion,
-    should_include_twistedsword_fusion,
+    chapters_in_order,
+    include_dogwidow_fusion,
+    include_spike_band_fusion,
+    include_tensionbow_fusion,
+    include_truetie_fusion,
+    include_twin_ribbon_fusion,
+    include_twistedsword_fusion,
 )
 from worlds.deltarune.Options import (
     IncludeChapter1,
@@ -59,7 +61,7 @@ def set_rules(world: "DeltaruneWorld"):
             | have_chapter2_equipment_first_chapter
         )
 
-        if should_include_twin_ribbon_fusion(world):
+        if include_twin_ribbon_fusion(world):
             world.set_rule(
                 world.get_location(locations[LocationIDs.cc_castle_town_twin_ribbon_fusion]),
                 have_white_ribbon & Has(items[ItemIDs.pink_ribbon]),
@@ -81,27 +83,27 @@ def set_rules(world: "DeltaruneWorld"):
             )
         )
 
-        if should_include_spike_band_fusion(world):
+        if include_spike_band_fusion(world):
             world.set_rule(
                 world.get_location(locations[LocationIDs.cc_castle_town_spike_band_fusion]),
                 have_glowwrist & Has(items[ItemIDs.ironshackle]),
             )
 
-        if should_include_tensionbow_fusion(world):
+        if include_tensionbow_fusion(world):
             world.set_rule(
                 world.get_location(locations[LocationIDs.cc_castle_town_tensionbow_fusion]),
                 Has(items[ItemIDs.bshotbowtie]) & Has(items[ItemIDs.tensionbit]),
             )
 
         # TwistedSwd
-        if should_include_twistedsword_fusion(world):
+        if include_twistedsword_fusion(world):
             world.set_rule(
                 world.get_location(locations[LocationIDs.cc_castle_town_twistedsword_fusion]),
                 have_thornring(world) & Has(items[ItemIDs.purecrystal]),
             )
 
         if world.can_access_ch5_fusion():
-            if world.include_chapter(4):
+            if included_chapter(world, 4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_monarchrbn_fusion]),
                     Has(items[ItemIDs.scarfmark])
@@ -120,33 +122,33 @@ def set_rules(world: "DeltaruneWorld"):
                     Has(items[ItemIDs.frayedbowtie]) & Has(items[ItemIDs.tennatie]),
                 )
 
-            if world.include_chapter(3):
+            if included_chapter(world, 3):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_tvdinner_fusion]),
                     Has(items[ItemIDs.tvslop], 2),
                 )
 
-            if world.include_chapter(3):
+            if included_chapter(world, 3):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_deluxedinner_fusion]),
                     Has(items[ItemIDs.tvdinner], 2),
                 )
 
-            if world.include_chapter(4):
+            if included_chapter(world, 4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_punchbowl_fusion]),
                     (Has(items[ItemIDs.scarlixir], 2) | Has(items[ItemIDs.scarlixir], 1) & Has(glitched_item_name))
                     & Has(items[ItemIDs.powerband]),
                 )
 
-            if world.include_chapter(4):
+            if included_chapter(world, 4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_tensionmax_fusion]),
                     (Has(items[ItemIDs.scarlixir], 2) | Has(items[ItemIDs.scarlixir], 1) & Has(glitched_item_name))
                     & Has(items[ItemIDs.mysticband]),
                 )
 
-            if world.include_chapter(4):
+            if included_chapter(world, 4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_dogwidow_fusion]),
                     Has(items[ItemIDs.dogdollar]) & Has(items[ItemIDs.goldwidow]),
@@ -178,10 +180,8 @@ def get_unlock_item(world: "DeltaruneWorld", chapter: int):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if world.is_chapters_in_order():
-        playable_chapters = world.get_playable_chapters()
-
-        for current_chapter in playable_chapters:
+    if chapters_in_order(world):
+        for current_chapter in world.included_chapters:
             next_chapter = world.get_next_in_order_chapter(current_chapter)
             if next_chapter == -1:
                 continue
@@ -190,12 +190,12 @@ def handle_locked_items(world: "DeltaruneWorld"):
                 world.create_item(get_unlock_item(world, next_chapter))
             )
 
-    if should_include_truetie_fusion(world):
+    if include_truetie_fusion(world):
         world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]).place_locked_item(
             world.create_item(items[ItemIDs.truetie])
         )
 
-    if world.can_access_ch5_fusion() and world.include_chapter(4):
+    if include_dogwidow_fusion(world):
         world.get_location(locations[LocationIDs.cc_castle_town_dogwidow_fusion]).place_locked_item(
             world.create_item(items[ItemIDs.dogwidow])
         )

@@ -70,9 +70,7 @@ def create_regions(world: "DeltaruneWorld"):
         dark_sanctuary,
         rule=can_recruit_guei
         | have_kris_susie_or_ralsei
-        & [
-            OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_neutral_route], operator="in")
-        ],
+        & [OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_normal_route], operator="in")],
     )
     # If you get the claimbclaws, you can recreate a save to skip Dark Sanctuary but require Kris or Susie for Wingblade fight
     castle_town.connect(

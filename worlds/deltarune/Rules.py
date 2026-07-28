@@ -116,7 +116,11 @@ can_recruit_tasque_manager = (
     | can_spam_spare
     | (
         have_kris_susie_or_ralsei
-        & OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")
+        & OptionFilter(
+            ChosenRoute,
+            [ChosenRoute.option_all_recruits, ChosenRoute.option_both_all_recruits_and_weird_route],
+            operator="in",
+        )
     )
 )
 can_recruit_mauswheel = have_kris | can_act_spare_susie | can_recruit_with_violence_ralsei

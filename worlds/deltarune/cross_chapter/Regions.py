@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import Region
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has
+from worlds.deltarune.LogicHelper import any_included_chapter, included_chapter
 from worlds.deltarune.Options import RandomizeChapters
 from worlds.deltarune.Regions import Regions, add_location_to_region
 from worlds.deltarune.cross_chapter.Locations import cross_chapter_locations
@@ -20,11 +21,11 @@ def create_regions(world: "DeltaruneWorld"):
 
     regions = [chapter_select, fusion, ch5_fusion]
 
-    if world.has_at_least_one_chapter_included([1, 3]):
+    if any_included_chapter(world, [1, 3]):
         lost_rabbick = Region(Regions.lost_rabbick, world.player, world.multiworld)
         regions.append(lost_rabbick)
 
-    if world.include_chapter(1):
+    if included_chapter(world, 1):
         chapter_1 = Region(Regions.chapter_1, world.player, world.multiworld)
         chapter_select.connect(
             chapter_1,
@@ -34,7 +35,7 @@ def create_regions(world: "DeltaruneWorld"):
         )
         regions.append(chapter_1)
 
-    if world.include_chapter(2):
+    if included_chapter(world, 2):
         chapter_2 = Region(Regions.chapter_2, world.player, world.multiworld)
         chapter_select.connect(
             chapter_2,
@@ -45,7 +46,7 @@ def create_regions(world: "DeltaruneWorld"):
         chapter_2.connect(fusion)
         regions.append(chapter_2)
 
-    if world.include_chapter(3):
+    if included_chapter(world, 3):
         chapter_3 = Region(Regions.chapter_3, world.player, world.multiworld)
         chapter_select.connect(
             chapter_3,
@@ -55,7 +56,7 @@ def create_regions(world: "DeltaruneWorld"):
         )
         regions.append(chapter_3)
 
-    if world.include_chapter(4):
+    if included_chapter(world, 4):
         chapter_4 = Region(Regions.chapter_4, world.player, world.multiworld)
         chapter_select.connect(
             chapter_4,
@@ -66,7 +67,7 @@ def create_regions(world: "DeltaruneWorld"):
         chapter_4.connect(fusion)
         regions.append(chapter_4)
 
-    if world.include_chapter(5):
+    if included_chapter(world, 5):
         chapter_5 = Region(Regions.chapter_5, world.player, world.multiworld)
         chapter_select.connect(
             chapter_5,

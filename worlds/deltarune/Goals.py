@@ -9,15 +9,15 @@ if TYPE_CHECKING:
 def set_completion_goal(world: "DeltaruneWorld"):
     locations_goal = []
 
-    if world.include_chapter(1):
+    if included_chapter(world, 1):
         locations_goal.append(locations[LocationIDs.ch1_fountain_sealed])
-    if world.include_chapter(2):
+    if included_chapter(world, 2):
         locations_goal.append(locations[LocationIDs.ch2_fountain_sealed])
-    if world.include_chapter(3):
+    if included_chapter(world, 3):
         locations_goal.append(locations[LocationIDs.ch3_fountain_sealed])
-    if world.include_chapter(4):
+    if included_chapter(world, 4):
         locations_goal.append(locations[LocationIDs.ch4_third_sanctuary_fountain_sealed])
-    if world.include_chapter(5):
+    if included_chapter(world, 5):
         if world.is_weird_route():
             locations_goal.append(locations[LocationIDs.ch5_weird_route_sinking])
         else:

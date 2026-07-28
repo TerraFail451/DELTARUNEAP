@@ -812,7 +812,7 @@ options_presets = {
     "Complete Experience": {
         "remove_starting_equipment": True,
         "randomize_chapters": "randomized",
-        "chosen_route": "all_routes",
+        "chosen_route": "both_all_recruits_and_weird_route",
         "macguffin_chapter_1": 10,
         "macguffin_chapter_2": 10,
         "macguffin_chapter_3": 10,

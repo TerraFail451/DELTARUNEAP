@@ -81,13 +81,25 @@ def create_regions(world: "DeltaruneWorld"):
             Has(items[ItemIDs.chapter_5_unlock])
             | OptionFilter(RandomizeChapters, RandomizeChapters.option_all_unlocked)
         )
-        & [OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_all_routes], operator="in")],
+        & [
+            OptionFilter(
+                ChosenRoute,
+                [ChosenRoute.option_weird_route, ChosenRoute.option_both_all_recruits_and_weird_route],
+                operator="in",
+            )
+        ],
     )
 
     castle_town.connect(
         dojo,
         rule=have_kris_susie_and_ralsei
-        & [OptionFilter(ChosenRoute, [ChosenRoute.option_all_recruits, ChosenRoute.option_all_routes], operator="in")],
+        & [
+            OptionFilter(
+                ChosenRoute,
+                [ChosenRoute.option_all_recruits, ChosenRoute.option_both_all_recruits_and_weird_route],
+                operator="in",
+            )
+        ],
     )
 
     castle_town.connect(garden_no_character_required)

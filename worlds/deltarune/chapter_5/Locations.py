@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 
 from worlds.deltarune.Locations import LocationData, LocationGroups, LocationIDs
 from worlds.deltarune.Regions import Regions
+from worlds.deltarune.LogicHelper import all_recruits_route, include_lose_recruits, include_recruits, weird_route
 
 if TYPE_CHECKING:
     from .. import DeltaruneWorld
@@ -17,7 +18,7 @@ chapter5_locations = {
     Regions.ch5_dojo: [
         LocationData(
             LocationIDs.ch5_castle_town_trashy_trio_challenge,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=all_recruits_route,
             group=LocationGroups.chapter5,
         ),
     ],
@@ -59,32 +60,32 @@ chapter5_locations = {
         ),
         LocationData(
             id=LocationIDs.ch5_floradinn_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_sheary_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_netskie_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_floradinn,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_sheary,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_netskie,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
     ],
@@ -197,32 +198,32 @@ chapter5_locations = {
         ),
         LocationData(
             id=LocationIDs.ch5_shi_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_kawkaw_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_leafling_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_shi,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_kawkaw,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_leafling,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
     ],
@@ -299,12 +300,12 @@ chapter5_locations = {
         ),
         LocationData(
             id=LocationIDs.ch5_shinobeetle_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_shinobeetle,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
     ],
@@ -347,12 +348,12 @@ chapter5_locations = {
         ),
         LocationData(
             id=LocationIDs.ch5_terakota_recruit,
-            should_be_included=lambda world: world.is_all_recruits(),
+            should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
             id=LocationIDs.ch5_lost_terakota,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=include_lose_recruits,
             group=LocationGroups.chapter5,
         ),
     ],
@@ -436,7 +437,7 @@ chapter5_locations = {
         LocationData(
             id=LocationIDs.ch5_weird_route_sinking,
             group=LocationGroups.chapter5,
-            should_be_included=lambda world: world.is_weird_route(),
+            should_be_included=weird_route,
         ),
     ],
 }
