@@ -9,6 +9,8 @@ from worlds.deltarune.LogicHelper import (
     include_actions,
     include_hidden_items,
     include_lose_recruits,
+    include_lose_swatchlings_weird_route,
+    include_recruit_swatchlings_weird_route,
     include_recruits,
     include_secret_bosses_items_requirement,
     include_secret_bosses_items_reward,
@@ -77,7 +79,7 @@ def set_rules(world: "DeltaruneWorld"):
             world.get_location(locations[LocationIDs.ch2_lost_werewerewire]),
             can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
         )
-        if world.options.include_swatchling_during_weird_route.value == 1:
+        if include_lose_swatchlings_weird_route(world):
             world.set_rule(
                 world.get_location(locations[LocationIDs.ch2_lost_swatchlings]),
                 can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
@@ -91,7 +93,8 @@ def set_rules(world: "DeltaruneWorld"):
         if not weird_route(world):
             world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_ambyu_lance]), can_recruit_ambuy_lance)
             world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_maus]), can_recruit_maus)
-        world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_swatchling]), can_recruit_swatchling)
+        if include_recruit_swatchlings_weird_route(world):
+            world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_swatchling]), can_recruit_swatchling)
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_recruit_tasque_manager]), can_recruit_tasque_manager
         )

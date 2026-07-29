@@ -164,20 +164,22 @@ def set_rules(world: "DeltaruneWorld"):
 
 def get_location(world: "DeltaruneWorld", chapter: int):
     if chapter == 1:
-        return world.multiworld.get_location(locations[LocationIDs.ch1_fountain_sealed], world.player)
+        return world.get_location(locations[LocationIDs.ch1_fountain_sealed])
     if chapter == 2:
         if both_routes(world):
-            return world.random.choice(
-                [locations[LocationIDs.ch2_fountain_sealed], locations[LocationIDs.ch2_fountain_sealed_weird_route]]
+            return world.get_location(
+                world.random.choice(
+                    [locations[LocationIDs.ch2_fountain_sealed], locations[LocationIDs.ch2_fountain_sealed_weird_route]]
+                )
             )
         elif normal_route(world):
-            return world.multiworld.get_location(locations[LocationIDs.ch2_fountain_sealed], world.player)
+            return world.get_location(locations[LocationIDs.ch2_fountain_sealed])
         elif weird_route(world):
-            return world.multiworld.get_location(locations[LocationIDs.ch2_fountain_sealed_weird_route], world.player)
+            return world.get_location(locations[LocationIDs.ch2_fountain_sealed_weird_route])
     if chapter == 3:
-        return world.multiworld.get_location(locations[LocationIDs.ch3_fountain_sealed], world.player)
+        return world.get_location(locations[LocationIDs.ch3_fountain_sealed])
     if chapter == 4:
-        return world.multiworld.get_location(locations[LocationIDs.ch4_third_sanctuary_fountain_sealed], world.player)
+        return world.get_location(locations[LocationIDs.ch4_third_sanctuary_fountain_sealed])
 
 
 def get_unlock_item(world: "DeltaruneWorld", chapter: int):

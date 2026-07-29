@@ -37,19 +37,6 @@ def have_thornring(world: "DeltaruneWorld"):
 def can_snowgrave(world: "DeltaruneWorld"):
     return have_noelle & have_thornring(world)
 
-all_recruits_per_chapter = {
-    2: CanReachLocation(locations[LocationIDs.ch2_recruit_werewire])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_tasque])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_virovirokun])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_poppup])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_ambyu_lance])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_maus])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_swatchling])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_tasque_manager])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_mauswheel])
-    & CanReachLocation(locations[LocationIDs.ch2_recruit_werewerewire]),
-}
-
 ### RECRUITMENT GENERIC LOGIC
 can_recruit_with_violence_ralsei = have_ralsei
 can_recruit_with_violence_susie = have_susie

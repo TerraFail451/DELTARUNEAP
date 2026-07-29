@@ -659,11 +659,8 @@ def change_progression_type(world: "DeltaruneWorld", item: ItemData):
     if not item.changing_classification:
         return item
 
-    print(world.already_changed_classification_item)
-
     new_classification = item.classification
 
-    print(f"Looking to change {items[item.code]}")
     match (item.code):
         case ItemIDs.ironshackle | ItemIDs.glowwrist:
             if item.code not in world.already_changed_classification_item and include_spike_band_fusion(world):
@@ -764,7 +761,6 @@ def change_progression_type(world: "DeltaruneWorld", item: ItemData):
 
                 new_classification = ItemClassification.useful
 
-    print(f"{items[item.code]} classification is now {flag_into_string(new_classification)}")
     return ItemData(
         item.code,
         new_classification,

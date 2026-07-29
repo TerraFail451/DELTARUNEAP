@@ -3,12 +3,12 @@ from typing import TYPE_CHECKING
 from BaseClasses import Region
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
-from rule_builder.rules import CanReachLocation, Has, True_
+from rule_builder.rules import CanReachLocation, Has
 from worlds.deltarune.Items import ItemIDs, items, glitched_item_name
 from worlds.deltarune.LogicHelper import all_recruits_route, include_recruits_chapter1
-from worlds.deltarune.Options import ChosenRoute, MacGuffinChapter1, RandomizeSecretBosses
+from worlds.deltarune.Options import MacGuffinChapter1, RandomizeSecretBosses
 from worlds.deltarune.Regions import add_location_to_region, Regions, get_entrance_name
-from worlds.deltarune.Rules import have_kris_or_ralsei, have_kris_susie_or_ralsei, have_kris, all_recruits_per_chapter
+from worlds.deltarune.Rules import have_kris_or_ralsei, have_kris_susie_or_ralsei, have_kris
 from worlds.deltarune.Locations import LocationIDs, locations
 from worlds.deltarune.chapter_1.Locations import chapter1_locations
 
