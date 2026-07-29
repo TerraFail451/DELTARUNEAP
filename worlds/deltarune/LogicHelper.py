@@ -21,10 +21,6 @@ def include_secret_bosses_items_requirement_chapter2_weird_route_exclusion(world
     return include_secret_bosses_items_requirement(world) and not weird_route(world)
 
 
-def include_chapter1_door_key(world: "DeltaruneWorld") -> bool:
-    return include_secret_bosses_items_requirement(world) and doorkey_from_broken_keys(world)
-
-
 def include_secret_bosses_items_reward(world: "DeltaruneWorld") -> bool:
     return (
         world.options.randomize_secret_bosses.value == RandomizeSecretBosses.option_true
@@ -197,10 +193,7 @@ def randomized_mantle(world: "DeltaruneWorld") -> bool:
 
 
 def include_shadow_mantle(world: "DeltaruneWorld") -> bool:
-    return (
-        world.options.include_shadow_mantle.value == 1
-        and world.options.randomize_mantle.value != RandomizeMANTLE.option_false
-    )
+    return world.options.include_shadow_mantle.value == 1 and randomized_mantle(world)
 
 
 def mysterykey_from_pink_coins(world: "DeltaruneWorld") -> bool:
@@ -209,6 +202,14 @@ def mysterykey_from_pink_coins(world: "DeltaruneWorld") -> bool:
 
 def doorkey_from_broken_keys(world: "DeltaruneWorld") -> bool:
     return world.options.door_key_from_broken_keys.value == 1
+
+
+def include_mysterykey(world: "DeltaruneWorld") -> bool:
+    return include_secret_bosses_items_requirement(world) and not mysterykey_from_pink_coins(world)
+
+
+def include_doorkey(world: "DeltaruneWorld") -> bool:
+    return include_secret_bosses_items_requirement(world) and not doorkey_from_broken_keys(world)
 
 
 def include_hidden_items(world: "DeltaruneWorld") -> bool:

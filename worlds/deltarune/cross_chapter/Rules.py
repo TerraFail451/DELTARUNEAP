@@ -2,13 +2,19 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_
 
 from worlds.deltarune.LogicHelper import (
+    all_included_chapter,
+    can_access_fusion,
+    can_access_fusion_post_chapter_5,
     chapters_in_order,
     include_dogwidow_fusion,
+    include_hidden_items,
     include_spike_band_fusion,
     include_tensionbow_fusion,
     include_truetie_fusion,
     include_twin_ribbon_fusion,
     include_twistedsword_fusion,
+    included_chapter,
+    not_weird_route_only,
 )
 from worlds.deltarune.Options import (
     IncludeChapter1,
@@ -31,7 +37,7 @@ if TYPE_CHECKING:
 
 
 def set_rules(world: "DeltaruneWorld"):
-    if world.can_access_fusion():
+    if can_access_fusion(world):
         have_chapter2_equipment_not_in_order = [
             OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
             OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
@@ -102,7 +108,7 @@ def set_rules(world: "DeltaruneWorld"):
                 have_thornring(world) & Has(items[ItemIDs.purecrystal]),
             )
 
-        if world.can_access_ch5_fusion():
+        if can_access_fusion_post_chapter_5(world):
             if included_chapter(world, 4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_monarchrbn_fusion]),
@@ -114,9 +120,7 @@ def set_rules(world: "DeltaruneWorld"):
                     & Has(items[ItemIDs.princessrbn]),
                 )
 
-            if world.is_hidden_items_randomized() and (
-                world.have_all_chapters_included([2, 3]) and world.is_not_weird_route_only()
-            ):
+            if include_hidden_items(world) and (all_included_chapter(world, [2, 3]) and not_weird_route_only(world)):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]),
                     Has(items[ItemIDs.frayedbowtie]) & Has(items[ItemIDs.tennatie]),

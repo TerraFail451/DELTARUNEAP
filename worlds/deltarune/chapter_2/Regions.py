@@ -53,6 +53,7 @@ def create_regions(world: "DeltaruneWorld"):
     spamton_neo = Region(Regions.ch2_spamton_neo, world.player, world.multiworld)
     post_chapter_castle_town = Region(Regions.ch2_post_chapter_castle_town, world.player, world.multiworld)
     fountain = Region(Regions.ch2_fountain, world.player, world.multiworld)
+    fountain_weird_route = Region(Regions.ch2_fountain_weird_route, world.player, world.multiworld)
 
     regions = [
         castle_town,
@@ -81,6 +82,7 @@ def create_regions(world: "DeltaruneWorld"):
         spamton_neo,
         post_chapter_castle_town,
         fountain,
+        fountain_weird_route,
     ]
 
     for region in regions:
@@ -234,6 +236,6 @@ def create_regions(world: "DeltaruneWorld"):
         rule=Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)) & have_kris,
     )
     mansion_lobby_weird_route.connect(
-        fountain,
+        fountain_weird_route,
         rule=Has(items[ItemIDs.keygen_2_segment], FromOption(MacGuffinChapter2)) & have_kris,
     )

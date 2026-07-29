@@ -1,8 +1,8 @@
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
 from worlds.deltarune.LogicHelper import (
+    include_doorkey,
     randomized_chapters,
-    include_chapter1_door_key,
     include_hidden_items,
     include_secret_bosses_items_requirement,
     include_secret_bosses_items_reward,
@@ -99,7 +99,7 @@ chapter1_items = [
     ItemData(
         ItemIDs.door_key,
         ItemClassification.progression,
-        should_be_included=include_chapter1_door_key,
+        should_be_included=include_doorkey,
         groups=[ItemGroups.jevil_keys],
     ),
     ItemData(

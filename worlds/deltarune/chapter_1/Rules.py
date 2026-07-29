@@ -5,6 +5,8 @@ from worlds.deltarune.Locations import LocationIDs, locations
 from worlds.deltarune.LogicHelper import (
     doorkey_from_broken_keys,
     include_hidden_items,
+    include_lose_recruits_chapter1,
+    include_recruits_chapter1,
     include_secret_bosses_items_requirement,
     include_secret_bosses_items_reward,
 )
@@ -47,28 +49,25 @@ def set_rules(world: "DeltaruneWorld"):
         world.get_location(locations[LocationIDs.ch1_throw_away_manual_again]), Has(items[ItemIDs.manual], 2)
     )
 
-    if world.is_chapter_1_recruit_system_enabled():
-        if world.recruit_sanity_enabled():
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_rudinn]), can_recruit_ruddin)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_hathy]), can_recruit_hathy)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_jigsawry]), can_recruit_jigsawry)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_ponman]), can_recruit_ponman)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_rabbick]), can_recruit_rabbick)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_bloxer]), can_recruit_bloxer)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_head_hathy]), can_recruit_head_hathy)
-            world.set_rule(
-                world.get_location(locations[LocationIDs.ch1_recruit_rudinn_ranger]), can_recruit_rudinn_ranger
-            )
+    if include_recruits_chapter1(world):
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_rudinn]), can_recruit_ruddin)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_hathy]), can_recruit_hathy)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_jigsawry]), can_recruit_jigsawry)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_ponman]), can_recruit_ponman)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_rabbick]), can_recruit_rabbick)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_bloxer]), can_recruit_bloxer)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_head_hathy]), can_recruit_head_hathy)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_recruit_rudinn_ranger]), can_recruit_rudinn_ranger)
 
-        if world.lose_recruit_sanity_enabled():
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_rudinn]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_hathy]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_jigsawry]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_ponman]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.cc_lost_rabbick]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_bloxer]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_head_hathy]), can_lose_chapter1)
-            world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_rudinn_ranger]), can_lose_chapter1)
+    if include_lose_recruits_chapter1(world):
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_rudinn]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_hathy]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_jigsawry]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_ponman]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.cc_lost_rabbick]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_bloxer]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_head_hathy]), can_lose_chapter1)
+        world.set_rule(world.get_location(locations[LocationIDs.ch1_lost_rudinn_ranger]), can_lose_chapter1)
 
 
 def handle_locked_items(world: "DeltaruneWorld"):

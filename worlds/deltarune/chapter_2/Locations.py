@@ -423,4 +423,7 @@ chapter2_locations = {
             group=LocationGroups.chapter2,
         ),
     ],
+    Regions.ch2_fountain_weird_route: [
+        LocationData(LocationIDs.ch2_fountain_sealed_weird_route, group=LocationGroups.chapter2)
+    ],
 }

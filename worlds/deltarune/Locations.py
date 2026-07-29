@@ -370,6 +370,7 @@ class LocationIDs(IntEnum):
     ch5_castle_top_last_room_warp_door = 348
     ch5_garden_first_chest_susie_accepting_herself = 349
     ch5_weird_route_sinking = 350
+    ch2_fountain_sealed_weird_route = 351
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -536,6 +537,7 @@ locations = {
     LocationIDs.ch2_spamton_shop_3: "CH2: Spamton's Shop 3",
     LocationIDs.ch2_spamton_shop_4: "CH2: Spamton's Shop 4",
     LocationIDs.ch2_fountain_sealed: "CH2: Cyber World - Fountain Sealed",
+    LocationIDs.ch2_fountain_sealed_weird_route: "CH2: Cyber World - Fountain Sealed (Weird Route)",
     LocationIDs.ch2_cyber_field_warp_door: "CH2: Cyber Field - Warp Door",
     LocationIDs.ch2_trash_zone_warp_door: "CH2: Trash Zone - Warp Door",
     LocationIDs.ch2_mansion_warp_door: "CH2: Mansion - Warp Door",

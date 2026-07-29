@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 def set_rules(world: "DeltaruneWorld"):
-    if world.is_secret_bosses_items_requirement_randomized():
+    if include_secret_bosses_items_requirement(world):
         world.set_rule(
             world.get_location(locations[LocationIDs.ch5_pinks_shop_4]), Has(items[ItemIDs.pinkcoin], 10)
         )

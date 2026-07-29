@@ -10,6 +10,13 @@ from worlds.deltarune.Items import (
     DeltaruneItem,
     ItemGroups,
 )
+from worlds.deltarune.LogicHelper import (
+    include_hidden_items,
+    include_mysterykey,
+    include_secret_bosses_items_requirement,
+    include_secret_bosses_items_reward,
+    randomized_chapters,
+)
 
 if TYPE_CHECKING:
     from .. import DeltaruneWorld
@@ -36,21 +43,21 @@ chapter5_items = [
     ItemData(
         ItemIDs.chapter_5_egg,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.eggs],
         blacklist_filler=True,
     ),
     ItemData(
         ItemIDs.castle_moss,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.moss],
         blacklist_filler=True,
     ),
     ItemData(
         ItemIDs.shadowcrystal,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         blacklist_filler=True,
     ),
     ItemData(ItemIDs.susie_can_wear_ribbons, ItemClassification.useful),
@@ -61,7 +68,7 @@ chapter5_items = [
     ItemData(
         ItemIDs.dogdollar,
         ItemClassification.progression | ItemClassification.deprioritized,
-        should_be_included=lambda world: world.is_hidden_items_randomized(),
+        should_be_included=include_hidden_items,
         groups=[ItemGroups.currencies, ItemGroups.fusion_ingredient],
         amount=1,
         changing_classification=True,
@@ -79,61 +86,60 @@ chapter5_items = [
     ItemData(
         ItemIDs.chapter_5_unlock,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_chapters_randomized(),
+        should_be_included=randomized_chapters,
         groups=[ItemGroups.region_blockers],
     ),
     ItemData(
         ItemIDs.pinkcoin,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized(),
+        should_be_included=include_secret_bosses_items_requirement,
         amount=19,
     ),
     ItemData(
         ItemIDs.pinkkey,
         ItemClassification.progression,
-        should_be_included=lambda world: world.is_secret_bosses_items_requirement_randomized()
-        and not world.is_mysterykey_from_pink_coins(),
+        should_be_included=include_mysterykey,
     ),
     ItemData(
         ItemIDs.aquaknife,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.weapons, ItemGroups.kris_weapons],
     ),
     ItemData(
         ItemIDs.blueshoes,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
     ),
     ItemData(
         ItemIDs.greenapron,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.yellowhat,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.ogloves,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.sethspecs,
         ItemClassification.useful,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.armors],
     ),
     ItemData(
         ItemIDs.floweryscarf,
         ItemClassification.filler,
-        should_be_included=lambda world: world.is_secret_bosses_randomized(),
+        should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
         blacklist_filler=True,
     ),

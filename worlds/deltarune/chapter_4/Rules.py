@@ -5,6 +5,13 @@ from rule_builder.rules import Has
 
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
+from worlds.deltarune.LogicHelper import (
+    include_hidden_items,
+    include_lose_recruits,
+    include_mike_games,
+    include_recruits,
+    include_secret_bosses_items_reward,
+)
 from worlds.deltarune.Rules import (
     have_susie,
     have_kris,
@@ -45,7 +52,7 @@ def set_rules(world: "DeltaruneWorld"):
     world.set_rule(world.get_location(locations[LocationIDs.ch4_dark_sanctuary_jackenstein_gift]), have_kris)
     world.set_rule(world.get_location(locations[LocationIDs.ch4_dark_sanctuary_climbing_tutorial_chest]), have_kris)
 
-    if world.is_mike_games_included() and world.options.exclude_mike_platinum.value == 1:
+    if include_mike_games(world) and world.options.exclude_mike_platinum.value == 1:
         world.get_location(locations[LocationIDs.ch4_mike_pluey_platinum]).progress_type = LocationProgressType.EXCLUDED
         world.get_location(locations[LocationIDs.ch4_mike_battat_platinum]).progress_type = (
             LocationProgressType.EXCLUDED
@@ -54,7 +61,7 @@ def set_rules(world: "DeltaruneWorld"):
             LocationProgressType.EXCLUDED
         )
 
-    if world.recruit_sanity_enabled():
+    if include_recruits(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_guei]), can_recruit_guei)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_balthizard]), can_recruit_balthizard)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_bibliox]), can_recruit_bibliox)
@@ -64,7 +71,7 @@ def set_rules(world: "DeltaruneWorld"):
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_organikk]), can_recruit_organikk)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_recruit_wicabel]), can_recruit_wicabel)
 
-    if world.lose_recruit_sanity_enabled():
+    if include_lose_recruits(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_guei]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_balthizard]), can_lost_chapter4)
         world.set_rule(world.get_location(locations[LocationIDs.ch4_lost_bibliox]), can_lost_chapter4)
@@ -76,7 +83,7 @@ def set_rules(world: "DeltaruneWorld"):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if not world.is_secret_bosses_randomized():
+    if not include_secret_bosses_items_reward(world):
         world.get_location(locations[LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1]).place_locked_item(
             world.create_item(items[ItemIDs.justiceaxe])
         )
@@ -85,7 +92,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
         )
 
     # Hidden Items
-    if not world.is_hidden_items_randomized():
+    if not include_hidden_items(world):
         world.get_location(locations[LocationIDs.ch4_second_sanctuary_man]).place_locked_item(
             world.create_item(items[ItemIDs.chapter_4_egg])
         )

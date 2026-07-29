@@ -5,11 +5,15 @@ from typing import TYPE_CHECKING
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import ItemIDs, items, glitched_item_name
 from worlds.deltarune.LogicHelper import (
+    all_recruits_route,
     include_actions,
     include_hidden_items,
+    include_lose_recruits,
+    include_recruits,
     include_secret_bosses_items_requirement,
     include_secret_bosses_items_reward,
     not_weird_route_only,
+    weird_route,
 )
 from worlds.deltarune.Rules import (
     have_kris_susie_or_ralsei,
@@ -46,7 +50,7 @@ def set_rules(world: "DeltaruneWorld"):
 
     world.set_rule(world.get_location(locations[LocationIDs.ch2_cyber_city_cheese_maze_chest]), have_kris_or_noelle)
 
-    if world.is_weird_route():
+    if weird_route(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_cyber_city_purchase_freezering]), have_noelle)
         world.set_rule(
             world.get_location(locations[LocationIDs.ch2_cyber_city_purchase_thornring]),
@@ -54,7 +58,7 @@ def set_rules(world: "DeltaruneWorld"):
         )
 
     # Weird Route
-    if world.lose_recruit_sanity_enabled():
+    if include_lose_recruits(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_werewire]), can_lost_chapter2)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_tasque]), can_lost_chapter2)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_virovirokun]), can_lost_chapter2)
@@ -79,12 +83,12 @@ def set_rules(world: "DeltaruneWorld"):
                 can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
             )
 
-    if world.recruit_sanity_enabled():
+    if include_recruits(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewire]), can_recruit_werewire)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_tasque]), can_recruit_tasque)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_virovirokun]), can_recruit_virovirokun)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_poppup]), can_recruit_poppup)
-        if not world.is_weird_route():
+        if not weird_route(world):
             world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_ambyu_lance]), can_recruit_ambuy_lance)
             world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_maus]), can_recruit_maus)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_swatchling]), can_recruit_swatchling)
@@ -94,7 +98,7 @@ def set_rules(world: "DeltaruneWorld"):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_mauswheel]), can_recruit_mauswheel)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewerewire]), can_recruit_werewerewire)
 
-        if world.is_all_recruits() and world.options.exclude_post_chapter_2_locations.value == 1:
+        if all_recruits_route(world) and world.options.exclude_post_chapter_2_locations.value == 1:
             world.get_location(locations[LocationIDs.ch2_castle_town_tasque_manager_says_challenge]).progress_type = (
                 LocationProgressType.EXCLUDED
             )

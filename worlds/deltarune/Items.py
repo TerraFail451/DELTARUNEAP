@@ -5,10 +5,12 @@ from enum import IntEnum, Enum
 from typing import TYPE_CHECKING, NamedTuple, Callable, Optional
 
 from worlds.deltarune.LogicHelper import (
+    can_access_fusion_post_chapter_5,
     include_spike_band_fusion,
     include_tensionbow_fusion,
     include_truetie_fusion,
     include_twin_ribbon_fusion,
+    included_chapter,
 )
 
 if TYPE_CHECKING:
@@ -682,7 +684,7 @@ def change_progression_type(world: "DeltaruneWorld", item: ItemData):
                     new_classification = ItemClassification.progression
 
         case ItemIDs.scarfmark | ItemIDs.progressive_ralsei_weapons | ItemIDs.princessrbn:
-            if world.can_access_ch5_fusion() and included_chapter(world, 4):
+            if can_access_fusion_post_chapter_5(world) and included_chapter(world, 4):
                 if ItemIDs.progressive_ralsei_weapons:
                     if (
                         item.code not in world.already_changed_classification_item
@@ -706,7 +708,7 @@ def change_progression_type(world: "DeltaruneWorld", item: ItemData):
                 new_classification = ItemClassification.progression | ItemClassification.useful
 
         case ItemIDs.tvdinner | ItemIDs.tvslop:
-            if world.can_access_ch5_fusion() and included_chapter(world, 3):
+            if can_access_fusion_post_chapter_5(world) and included_chapter(world, 3):
                 if (
                     item.code not in world.already_changed_classification_item
                     or world.already_changed_classification_item[item.code] < 2
@@ -719,7 +721,7 @@ def change_progression_type(world: "DeltaruneWorld", item: ItemData):
                     new_classification = ItemClassification.progression
 
         case ItemIDs.scarlixir:
-            if world.can_access_ch5_fusion() and included_chapter(world, 4):
+            if can_access_fusion_post_chapter_5(world) and included_chapter(world, 4):
                 if (
                     item.code not in world.already_changed_classification_item
                     or world.already_changed_classification_item[item.code] < 4
@@ -734,7 +736,7 @@ def change_progression_type(world: "DeltaruneWorld", item: ItemData):
         case ItemIDs.powerband | ItemIDs.mysticband | ItemIDs.goldwidow | ItemIDs.dogdollar:
             if (
                 item.code not in world.already_changed_classification_item
-                and world.can_access_ch5_fusion()
+                and can_access_fusion_post_chapter_5(world)
                 and included_chapter(world, 4)
             ):
                 world.already_changed_classification_item[item.code] = 1
