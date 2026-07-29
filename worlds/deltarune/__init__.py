@@ -419,7 +419,6 @@ class DeltaruneWorld(World):
             handle_chapter_5_locked_items(self)
         # if included_chapter(6): Ch6Items.create_items(self)
         # if included_chapter(7): Ch7Items.create_items(self)
-        print(item_pool)
 
         if progressive_weapons_kris(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.kris_weapons)
@@ -429,9 +428,7 @@ class DeltaruneWorld(World):
             self.handle_progressive_weapon(item_pool, ItemGroups.ralsei_weapons)
         if progressive_weapons_noelle(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.noelle_weapons)
-        print(item_pool)
         self.handle_chapter_keys(item_pool)
-        print(item_pool)
         self.handle_macguffins_items(item_pool)
 
         item_pool_names_and_amounts = []
