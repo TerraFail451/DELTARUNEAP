@@ -1,5 +1,6 @@
 from worlds.deltarune.Locations import LocationData, LocationGroups, LocationIDs
 from worlds.deltarune.LogicHelper import (
+    include_freeze_recruits_chapter2,
     normal_route,
     weird_route,
     include_lose_recruits,
@@ -78,17 +79,17 @@ chapter2_locations = {
         ),
         LocationData(
             LocationIDs.ch2_lost_werewire,
-            should_be_included=include_lose_recruits,
+            should_be_included=include_freeze_recruits_chapter2,
             group=LocationGroups.chapter2,
         ),
         LocationData(
             LocationIDs.ch2_lost_tasque,
-            should_be_included=include_lose_recruits,
+            should_be_included=include_freeze_recruits_chapter2,
             group=LocationGroups.chapter2,
         ),
         LocationData(
             LocationIDs.ch2_lost_virovirokun,
-            should_be_included=include_lose_recruits,
+            should_be_included=include_freeze_recruits_chapter2,
             group=LocationGroups.chapter2,
         ),
     ],
@@ -150,7 +151,7 @@ chapter2_locations = {
         ),
         LocationData(
             LocationIDs.ch2_lost_poppup,
-            should_be_included=include_lose_recruits,
+            should_be_included=include_freeze_recruits_chapter2,
             group=LocationGroups.chapter2,
         ),
     ],
@@ -257,12 +258,12 @@ chapter2_locations = {
         ),
         LocationData(
             LocationIDs.ch2_lost_ambyu_lance,
-            should_be_included=include_lose_recruits,
+            should_be_included=include_freeze_recruits_chapter2,
             group=LocationGroups.chapter2,
         ),
         LocationData(
             LocationIDs.ch2_lost_maus,
-            should_be_included=include_lose_recruits,
+            should_be_included=include_freeze_recruits_chapter2,
             group=LocationGroups.chapter2,
         ),
         LocationData(

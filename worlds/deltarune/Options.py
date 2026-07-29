@@ -162,7 +162,7 @@ class RandomizeSecretBosses(Choice):
 
 class RandomizeMANTLE(Choice):
     """
-    CHECKS RECIEVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
+    CHECKS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
 
     - **Mantleless** *Items in the Original Game will be randomized but the Shadow Mantle/ERAM fight isn't mandatory if secret bosses is set to mandatory*
     """

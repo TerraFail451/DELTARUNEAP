@@ -102,6 +102,7 @@ def create_regions(world: "DeltaruneWorld"):
             & CanReachLocation(locations[LocationIDs.ch3_recruit_shuttah])
             & CanReachLocation(locations[LocationIDs.ch3_recruit_water_cooler])
             & CanReachLocation(locations[LocationIDs.ch3_recruit_zapper])
+            & CanReachLocation(locations[LocationIDs.ch3_recruit_ribbick])
         )
         tv_world.connect(
             cold_place,

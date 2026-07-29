@@ -14,11 +14,11 @@ if TYPE_CHECKING:
     from . import DeltaruneWorld
 
 def include_hidden_items_chapter2_weird_route_exclusion(world: "DeltaruneWorld") -> bool:
-    return include_hidden_items(world) and not weird_route(world)
+    return include_hidden_items(world) and not_weird_route_only(world)
 
 
 def include_secret_bosses_items_requirement_chapter2_weird_route_exclusion(world: "DeltaruneWorld") -> bool:
-    return include_secret_bosses_items_requirement(world) and not weird_route(world)
+    return include_secret_bosses_items_requirement(world) and not_weird_route_only(world)
 
 
 def include_secret_bosses_items_reward(world: "DeltaruneWorld") -> bool:
@@ -29,7 +29,7 @@ def include_secret_bosses_items_reward(world: "DeltaruneWorld") -> bool:
 
 
 def include_secret_bosses_items_reward_chapter2_weird_route_exclusion(world: "DeltaruneWorld") -> bool:
-    return include_secret_bosses_items_reward(world) and not weird_route(world)
+    return include_secret_bosses_items_reward(world) and not_weird_route_only(world)
 
 
 def include_recruits_chapter1(world: "DeltaruneWorld") -> bool:
@@ -38,6 +38,10 @@ def include_recruits_chapter1(world: "DeltaruneWorld") -> bool:
 
 def include_lose_recruits_chapter1(world: "DeltaruneWorld") -> bool:
     return include_lose_recruits(world) and world.options.chapter_1_recruit.value == 1
+
+
+def include_freeze_recruits_chapter2(world: "DeltaruneWorld") -> bool:
+    return include_lose_recruits(world) or weird_route(world)
 
 
 def not_include_lose_recruits(world: "DeltaruneWorld") -> bool:
@@ -201,7 +205,7 @@ def randomized_mantle(world: "DeltaruneWorld") -> bool:
 
 
 def include_shadow_mantle(world: "DeltaruneWorld") -> bool:
-    return world.options.include_shadow_mantle.value == 1 and randomized_mantle(world)
+    return world.options.include_shadow_mantle.value == 1
 
 
 def mysterykey_from_pink_coins(world: "DeltaruneWorld") -> bool:

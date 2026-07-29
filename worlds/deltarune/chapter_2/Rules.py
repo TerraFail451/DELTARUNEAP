@@ -7,6 +7,7 @@ from worlds.deltarune.Items import ItemIDs, items, glitched_item_name
 from worlds.deltarune.LogicHelper import (
     all_recruits_route,
     include_actions,
+    include_freeze_recruits_chapter2,
     include_hidden_items,
     include_lose_recruits,
     include_lose_swatchlings_weird_route,
@@ -20,7 +21,6 @@ from worlds.deltarune.LogicHelper import (
 from worlds.deltarune.Rules import (
     have_kris_susie_or_ralsei,
     have_noelle,
-    can_snowgrave,
     can_lost_chapter2_with_noelle,
     have_kris_or_noelle,
     can_recruit_werewire,
@@ -59,31 +59,19 @@ def set_rules(world: "DeltaruneWorld"):
             have_noelle | Has(glitched_item_name),
         )
 
-    # Weird Route
-    if include_lose_recruits(world):
+    if include_freeze_recruits_chapter2(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_werewire]), can_lost_chapter2)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_tasque]), can_lost_chapter2)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_virovirokun]), can_lost_chapter2)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_poppup]), can_lost_chapter2_with_noelle)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_ambyu_lance]), can_lost_chapter2_with_noelle)
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_maus]), can_lost_chapter2_with_noelle)
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch2_lost_tasque_manager]),
-            can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
-        )
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch2_lost_mauswheel]),
-            can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
-        )
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch2_lost_werewerewire]),
-            can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
-        )
+    if include_lose_recruits(world):
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_tasque_manager]), can_lost_chapter2)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_mauswheel]), can_lost_chapter2)
+        world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_werewerewire]), can_lost_chapter2)
         if include_lose_swatchlings_weird_route(world):
-            world.set_rule(
-                world.get_location(locations[LocationIDs.ch2_lost_swatchlings]),
-                can_lost_chapter2 & (can_snowgrave(world) | Has(glitched_item_name)),
-            )
+            world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_swatchlings]), can_lost_chapter2)
 
     if include_recruits(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_recruit_werewire]), can_recruit_werewire)

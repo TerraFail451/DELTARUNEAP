@@ -86,10 +86,6 @@ def set_rules(world: "DeltaruneWorld"):
 def handle_locked_items(world: "DeltaruneWorld"):
     # MANTLE
     if not randomized_mantle(world):
-        if include_shadow_mantle(world):
-            world.get_location(locations[LocationIDs.ch3_mantle_defeat]).place_locked_item(
-                world.create_item(items[ItemIDs.shadowmantle])
-            )
         world.get_location(locations[LocationIDs.ch3_mantle_susie_gift]).place_locked_item(
             world.create_item(items[ItemIDs.flatsoda])
         )
@@ -101,6 +97,14 @@ def handle_locked_items(world: "DeltaruneWorld"):
         )
         world.get_location(locations[LocationIDs.ch3_s_rank_room_oddcontroller]).place_locked_item(
             world.create_item(items[ItemIDs.odd_controller])
+        )
+
+        if include_shadow_mantle(world):
+            world.get_location(locations[LocationIDs.ch3_mantle_defeat]).progress_type = LocationProgressType.EXCLUDED
+
+    if not include_shadow_mantle(world) and include_mantle(world):
+        world.get_location(locations[LocationIDs.ch3_mantle_defeat]).place_locked_item(
+            world.create_item(items[ItemIDs.shadowmantle])
         )
 
     # Secret Bosses
