@@ -85,7 +85,7 @@ def set_rules(world: "DeltaruneWorld"):
 
 def handle_locked_items(world: "DeltaruneWorld"):
     # MANTLE
-    if not (randomized_mantle(world) or include_mantle(world)):
+    if not randomized_mantle(world):
         if include_shadow_mantle(world):
             world.get_location(locations[LocationIDs.ch3_mantle_defeat]).place_locked_item(
                 world.create_item(items[ItemIDs.shadowmantle])
