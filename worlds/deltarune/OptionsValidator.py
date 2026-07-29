@@ -68,11 +68,3 @@ def validate_all_recruits(world: "DeltaruneWorld"):
             logging.info(
                 f"[DELTARUNE] Recruits Sanity was enabled for {world.player_name} as chosen route is All Recruits or Both."
             )
-        if (
-            include_lose_recruits(world)
-            and world.options.chosen_route.value != ChosenRoute.option_both_all_recruits_and_weird_route
-        ):
-            world.options.lose_recruits_sanity.value = 0
-            logging.info(
-                f"[DELTARUNE] Lose Recruits Sanity was disabled for {world.player_name} as chosen route is All Recruits."
-            )
