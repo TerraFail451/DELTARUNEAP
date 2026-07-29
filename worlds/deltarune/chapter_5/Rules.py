@@ -19,10 +19,11 @@ if TYPE_CHECKING:
 
 
 def set_rules(world: "DeltaruneWorld"):
-    if include_secret_bosses_items_requirement(world):
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch5_pinks_shop_4]), Has(items[ItemIDs.pinkcoin], 10)
-        )
+    if normal_route(world):
+        if include_secret_bosses_items_requirement(world):
+            world.set_rule(
+                world.get_location(locations[LocationIDs.ch5_pinks_shop_4]), Has(items[ItemIDs.pinkcoin], 10)
+            )
 
 def handle_locked_items(world: "DeltaruneWorld"):
     if normal_route(world):

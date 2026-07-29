@@ -150,7 +150,17 @@ chapter5_items = [
 
 def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:
     if world.options.chosen_route.value == ChosenRoute.option_weird_route:
-        return []
+        return generic_create_items(
+            world,
+            [
+                ItemData(
+                    ItemIDs.chapter_5_unlock,
+                    ItemClassification.progression,
+                    should_be_included=randomized_chapters,
+                    groups=[ItemGroups.region_blockers],
+                )
+            ],
+        )
 
     return generic_create_items(world, chapter5_items)
 
