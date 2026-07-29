@@ -175,12 +175,12 @@ def create_regions(world: "DeltaruneWorld"):
         )
 
         mansion_main_route.connect(mansion_recruits)
-        mansion_main_route.connect(mansion_losts, rule=Has(glitched_item_name))
+        mansion_main_route.connect(mansion_losts)
         mansion_main_route.connect(mansion_both_route)
         mansion_main_route.connect(tunnel_of_love, rule=have_kris_or_ralsei)
 
         tunnel_of_love.connect(recruit_werewerewire)
-        tunnel_of_love.connect(lose_werewerewire, rule=Has(glitched_item_name))
+        tunnel_of_love.connect(lose_werewerewire)
 
         mansion_main_route.connect(
             mansion_basement,
@@ -241,9 +241,9 @@ def create_regions(world: "DeltaruneWorld"):
 
         mansion_lobby_weird_route.connect(mansion_lobby_warp_door)
         mansion_lobby_weird_route.connect(mansion_losts)
-        mansion_lobby_weird_route.connect(mansion_recruits, rule=Has(glitched_item_name))
+        mansion_lobby_weird_route.connect(mansion_recruits)
         mansion_lobby_weird_route.connect(lose_werewerewire)
-        mansion_lobby_weird_route.connect(recruit_werewerewire, rule=Has(glitched_item_name))
+        mansion_lobby_weird_route.connect(recruit_werewerewire)
         mansion_lobby_weird_route.connect(
             mansion_both_route,
             get_entrance_name(mansion_lobby_weird_route, mansion_both_route, "Singapore Wrong Warp"),
