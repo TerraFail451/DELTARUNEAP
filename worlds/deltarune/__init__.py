@@ -34,7 +34,7 @@ from worlds.deltarune.LogicHelper import (
     randomized_chapters,
     weird_route,
 )
-from worlds.deltarune.Options import DeltaruneOptions, deltarune_option_groups, options_presets
+from worlds.deltarune.Options import ChosenRoute, DeltaruneOptions, deltarune_option_groups, options_presets
 from worlds.deltarune.OptionsValidator import validate_options
 from worlds.deltarune.Regions import Regions
 from worlds.deltarune.Rules import can_snowgrave
@@ -106,7 +106,7 @@ from worlds.deltarune.chapter_1.Locations import chapter1_locations
 from worlds.deltarune.chapter_2.Locations import chapter2_locations
 from worlds.deltarune.chapter_3.Locations import chapter3_locations
 from worlds.deltarune.chapter_4.Locations import chapter4_locations
-from worlds.deltarune.chapter_5.Locations import chapter5_locations
+from worlds.deltarune.chapter_5.Locations import chapter5_locations, chapter5_weird_route_locations
 from worlds.deltarune.cross_chapter.Locations import cross_chapter_locations
 from worlds.deltarune.tracker import handle_auto_tracking, handle_player_icon_position
 
@@ -125,6 +125,8 @@ for region, location in chapter3_locations.items():
 for region, location in chapter4_locations.items():
     all_locations += location
 for region, location in chapter5_locations.items():
+    all_locations += location
+for region, location in chapter5_weird_route_locations.items():
     all_locations += location
 
 
@@ -223,7 +225,7 @@ class DeltaruneWorld(World):
     def __init__(self, multiworld: "MultiWorld", player: int):
         super().__init__(multiworld, player)
 
-        self.cached_filler_and_trap_weights: dict[int, float] = {}
+        self.cached_filler_and_trap_weights: dict[int, float] = None
         self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
         self.already_changed_classification_item: dict[ItemIDs, int] = {}
         self.included_chapters: list[int] = None
@@ -322,8 +324,11 @@ class DeltaruneWorld(World):
                     setattr(self.options, key, opt.from_any(value))
 
     def get_filler_item_name(self):
-        if len(self.cached_filler_and_trap_weights) == 0:
+        if self.cached_filler_and_trap_weights == None:
             self.fill_weighted_fillers_and_traps()
+
+        if len(self.cached_filler_and_trap_weights) == 0:
+            return items[ItemIDs.what_interesting_behavior]
 
         return items[
             self.random.choices(
@@ -414,6 +419,7 @@ class DeltaruneWorld(World):
             handle_chapter_5_locked_items(self)
         # if included_chapter(6): Ch6Items.create_items(self)
         # if included_chapter(7): Ch7Items.create_items(self)
+        print(item_pool)
 
         if progressive_weapons_kris(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.kris_weapons)
@@ -423,8 +429,9 @@ class DeltaruneWorld(World):
             self.handle_progressive_weapon(item_pool, ItemGroups.ralsei_weapons)
         if progressive_weapons_noelle(self):
             self.handle_progressive_weapon(item_pool, ItemGroups.noelle_weapons)
-
+        print(item_pool)
         self.handle_chapter_keys(item_pool)
+        print(item_pool)
         self.handle_macguffins_items(item_pool)
 
         item_pool_names_and_amounts = []
@@ -503,7 +510,7 @@ class DeltaruneWorld(World):
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
             )
-        if included_chapter(self, 5):
+        if included_chapter(self, 5) and self.options.chosen_route.value != ChosenRoute.option_weird_route:
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
@@ -561,6 +568,9 @@ class DeltaruneWorld(World):
         itempool: list[ItemData],
         character: ItemGroups,
     ):
+        if len(itempool) == 0:
+            return
+
         self.weapon_to_progressive_weapon_index[character] = {}
         weapons_character_in_pool = [
             item for item in itempool if character in item.groups and item.classification != ItemClassification.filler

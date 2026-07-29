@@ -433,6 +433,9 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
     ],
+}
+
+chapter5_weird_route_locations = {
     Regions.ch5_weird_route: [
         LocationData(
             id=LocationIDs.ch5_weird_route_sinking,

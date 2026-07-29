@@ -15,8 +15,10 @@ from worlds.deltarune.LogicHelper import (
     include_mysterykey,
     include_secret_bosses_items_requirement,
     include_secret_bosses_items_reward,
+    not_weird_route_only,
     randomized_chapters,
 )
+from worlds.deltarune.Options import ChosenRoute
 
 if TYPE_CHECKING:
     from .. import DeltaruneWorld
@@ -147,8 +149,13 @@ chapter5_items = [
 
 
 def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:
+    if world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        return []
+
     return generic_create_items(world, chapter5_items)
 
 
 def get_filler_and_trap_items(world: "DeltaruneWorld"):
+    if world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        return []
     return generic_get_filler_and_trap_items(world, chapter5_items)

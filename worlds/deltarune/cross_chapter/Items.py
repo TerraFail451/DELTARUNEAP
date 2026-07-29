@@ -33,6 +33,7 @@ from worlds.deltarune.LogicHelper import (
     progressive_weapons_ralsei,
     progressive_weapons_susie,
 )
+from worlds.deltarune.Options import ChosenRoute
 
 if TYPE_CHECKING:
     from .. import DeltaruneWorld
@@ -229,8 +230,14 @@ cross_chapter_items = [
 ]
 
 def create_items(world: "DeltaruneWorld"):
+    if world.included_chapters == [5] and world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        return []
+
     return generic_create_items(world, cross_chapter_items)
 
 
 def get_filler_and_trap_items(world: "DeltaruneWorld"):
+    if world.included_chapters == [5] and world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        return []
+
     return generic_get_filler_and_trap_items(world, cross_chapter_items)

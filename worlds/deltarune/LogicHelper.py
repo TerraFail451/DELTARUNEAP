@@ -310,11 +310,17 @@ def excluded_z_rank(world: "DeltaruneWorld") -> bool:
 
 
 def can_access_fusion(world: "DeltaruneWorld"):
-    return any_included_chapter(world, [2, 4, 5])
+    if world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        return any_included_chapter(world, [2, 4])
+    else:
+        return any_included_chapter(world, [2, 4, 5])
 
 
 def can_access_fusion_post_chapter_5(world: "DeltaruneWorld"):
-    return any_included_chapter(world, [5])
+    if world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        return False
+    else:
+        return any_included_chapter(world, [5])
 
 
 # endregion

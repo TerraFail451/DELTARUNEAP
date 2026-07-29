@@ -5,7 +5,7 @@ from BaseClasses import Region
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has
 from worlds.deltarune.LogicHelper import any_included_chapter, included_chapter
-from worlds.deltarune.Options import RandomizeChapters
+from worlds.deltarune.Options import ChosenRoute, RandomizeChapters
 from worlds.deltarune.Regions import Regions, add_location_to_region
 from worlds.deltarune.cross_chapter.Locations import cross_chapter_locations
 from worlds.deltarune.Items import items, ItemIDs
@@ -75,8 +75,9 @@ def create_regions(world: "DeltaruneWorld"):
             Has(items[ItemIDs.chapter_5_unlock])
             | OptionFilter(RandomizeChapters, RandomizeChapters.option_all_unlocked),
         )
-        chapter_5.connect(fusion)
-        chapter_5.connect(ch5_fusion)
+        if world.options.chosen_route.value != ChosenRoute.option_weird_route:
+            chapter_5.connect(fusion)
+            chapter_5.connect(ch5_fusion)
         regions.append(chapter_5)
 
     for region in regions:

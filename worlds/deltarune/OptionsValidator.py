@@ -15,9 +15,28 @@ if TYPE_CHECKING:
 
 
 def validate_options(world: "DeltaruneWorld"):
+    validate_chapter5_weird_route_only_random_prevention(world)
     validate_playable_chapters(world)
     validate_starting_chapter(world)
     validate_all_recruits(world)
+
+
+def validate_chapter5_weird_route_only_random_prevention(world: "DeltaruneWorld"):
+    if world.included_chapters == [5] and world.options.chosen_route.value == ChosenRoute.option_weird_route:
+        if world.options.random_safety_chapter_inclusion.value == 1:
+            chapter = 5
+            while chapter == 5:
+                chapter = world.random.randint(1, world.max_deltarune_chapter)
+
+                if chapter == 5:
+                    logging.info(
+                        f"[DELTARUNE] {world.player_name} triggered 'Chapter 5 Weird Route Only Inclusion Safety'. Chapter {chapter} has been randomly chosen. (So we will reroll)"
+                    )
+                else:
+                    setattr(world.options, f"include_chapter_{chapter}.value", 1)
+                    logging.info(
+                        f"[DELTARUNE] {world.player_name} triggered 'Chapter 5 Weird Route Only Inclusion Safety'. Chapter {chapter} has been randomly enabled."
+                    )
 
 
 def validate_playable_chapters(world: "DeltaruneWorld"):
