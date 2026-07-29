@@ -804,7 +804,7 @@ locations = {
     LocationIDs.ch5_lost_kawkaw: "CH5: Lost Kawkaw",
     LocationIDs.ch5_lost_shinobeetle: "CH5: Lost Shinobeetle",
     LocationIDs.ch5_lost_terakota: "CH5: Lost Terakota",
-    LocationIDs.ch5_weird_route_sinking: "CH5: Weird Route - Sinking into the lake",
+    LocationIDs.ch5_weird_route_sinking: "CH5: Side B Complete",
 }
 
 
