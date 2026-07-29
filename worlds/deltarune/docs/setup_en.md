@@ -40,8 +40,7 @@ Next, go to your Archipelago folder either by finding it yourself or by clicking
 
 **Linux is currently not supported as it will disconnect you from the server few seconds after connection**
 
-The Linux installation is mostly similar, however, DELTARUNE will be installed on Steam as the Linux 
-variant.
+The Linux installation is mostly similar, however, DELTARUNE will be installed on Steam as the Linux variant.
 
 Since this randomizer only supports the Windows version, we must fix this, by right-click the game in Steam, going to `Properties -> Compatibility`, and checking `Force the use of a specific Steam Play compatibility tool`.
 
