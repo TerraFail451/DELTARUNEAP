@@ -116,7 +116,7 @@ def include_truetie_fusion(world: "DeltaruneWorld"):
 
 def include_lost_rabbick(world: "DeltaruneWorld"):
     return include_lose_recruits(world) and (
-        included_chapter(3) or (included_chapter(1) and include_lose_recruits_chapter1(world))
+        included_chapter(world, 3) or (included_chapter(world, 1) and include_lose_recruits_chapter1(world))
     )
 
 
@@ -171,6 +171,14 @@ def all_recruits_route(world: "DeltaruneWorld") -> bool:
 
 def both_routes(world: "DeltaruneWorld") -> bool:
     return world.options.chosen_route == ChosenRoute.option_both_all_recruits_and_weird_route
+
+
+def normal_route(world: "DeltaruneWorld") -> bool:
+    return world.options.chosen_route.value in [
+        ChosenRoute.option_all_recruits,
+        ChosenRoute.option_normal_route,
+        ChosenRoute.option_both_all_recruits_and_weird_route,
+    ]
 
 
 def include_mike_battle(world: "DeltaruneWorld") -> bool:
@@ -237,11 +245,6 @@ def chapters_in_order(world: "DeltaruneWorld") -> bool:
 
 def all_chapter_unlocked(world: "DeltaruneWorld") -> bool:
     return world.options.randomize_chapters.value == RandomizeChapters.option_all_unlocked
-
-
-def normal_route(world: "DeltaruneWorld") -> bool:
-    return world.options.chosen_route.value == ChosenRoute.option_normal_route
-
 
 def starting_equipment_removed(world: "DeltaruneWorld"):
     return world.options.remove_starting_equipment.value == 1

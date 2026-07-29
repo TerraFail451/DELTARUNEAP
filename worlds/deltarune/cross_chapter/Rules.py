@@ -3,6 +3,7 @@ from rule_builder.rules import Has, True_
 
 from worlds.deltarune.LogicHelper import (
     all_included_chapter,
+    both_routes,
     can_access_fusion,
     can_access_fusion_post_chapter_5,
     chapters_in_order,
@@ -14,7 +15,9 @@ from worlds.deltarune.LogicHelper import (
     include_twin_ribbon_fusion,
     include_twistedsword_fusion,
     included_chapter,
+    normal_route,
     not_weird_route_only,
+    weird_route,
 )
 from worlds.deltarune.Options import (
     IncludeChapter1,
@@ -120,7 +123,7 @@ def set_rules(world: "DeltaruneWorld"):
                     & Has(items[ItemIDs.princessrbn]),
                 )
 
-            if include_hidden_items(world) and (all_included_chapter(world, [2, 3]) and not_weird_route_only(world)):
+            if include_truetie_fusion(world):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]),
                     Has(items[ItemIDs.frayedbowtie]) & Has(items[ItemIDs.tennatie]),
@@ -163,7 +166,14 @@ def get_location(world: "DeltaruneWorld", chapter: int):
     if chapter == 1:
         return world.multiworld.get_location(locations[LocationIDs.ch1_fountain_sealed], world.player)
     if chapter == 2:
-        return world.multiworld.get_location(locations[LocationIDs.ch2_fountain_sealed], world.player)
+        if both_routes(world):
+            return world.random.choice(
+                [locations[LocationIDs.ch2_fountain_sealed], locations[LocationIDs.ch2_fountain_sealed_weird_route]]
+            )
+        elif normal_route(world):
+            return world.multiworld.get_location(locations[LocationIDs.ch2_fountain_sealed], world.player)
+        elif weird_route(world):
+            return world.multiworld.get_location(locations[LocationIDs.ch2_fountain_sealed_weird_route], world.player)
     if chapter == 3:
         return world.multiworld.get_location(locations[LocationIDs.ch3_fountain_sealed], world.player)
     if chapter == 4:

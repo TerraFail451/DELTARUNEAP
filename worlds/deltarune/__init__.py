@@ -32,6 +32,7 @@ from worlds.deltarune.LogicHelper import (
     progressive_weapons_ralsei,
     progressive_weapons_susie,
     randomized_chapters,
+    weird_route,
 )
 from worlds.deltarune.Options import DeltaruneOptions, deltarune_option_groups, options_presets
 from worlds.deltarune.OptionsValidator import validate_options
@@ -365,9 +366,10 @@ class DeltaruneWorld(World):
         if included_chapter(self, 1):
             set_chapter_1_rules(self)
         if included_chapter(self, 2):
-            self.get_region(Regions.ch2_cyber_city).connect(
-                self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
-            )
+            if weird_route(self):
+                self.get_region(Regions.ch2_cyber_city).connect(
+                    self.get_region(Regions.ch2_mansion_lobby_weird_route), rule=can_snowgrave(self)
+                )
             set_chapter_2_rules(self)
         if included_chapter(self, 3):
             set_chapter_3_rules(self)

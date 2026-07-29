@@ -38,14 +38,6 @@ def can_snowgrave(world: "DeltaruneWorld"):
     return have_noelle & have_thornring(world)
 
 all_recruits_per_chapter = {
-    1: CanReachLocation(locations[LocationIDs.ch1_recruit_rudinn])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_hathy])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_jigsawry])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_ponman])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_rabbick])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_bloxer])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_head_hathy])
-    & CanReachLocation(locations[LocationIDs.ch1_recruit_rudinn_ranger]),
     2: CanReachLocation(locations[LocationIDs.ch2_recruit_werewire])
     & CanReachLocation(locations[LocationIDs.ch2_recruit_tasque])
     & CanReachLocation(locations[LocationIDs.ch2_recruit_virovirokun])
