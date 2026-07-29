@@ -67,10 +67,6 @@ def set_rules(world: "DeltaruneWorld"):
             world.get_location(locations[LocationIDs.ch3_lost_zapper]),
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
         )
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch3_lost_shadowguy]),
-            can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
-        )
 
     world.set_rule(world.get_location(locations[LocationIDs.ch3_tv_world_man]), Has(items[ItemIDs.tripticket]))
 

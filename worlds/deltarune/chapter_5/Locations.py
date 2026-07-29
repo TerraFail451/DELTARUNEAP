@@ -59,17 +59,17 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_floradinn_recruit,
+            id=LocationIDs.ch5_recruit_floradinn,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_sheary_recruit,
+            id=LocationIDs.ch5_recruit_sheary,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_netskie_recruit,
+            id=LocationIDs.ch5_recruit_netskie,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
@@ -197,17 +197,17 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_shi_recruit,
+            id=LocationIDs.ch5_recruit_shi,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_kawkaw_recruit,
+            id=LocationIDs.ch5_recruit_kawkaw,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_leafling_recruit,
+            id=LocationIDs.ch5_recruit_leafling,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
@@ -299,7 +299,7 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_shinobeetle_recruit,
+            id=LocationIDs.ch5_recruit_shinobeetle,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),
@@ -347,7 +347,7 @@ chapter5_locations = {
             group=LocationGroups.chapter5,
         ),
         LocationData(
-            id=LocationIDs.ch5_terakota_recruit,
+            id=LocationIDs.ch5_recruit_terakota,
             should_be_included=include_recruits,
             group=LocationGroups.chapter5,
         ),

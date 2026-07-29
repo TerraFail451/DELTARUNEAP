@@ -131,3 +131,18 @@ can_recruit_organikk = have_kris | can_act_spare_susie | can_recruit_with_violen
 
 ### CHAPTER 4 LOST
 can_lost_chapter4 = have_kris_susie_or_ralsei
+
+### CHAPTER 5 RECRUITMENT
+can_recruit_floradinn = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+can_recruit_sheary = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+can_recruit_netskie = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+can_recruit_shi = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+can_recruit_leafling = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+can_recruit_kawkaw = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+can_recruit_shinobeetle = (
+    have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+)
+can_recruit_terakota = have_kris | can_recruit_with_violence_susie | can_recruit_with_violence_ralsei | can_spam_spare
+
+### CHAPTER 4 LOST
+can_lost_chapter5 = have_kris_susie_or_ralsei

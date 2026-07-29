@@ -285,18 +285,18 @@ class LocationIDs(IntEnum):
     cc_castle_town_tensionmax_fusion = 264
     cc_castle_town_dogwidow_fusion = 265
     ch5_castle_town_trashy_trio_challenge = 266
-    ch5_floradinn_recruit = 267
+    ch5_recruit_floradinn = 267
     ch5_garden_first_chest = 268
     ch5_garden_netskie_chest = 269
     ch5_garden_hopschef_warp_door = 270
     ch5_garden_shears_chest = 271
     ch5_garden_water_can_pink_coin = 272
-    ch5_sheary_recruit = 273
+    ch5_recruit_sheary = 273
     ch5_greens_cafe_1 = 274
     ch5_greens_cafe_2 = 275
     ch5_greens_cafe_3 = 276
     ch5_greens_cafe_4 = 277
-    ch5_netskie_recruit = 278
+    ch5_recruit_netskie = 278
     ch5_garden_chest_past_waterfall = 279
     ch5_garden_chest_under_flowery_face_1 = 280
     ch5_garden_chest_under_flowery_face_2 = 281
@@ -314,21 +314,21 @@ class LocationIDs(IntEnum):
     ch5_cliffs_netskie_climb_warp_door = 292
     ch5_cliffs_shop_warp_door = 293
     ch5_cliffs_pink_coin_by_rising_vine = 294
-    ch5_shi_recruit = 295
+    ch5_recruit_shi = 295
     ch5_cliffs_pink_coin_under_falling_water = 296
-    ch5_leafling_recruit = 297
+    ch5_recruit_leafling = 297
     ch5_cliffs_chest_next_to_horns = 298
     ch5_pinks_shop_1 = 299
     ch5_pinks_shop_2 = 300
     ch5_pinks_shop_3 = 301
     ch5_pinks_shop_4 = 302
-    ch5_kawkaw_recruit = 303
+    ch5_recruit_kawkaw = 303
     ch5_cliffs_man = 304
     ch5_cliffs_wind_platforming_pink_coin = 305
     ch5_cliffs_item_near_umbrellas = 306
     ch5_cliffs_chest_near_climbing_vines = 307
     ch5_cliffs_running_challenge_pink_coin = 308
-    ch5_shinobeetle_recruit = 309
+    ch5_recruit_shinobeetle = 309
     ch5_castle_foyer_warp_door = 310
     ch5_vending_machine_1 = 311
     ch5_vending_machine_2 = 312
@@ -339,7 +339,7 @@ class LocationIDs(IntEnum):
     ch5_castle_west_shinobeetle_shuriken_pink_coin = 317
     ch5_castle_west_blues_room_warp_door = 318
     ch5_castle_east_pink_coin_behind_paper_wall = 319
-    ch5_terakota_recruit = 320
+    ch5_recruit_terakota = 320
     ch5_castle_east_terakota_buttons_pink_coin = 321
     ch5_castle_east_mysterious_puzzle_pink_coin = 322
     ch5_castle_east_pink_lantern_pink_coin = 323
@@ -713,19 +713,19 @@ locations = {
     LocationIDs.cc_castle_town_tensionmax_fusion: "CC: Castle Town - TensionMax Fusion",
     LocationIDs.cc_castle_town_dogwidow_fusion: "CC: Castle Town - DogWidow Fusion",
     LocationIDs.ch5_castle_town_trashy_trio_challenge: "CH5: Castle Town - Trashy Trio Challenge",
-    LocationIDs.ch5_floradinn_recruit: "CH5: Recruit Floradinn",
+    LocationIDs.ch5_recruit_floradinn: "CH5: Recruit Floradinn",
     LocationIDs.ch5_garden_first_chest: "CH5: Garden - First Chest",
     LocationIDs.ch5_garden_first_chest_susie_accepting_herself: "CH5: Garden - First Chest (Susie Accepting Herself)",
     LocationIDs.ch5_garden_netskie_chest: "CH5: Garden - Netskie Chest",
     LocationIDs.ch5_garden_hopschef_warp_door: "CH5: Garden - Hopschef Warp Door",
     LocationIDs.ch5_garden_shears_chest: "CH5: Garden - Shears Chest",
     LocationIDs.ch5_garden_water_can_pink_coin: "CH5: Garden - Watering Can Pink Coin",
-    LocationIDs.ch5_sheary_recruit: "CH5: Recruit Sheary",
+    LocationIDs.ch5_recruit_sheary: "CH5: Recruit Sheary",
     LocationIDs.ch5_greens_cafe_1: "CH5: Green's Cafe Item #1",
     LocationIDs.ch5_greens_cafe_2: "CH5: Green's Cafe Item #2",
     LocationIDs.ch5_greens_cafe_3: "CH5: Green's Cafe Item #3",
     LocationIDs.ch5_greens_cafe_4: "CH5: Green's Cafe Item #4",
-    LocationIDs.ch5_netskie_recruit: "CH5: Recruit Netskie",
+    LocationIDs.ch5_recruit_netskie: "CH5: Recruit Netskie",
     LocationIDs.ch5_garden_chest_past_waterfall: "CH5: Garden - Chest Past Waterfall",
     LocationIDs.ch5_garden_chest_under_flowery_face_1: "CH5: Garden - Chest Under Flowery Face 1",
     LocationIDs.ch5_garden_chest_under_flowery_face_2: "CH5: Garden - Chest Under Flowery Face 2",
@@ -742,21 +742,21 @@ locations = {
     LocationIDs.ch5_cliffs_netskie_climb_warp_door: "CH5: Cliffs - Netskie Climb Warp Door",
     LocationIDs.ch5_cliffs_shop_warp_door: "CH5: Cliffs - Shop Warp Door",
     LocationIDs.ch5_cliffs_pink_coin_by_rising_vine: "CH5: Cliffs - Pink Coin By Rising Vine",
-    LocationIDs.ch5_shi_recruit: "CH5: Recruit Shi",
+    LocationIDs.ch5_recruit_shi: "CH5: Recruit Shi",
     LocationIDs.ch5_cliffs_pink_coin_under_falling_water: "CH5: Cliffs - Pink Coin Under Falling Water",
-    LocationIDs.ch5_leafling_recruit: "CH5: Recruit Leafling",
+    LocationIDs.ch5_recruit_leafling: "CH5: Recruit Leafling",
     LocationIDs.ch5_cliffs_chest_next_to_horns: "CH5: Cliffs - Chest Next to Horns",
     LocationIDs.ch5_pinks_shop_1: "CH5: Pink's Shop Item #1",
     LocationIDs.ch5_pinks_shop_2: "CH5: Pink's Shop Item #2",
     LocationIDs.ch5_pinks_shop_3: "CH5: Pink's Shop Item #3",
     LocationIDs.ch5_pinks_shop_4: "CH5: Pink's Shop Item #4",
-    LocationIDs.ch5_kawkaw_recruit: "CH5: Recruit Kawkaw",
+    LocationIDs.ch5_recruit_kawkaw: "CH5: Recruit Kawkaw",
     LocationIDs.ch5_cliffs_man: "CH5: Cliffs - Man",
     LocationIDs.ch5_cliffs_wind_platforming_pink_coin: "CH5: Cliffs - Wind Puzzle Pink Coin",
     LocationIDs.ch5_cliffs_item_near_umbrellas: "CH5: Cliffs - Item Near Umbrellas",
     LocationIDs.ch5_cliffs_chest_near_climbing_vines: "CH5: Cliffs - Chest Near Climbing Vines",
     LocationIDs.ch5_cliffs_running_challenge_pink_coin: "CH5: Cliffs - Running Challenge Pink Coin",
-    LocationIDs.ch5_shinobeetle_recruit: "CH5: Recruit Shinobeetle",
+    LocationIDs.ch5_recruit_shinobeetle: "CH5: Recruit Shinobeetle",
     LocationIDs.ch5_castle_foyer_warp_door: "CH5: Flower Castle - Foyer Warp Door",
     LocationIDs.ch5_vending_machine_1: "CH5: Vending Machine Item #1",
     LocationIDs.ch5_vending_machine_2: "CH5: Vending Machine Item #2",
@@ -767,7 +767,7 @@ locations = {
     LocationIDs.ch5_castle_west_shinobeetle_shuriken_pink_coin: "CH5: Castle West - Shinobeetle Shuriken Pink Coin",
     LocationIDs.ch5_castle_west_blues_room_warp_door: "CH5: Castle West - Blue's Room Warp Door",
     LocationIDs.ch5_castle_east_pink_coin_behind_paper_wall: "CH5: Castle East - Pink Coin Behind Paper Wall",
-    LocationIDs.ch5_terakota_recruit: "CH5: Recruit Terakota",
+    LocationIDs.ch5_recruit_terakota: "CH5: Recruit Terakota",
     LocationIDs.ch5_castle_east_terakota_buttons_pink_coin: "CH5: Castle East - Terakota Buttons Pink Coin",
     LocationIDs.ch5_castle_east_mysterious_puzzle_pink_coin: "CH5: Castle East - Mysterious Puzzle Pink Coin",
     LocationIDs.ch5_castle_east_pink_lantern_pink_coin: "CH5: Castle East - Pink Lantern Pink Coin",

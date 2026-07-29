@@ -4,7 +4,7 @@ from BaseClasses import Region
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachEntrance, CanReachLocation, CanReachRegion, Has, True_
-from worlds.deltarune.LogicHelper import normal_route, weird_route
+from worlds.deltarune.LogicHelper import all_recruits_route, normal_route, weird_route
 from worlds.deltarune.Options import (
     ChosenRoute,
     MacGuffinChapter5,
@@ -148,7 +148,26 @@ def create_regions(world: "DeltaruneWorld"):
             OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")
         ]
 
-        castle_top.connect(
-            fountains,
-            rule=secret_boss_mandatory & Has(items[ItemIDs.jarona_lesson], FromOption(MacGuffinChapter5)),
-        )
+        if all_recruits_route(world):
+            all_recruits = (
+                CanReachLocation(locations[LocationIDs.ch5_recruit_floradinn])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_sheary])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_netskie])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_shi])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_leafling])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_kawkaw])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_shinobeetle])
+                & CanReachLocation(locations[LocationIDs.ch5_recruit_terakota])
+            )
+
+            castle_top.connect(
+                fountains,
+                rule=secret_boss_mandatory
+                & all_recruits
+                & Has(items[ItemIDs.jarona_lesson], FromOption(MacGuffinChapter5)),
+            )
+        else:
+            castle_top.connect(
+                fountains,
+                rule=secret_boss_mandatory & Has(items[ItemIDs.jarona_lesson], FromOption(MacGuffinChapter5)),
+            )
