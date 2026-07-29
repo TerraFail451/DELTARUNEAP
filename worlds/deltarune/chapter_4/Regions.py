@@ -4,6 +4,7 @@ from BaseClasses import Region
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachLocation, Has
+from worlds.deltarune.LogicHelper import all_recruits_route
 from worlds.deltarune.Options import (
     ChosenRoute,
     MacGuffinChapter4,
@@ -104,12 +105,32 @@ def create_regions(world: "DeltaruneWorld"):
         locations[LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1]
     ) | [OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")]
 
-    # As you can access Third Sanctuary out of logic without any character, it's required for Titan
-    third_sanctuary.connect(
-        titan_fight,
-        rule=secret_boss_mandatory
-        & Has(items[ItemIDs.combination_lock_digit], FromOption(MacGuffinChapter4))
-        & have_kris_and_susie,
-    )
+    if all_recruits_route(world):
+        all_recruits = (
+            CanReachLocation(locations[LocationIDs.ch4_recruit_guei])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_balthizard])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_bibliox])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_mizzle])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_miss_mizzle])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_winglade])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_organikk])
+            & CanReachLocation(locations[LocationIDs.ch4_recruit_wicabel])
+        )
+        # As you can access Third Sanctuary out of logic without any character, it's required for Titan
+        third_sanctuary.connect(
+            titan_fight,
+            rule=secret_boss_mandatory
+            & all_recruits
+            & Has(items[ItemIDs.combination_lock_digit], FromOption(MacGuffinChapter4))
+            & have_kris_and_susie,
+        )
+    else:
+        # As you can access Third Sanctuary out of logic without any character, it's required for Titan
+        third_sanctuary.connect(
+            titan_fight,
+            rule=secret_boss_mandatory
+            & Has(items[ItemIDs.combination_lock_digit], FromOption(MacGuffinChapter4))
+            & have_kris_and_susie,
+        )
 
     titan_fight.connect(light_world)

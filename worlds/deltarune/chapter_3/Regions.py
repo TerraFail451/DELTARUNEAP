@@ -4,6 +4,7 @@ from BaseClasses import Region
 from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachLocation, Has
+from worlds.deltarune.LogicHelper import all_recruits_route
 from worlds.deltarune.Options import (
     IncludeShadowMantle,
     MacGuffinChapter3,
@@ -94,7 +95,23 @@ def create_regions(world: "DeltaruneWorld"):
         | Has(glitched_item_name)
     )
 
-    tv_world.connect(
-        cold_place,
-        rule=mantle_mandatory & shadow_mantle & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
-    )
+    if all_recruits_route(world):
+        all_recruits = (
+            CanReachLocation(locations[LocationIDs.ch3_recruit_shadowguy])
+            & CanReachLocation(locations[LocationIDs.ch3_recruit_pippins])
+            & CanReachLocation(locations[LocationIDs.ch3_recruit_shuttah])
+            & CanReachLocation(locations[LocationIDs.ch3_recruit_water_cooler])
+            & CanReachLocation(locations[LocationIDs.ch3_recruit_zapper])
+        )
+        tv_world.connect(
+            cold_place,
+            rule=mantle_mandatory
+            & all_recruits
+            & shadow_mantle
+            & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
+        )
+    else:
+        tv_world.connect(
+            cold_place,
+            rule=mantle_mandatory & shadow_mantle & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
+        )
