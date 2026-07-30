@@ -1,11 +1,5 @@
 # DELTARUNE
 
-## I'm a Linux Player
-
-Sadly for now, Linux last working version is 1.2.1 because of the lack of Proton/Wine implementation of winhttp that gamemaker use.
-
-A future update will provide a solution for Linux players.
-
 ## What is considered a location check in DELTARUNE?
 
 Location checks in DELTARUNE are all the spots in the game where you can get an item, and some extra events (Like getting the Moss). Exceptions are anything you cannot get on your chosen route and also some things that become unobtainable later on (Like Sweet Cap'n Cakes overworld shops) or things that only appear if certain choices are made (Like Chapter 3's Pipis item).
