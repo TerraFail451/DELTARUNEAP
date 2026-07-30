@@ -36,7 +36,6 @@ def create_regions(world: "DeltaruneWorld"):
     trash_zone = Region(Regions.ch2_trash_zone, world.player, world.multiworld)
     cyber_city = Region(Regions.ch2_cyber_city, world.player, world.multiworld)
     mansion_lobby_warp_door = Region(Regions.ch2_mansion_lobby_warp_door, world.player, world.multiworld)
-    swatch_cafe = Region(Regions.ch2_swatch_cafe, world.player, world.multiworld)
     mansion_both_route = Region(Regions.ch2_mansion_both_route, world.player, world.multiworld)
     mansion_recruits = Region(Regions.ch2_mansion_recruits, world.player, world.multiworld)
     mansion_losts = Region(Regions.ch2_mansion_losts, world.player, world.multiworld)
@@ -116,6 +115,7 @@ def create_regions(world: "DeltaruneWorld"):
 
     if normal_route(world):
         spamton_shop = Region(Regions.ch2_spamton_shop, world.player, world.multiworld)
+        swatch_cafe = Region(Regions.ch2_swatch_cafe, world.player, world.multiworld)
         cyber_city_spamton_fight = Region(Regions.ch2_cyber_city_spamton_fight, world.player, world.multiworld)
         cyber_city_post_spamton = Region(Regions.ch2_cyber_city_post_spamton, world.player, world.multiworld)
         mansion_lobby_main_route = Region(Regions.ch2_mansion_lobby_main_route, world.player, world.multiworld)
@@ -127,6 +127,7 @@ def create_regions(world: "DeltaruneWorld"):
 
         regions_normal_route = [
             spamton_shop,
+            swatch_cafe,
             cyber_city_spamton_fight,
             cyber_city_post_spamton,
             mansion_lobby_main_route,
