@@ -110,7 +110,7 @@ def create_regions(world: "DeltaruneWorld"):
 
         garden.connect(dark_garden)
 
-        garden.connect(garden_petal_feather, rule=Has(items[ItemIDs.petalfeather]))
+        garden_no_character_required.connect(garden_petal_feather, rule=Has(items[ItemIDs.petalfeather]))
 
         # aqua fight needs kris
         dark_garden.connect(garden_aqua, rule=have_kris)
