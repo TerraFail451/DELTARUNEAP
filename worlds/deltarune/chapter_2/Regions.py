@@ -48,6 +48,7 @@ def create_regions(world: "DeltaruneWorld"):
         dojo,
         cyber_field,
         cyber_field_post_dj,
+        music_shop,
         trash_zone_no_character_requirement,
         trash_zone,
         cyber_city,
