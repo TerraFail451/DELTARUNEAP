@@ -18,7 +18,7 @@ from MultiServer import mark_raw, Context, Client, Endpoint
 from Utils import async_start, logging
 from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
-ap_world_version = "v2.0.6"
+ap_world_version = "v2.1.0-beta1"
 
 DEBUG = True
 
@@ -167,6 +167,14 @@ Both gaining and losing recruits have been turned into checks."""
             else:
                 error = False
                 matching_hash = [
+                    "1F00145D681F830F1249D9493BA8F579",
+                    "0CCBFD7C4F9FB1B86DE1E2AAEC0BACC9",
+                    "9C28C97A88AA59103FE26AAE6A289138",
+                    "2907D8ACAC4D7893D045760E6B08C1EC",
+                    "12B1DB58E1A5E55EDA910E9E2E7F6AE8",
+                    "AD76409DB119EB742B0831D77442B9A0",
+                ]
+                matching_hash_04 = [
                     "9D1FEA9DE81219EA7304F32F1AE7A878",
                     "276441245F2F9C11061E36370E6E9C9D",
                     "F0ECF91309E55E93C1A9D6E10AF1064F",
@@ -201,10 +209,12 @@ Both gaining and losing recruits have been turned into checks."""
 
                     if hash != matching_hash[chapter]:
                         self.output(
-                            f"{pathInstall}/{additional_path}{file_name} is not DELTARUNE 1.04 Vanilla. (Is your game 1.05 or modded ?)"
+                            f"{pathInstall}/{additional_path}{file_name} is not DELTARUNE Vanilla. (Manifest 6988415462459025370)"
                         )
                         if hash == matching_hash_1_05[chapter]:
                             self.output("Detected as 1.05")
+                        elif hash == matching_hash_04[chapter]:
+                            self.output("Dectected as 1.04")
                         elif hash == matching_hash_1_05_30TBPS[chapter]:
                             self.output("Are you a speedrunner ? Because 1.05 30TBPS is detected")
                         else:
