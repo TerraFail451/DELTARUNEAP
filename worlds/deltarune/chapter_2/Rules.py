@@ -99,7 +99,7 @@ def set_rules(world: "DeltaruneWorld"):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if include_actions(world):
+    if not include_actions(world):
         world.get_location(locations[LocationIDs.ch2_cyber_field_fun_gang_actions_unlock]).place_locked_item(
             world.create_item(items[ItemIDs.s_r_n_actions])
         )
