@@ -287,6 +287,7 @@ class DeltaruneWorld(World):
                 "exclude_mike_platinum",
                 "unlock_characters",
                 "better_odds",
+                "have_starwalker",
                 "unlock_fun_gang_actions",
                 "chapter_1_recruit",
                 toggles_as_bools=True,

@@ -54,6 +54,15 @@ class BetterOdds(Toggle):
     display_name = "Better Odds"
     default = 1
 
+class HaveStarwalker(Toggle):
+    """
+    THE ORIGINAL ONE BE PRESENT UPON STARTING A NEW SAVE.
+
+    **star              walker :D**
+    """
+
+    display_name = "Always Have Starwalker"
+    default = 1
 
 class ChosenRoute(Choice):
     """
@@ -802,6 +811,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_mike: IncludeMike
     exclude_mike_platinum: ExcludeMikePlatinum
     better_odds: BetterOdds
+    have_starwalker: HaveStarwalker
     unlock_fun_gang_actions: UnlockFunGangActions
     chapter_1_recruit: Chapter1Recruit
 
