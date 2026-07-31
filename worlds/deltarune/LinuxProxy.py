@@ -74,6 +74,13 @@ async def parse_game_packets(ctx: "DeltaruneContext", data):
         # send over any packets received from the game client to the server
         else:
             logging.info(f"Game -> Proxy -> Server | {msg}")
+
+            if msg["cmd"] == "ConnectUpdate":
+                if "NoText" in msg["tags"]:
+                    msg["tags"].remove("NoText")
+                    logging.info(f"Removing NoText Tag")
+                    logging.info(f"NEW | {msg}")
+
             await ctx.send_msgs([msg])
 
 

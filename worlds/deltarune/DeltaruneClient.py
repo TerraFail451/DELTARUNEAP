@@ -229,7 +229,7 @@ Both gaining and losing recruits have been turned into checks."""
 
 
 class DeltaruneContext(SuperContext):
-    tags = {}
+    tags = {"TextOnly"}
     game = "DELTARUNE"
     command_processor = DeltaruneCommandProcessor
     items_handling = 0b111
@@ -330,7 +330,8 @@ class DeltaruneContext(SuperContext):
             self.room_info = args
             logging.info(f"Room info received: {args}")
         elif self.proxy != None:
-            self.proxy_server_msgs.append(args)
+            if cmd != "PrintJSON":
+                self.proxy_server_msgs.append(args)
         async_start(process_deltarune_cmd(self, cmd, args))
 
     def make_gui(self):
