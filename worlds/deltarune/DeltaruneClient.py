@@ -209,7 +209,7 @@ Both gaining and losing recruits have been turned into checks."""
 
                     if hash != matching_hash[chapter]:
                         self.output(
-                            f"{pathInstall}/{additional_path}{file_name} is not DELTARUNE Vanilla. (Manifest 6988415462459025370)"
+                            f"{pathInstall}/{additional_path}{file_name} is not DELTARUNE Vanilla. (Manifest 2054633419585385858)"
                         )
                         if hash == matching_hash_1_05[chapter]:
                             self.output("Detected as 1.05")
