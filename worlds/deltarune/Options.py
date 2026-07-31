@@ -69,12 +69,9 @@ class ChosenRoute(Choice):
     CHOOSE THE ROUTE THAT YOU PREFER.
 
     - **Normal Route** *Proceed through the story normally.*
-    - **Weird Route** *Proceed through the "Weird Route" storyline.*
-    - **All Recruits** *Progress through the story by recruiting everyone to complete the chapter.*
+    - **Weird Route** *Proceed through the "Weird Route" storyline. Can we rename this to Side B yet*
+    - **All Recruits** *Progress through the story normally, but you have to recruit everyone to complete the chapter.*
     - **[DISABLED]** **All Routes**
-
-    (The chosen route only chooses if recruiting or losing recruits are included or not.)
-    (This doesn't require you to finish a chapter with a specific route yet, but will in the future.)
     """
 
     display_name = "Chosen Route"
@@ -87,7 +84,7 @@ class ChosenRoute(Choice):
 
 class RecruitsSanity(Toggle):
     """
-    Recruits are checks
+    WILL GAINING RECRUITS COUNT AS LOCATIONS?
 
     (Forced enabled if All recruits is selected)
     """
@@ -98,9 +95,10 @@ class RecruitsSanity(Toggle):
 
 class LoseRecruitsSanity(Toggle):
     """
-    Losing recruits are checks
+    WILL LOSING RECRUITS COUNT AS LOCATIONS?
 
     (Forced disabled if All recruits is selected)
+    (If you choose Weird Route, specifically the recruits you lose in Cyber City will be enabled to avoid a generation fail.)
     """
 
     display_name = "Lose recruits Sanity"
@@ -115,7 +113,7 @@ class RandomizeChapters(Choice):
     - **Randomized** *Chapters are unlocked through getting items. You'll be expected to move in-between chapters a lot.*
     - **All Unlocked** *All chapters are unlocked from the start. You will be expected to play through another chapter once stuck.*
 
-    (The goal is closing the final fountain of each chapter whatever the option chosen.)
+    (The goal is closing the final fountain of each chapter enabled.)
     """
 
     display_name = "Randomize Chapters"
@@ -144,9 +142,9 @@ class StartingChapter(Choice):
 
 class RandomSafetyChapterIncluded(Toggle):
     """
-    When enabled, will choose a random chapter to be included if none.
+    SHOULD NO CHAPTERS BE ENABLED, A RANDOM ONE WILL BE GRANTED.
 
-    Should be used if you randomized
+    (Should be enabled if you choose to randomly enable chapters, i.e. through weights)
     """
 
     display_name = "RANDOM SAFETY : Chapter inclusion"
@@ -155,9 +153,9 @@ class RandomSafetyChapterIncluded(Toggle):
 
 class RandomizeSecretBosses(Choice):
     """
-    ITEMS GIVEN BY SECRET BOSSES WILL BE RANDOMIZED OR EVEN REQUIRED.
+    LOCATIONS GIVEN BY SECRET BOSSES WILL BE RANDOMIZED OR EVEN REQUIRED.
 
-    - **Mandatory** *Secret Bosses rewards will be randomized and required to do to access the fountain*
+    - **Mandatory** *Secret Boss rewards will be randomized, and they will be required to beat to access the fountain.*
 
     *Secret bosses are: Jevil, Spamton Neo, Shadow Mantle/ERAM, Chapter 3 Knight, Hammer of Justice, Pink*
     """
@@ -171,7 +169,7 @@ class RandomizeSecretBosses(Choice):
 
 class RandomizeMANTLE(Choice):
     """
-    CHECKS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
+    LOCATIONS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
 
     - **Mantleless** *Items in the Original Game will be randomized but the Shadow Mantle/ERAM fight isn't mandatory if secret bosses is set to mandatory*
     """
@@ -344,7 +342,7 @@ class IncludeChapter2(Toggle):
 
 class IncludeSwatchlingWeirdRoute(Toggle):
     """
-    WILL THE SWATCHLING DURING WEIRD ROUTE BE CONSIDERED FOR LOSE OR RECRUIT?
+    WILL THE SWATCHLING RECRUIT BE CONSIDERED TO LOSE OR RECRUIT IN THE FORBIDDEN ROUTE?
 
     *(Since Swatchlings don't normally appear in weird route, enabling this means you have to do Singapore Wrong Warps.)*
     """
@@ -480,7 +478,7 @@ class MacGuffinExtra(Range):
     THE AMOUNT OF EXTRA ITEMS IN THE ITEMPOOL TO UNBLOCK THE ROAD TO FINAL BOSSES.
 
     *(So, if you choose to have 3 macguffin items in Chapter 1 and set this option to 1,)*
-    *(you'll have 4 macguffin items in the pool, but you'll still only need 3 to progress)*
+    *(you'll have 4 macguffin items in the pool, but you'll still only need 3 to progress.)*
     """
 
     display_name = "Extra MacGuffin Amount"
