@@ -206,12 +206,12 @@ def handle_locked_items(world: "DeltaruneWorld"):
                 world.create_item(get_unlock_item(world, next_chapter))
             )
 
-    if include_truetie_fusion(world):
+    if include_truetie_fusion(world) and not include_hidden_items:
         world.get_location(locations[LocationIDs.cc_castle_town_truetie_fusion]).place_locked_item(
             world.create_item(items[ItemIDs.truetie])
         )
 
-    if include_dogwidow_fusion(world):
+    if include_dogwidow_fusion(world) and not include_hidden_items:
         world.get_location(locations[LocationIDs.cc_castle_town_dogwidow_fusion]).place_locked_item(
             world.create_item(items[ItemIDs.dogwidow])
         )
