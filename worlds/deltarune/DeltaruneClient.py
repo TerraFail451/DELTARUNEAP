@@ -167,12 +167,12 @@ Both gaining and losing recruits have been turned into checks."""
             else:
                 error = False
                 matching_hash = [
-                    "1F00145D681F830F1249D9493BA8F579",
+                    "83A5A14F9B92A20F21FB9EC6C8528469",
                     "0CCBFD7C4F9FB1B86DE1E2AAEC0BACC9",
-                    "9C28C97A88AA59103FE26AAE6A289138",
-                    "2907D8ACAC4D7893D045760E6B08C1EC",
-                    "12B1DB58E1A5E55EDA910E9E2E7F6AE8",
-                    "AD76409DB119EB742B0831D77442B9A0",
+                    "1592C9BFFA2D9E53DDEEDC0C4F9A07D6",
+                    "B43158DB2E958E767EBB1AAE72FB05A1",
+                    "27E36F883F4ADE21707DC8261072D416",
+                    "9C80E6300E0548D933CC006F3C22760D",
                 ]
                 matching_hash_04 = [
                     "9D1FEA9DE81219EA7304F32F1AE7A878",
