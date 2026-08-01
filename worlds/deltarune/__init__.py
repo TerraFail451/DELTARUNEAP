@@ -269,6 +269,8 @@ class DeltaruneWorld(World):
                 "exclude_post_chapter_2_locations",
                 "randomize_chapters",
                 "randomize_music",
+                "include_unused_music",
+                "include_odd_music",
                 "include_hidden_items",
                 "include_secret_bosses_items_requirement",
                 "mysterykey_from_pink_coins",

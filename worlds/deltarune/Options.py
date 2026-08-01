@@ -69,23 +69,64 @@ class HaveStarwalker(Toggle):
 class RandomizeMusic(Choice):
     """
     SHOULD BACKGROUND AUDIO BE RANDOM?
-    
-    - **Include Unused** *Adds normally unused songs to the music pool.*
-    
-    (In instances where the music has too big an impact on gameplay, music will not be randomized.)
+
+    - **Only Included Chapters** *Only randomize music from enabled chapters.*
+    - **All Chapters** *Randomize music from all chapters, including disabled ones.*
+
+    (There are a few instances where music will not be randomized, usually being when the music has too big an impact on gameplay.)
     """
 
     display_name = "Randomize Music"
     option_false = 0
-    option_true = 1
-    option_include_unused = 2
+    option_only_included_chapters = 1
+    option_all_chapters = 2
     default = option_false
 
 
 class RandomizeMusicOptions(StrEnum):
     false = "false"
+    only_included_chapters = "only_included_chapters"
+    all_chapters = "all_chapters"
+
+
+class IncludeUnusedMusic(Toggle):
+    """
+    CERTAIN BACKGROUND AUDIO IS NOT NORMALLY PRESENT.
+
+    WILL THEY NOW BE WITH THE REST?
+
+    (This only applies if you enable Randomize Music.)
+    """
+
+    display_name = "Include Unused Music"
+    default = 0
+
+
+class IncludeOddMusic(Choice):
+    """
+    SOME BACKGROUND AUDIO IS MERELY MEANT FOR EFFECT AND NOTHING MORE.
+
+    SHOULD THEY RECEIVE THE SAME TREATMENT AS THE REST?
+
+    - **Include Grating Music** *Adds music that **will be painful** regardless of how long you listen.*
+      **YOU ACKNOWLEDGE THE POSSIBILITY OF PAIN AND DISCOMFORT.**
+
+    (The game's music folder contains many "songs" that either are sound effects or should be treated as such.)
+    (Since they are classified as music, you may enable these if you so wish.)
+    (This only applies if you enable Randomize Music.)
+    """
+
+    display_name = "Include Odd Music"
+    option_false = 0
+    option_true = 1
+    option_include_grating_music = 2
+    default = option_false
+
+
+class IncludeOddMusicOptions(StrEnum):
+    false = "false"
     true = "true"
-    include_unused = "include_unused"
+    include_grating_music = "include_grating_music"
 
 
 class ChosenRoute(Choice):
@@ -665,6 +706,7 @@ class UnlockCharactersOptions(StrEnum):
 class IncludeUnusedItems(Choice):
     """
     CERTAIN ITEMS ARE NOT NORMALLY PRESENT.
+
     WILL THEY NOW BE WITH THE REST?
 
     - **True without EveryBodyWeapon** *(Include unused items but without EveryBodyWeapon, which is a super powerful unbalanced item probably used by the dev team for debugging.)*
@@ -783,6 +825,14 @@ deltarune_option_groups = [
             UnlockFunGangActions,
         ],
     ),
+    OptionGroup(
+        "Music Randomizer",
+        [
+            RandomizeMusic,
+            IncludeUnusedMusic,
+            IncludeOddMusic,
+        ],
+    ),
 ]
 
 
@@ -798,6 +848,8 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_chapter_5: IncludeChapter5
     randomize_chapters: RandomizeChapters
     randomize_music: RandomizeMusic
+    include_unused_music: IncludeUnusedMusic
+    include_odd_music: IncludeOddMusic
     starting_chapter: StartingChapter
     chosen_route: ChosenRoute
     recruits_sanity: RecruitsSanity
