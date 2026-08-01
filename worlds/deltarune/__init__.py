@@ -480,7 +480,7 @@ class DeltaruneWorld(World):
         self.cached_filler_and_trap_weights = convert_filler_and_trap_to_weights(filler_pool, self.options)
 
     def handle_macguffins_items(self, item_pool: list[ItemData]):
-        if included_chapter(self, 1):
+        if included_chapter(self, 1) and self.options.macguffin_chapter_1.value > 0:
             item_data = next(
                 (item_data for item_data in item_pool if item_data.code == ItemIDs.king_shape_key_piece), None
             )
@@ -488,19 +488,19 @@ class DeltaruneWorld(World):
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_1.value + self.options.macguffin_extra.value
             )
-        if included_chapter(self, 2):
+        if included_chapter(self, 2) and self.options.macguffin_chapter_2.value > 0:
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.keygen_2_segment), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_2.value + self.options.macguffin_extra.value
             )
-        if included_chapter(self, 3):
+        if included_chapter(self, 3) and self.options.macguffin_chapter_3.value > 0:
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.remote_battery), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_3.value + self.options.macguffin_extra.value
             )
-        if included_chapter(self, 4):
+        if included_chapter(self, 4) and self.options.macguffin_chapter_4.value > 0:
             item_data = next(
                 (item_data for item_data in item_pool if item_data.code == ItemIDs.combination_lock_digit), None
             )
@@ -508,7 +508,11 @@ class DeltaruneWorld(World):
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_4.value + self.options.macguffin_extra.value
             )
-        if included_chapter(self, 5) and self.options.chosen_route.value != ChosenRoute.option_weird_route:
+        if (
+            included_chapter(self, 5)
+            and self.options.chosen_route.value != ChosenRoute.option_weird_route
+            and self.options.macguffin_chapter_5.value > 0
+        ):
             item_data = next((item_data for item_data in item_pool if item_data.code == ItemIDs.jarona_lesson), None)
             index = item_pool.index(item_data)
             item_pool[index] = item_data._replace(
