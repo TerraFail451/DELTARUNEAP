@@ -108,7 +108,7 @@ class IncludeOddMusic(Choice):
 
     SHOULD THEY RECEIVE THE SAME TREATMENT AS THE REST?
 
-    - **Include Grating Music** *Adds music that **will be painful** regardless of how long you listen.*
+    - **Include Harsh Music** *Adds music that **will be painful** regardless of how long you listen.*
       **YOU ACKNOWLEDGE THE POSSIBILITY OF PAIN AND DISCOMFORT.**
 
     (The game's music folder contains many "songs" that either are sound effects or should be treated as such.)
@@ -119,14 +119,14 @@ class IncludeOddMusic(Choice):
     display_name = "Include Odd Music"
     option_false = 0
     option_true = 1
-    option_include_grating_music = 2
+    option_include_harsh_music = 2
     default = option_false
 
 
 class IncludeOddMusicOptions(StrEnum):
     false = "false"
     true = "true"
-    include_grating_music = "include_grating_music"
+    include_harsh_music = "include_harsh_music"
 
 
 class ChosenRoute(Choice):
