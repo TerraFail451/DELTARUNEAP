@@ -222,6 +222,21 @@ Both gaining and losing recruits have been turned into checks."""
 
                         error = True
 
+                if not os.path.exists(Utils.user_path("DELTARUNE_PATCH")):
+                    error = True
+                    self.output(
+                        "ERROR: DELTARUNE_PATCH folder is missing. Please download the patch files and deposit them in the DELTARUNE_PATCH folder at the root of your Archipelago installation."
+                    )
+                    os.makedirs(name=Utils.user_path("DELTARUNE_PATCH"), exist_ok=True)
+                    os.startfile(Utils.user_path("DELTARUNE_PATCH"))
+
+                for i in range(0, 6):
+                    if not os.path.exists(Utils.user_path("DELTARUNE_PATCH", f"chapter_{i}.bsdiff")):
+                        error = True
+                        self.output(
+                            f"ERROR: DELTARUNE_PATCH/chapter_{i}.bsdiff is missing. Please download the patch files and deposit them in the DELTARUNE_PATCH folder at the root of your Archipelago installation."
+                        )
+
                 if not error:
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
                     self.ctx.patch_game()
@@ -267,27 +282,39 @@ class DeltaruneContext(SuperContext):
 
     def patch_game(self):
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch1.bsdiff"))
+            patchedFile = bsdiff4.patch(
+                f.read(), deltarune.data_path(Utils.user_path("DELTARUNE_PATCH", "chapter_1.bsdiff"))
+            )
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter2_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch2.bsdiff"))
+            patchedFile = bsdiff4.patch(
+                f.read(), deltarune.data_path(Utils.user_path("DELTARUNE_PATCH", "chapter_2.bsdiff"))
+            )
         with open(Utils.user_path("DELTARUNE", "chapter2_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter3_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch3.bsdiff"))
+            patchedFile = bsdiff4.patch(
+                f.read(), deltarune.data_path(Utils.user_path("DELTARUNE_PATCH", "chapter_3.bsdiff"))
+            )
         with open(Utils.user_path("DELTARUNE", "chapter3_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch4.bsdiff"))
+            patchedFile = bsdiff4.patch(
+                f.read(), deltarune.data_path(Utils.user_path("DELTARUNE_PATCH", "chapter_4.bsdiff"))
+            )
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch5.bsdiff"))
+            patchedFile = bsdiff4.patch(
+                f.read(), deltarune.data_path(Utils.user_path("DELTARUNE_PATCH", "chapter_5.bsdiff"))
+            )
         with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("deltarune.bsdiff"))
+            patchedFile = bsdiff4.patch(
+                f.read(), deltarune.data_path(Utils.user_path("DELTARUNE_PATCH", "chapter_0.bsdiff"))
+            )
         with open(Utils.user_path("DELTARUNE", "data.win"), "wb") as f:
             f.write(patchedFile)
 
