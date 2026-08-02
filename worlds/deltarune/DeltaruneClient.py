@@ -2,6 +2,7 @@ from __future__ import annotations
 import os
 import asyncio
 import typing
+import webbrowser
 import bsdiff4
 import shutil
 import json
@@ -19,6 +20,7 @@ from Utils import async_start, logging
 from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
 ap_world_version = "v2.1.0-beta4"
+deltarune_mod_github = "https://github.com/Tenebrosful/DeltaruneAP-mod/releases"
 
 DEBUG = True
 
@@ -166,6 +168,7 @@ Both gaining and losing recruits have been turned into checks."""
                 )
             else:
                 error = False
+                opened_browsers = False
                 matching_hash = [
                     "83A5A14F9B92A20F21FB9EC6C8528469",
                     "0CCBFD7C4F9FB1B86DE1E2AAEC0BACC9",
@@ -222,8 +225,31 @@ Both gaining and losing recruits have been turned into checks."""
 
                         error = True
 
+                if not os.path.exists(Utils.user_path("DELTARUNE_PATCH")):
+                    error = True
+                    self.output(
+                        "ERROR: DELTARUNE_PATCH folder is missing. Please download the patch files and deposit them in the DELTARUNE_PATCH folder at the root of your Archipelago installation."
+                    )
+                    os.makedirs(name=Utils.user_path("DELTARUNE_PATCH"), exist_ok=True)
+                    os.startfile(Utils.user_path("DELTARUNE_PATCH"))
+                    opened_browsers = True
+                    webbrowser.open(deltarune_mod_github, new=2, autoraise=True)
+                for i in range(0, 6):
+                    if not os.path.exists(Utils.user_path("DELTARUNE_PATCH", f"chapter_{i}.bsdiff")):
+                        error = True
+                        self.output(
+                            f"ERROR: DELTARUNE_PATCH/chapter_{i}.bsdiff is missing. Please download the patch files and deposit them in the DELTARUNE_PATCH folder at the root of your Archipelago installation."
+                        )
+                        if not opened_browsers:
+                            os.startfile(Utils.user_path("DELTARUNE_PATCH"))
+                            opened_browsers = True
+                            webbrowser.open(deltarune_mod_github, new=2, autoraise=True)
+
                 if not error:
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
+                    self.output(
+                        f"Your game will now be patched. Please wait... it might take a while and make your client not respond but that's normal."
+                    )
                     self.ctx.patch_game()
                     self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}/DELTARUNE.exe")
 
@@ -267,27 +293,39 @@ class DeltaruneContext(SuperContext):
 
     def patch_game(self):
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch1.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_1.bsdiff"), "rb") as patch_file:
+                logging.info(f"Patching Chapter 1...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter2_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch2.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_2.bsdiff"), "rb") as patch_file:
+                logging.info(f"Patching Chapter 2...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter2_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter3_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch3.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_3.bsdiff"), "rb") as patch_file:
+                logging.info(f"Patching Chapter 3...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter3_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch4.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_4.bsdiff"), "rb") as patch_file:
+                logging.info(f"Patching Chapter 4...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("ch5.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_5.bsdiff"), "rb") as patch_file:
+                logging.info(f"Patching Chapter 5...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), deltarune.data_path("deltarune.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_0.bsdiff"), "rb") as patch_file:
+                logging.info(f"Patching Chapter Select...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "data.win"), "wb") as f:
             f.write(patchedFile)
 

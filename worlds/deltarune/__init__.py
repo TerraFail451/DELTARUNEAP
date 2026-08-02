@@ -152,12 +152,6 @@ components.append(
 # I apologize for the name of the icon - Emerald
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
-def data_path(file_name: str):
-    import pkgutil
-
-    return pkgutil.get_data(__name__, "data/" + file_name)
-
-
 class DeltaruneWeb(WebWorld):
     tutorials = [
         Tutorial(
