@@ -68,7 +68,7 @@ class ChosenRoute(Choice):
     """
     CHOOSE THE ROUTE THAT YOU PREFER.
 
-    - **Normal Route** *Proceed through the story normally.*
+    - **Normal Route** *Progress through the story normally.*
     - **Weird Route** *Proceed through the "Weird Route" storyline. Can we rename this to Side B yet*
     - **All Recruits** *Progress through the story normally, but you have to recruit everyone to complete the chapter.*
     - **[DISABLED]** **All Routes**
@@ -171,7 +171,8 @@ class RandomizeMANTLE(Choice):
     """
     LOCATIONS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
 
-    - **Mantleless** *Items in the Original Game will be randomized but the Shadow Mantle/ERAM fight isn't mandatory if secret bosses is set to mandatory*
+    *(If you choose to have mandatory secret bosses, the Shadow Mantle/ERAM fight is required, even if you set this option to false.)*
+    *(If you DON'T want to have to do that fight, set this option to MANTLELESS.)*
     """
 
     display_name = "Randomize MANTLE"
@@ -220,8 +221,6 @@ class IncludeTRankOptions(StrEnum):
 class ItemBalancing(Toggle):
     """
     IF AN ITEM IS OBTAINED EARLY, ITS POWER WILL BE SCALED DOWN.
-
-    *Formula is basically `item_stat * (current_chapter / item_chapter)`, only scaling down*
     """
 
     display_name = "ItemBalancing"
@@ -401,7 +400,7 @@ class IncludeChapter5(Toggle):
 
 class MacGuffinChapter1(Range):
     """
-    A NEW ROADBLACK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 1.
+    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 1.
 
     THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
 
@@ -416,7 +415,7 @@ class MacGuffinChapter1(Range):
 
 class MacGuffinChapter2(Range):
     """
-    A NEW ROADBLACK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 2.
+    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 2.
 
     THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
 
@@ -431,7 +430,7 @@ class MacGuffinChapter2(Range):
 
 class MacGuffinChapter3(Range):
     """
-    A NEW ROADBLACK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 3.
+    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 3.
 
     THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
 
@@ -446,7 +445,7 @@ class MacGuffinChapter3(Range):
 
 class MacGuffinChapter4(Range):
     """
-    A NEW ROADBLACK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 4.
+    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 4.
 
     THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
 
@@ -460,7 +459,7 @@ class MacGuffinChapter4(Range):
 
 class MacGuffinChapter5(Range):
     """
-    A NEW ROADBLACK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 5.
+    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 5.
 
     THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
 
@@ -569,6 +568,9 @@ class FillerTensionWeight(NamedRange):
 class FillerSMILEWeight(NamedRange):
     """
     DETERMINES HOW OFTEN IT WILL SMILE.
+
+    *(SMILE only sends a silly message.)*
+    *(...Right?)*
     """
 
     display_name = "SMILE Weight"
