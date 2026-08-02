@@ -247,6 +247,9 @@ Both gaining and losing recruits have been turned into checks."""
 
                 if not error:
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
+                    self.output(
+                        f"Your game will now be patched. Please wait... it might take a while and make your client not respond but that's normal."
+                    )
                     self.ctx.patch_game()
                     self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}/DELTARUNE.exe")
 
