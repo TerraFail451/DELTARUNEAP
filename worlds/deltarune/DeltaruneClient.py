@@ -290,27 +290,39 @@ class DeltaruneContext(SuperContext):
 
     def patch_game(self):
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), Utils.user_path("DELTARUNE_PATCH", "chapter_1.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_1.bsdiff"), "rb") as patch_file:
+                self.output(f"Patching Chapter 1...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter1_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter2_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), Utils.user_path("DELTARUNE_PATCH", "chapter_2.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_2.bsdiff"), "rb") as patch_file:
+                self.output(f"Patching Chapter 2...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter2_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter3_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), Utils.user_path("DELTARUNE_PATCH", "chapter_3.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_3.bsdiff"), "rb") as patch_file:
+                self.output(f"Patching Chapter 3...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter3_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), Utils.user_path("DELTARUNE_PATCH", "chapter_4.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_4.bsdiff"), "rb") as patch_file:
+                self.output(f"Patching Chapter 4...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter4_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), Utils.user_path("DELTARUNE_PATCH", "chapter_5.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_5.bsdiff"), "rb") as patch_file:
+                self.output(f"Patching Chapter 5...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "chapter5_windows", "data.win"), "wb") as f:
             f.write(patchedFile)
         with open(Utils.user_path("DELTARUNE", "data.win"), "rb") as f:
-            patchedFile = bsdiff4.patch(f.read(), Utils.user_path("DELTARUNE_PATCH", "chapter_0.bsdiff"))
+            with open(Utils.user_path("DELTARUNE_PATCH", "chapter_0.bsdiff"), "rb") as patch_file:
+                self.output(f"Patching Chapter Select...")
+                patchedFile = bsdiff4.patch(f.read(), patch_file.read())
         with open(Utils.user_path("DELTARUNE", "data.win"), "wb") as f:
             f.write(patchedFile)
 
