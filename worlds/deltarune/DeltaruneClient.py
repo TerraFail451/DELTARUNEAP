@@ -2,6 +2,7 @@ from __future__ import annotations
 import os
 import asyncio
 import typing
+import webbrowser
 import bsdiff4
 import shutil
 import json
@@ -19,6 +20,7 @@ from Utils import async_start, logging
 from worlds.deltarune.LinuxProxy import encode, proxy, proxy_loop
 
 ap_world_version = "v2.1.0-beta4"
+deltarune_mod_github = "https://github.com/Tenebrosful/DeltaruneAP-mod/releases"
 
 DEBUG = True
 
@@ -166,6 +168,7 @@ Both gaining and losing recruits have been turned into checks."""
                 )
             else:
                 error = False
+                opened_browsers = False
                 matching_hash = [
                     "83A5A14F9B92A20F21FB9EC6C8528469",
                     "0CCBFD7C4F9FB1B86DE1E2AAEC0BACC9",
@@ -229,13 +232,18 @@ Both gaining and losing recruits have been turned into checks."""
                     )
                     os.makedirs(name=Utils.user_path("DELTARUNE_PATCH"), exist_ok=True)
                     os.startfile(Utils.user_path("DELTARUNE_PATCH"))
-
+                    opened_browsers = True
+                    webbrowser.open(deltarune_mod_github, new=2, autoraise=True)
                 for i in range(0, 6):
                     if not os.path.exists(Utils.user_path("DELTARUNE_PATCH", f"chapter_{i}.bsdiff")):
                         error = True
                         self.output(
                             f"ERROR: DELTARUNE_PATCH/chapter_{i}.bsdiff is missing. Please download the patch files and deposit them in the DELTARUNE_PATCH folder at the root of your Archipelago installation."
                         )
+                        if not opened_browsers:
+                            os.startfile(Utils.user_path("DELTARUNE_PATCH"))
+                            opened_browsers = True
+                            webbrowser.open(deltarune_mod_github, new=2, autoraise=True)
 
                 if not error:
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
