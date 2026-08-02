@@ -25,6 +25,8 @@ If you don't use mod loader, you can also patch your game with DeltaPatcher
 
 Download the APWorld and place it into archipelago/custom_worlds (Double clicking the APWorld will also work!)
 
+Download the bsdiff files from the mod [Releases Page](https://github.com/Tenebrosful/DeltaruneAP-mod/releases) and place it in a folder named `DELTARUNE_PATCH` at the root of Archipelago folder.
+
 Run the Archipelago Launcher (Or restart the launcher if it's already running)
 
 Start the DELTARUNE client from your Archipelago folder or the Archipelago app and input `/auto_patch <Your DELTARUNE Install Directory>` at the bottom.
