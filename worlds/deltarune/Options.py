@@ -70,36 +70,59 @@ class RandomizeMusic(Choice):
     """
     SHOULD BACKGROUND AUDIO BE RANDOM?
 
-    - **Only Included Chapters** *Only randomize music from enabled chapters.*
-    - **All Chapters** *Randomize music from all chapters, including disabled ones.*
+    IF SO, CHOOSE THE CONSISTENCY THAT YOU PREFER.
+
+    - **Static** *Music remains the same for the seed/slot.*
+    - **On Restart** *Music is reshuffled every time the game is restarted.*
+    - **Per Play** *Music changes every time it starts playing.*
 
     (There are a few instances where music will not be randomized, usually being when the music has too big an impact on gameplay.)
     """
 
     display_name = "Randomize Music"
     option_false = 0
-    option_only_included_chapters = 1
-    option_all_chapters = 2
+    option_static = 1
+    option_on_restart = 2
+    option_per_play = 3
     default = option_false
 
 
 class RandomizeMusicOptions(StrEnum):
     false = "false"
-    only_included_chapters = "only_included_chapters"
-    all_chapters = "all_chapters"
+    static = "static"
+    on_restart = "on_restart"
+    per_play = "per_play"
 
 
-class IncludeUnusedMusic(Toggle):
+class MusicSource(Choice):
     """
-    CERTAIN BACKGROUND AUDIO IS NOT NORMALLY PRESENT.
+    WHERE SHOULD BACKGROUND AUDIO BE PULLED FROM?
 
-    WILL THEY NOW BE WITH THE REST?
+    - **Only Included Chapters** *Randomize music from only enabled chapters.*
+    - **All Chapters** *Randomize music from all chapters, including disabled ones.*
+    - **UNDERTALE** *Randomize music from UNDERTALE.*
+    - **Included Chapters + UNDERTALE** *Randomize music from enabled chapters and UNDERTALE.*
+    - **All Chapters + UNDERTALE** *Randomize music from all chapters and UNDERTALE.*
 
+    (You must own UNDERTALE on PC to use its music.)
     (This only applies if you enable Randomize Music.)
     """
 
-    display_name = "Include Unused Music"
-    default = 0
+    display_name = "Music Source"
+    option_only_included_chapters = 0
+    option_all_chapters = 1
+    option_undertale = 2
+    option_included_chapters_undertale = 3
+    option_all_chapters_undertale = 4
+    default = option_only_included_chapters
+
+
+class MusicSourceOptions(StrEnum):
+    only_included_chapters = "only_included_chapters"
+    all_chapters = "all_chapters"
+    undertale = "undertale"
+    included_chapters_undertale = "included_chapters_undertale"
+    all_chapters_undertale = "all_chapters_undertale"
 
 
 class IncludeOddMusic(Choice):
@@ -127,6 +150,19 @@ class IncludeOddMusicOptions(StrEnum):
     false = "false"
     true = "true"
     include_harsh_music = "include_harsh_music"
+
+
+class IncludeUnusedMusic(Toggle):
+    """
+    CERTAIN BACKGROUND AUDIO IS NOT NORMALLY PRESENT.
+
+    WILL THEY NOW BE WITH THE REST?
+
+    (This only applies if you enable Randomize Music.)
+    """
+
+    display_name = "Include Unused Music"
+    default = 0
 
 
 class ChosenRoute(Choice):
@@ -829,8 +865,9 @@ deltarune_option_groups = [
         "Music Randomizer",
         [
             RandomizeMusic,
-            IncludeUnusedMusic,
+            MusicSource,
             IncludeOddMusic,
+            IncludeUnusedMusic,
         ],
     ),
 ]
@@ -847,9 +884,6 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_chapter_4: IncludeChapter4
     include_chapter_5: IncludeChapter5
     randomize_chapters: RandomizeChapters
-    randomize_music: RandomizeMusic
-    include_unused_music: IncludeUnusedMusic
-    include_odd_music: IncludeOddMusic
     starting_chapter: StartingChapter
     chosen_route: ChosenRoute
     recruits_sanity: RecruitsSanity
@@ -891,6 +925,10 @@ class DeltaruneOptions(PerGameCommonOptions):
     have_starwalker: HaveStarwalker
     unlock_fun_gang_actions: UnlockFunGangActions
     chapter_1_recruit: Chapter1Recruit
+    randomize_music: RandomizeMusic
+    music_source: MusicSource
+    include_odd_music: IncludeOddMusic
+    include_unused_music: IncludeUnusedMusic
 
     random_safety_chapter_inclusion: RandomSafetyChapterIncluded
 
