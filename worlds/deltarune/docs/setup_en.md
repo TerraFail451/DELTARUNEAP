@@ -1,6 +1,6 @@
 # DELTARUNE Archipelago Setup Guide
 
-## This setup guide is for the Chapter 5 beta releases. Looking for the v2.0.6 setup guide? Click [here](https://github.com/theemeraldsword85/DELTARUNEAP/blob/v2.0.6/worlds/deltarune/docs/setup_en.md) 
+## This setup guide is for the Chapter 5 beta releases. Looking for the v2.0.6 setup guide? Click [here](https://github.com/theemeraldsword85/DELTARUNEAP/blob/v2.0.6/worlds/deltarune/docs/setup_en.md).
 
 ## Required Software
 
