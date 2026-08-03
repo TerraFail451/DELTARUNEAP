@@ -15,6 +15,7 @@ from worlds.deltarune.LogicHelper import (
     include_mysterykey,
     include_secret_bosses_items_requirement,
     include_secret_bosses_items_reward,
+    include_unused_items,
     not_weird_route_only,
     randomized_chapters,
 )
@@ -66,7 +67,12 @@ chapter5_items = [
     ItemData(ItemIDs.woodblade2, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.kris_weapons]),
     ItemData(ItemIDs.thatchet, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.susie_weapons]),
     ItemData(ItemIDs.mistlewp, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons]),
-    ItemData(ItemIDs.gildedrose, ItemClassification.useful, groups=[ItemGroups.weapons, ItemGroups.noelle_weapons]),
+    ItemData(
+        ItemIDs.gildedrose,
+        ItemClassification.useful,
+        should_be_included=include_unused_items,
+        groups=[ItemGroups.weapons, ItemGroups.noelle_weapons],
+    ),
     ItemData(
         ItemIDs.dogdollar,
         ItemClassification.progression | ItemClassification.deprioritized,
