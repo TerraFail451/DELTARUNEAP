@@ -259,9 +259,6 @@ class ItemIDs(IntEnum):
     blueshoes = 30032
     aquaknife = 30033
     floweryscarf = 30034
-    # FloweryScarf is the BrokenScarf, so we'll only have one of them.
-    # In Chapter 5 and below, you will get the floweryscarf
-    # In Chapter 6+, you'll receive brokenscarf instead
     brokenscarf = 30035
     gildedrose = 30036
     mistlewp = 30037
@@ -510,6 +507,7 @@ items = {
     ItemIDs.blueshoes: "BlueShoes",
     ItemIDs.aquaknife: "AquaKnife",
     ItemIDs.floweryscarf: "FloweryScarf",
+    ItemIDs.brokenscarf: "BrokenScarf",
     ItemIDs.gildedrose: "GildedRose",
     ItemIDs.mistlewp: "MistleWP",
     ItemIDs.monarchrbn: "MonarchRBN",

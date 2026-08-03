@@ -71,7 +71,7 @@ def set_rules(world: "DeltaruneWorld"):
 
 
 def handle_locked_items(world: "DeltaruneWorld"):
-    if include_secret_bosses_items_reward(world):
+    if not include_secret_bosses_items_reward(world):
         world.get_location(locations[LocationIDs.ch1_card_castle_jevil_1]).place_locked_item(
             world.create_item(items[ItemIDs.jevilstail])
         )
