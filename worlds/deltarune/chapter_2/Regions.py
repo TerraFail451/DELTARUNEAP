@@ -68,22 +68,13 @@ def create_regions(world: "DeltaruneWorld"):
 
     world.get_region(Regions.chapter_2).connect(castle_town)
 
-    access_to_cyber_field = (
-        (have_kris | can_act_spare_susie) & OptionFilter(RecruitsSanity, RecruitsSanity.option_true)
-    ) | (have_kris_or_susie & OptionFilter(RecruitsSanity, RecruitsSanity.option_false))
-
     # Require Kris or Susie for the werewire fight
     world.get_region(Regions.chapter_2).connect(
         cyber_field,
-        rule=access_to_cyber_field,
+        rule=have_kris_or_susie,
     )
 
     castle_town.connect(dojo)
-    # Require Kris or Susie for the werewire fight
-    castle_town.connect(
-        cyber_field,
-        rule=access_to_cyber_field,
-    )
 
     # Require actions and at least one character for DJ-fight unless you ww into the fight (but can't end it) or Bagel Overflow to mansion and come back with plot value updated
     cyber_field.connect(
