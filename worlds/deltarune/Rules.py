@@ -50,11 +50,15 @@ can_act_spare_ralsei = have_ralsei & have_actions
 ### CHAPTER 1 RECRUITMENT
 can_recruit_ruddin = have_kris | can_recruit_with_violence_ralsei
 can_recruit_hathy = have_kris | can_recruit_with_violence_ralsei
-can_recruit_jigsawry = have_kris_and_ralsei | (
-    CanReachRegion(Regions.ch1_card_castle) & (have_kris | can_recruit_with_violence_ralsei)
+can_recruit_jigsawry = (
+    have_kris_and_ralsei
+    | (CanReachRegion(Regions.ch1_card_castle) & (have_kris | can_recruit_with_violence_ralsei))
+    | (CanReachRegion(Regions.ch1_forest) & have_kris_or_ralsei)
 )
-can_recruit_ponman = have_kris_and_ralsei | (
-    CanReachRegion(Regions.ch1_card_castle) & (have_kris | can_recruit_with_violence_ralsei)
+can_recruit_ponman = (
+    have_kris_and_ralsei
+    | (CanReachRegion(Regions.ch1_card_castle) & (have_kris | can_recruit_with_violence_ralsei))
+    | (CanReachRegion(Regions.ch1_forest) & have_kris_or_ralsei)
 )
 can_recruit_rabbick = have_kris | can_recruit_with_violence_ralsei
 can_recruit_bloxer = have_kris | can_recruit_with_violence_ralsei
