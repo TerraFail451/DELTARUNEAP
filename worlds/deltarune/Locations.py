@@ -718,7 +718,7 @@ locations = {
     LocationIDs.ch5_recruit_floradinn: "CH5: Recruit Floradinn",
     LocationIDs.ch5_garden_first_chest: "CH5: Garden - First Chest",
     LocationIDs.ch5_garden_first_chest_susie_accepting_herself: "CH5: Garden - First Chest (Susie Accepting Herself)",
-    LocationIDs.ch5_garden_netskie_chest: "CH5: Garden - Netskie Chest",
+    LocationIDs.ch5_garden_netskie_chest: "CH5: Garden - Mushroom Puzzle Netskie Chest",
     LocationIDs.ch5_garden_hopschef_warp_door: "CH5: Garden - Hopschef Warp Door",
     LocationIDs.ch5_garden_shears_chest: "CH5: Garden - Shears Chest",
     LocationIDs.ch5_garden_water_can_pink_coin: "CH5: Garden - Watering Can Pink Coin",
