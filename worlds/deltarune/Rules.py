@@ -59,7 +59,7 @@ can_recruit_ponman = have_kris_and_ralsei | (
 can_recruit_rabbick = have_kris | can_recruit_with_violence_ralsei
 can_recruit_bloxer = have_kris | can_recruit_with_violence_ralsei
 can_recruit_head_hathy = have_kris | can_recruit_with_violence_ralsei
-can_recruit_rudinn_ranger = have_kris | can_recruit_with_violence_ralsei
+can_recruit_rudinn_ranger = have_kris_and_susie | can_recruit_with_violence_ralsei
 
 ### CHAPTER 1 LOST
 can_lose_chapter1 = have_kris_or_ralsei
