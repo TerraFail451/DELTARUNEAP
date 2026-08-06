@@ -371,6 +371,7 @@ class LocationIDs(IntEnum):
     ch5_garden_first_chest_susie_accepting_herself = 349
     ch5_weird_route_sinking = 350
     ch2_fountain_sealed_weird_route = 351
+    ch4_castle_town_mike_chest = 352
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -691,6 +692,7 @@ locations = {
     LocationIDs.ch4_lost_wicabel: "CH4: Lost Wicabel",
     LocationIDs.ch4_lost_winglade: "CH4: Lost Winglade",
     LocationIDs.ch4_lost_organikk: "CH4: Lost Organikk",
+    LocationIDs.ch4_castle_town_mike_chest: "CH4: Mike - Chest before Mike",
     LocationIDs.ch4_castle_town_mike_defeat: "CH4: Mike - Defeat Mike",
     LocationIDs.ch4_mike_battat_bronze: "CH4: Mike - Battat (Bronze Rank)",
     LocationIDs.ch4_mike_battat_silver: "CH4: Mike - Battat (Silver Rank)",
@@ -716,7 +718,7 @@ locations = {
     LocationIDs.ch5_recruit_floradinn: "CH5: Recruit Floradinn",
     LocationIDs.ch5_garden_first_chest: "CH5: Garden - First Chest",
     LocationIDs.ch5_garden_first_chest_susie_accepting_herself: "CH5: Garden - First Chest (Susie Accepting Herself)",
-    LocationIDs.ch5_garden_netskie_chest: "CH5: Garden - Netskie Chest",
+    LocationIDs.ch5_garden_netskie_chest: "CH5: Garden - Mushroom Puzzle Netskie Chest",
     LocationIDs.ch5_garden_hopschef_warp_door: "CH5: Garden - Hopschef Warp Door",
     LocationIDs.ch5_garden_shears_chest: "CH5: Garden - Shears Chest",
     LocationIDs.ch5_garden_water_can_pink_coin: "CH5: Garden - Watering Can Pink Coin",
@@ -758,10 +760,10 @@ locations = {
     LocationIDs.ch5_cliffs_running_challenge_pink_coin: "CH5: Cliffs - Running Challenge Pink Coin",
     LocationIDs.ch5_recruit_shinobeetle: "CH5: Recruit Shinobeetle",
     LocationIDs.ch5_castle_foyer_warp_door: "CH5: Flower Castle - Foyer Warp Door",
-    LocationIDs.ch5_vending_machine_1: "CH5: Vending Machine Item #1",
-    LocationIDs.ch5_vending_machine_2: "CH5: Vending Machine Item #2",
-    LocationIDs.ch5_vending_machine_3: "CH5: Vending Machine Item #3",
-    LocationIDs.ch5_vending_machine_4: "CH5: Vending Machine Item #4",
+    LocationIDs.ch5_vending_machine_1: "CH5: Soda Fountain Item #1",
+    LocationIDs.ch5_vending_machine_2: "CH5: Soda Fountain Item #2",
+    LocationIDs.ch5_vending_machine_3: "CH5: Soda Fountain Item #3",
+    LocationIDs.ch5_vending_machine_4: "CH5: Soda Fountain Item #4",
     LocationIDs.ch5_castle_west_hidden_zen_garden_chest: "CH5: Castle West - Hidden Zen Garden Chest",
     LocationIDs.ch5_castle_west_yellow_flower_platforming_pink_coin: "CH5: Castle West - Yellow Flower Platforming Pink Coin",
     LocationIDs.ch5_castle_west_shinobeetle_shuriken_pink_coin: "CH5: Castle West - Shinobeetle Shuriken Pink Coin",
@@ -777,7 +779,7 @@ locations = {
     LocationIDs.ch5_castle_east_fox_race_pink_coin: "CH5: Castle East - Fox Race Pink Coin",
     LocationIDs.ch5_castle_east_mysterious_puzzle_warp_door: "CH5: Castle East - Mysterious Puzzle Warp Door",
     LocationIDs.ch5_castle_top_painting_room_item: "CH5: Top of Castle - Painting Room Item",
-    LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Vending Machine Flowery's Secret",
+    LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Soda Fountain Flowery's Secret",
     LocationIDs.ch5_castle_moss: "CH5: Flower Castle - Moss",
     LocationIDs.ch5_castle_west_shinobeetle_chest_behind_tree: "CH5: Castle West - Shinobeetle Chest Behind Tree",
     LocationIDs.ch5_castle_top_yellow_flower_platforming_pink_coin: "CH5: Top of Castle - Yellow Flower Platforming Pink Coin",

@@ -273,6 +273,8 @@ class DeltaruneWorld(World):
                 "mysterykey_from_pink_coins",
                 "door_key_from_broken_keys",
                 "death_link",
+                "damage_link",
+                "damage_link_group",
                 "item_balancing",
                 "include_shadow_mantle",
                 "randomize_mantle",
@@ -577,7 +579,20 @@ class DeltaruneWorld(World):
         # Remove them from the item pool
         for weapon in weapons_character_in_pool:
             weapons_with_index.append((weapon.code, progressive_weapon_order[character].index(weapon.code)))
-            itempool.remove(weapon)
+            if weapon.amount > 1:
+                newweapon = ItemData(
+                    weapon.code,
+                    weapon.classification,
+                    should_be_included=weapon.should_be_included,
+                    groups=weapon.groups,
+                    amount=weapon.amount - 1,
+                    blacklist_filler=weapon.blacklist_filler,
+                    changing_classification=weapon.changing_classification,
+                )
+                itempool.remove(weapon)
+                itempool.append(newweapon)
+            else:
+                itempool.remove(weapon)
 
         weapons_with_index.sort(key=lambda w: w[1])
 

@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from Options import Choice, Toggle, Range, PerGameCommonOptions, NamedRange, OptionGroup
+from Options import Choice, FreeText, Toggle, Range, PerGameCommonOptions, NamedRange, OptionGroup
 from dataclasses import dataclass
 
 
@@ -497,6 +497,28 @@ class DeathLink(Toggle):
     default = 0
 
 
+class DamageLink(Toggle):
+    """
+    YOUR DAMAGE CAUSE THE HARM OF EVERYONE WHO HAS ENABLED THIS OPTION.
+
+    TO COMPLIMENT, THE REVERSE IS TRUE AS WELL.
+    """
+
+    display_name = "Damage Link"
+    default = 0
+
+
+class DamageLinkGroup(FreeText):
+    """
+    ONLY SHARE DAMAGES WITH PEOPLE IN THE SAME GROUP.
+
+    *(Game that doesn't support this option are part of the empty group.)*
+    """
+
+    display_name = "Damage Link Group"
+    default = ""
+
+
 filler_weight_range_names = {"common": 50, "uncommon": 25, "rare": 10, "very rare": 5, "extremely rare": 1}
 
 
@@ -797,6 +819,8 @@ class DeltaruneOptions(PerGameCommonOptions):
     door_key_from_broken_keys: DoorKeyFromBrokenKeys
     include_unused_items: IncludeUnusedItems
     death_link: DeathLink
+    damage_link: DamageLink
+    damage_link_group: DamageLinkGroup
     filler_healing_weight: FillerHealingWeight
     filler_currency_weight: FillerCurrencyWeight
     trap_weight: TrapWeight

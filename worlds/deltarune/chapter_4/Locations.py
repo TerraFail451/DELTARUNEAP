@@ -27,6 +27,7 @@ chapter4_locations = {
         ),
     ],
     Regions.ch4_mike_room: [
+        LocationData(LocationIDs.ch4_castle_town_mike_chest, group=LocationGroups.chapter4),
         LocationData(
             LocationIDs.ch4_castle_town_mike_defeat,
             should_be_included=include_mike_battle,
