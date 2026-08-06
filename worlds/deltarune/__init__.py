@@ -587,6 +587,12 @@ class DeltaruneWorld(World):
                     groups=weapon.groups,
                     amount=weapon.amount - 1,
                     blacklist_filler=weapon.blacklist_filler,
+                    changing_classification=weapon.changing_classification,
+                )
+                itempool.remove(weapon)
+                itempool.append(newweapon)
+            else:
+                itempool.remove(weapon)
 
         weapons_with_index.sort(key=lambda w: w[1])
 
