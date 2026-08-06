@@ -371,6 +371,7 @@ class LocationIDs(IntEnum):
     ch5_garden_first_chest_susie_accepting_herself = 349
     ch5_weird_route_sinking = 350
     ch2_fountain_sealed_weird_route = 351
+    ch4_castle_town_mike_chest = 352
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -691,6 +692,7 @@ locations = {
     LocationIDs.ch4_lost_wicabel: "CH4: Lost Wicabel",
     LocationIDs.ch4_lost_winglade: "CH4: Lost Winglade",
     LocationIDs.ch4_lost_organikk: "CH4: Lost Organikk",
+    LocationIDs.ch4_castle_town_mike_chest: "CH4: Mike - Chest before Mike",
     LocationIDs.ch4_castle_town_mike_defeat: "CH4: Mike - Defeat Mike",
     LocationIDs.ch4_mike_battat_bronze: "CH4: Mike - Battat (Bronze Rank)",
     LocationIDs.ch4_mike_battat_silver: "CH4: Mike - Battat (Silver Rank)",
