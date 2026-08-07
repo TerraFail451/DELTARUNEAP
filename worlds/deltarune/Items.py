@@ -61,6 +61,9 @@ class DeltaruneItem(Item):
             return NotImplemented
         return super().__eq__(other) and self.classification == other.classification
 
+    def __hash__(self) -> int:
+        return super().__hash__()
+
 
 class ItemIDs(IntEnum):
     dark_candy = 1
