@@ -90,17 +90,7 @@ def create_regions(world: "DeltaruneWorld"):
 
         world.get_region(Regions.chapter_5).connect(castle_town)
 
-        castle_town.connect(
-            dojo,
-            rule=have_kris_susie_and_ralsei
-            & [
-                OptionFilter(
-                    ChosenRoute,
-                    [ChosenRoute.option_all_recruits, ChosenRoute.option_both_all_recruits_and_weird_route],
-                    operator="in",
-                )
-            ],
-        )
+        castle_town.connect(dojo)
 
         castle_town.connect(garden_no_character_required)
 

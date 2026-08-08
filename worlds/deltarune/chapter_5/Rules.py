@@ -6,6 +6,7 @@ from rule_builder.rules import Has
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.LogicHelper import (
+    all_recruits_route,
     include_hidden_items,
     include_lose_recruits,
     include_recruits,
@@ -24,6 +25,7 @@ from worlds.deltarune.Rules import (
     can_recruit_shinobeetle,
     can_recruit_terakota,
     can_lost_chapter5,
+    have_kris_susie_and_ralsei,
 )
 
 if TYPE_CHECKING:
@@ -56,6 +58,11 @@ def set_rules(world: "DeltaruneWorld"):
             world.set_rule(
                 world.get_location(locations[LocationIDs.ch5_pinks_shop_4]), Has(items[ItemIDs.pinkcoin], 10)
             )
+
+    if all_recruits_route(world):
+        world.set_rule(
+            world.get_location(locations[LocationIDs.ch5_castle_town_trashy_trio_challenge]), have_kris_susie_and_ralsei
+        )
 
 def handle_locked_items(world: "DeltaruneWorld"):
     if normal_route(world):
