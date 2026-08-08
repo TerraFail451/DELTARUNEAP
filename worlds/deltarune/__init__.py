@@ -308,13 +308,6 @@ class DeltaruneWorld(World):
         return self._get_deltarune_data()
 
     def generate_early(self) -> None:
-        self.fill_chapter_included_array()
-
-        validate_options(self)
-
-        # Recall in case of option change
-        self.fill_chapter_included_array()
-
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         if re_gen_passthrough and self.game in re_gen_passthrough:
             # Get the passed through slot data from the real generation
@@ -327,6 +320,13 @@ class DeltaruneWorld(World):
                 if opt is not None:
                     # You can also set .value directly but that won't work if you have OptionSets
                     setattr(self.options, key, opt.from_any(value))
+        else:
+            self.fill_chapter_included_array()
+
+            validate_options(self)
+
+        # Recall in case of option change or for UT that didn't fill the first time
+        self.fill_chapter_included_array()
 
     def get_filler_item_name(self):
         if self.cached_filler_and_trap_weights == None:
