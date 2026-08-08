@@ -222,7 +222,7 @@ class DeltaruneWorld(World):
         self.cached_filler_and_trap_weights: dict[int, float] = None
         self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
         self.already_changed_classification_item: dict[ItemIDs, int] = {}
-        self.included_chapters: list[int] = None
+        self.included_chapters: list[int] = []
 
     # region Archipelago Functions
     def create_item(self, name: str) -> DeltaruneItem:
@@ -391,7 +391,7 @@ class DeltaruneWorld(World):
         # visualize_regions(self.get_region(self.origin_region_name), f"deltarune_regions{self.player}.puml")
 
     def create_items(self):
-        if self.included_chapters == []:
+        if len(self.included_chapters) == 0:
             self.multiworld.push_precollected(self.create_item(items[ItemIDs.what_interesting_behavior]))
             return
 
@@ -544,21 +544,28 @@ class DeltaruneWorld(World):
         unfilled = len(self.multiworld.get_unfilled_locations(self.player))
         # Remove random junk items if the item pool overflows
         if len(item_pool) > unfilled:
-            logging.info(f"[DELTARUNE] Item pool overflow: {len(item_pool) - unfilled}")
-            while len(item_pool) > unfilled:
-                chosen = self.random.choice(
-                    [
-                        item
-                        for item in item_pool
-                        if item.classification == ItemClassification.filler
-                        or item.classification == ItemClassification.trap
-                    ]
-                )
-                logging.info(f"[DELTARUNE] Removing {chosen.name} ({flag_into_string(chosen.flags)}) from itempool")
-                item_pool.remove(chosen)
+            amount_to_remove = len(item_pool) - unfilled
+            logging.info(f"[DELTARUNE] Item pool overflow: {amount_to_remove}")
+            valid_items_indexes = [index for index, item in enumerate(item_pool) if item.excludable]
+            indexes_to_remove = []
 
+            for i in range(amount_to_remove):
+                chosen = self.random.choice(valid_items_indexes)
+                indexes_to_remove.append(chosen)
+                valid_items_indexes.remove(chosen)
+                item = item_pool[chosen]
+                logging.info(
+                    f"[DELTARUNE] Removing {item.name} {flag_into_string(item.classification)} for {self.player_name}"
+                )
+
+            indexes_to_remove.sort(reverse=True)
+
+            for i in indexes_to_remove:
+                item_pool.pop(i)
+
+        unfilled_amount = len(self.multiworld.get_unfilled_locations(self.player))
         # Fill remaining items with randomly generated junk
-        while len(item_pool) < len(self.multiworld.get_unfilled_locations(self.player)):
+        while len(item_pool) < unfilled_amount:
             item_pool.append(self.create_filler())
 
     def handle_progressive_weapon(

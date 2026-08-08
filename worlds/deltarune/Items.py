@@ -56,14 +56,6 @@ class DeltaruneItem(Item):
         super().__init__(name, classification, code, player)
         self.changing_classification = changing_classification
 
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Item):
-            return NotImplemented
-        return super().__eq__(other) and self.classification == other.classification
-
-    def __hash__(self) -> int:
-        return super().__hash__()
-
 
 class ItemIDs(IntEnum):
     dark_candy = 1
