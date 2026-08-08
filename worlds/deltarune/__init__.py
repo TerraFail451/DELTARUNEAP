@@ -35,7 +35,13 @@ from worlds.deltarune.LogicHelper import (
     randomized_chapters,
     weird_route,
 )
-from worlds.deltarune.Options import ChosenRoute, DeltaruneOptions, deltarune_option_groups, options_presets
+from worlds.deltarune.Options import (
+    ChosenRoute,
+    DeltaruneOptions,
+    UnlockCharacters,
+    deltarune_option_groups,
+    options_presets,
+)
 from worlds.deltarune.OptionsValidator import validate_options
 from worlds.deltarune.Regions import Regions
 from worlds.deltarune.Rules import can_snowgrave
@@ -521,7 +527,11 @@ class DeltaruneWorld(World):
         if not include_characters(self):
             return
 
-        if self.options.start_with_random_character.value == 1:
+        # Do not start with random is Kris isn't randomized
+        if (
+            self.options.start_with_random_character.value == 1
+            and self.options.unlock_characters.value == UnlockCharacters.option_true
+        ):
             characters = [item for item in item_pool if ItemGroups.characters in item.groups]
             chosen = self.random.choice(characters)
             item_pool.remove(chosen)

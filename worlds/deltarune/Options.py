@@ -657,6 +657,8 @@ class UnlockCharacters(Choice):
 class StartWithRandomCharacter(Toggle):
     """
     IF UNLOCKING CHARACTERS IS YOUR CHOOSE, SHOULD YOU START WHEN ONE OR NONE
+
+    *(Only if you choose true on unlock character option)*
     """
 
     display_name = "Start with a random character"
