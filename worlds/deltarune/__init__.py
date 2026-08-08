@@ -26,6 +26,7 @@ from worlds.deltarune.Goals import set_completion_goal
 from worlds.deltarune.LogicHelper import (
     all_chapter_unlocked,
     chapters_in_order,
+    include_characters,
     included_chapter,
     progressive_weapons_kris,
     progressive_weapons_noelle,
@@ -282,6 +283,7 @@ class DeltaruneWorld(World):
                 "include_mike",
                 "exclude_mike_platinum",
                 "unlock_characters",
+                "start_with_random_character",
                 "better_odds",
                 "have_starwalker",
                 "unlock_fun_gang_actions",
@@ -514,6 +516,16 @@ class DeltaruneWorld(World):
             item_pool[index] = item_data._replace(
                 amount=self.options.macguffin_chapter_5.value + self.options.macguffin_extra.value
             )
+
+    def handle_random_character(self, item_pool: list[ItemData]):
+        if not include_characters(self):
+            return
+
+        if self.options.start_with_random_character.value == 1:
+            characters = [item for item in item_pool if ItemGroups.characters in item.groups]
+            chosen = self.random.choice(characters)
+            item_pool.remove(chosen)
+            self.multiworld.push_precollected(self.create_item(items[chosen.code]))
 
     def handle_chapter_keys(self, item_pool: list[ItemData]):
         if all_chapter_unlocked(self):

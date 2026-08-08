@@ -654,10 +654,13 @@ class UnlockCharacters(Choice):
     default = option_false
 
 
-class UnlockCharactersOptions(StrEnum):
-    false = "false"
-    true = "true"
-    except_kris = "except_kris"
+class StartWithRandomCharacter(Toggle):
+    """
+    IF UNLOCKING CHARACTERS IS YOUR CHOOSE, SHOULD YOU START WHEN ONE OR NONE
+    """
+
+    display_name = "Start with a random character"
+    default = 1
 
 
 class IncludeUnusedItems(Choice):
@@ -832,6 +835,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     progressive_ralsei_weapons: ProgressiveRalseiWeapons
     progressive_noelle_weapons: ProgressiveNoelleWeapons
     unlock_characters: UnlockCharacters
+    start_with_random_character: StartWithRandomCharacter
     include_mike: IncludeMike
     exclude_mike_platinum: ExcludeMikePlatinum
     better_odds: BetterOdds
