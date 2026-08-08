@@ -656,9 +656,9 @@ class UnlockCharacters(Choice):
 
 class StartWithRandomCharacter(Toggle):
     """
-    IF UNLOCKING CHARACTERS IS YOUR CHOOSE, SHOULD YOU START WHEN ONE OR NONE
+    IF THE ABILITY TO USE HEROES NEEDS TO BE UNLOCKED, WILL YOU BEGIN WITH ONE OR NONE?
 
-    *(Only if you choose true on unlock character option)*
+    *(Only if you chose true on unlock character option. If you chose "Except Kris" this doesn't apply either.)*
     """
 
     display_name = "Start with a random character"
