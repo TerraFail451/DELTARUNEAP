@@ -82,7 +82,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
                 world.create_item(items[ItemIDs.sethspecs])
             )
             world.get_location(locations[LocationIDs.ch5_castle_top_flowerys_gift]).place_locked_item(
-                world.create_item(items[ItemIDs.floweryscarf])
+                world.create_item(items[ItemIDs.brokenscarf])
             )
 
         if not include_secret_bosses_items_requirement(world):

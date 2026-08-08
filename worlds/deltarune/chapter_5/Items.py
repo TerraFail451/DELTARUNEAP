@@ -145,11 +145,10 @@ chapter5_items = [
         groups=[ItemGroups.armors],
     ),
     ItemData(
-        ItemIDs.floweryscarf,
-        ItemClassification.filler,
+        ItemIDs.brokenscarf,
+        ItemClassification.useful,
         should_be_included=include_secret_bosses_items_reward,
         groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
-        blacklist_filler=True,
     ),
 ]
 

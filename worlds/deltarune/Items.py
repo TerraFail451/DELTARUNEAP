@@ -261,7 +261,7 @@ class ItemIDs(IntEnum):
     thatchet = 30031
     blueshoes = 30032
     aquaknife = 30033
-    floweryscarf = 30034
+    # floweryscarf = 30034
     brokenscarf = 30035
     gildedrose = 30036
     mistlewp = 30037
@@ -509,7 +509,7 @@ items = {
     ItemIDs.thatchet: "Thatchet",
     ItemIDs.blueshoes: "BlueShoes",
     ItemIDs.aquaknife: "AquaKnife",
-    ItemIDs.floweryscarf: "FloweryScarf",
+    # ItemIDs.floweryscarf: "FloweryScarf",
     ItemIDs.brokenscarf: "BrokenScarf",
     ItemIDs.gildedrose: "GildedRose",
     ItemIDs.mistlewp: "MistleWP",
