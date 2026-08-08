@@ -24,6 +24,7 @@ if TYPE_CHECKING:
 
 chapter2_items = [
     ItemData(ItemIDs.cd_bagel, ItemClassification.filler, groups=[ItemGroups.healing_item]),
+    ItemData(ItemIDs.lightcandy, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.clubsandwich, ItemClassification.filler, groups=[ItemGroups.healing_item]),
     ItemData(ItemIDs.revivemint, ItemClassification.filler, groups=[ItemGroups.healing_item], amount=2),
     ItemData(ItemIDs.spincake, ItemClassification.filler, groups=[ItemGroups.healing_item]),
