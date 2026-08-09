@@ -76,12 +76,12 @@ def guess_deltarune_path(path: str | None):
 
     if path == "linux":
         tempInstall = "~/.local/share/Steam/steamapps/common/DELTARUNE"
-        if os.path.exists(tempInstall):
+        if os.path.exists(os.path.expanduser(tempInstall)):
             return tempInstall
 
     if path == "linuxdepot":
         tempInstall = "~/.local/share/Steam/steamapps/content/app_1671210/depot_1671212"
-        if os.path.exists(tempInstall):
+        if os.path.exists(os.path.expanduser(tempInstall)):
             return tempInstall
 
     return path
