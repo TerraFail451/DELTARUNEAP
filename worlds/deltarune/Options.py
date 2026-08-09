@@ -90,7 +90,7 @@ class RecruitsSanity(Toggle):
     """
 
     display_name = "Recruits Sanity"
-    default = True
+    default = False
 
 
 class LoseRecruitsSanity(Toggle):
@@ -292,11 +292,10 @@ class RemoveStartingEquipment(Toggle):
 
     *(Normally if you start a save file on a chapter, you'll start with some equipment from the previous two chapters.)*
     *(If this option is set to true, you'll start every chapter like chapter 1, with no armors and only the starting weapons.)*
-    *(However, If you're continuing through to the next chapter using completion data, you'll keep your stuff.)*
     """
 
     display_name = "Remove Starting Equipment"
-    default = 1
+    default = 0
 
 
 class IncludeChapter1(Toggle):
@@ -499,7 +498,7 @@ class DeathLink(Toggle):
 
 class DamageLink(Toggle):
     """
-    YOUR DAMAGE CAUSE THE HARM OF EVERYONE WHO HAS ENABLED THIS OPTION.
+    TAKING DAMAGE WILL CAUSE THE HARM OF EVERYONE WHO HAS ENABLED THIS OPTION.
 
     TO COMPLIMENT, THE REVERSE IS TRUE AS WELL.
     """
@@ -510,9 +509,9 @@ class DamageLink(Toggle):
 
 class DamageLinkGroup(FreeText):
     """
-    ONLY SHARE DAMAGES WITH PEOPLE IN THE SAME GROUP.
+    ONLY THOSE IN THIS GROUP WILL BE A PART OF YOUR DAMAGE LINK.
 
-    *(Game that doesn't support this option are part of the empty group.)*
+    *(Games that don't support this option are part of the empty group.)*
     """
 
     display_name = "Damage Link Group"
@@ -783,6 +782,7 @@ deltarune_option_groups = [
             ProgressiveRalseiWeapons,
             ProgressiveNoelleWeapons,
             UnlockCharacters,
+            StartWithRandomCharacter,
             UnlockFunGangActions,
         ],
     ),
@@ -875,6 +875,8 @@ options_presets = {
         "unlock_characters": "true",
         "include_mike": "battle_and_games",
         "chapter_1_recruit": True,
+        "recruits_sanity": True,
+        "lose_recruits_sanity": True,
     },
     "Classic All Recruits": {"chosen_route": "all_recruits", "recruits_sanity": True},
     "Classic Weird Route": {"chosen_route": "weird_route", "recruits_sanity": False, "lose_recruits_sanity": True},
