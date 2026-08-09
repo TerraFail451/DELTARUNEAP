@@ -527,12 +527,14 @@ class DeltaruneWorld(World):
         if not include_characters(self):
             return
 
-        # Do not start with random is Kris isn't randomized
+        # Do not start with random if Kris isn't randomized
         if (
             self.options.start_with_random_character.value == 1
             and self.options.unlock_characters.value == UnlockCharacters.option_true
         ):
-            characters = [item for item in item_pool if ItemGroups.characters in item.groups]
+            characters = [
+                item for item in item_pool if ItemGroups.characters in item.groups and item.code != ItemIDs.noelle
+            ]
             chosen = self.random.choice(characters)
             item_pool.remove(chosen)
             self.multiworld.push_precollected(self.create_item(items[chosen.code]))

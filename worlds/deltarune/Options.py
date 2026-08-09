@@ -658,6 +658,7 @@ class StartWithRandomCharacter(Toggle):
     IF THE ABILITY TO USE HEROES NEEDS TO BE UNLOCKED, WILL YOU BEGIN WITH ONE OR NONE?
 
     *(Only if you chose true on unlock character option. If you chose "Except Kris" this doesn't apply either.)*
+    *(Cannot be Noelle)*
     """
 
     display_name = "Start with a random character"
