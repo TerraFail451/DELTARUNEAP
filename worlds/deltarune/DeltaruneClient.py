@@ -74,6 +74,16 @@ def guess_deltarune_path(path: str | None):
             if os.path.exists(tempInstall):
                 return tempInstall
 
+    if path == "linux":
+        tempInstall = "~/.local/share/Steam/steamapps/common/DELTARUNE"
+        if os.path.exists(tempInstall):
+            return tempInstall
+
+    if path == "linuxdepot":
+        tempInstall = "~/.local/share/Steam/steamapps/content/app_1671210/depot_1671212"
+        if os.path.exists(tempInstall):
+            return tempInstall
+
     return path
 
 
@@ -246,10 +256,10 @@ Both gaining and losing recruits have been turned into checks."""
                             webbrowser.open(deltarune_mod_github, new=2, autoraise=True)
 
                 if not error:
-                    shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
                     self.output(
                         f"Your game will now be patched. Please wait... it might take a while and make your client not respond but that's normal."
                     )
+                    shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
                     self.ctx.patch_game()
                     self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}/DELTARUNE.exe")
 
