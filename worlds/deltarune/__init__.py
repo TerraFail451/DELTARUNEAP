@@ -435,6 +435,7 @@ class DeltaruneWorld(World):
             self.handle_progressive_weapon(item_pool, ItemGroups.noelle_weapons)
         self.handle_chapter_keys(item_pool)
         self.handle_macguffins_items(item_pool)
+        self.handle_random_character(item_pool)
 
         item_pool_names_and_amounts = []
 
