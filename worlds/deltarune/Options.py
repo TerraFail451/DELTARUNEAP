@@ -86,7 +86,8 @@ class RecruitsSanity(Toggle):
     """
     WILL GAINING RECRUITS COUNT AS LOCATIONS?
 
-    (Forced enabled if All recruits is selected)
+    (Forced enabled if All recruits is selected.)
+    (If you choose Weird Route, specifically the recruits in Cyber City will be force disabled.)
     """
 
     display_name = "Recruits Sanity"
@@ -97,8 +98,8 @@ class LoseRecruitsSanity(Toggle):
     """
     WILL LOSING RECRUITS COUNT AS LOCATIONS?
 
-    (Forced disabled if All recruits is selected)
-    (If you choose Weird Route, specifically the recruits you lose in Cyber City will be enabled to avoid a generation fail.)
+    (Forced disabled if All recruits is selected.)
+    (If you choose Weird Route, specifically the recruits you lose in Cyber City will be force enabled to avoid a generation fail.)
     """
 
     display_name = "Lose recruits Sanity"
@@ -214,9 +215,11 @@ class ExcludeZRank(Toggle):
 
 class AllowDoomBoardWithoutAllCharacters(Toggle):
     """
-    Will allow the logic to bypass the requirement of Kris, Susie and Ralsei to access the Doom Board (and using the NPC skip)
+    UNLOCKING ALL THREE HEROES WILL NOT BE REQUIRED TO ACCESS THE FINAL BOARD OF THE THIRD CHAPTER.
 
-    This also means that the end of chapter 3 will be way harder, making characters later in sphere and might allow some really hard logic like Lanino/Elnina and Knight fight with 1 character.
+    *(Usually, all three characters would need to be unlocked to access Doom Board in chapter 3)*
+    *(This is because the board has an ACT that requires everyone in order to progress.)*
+    *(However, this almost guarantees that you will have to do difficult fights such as the Knight with only one or two characters unlocked.)*
     """
 
     display_name = "Doom Board in logic without all characters"
