@@ -269,6 +269,7 @@ class DeltaruneWorld(World):
                 "include_chapter_5",
                 "exclude_t_rank",
                 "exclude_z_rank",
+                "allow_doom_board_without_all_characters",
                 "chosen_route",
                 "recruits_sanity",
                 "lose_recruits_sanity",

@@ -212,10 +212,15 @@ class ExcludeZRank(Toggle):
     default = 1
 
 
-class IncludeTRankOptions(StrEnum):
-    false = "false"
-    true = "true"
-    excluded_from_logic = "excluded_from_logic"
+class AllowDoomBoardWithoutAllCharacters(Toggle):
+    """
+    Will allow the logic to bypass the requirement of Kris, Susie and Ralsei to access the Doom Board (and using the NPC skip)
+
+    This also means that the end of chapter 3 will be way harder, making characters later in sphere and might allow some really hard logic like Lanino/Elnina and Knight fight with 1 character.
+    """
+
+    display_name = "Doom Board in logic without all characters"
+    default = 0
 
 
 class ItemBalancing(Toggle):
@@ -819,6 +824,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_shadow_mantle: IncludeShadowMantle
     exclude_t_rank: ExcludeTRank
     exclude_z_rank: ExcludeZRank
+    allow_doom_board_without_all_characters: AllowDoomBoardWithoutAllCharacters
     include_hidden_items: IncludeHiddenItems
     include_secret_bosses_items_requirement: IncludeSecretBossesItemsRequirement
     mysterykey_from_pink_coins: MysteryKeyFromPinkCoins

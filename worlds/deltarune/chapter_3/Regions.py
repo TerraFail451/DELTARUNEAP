@@ -6,6 +6,7 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachLocation, Has
 from worlds.deltarune.LogicHelper import all_recruits_route
 from worlds.deltarune.Options import (
+    AllowDoomBoardWithoutAllCharacters,
     IncludeShadowMantle,
     MacGuffinChapter3,
     RandomizeMANTLE,
@@ -68,7 +69,11 @@ def create_regions(world: "DeltaruneWorld"):
     green_room.connect(board_2, rule=Has(items[ItemIDs.board_2_cartridge]))
 
     # Require all characters for Turning off Zapper during Doom Board
-    board_2.connect(doom_board, rule=have_kris_susie_and_ralsei)
+    board_2.connect(
+        doom_board,
+        rule=have_kris_susie_and_ralsei
+        | OptionFilter(AllowDoomBoardWithoutAllCharacters, AllowDoomBoardWithoutAllCharacters.option_true),
+    )
     board_2.connect(sword_2, rule=Has(items[ItemIDs.ice_key]) & Has(items[ItemIDs.odd_controller]))
 
     doom_board.connect(tv_world, rule=Has(items[ItemIDs.vip_pass]))
