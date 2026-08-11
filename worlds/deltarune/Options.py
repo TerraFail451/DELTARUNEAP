@@ -98,7 +98,6 @@ class LoseRecruitsSanity(Toggle):
     """
     WILL LOSING RECRUITS COUNT AS LOCATIONS?
 
-    (Forced disabled if All recruits is selected.)
     (If you choose Weird Route, specifically the recruits you lose in Cyber City will be force enabled to avoid a generation fail.)
     """
 
@@ -315,16 +314,6 @@ class IncludeChapter1(Toggle):
 
     display_name = "Include Chapter 1"
     default = 1
-
-
-class Chapter1Recruit(Toggle):
-    """
-    THE SYSTEM TO RECRUIT ENEMIES WILL BE PRESENT IN THE FIRST CHAPTER.
-    """
-
-    display_name = "Recruits/Lost for chapter 1"
-    default = 1
-
 
 class Chapter1Recruit(Toggle):
     """
