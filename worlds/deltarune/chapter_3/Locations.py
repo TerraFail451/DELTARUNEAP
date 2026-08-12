@@ -35,6 +35,11 @@ chapter3_locations = {
             group=LocationGroups.chapter3,
         ),
         LocationData(
+            LocationIDs.ch3_recruit_shadowguy,
+            should_be_included=include_recruits,
+            group=LocationGroups.chapter3,
+        ),
+        LocationData(
             LocationIDs.ch3_lost_shadowguy,
             should_be_included=include_lose_recruits,
             group=LocationGroups.chapter3,
@@ -150,6 +155,11 @@ chapter3_locations = {
             group=LocationGroups.chapter3,
         ),
         LocationData(
+            LocationIDs.ch3_recruit_shuttah,
+            should_be_included=include_recruits,
+            group=LocationGroups.chapter3,
+        ),
+        LocationData(
             LocationIDs.ch3_lost_shuttah,
             should_be_included=include_lose_recruits,
             group=LocationGroups.chapter3,
@@ -209,16 +219,6 @@ chapter3_locations = {
         ),
         LocationData(
             LocationIDs.ch3_tv_world_tripticket,
-            group=LocationGroups.chapter3,
-        ),
-        LocationData(
-            LocationIDs.ch3_recruit_shuttah,
-            should_be_included=include_recruits,
-            group=LocationGroups.chapter3,
-        ),
-        LocationData(
-            LocationIDs.ch3_recruit_shadowguy,
-            should_be_included=include_recruits,
             group=LocationGroups.chapter3,
         ),
         LocationData(
