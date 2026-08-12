@@ -61,7 +61,7 @@ def create_regions(world: "DeltaruneWorld"):
     world.get_region(Regions.chapter_3).connect(couch_cliffs)
 
     # Require at least one character for Elnina Lanino and shadowguy fights
-    couch_cliffs.connect(board_1, rule=have_kris | (have_susie_or_ralsei & (have_actions | Has(glitched_item_name)))
+    couch_cliffs.connect(board_1, rule=have_kris | (have_susie_or_ralsei & (have_actions | Has(glitched_item_name))))
 
     board_1.connect(green_room)
     board_1.connect(sword_1, rule=Has(items[ItemIDs.odd_controller]))
