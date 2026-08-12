@@ -80,10 +80,11 @@ def create_regions(world: "DeltaruneWorld"):
 
     tv_world.connect(
         sword_3,
-        rule=Has(items[ItemIDs.shelter_key]) & 
-            Has(items[ItemIDs.ice_key]) & 
-            Has(items[ItemIDs.odd_controller] & 
-            have_kris
+        rule=(
+            Has(items[ItemIDs.shelter_key])
+            & Has(items[ItemIDs.ice_key])
+            & Has(items[ItemIDs.odd_controller])
+            & have_kris
         ),
     )
     tv_world.connect(world.get_region(Regions.lost_rabbick))
