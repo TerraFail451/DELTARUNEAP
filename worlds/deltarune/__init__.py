@@ -537,6 +537,13 @@ class DeltaruneWorld(World):
             characters = [
                 item for item in item_pool if ItemGroups.characters in item.groups and item.code != ItemIDs.noelle
             ]
+
+            if len(characters) == 0:
+                logging.info(
+                    "[DELTARUNE] Failed to start with a random character because there is no character in item pool"
+                )
+                return
+
             chosen = self.random.choice(characters)
             item_pool.remove(chosen)
             self.multiworld.push_precollected(self.create_item(items[chosen.code]))
