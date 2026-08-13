@@ -39,6 +39,7 @@ class ItemGroups(str, Enum):
     unused_items = "Unused Items"
     traps = "Traps"
     characters = "Characters"
+    progressive_weapons = "Progressive Weapons"
 
 
 class DeltaruneItem(Item):
