@@ -218,7 +218,8 @@ class AllowDoomBoardWithoutAllCharacters(Toggle):
 
     *(Usually, all three characters would need to be unlocked to access Doom Board in chapter 3)*
     *(This is because the board has an ACT that requires everyone in order to progress.)*
-    *(However, this almost guarantees that you will have to do difficult fights such as the Knight with only one or two characters unlocked.)*
+    *(If you want to disable this requirement, set this option to true.)*
+    *(However, this will almost guarantee that you will have to do difficult fights such as the Knight with only one or two characters unlocked.)*
     """
 
     display_name = "Doom Board in logic without all characters"
