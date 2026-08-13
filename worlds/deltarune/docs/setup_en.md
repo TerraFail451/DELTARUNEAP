@@ -17,7 +17,7 @@
 
 ### Patching the game (With ModLoader)
 
-Download the mod from [GameBanana](https://gamebanana.com/mods/699556) with either G3M (1-Click Install) or DeltaMod (need to download then import)
+Download the mod from [GameBanana](https://gamebanana.com/mods/699556) with either G3M or DeltaMod (Recommend to use the xdelta version it patch in 6s vs csx that patch in 2 minutes)
 
 If you don't use mod loader, you can also patch your game with DeltaPatcher
 
