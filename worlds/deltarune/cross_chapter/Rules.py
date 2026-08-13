@@ -115,10 +115,12 @@ def set_rules(world: "DeltaruneWorld"):
             if included_chapter(world, 4):
                 world.set_rule(
                     world.get_location(locations[LocationIDs.cc_castle_town_monarchrbn_fusion]),
-                    Has(items[ItemIDs.scarfmark])
-                    | Has(
-                        items[ItemIDs.progressive_ralsei_weapons],
-                        world.get_weapon_progression_index(ItemGroups.ralsei_weapons, ItemIDs.scarfmark),
+                    (
+                        Has(items[ItemIDs.scarfmark])
+                        | Has(
+                            items[ItemIDs.progressive_ralsei_weapons],
+                            world.get_weapon_progression_index(ItemGroups.ralsei_weapons, ItemIDs.scarfmark),
+                        )
                     )
                     & Has(items[ItemIDs.princessrbn]),
                 )
