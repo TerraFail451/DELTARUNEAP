@@ -623,7 +623,11 @@ class DeltaruneWorld(World):
 
         self.weapon_to_progressive_weapon_index[character] = {}
         weapons_character_in_pool = [
-            item for item in itempool if character in item.groups and item.classification != ItemClassification.filler
+            item
+            for item in itempool
+            if character in item.groups
+            and item.classification != ItemClassification.filler
+            and ItemGroups.progressive_weapons not in item.groups
         ]
 
         weapons_with_index = []
