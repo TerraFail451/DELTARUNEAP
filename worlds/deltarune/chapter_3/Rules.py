@@ -31,9 +31,15 @@ if TYPE_CHECKING:
 
 def set_rules(world: "DeltaruneWorld"):
     if include_recruits(world):
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_shadowguy]), can_recruit_shadowguy)
+        world.set_rule(
+            world.get_location(locations[LocationIDs.ch3_recruit_shadowguy]),
+            can_recruit_shadowguy & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
+        )
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_pippins]), can_recruit_pippins)
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_shuttah]), can_recruit_shuttah)
+        world.set_rule(
+            world.get_location(locations[LocationIDs.ch3_recruit_shuttah]),
+            can_recruit_shuttah & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
+        )
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_water_cooler]), can_recruit_water_cooler)
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_recruit_zapper]),
@@ -59,10 +65,7 @@ def set_rules(world: "DeltaruneWorld"):
             world.get_location(locations[LocationIDs.ch3_lost_shuttah]),
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
         )
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch3_lost_water_cooler]),
-            can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
-        )
+        world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_water_cooler]), can_lost_chapter3)
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_lost_zapper]),
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),

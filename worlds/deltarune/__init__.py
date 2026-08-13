@@ -537,6 +537,13 @@ class DeltaruneWorld(World):
             characters = [
                 item for item in item_pool if ItemGroups.characters in item.groups and item.code != ItemIDs.noelle
             ]
+
+            if len(characters) == 0:
+                logging.info(
+                    "[DELTARUNE] Failed to start with a random character because there is no character in item pool"
+                )
+                return
+
             chosen = self.random.choice(characters)
             item_pool.remove(chosen)
             self.multiworld.push_precollected(self.create_item(items[chosen.code]))
@@ -576,6 +583,18 @@ class DeltaruneWorld(World):
             indexes_to_remove = []
 
             for i in range(amount_to_remove):
+                if len(valid_items_indexes) == 0:
+                    logging.warning(
+                        f"[DELTARUNE] PANIC MODE! Not enough filler/trap item to remove, removing useful items"
+                    )
+                    valid_items_indexes = [
+                        index
+                        for index, item in enumerate(item_pool)
+                        if item.useful
+                        and not item.advancement
+                        and item.code not in self.item_name_groups[ItemGroups.progressive_weapons]
+                    ]
+                    print(valid_items_indexes)
                 chosen = self.random.choice(valid_items_indexes)
                 indexes_to_remove.append(chosen)
                 valid_items_indexes.remove(chosen)
@@ -604,7 +623,11 @@ class DeltaruneWorld(World):
 
         self.weapon_to_progressive_weapon_index[character] = {}
         weapons_character_in_pool = [
-            item for item in itempool if character in item.groups and item.classification != ItemClassification.filler
+            item
+            for item in itempool
+            if character in item.groups
+            and item.classification != ItemClassification.filler
+            and ItemGroups.progressive_weapons not in item.groups
         ]
 
         weapons_with_index = []
@@ -641,7 +664,7 @@ class DeltaruneWorld(World):
                     ItemData(
                         ItemIDs.progressive_kris_weapons,
                         ItemClassification.useful,
-                        groups=[ItemGroups.weapons, ItemGroups.kris_weapons],
+                        groups=[ItemGroups.weapons, ItemGroups.kris_weapons, ItemGroups.progressive_weapons],
                         amount=len(weapons_character_in_pool),
                     )
                 ]
@@ -650,7 +673,7 @@ class DeltaruneWorld(World):
                     ItemData(
                         ItemIDs.progressive_susie_weapons,
                         ItemClassification.useful,
-                        groups=[ItemGroups.weapons, ItemGroups.susie_weapons],
+                        groups=[ItemGroups.weapons, ItemGroups.susie_weapons, ItemGroups.progressive_weapons],
                         amount=len(weapons_character_in_pool),
                     )
                 ]
@@ -659,7 +682,7 @@ class DeltaruneWorld(World):
                     ItemData(
                         ItemIDs.progressive_ralsei_weapons,
                         ItemClassification.useful,
-                        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons],
+                        groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons, ItemGroups.progressive_weapons],
                         amount=len(weapons_character_in_pool),
                         changing_classification=True,
                     )
@@ -669,7 +692,7 @@ class DeltaruneWorld(World):
                     ItemData(
                         ItemIDs.progressive_noelle_weapons,
                         ItemClassification.useful | ItemClassification.progression,
-                        groups=[ItemGroups.weapons, ItemGroups.noelle_weapons],
+                        groups=[ItemGroups.weapons, ItemGroups.noelle_weapons, ItemGroups.progressive_weapons],
                         amount=len(weapons_character_in_pool),
                     )
                 ]
