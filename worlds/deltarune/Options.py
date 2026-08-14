@@ -753,6 +753,7 @@ deltarune_option_groups = [
             IncludeShadowMantle,
             ExcludeTRank,
             ExcludeZRank,
+            AllowDoomBoardWithoutAllCharacters,
         ],
     ),
     OptionGroup("Chapter 4", [IncludeChapter4, MacGuffinChapter4, IncludeMike, ExcludeMikePlatinum]),
