@@ -273,7 +273,6 @@ class DeltaruneWorld(World):
                 "recruits_sanity",
                 "lose_recruits_sanity",
                 "include_swatchling_during_weird_route",
-                "exclude_post_chapter_2_locations",
                 "randomize_chapters",
                 "include_hidden_items",
                 "include_secret_bosses_items_requirement",
