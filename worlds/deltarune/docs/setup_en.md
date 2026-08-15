@@ -13,7 +13,7 @@
 
 - Universal Tracker APWorld from the [UT Releases Page](https://github.com/FarisTheAncient/Archipelago/releases)
 
-### Create your YAML
+## Create your YAML
 
 Your YAML file is the settings of your Archipelago world.
 
@@ -31,7 +31,7 @@ You can also patch your game with DeltaPatcher if you would like, though we reco
 
 Download the mod from [GameBanana](https://gamebanana.com/mods/699556) with either G3M or DeltaMod (We recommend using the xdelta version as it patches in 6 seconds versus csx that patches in like 2 minutes.)
 
-### Patching the game with the Archipelago DELTARUNE Client
+### OR Patching the game with the Archipelago DELTARUNE Client
 
 Download the APWorld and place it into archipelago/custom_worlds (Double clicking the APWorld will also work!)
 
