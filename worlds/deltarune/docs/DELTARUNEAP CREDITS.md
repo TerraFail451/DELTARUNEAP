@@ -2,7 +2,7 @@
 
 
 
-\# **Lead Developers**
+# **Lead Developers**
 
 
 
@@ -12,7 +12,7 @@ Tenebrosful
 
 
 
-\# **Contributors**
+# **Contributors**
 
 
 
@@ -50,7 +50,7 @@ SylvieSpark
 
 
 
-\# **Special Thanks**
+# **Special Thanks**
 
 
 
@@ -72,7 +72,7 @@ FLB Practice Mod (https://github.com/nhaar/flb-mod)
 
 
 
-\## **Notable Play Testers** 
+## **Notable Play Testers** 
 
 (I think I got most people. Some are not mentioned but that's because they have already been mentioned as contributors.)
 
