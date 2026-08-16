@@ -72,6 +72,7 @@ class Regions(StrEnum):
     ch3_doom_board = "CH3: Doom Board"
     ch3_tv_world = "CH3: TV World"
     ch3_sword_3 = "CH3: Sword 3"
+    ch3_knight = "CH3: Roaring Knight Fight"
     ch3_cold_place = "CH3: Cold Place"
 
     chapter_4 = "Chapter 4"

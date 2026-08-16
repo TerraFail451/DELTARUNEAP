@@ -38,6 +38,7 @@ def create_regions(world: "DeltaruneWorld"):
     doom_board = Region(Regions.ch3_doom_board, world.player, world.multiworld)
     tv_world = Region(Regions.ch3_tv_world, world.player, world.multiworld)
     sword_3 = Region(Regions.ch3_sword_3, world.player, world.multiworld)
+    knight = Region(Regions.ch3_knight, world.player, world.multiworld)
     cold_place = Region(Regions.ch3_cold_place, world.player, world.multiworld)
 
     regions = [
@@ -50,6 +51,7 @@ def create_regions(world: "DeltaruneWorld"):
         doom_board,
         tv_world,
         sword_3,
+        knight,
         cold_place,
     ]
 
@@ -101,7 +103,6 @@ def create_regions(world: "DeltaruneWorld"):
     shadow_mantle = (
         Has(items[ItemIDs.shadowmantle])
         | OptionFilter(IncludeShadowMantle, IncludeShadowMantle.option_false)
-        | OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne")
         | Has(glitched_item_name)
     )
 
@@ -118,11 +119,15 @@ def create_regions(world: "DeltaruneWorld"):
             cold_place,
             rule=mantle_mandatory
             & all_recruits
-            & shadow_mantle
+            & (shadow_mantle | OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne"))
             & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
         )
     else:
         tv_world.connect(
             cold_place,
-            rule=mantle_mandatory & shadow_mantle & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
+            rule=mantle_mandatory
+            & (shadow_mantle | OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne"))
+            & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
         )
+
+    cold_place.connect(knight, rule=shadow_mantle)
