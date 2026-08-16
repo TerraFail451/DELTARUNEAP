@@ -27,7 +27,7 @@ jobs:
                -H "Content-Type: application/json" \
                -d '{
                  "repo_url": "https://github.com/${{ github.repository }}",
-                 "apworld_name": "worlds/deltarune",
+                 "apworld_name": "deltarune",
                  "branch": "${{ github.ref_name }}",
                  "runs": 500
                }'
