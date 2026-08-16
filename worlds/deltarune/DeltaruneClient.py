@@ -160,7 +160,7 @@ Both gaining and losing recruits have been turned into checks."""
                 self.output("You'll need to connect to a Multiworld, first.")
 
     @mark_raw
-    def _cmd_auto_patch(self, path: typing.Optional[str] = None):
+    async def _cmd_auto_patch(self, path: typing.Optional[str] = None):
         """Patch the game automatically."""
         if isinstance(self.ctx, DeltaruneContext):
             os.path.exists("DELTARUNE")
@@ -259,9 +259,10 @@ Both gaining and losing recruits have been turned into checks."""
                     self.output(
                         f"Your game will now be patched. Please wait... it might take a while and make your client not respond but that's normal."
                     )
+                    await asyncio.sleep(0.1)
                     shutil.copytree(pathInstall, Utils.user_path("DELTARUNE"), dirs_exist_ok=True)
                     self.ctx.patch_game()
-                    self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}/DELTARUNE.exe")
+                    self.output(f"Patching successful! You can now start {Utils.user_path("DELTARUNE")}\\DELTARUNE.exe")
 
 
 class DeltaruneContext(SuperContext):
