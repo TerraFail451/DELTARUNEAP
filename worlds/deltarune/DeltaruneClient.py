@@ -382,7 +382,11 @@ class DeltaruneContext(SuperContext):
 async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
     if cmd == "Connected":
         try:
-            options = args["slot_data"]["options"]
+            options = args["slot_data"]["options"]   
+            DeltaruneCommandProcessor.output(
+                ctx, """*****\nRemember that you are only connected to a text client.
+To connect in-game, make sure to patch DELTARUNE using the setup guide and put the connection details there.\n*****"""
+            )
         except:
             await ctx.version_mismatch()
             return

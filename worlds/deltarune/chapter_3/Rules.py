@@ -23,6 +23,7 @@ from worlds.deltarune.Rules import (
     can_recruit_water_cooler,
     can_recruit_zapper,
     can_lost_chapter3,
+    have_kris,
 )
 
 if TYPE_CHECKING:
@@ -71,7 +72,10 @@ def set_rules(world: "DeltaruneWorld"):
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
         )
 
-    world.set_rule(world.get_location(locations[LocationIDs.ch3_tv_world_man]), Has(items[ItemIDs.tripticket]))
+    world.set_rule(
+        world.get_location(locations[LocationIDs.ch3_tv_world_man]),
+        have_kris & Has(items[ItemIDs.tripticket])
+    )
 
     if excluded_t_rank(world):
         world.get_location(locations[LocationIDs.ch3_board_1_t_rank]).progress_type = LocationProgressType.EXCLUDED
