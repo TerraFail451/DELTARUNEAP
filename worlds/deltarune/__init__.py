@@ -181,6 +181,7 @@ class DeltaruneWorld(World):
     """
     Deltarune is an episodic role-playing video game created by American indie developer Toby Fox.
     """
+    # nothing here
 
     # region Archipelago World properties
     game = "DELTARUNE"
