@@ -53,6 +53,8 @@ async def on_client_connected(ctx: "DeltaruneContext"):
     logging.info(f"Proxy client connected")
     if ctx.room_info and ctx.connected:
         await send_msgs_proxy(ctx, ctx.room_info)
+    else:
+        await send_msgs_proxy(ctx, {"cmd": "ProxyDisconnect"})
 
 
 async def parse_game_packets(ctx: "DeltaruneContext", data):
