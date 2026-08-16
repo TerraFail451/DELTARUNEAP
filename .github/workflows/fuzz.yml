@@ -15,6 +15,18 @@ on:
       - '!.github/workflows/**'
       - '!*.md'
   workflow_dispatch:
+  pull_request: 
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!deploy/**'
+      - '!setup.py'
+      - '!Dockerfile'
+      - '!*.iss'
+      - '!.gitignore'
+      - '!.dockerignore'
+      - '!.github/workflows/**'
+      - '!*.md'
 
 jobs:
   test_logic:
