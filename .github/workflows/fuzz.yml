@@ -14,6 +14,7 @@ on:
       - '!.dockerignore'
       - '!.github/workflows/**'
       - '!*.md'
+  workflow_dispatch:
 
 jobs:
   test_logic:
@@ -26,7 +27,7 @@ jobs:
                -H "Content-Type: application/json" \
                -d '{
                  "repo_url": "https://github.com/${{ github.repository }}",
-                 "apworld_name": "deltarune",
+                 "apworld_name": "worlds/deltarune",
                  "branch": "${{ github.ref_name }}",
                  "runs": 500
                }'
