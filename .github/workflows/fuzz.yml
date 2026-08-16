@@ -1,5 +1,5 @@
 
-name: remove-fuzz
+name: remote-fuzz
 
 on:
   push: 
