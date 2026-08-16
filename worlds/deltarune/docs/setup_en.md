@@ -41,9 +41,9 @@ Rename the unzipped folder `DELTARUNE_PATCH`, and move it to at the root of Arch
 
 Run the Archipelago Launcher (Or restart the launcher if it's already running)
 
-Start the DELTARUNE client from your Archipelago folder or the Archipelago app and input `/auto_patch <Your DELTARUNE Install Directory>` at the bottom.
+Start the DELTARUNE client from your Archipelago folder or the Archipelago app.
 
-If you game is installed on your `C:` drive through Steam, you can use `/auto_patch steaminstall` or if it's a downloaded depot `/auto_patch steamdepot` (`/auto_patch linux` or `/auto_patch linuxdepot` for linux). 
+If your game is installed on your `C:` drive through Steam, you can type `/auto_patch steaminstall` word for word or if it's a downloaded depot `/auto_patch steamdepot` (`/auto_patch linux` or `/auto_patch linuxdepot` for linux) at the bottom of the client. 
 
 Usually, Steam automatically attempts to download games to you `C:` drive, so it will likely be there unless you know you told Steam to use a `D:` drive, for example. Though, if you're not sure, you can easily find the directory by opening the DELTARUNE directory through Steam by right-clicking DELTARUNE in your library and selecting `Manage > Browse local files`. Then, on Windows you can see the directory you need at the top of the window.
 
