@@ -74,6 +74,7 @@ class Regions(StrEnum):
     ch3_sword_3 = "CH3: Sword 3"
     ch3_knight = "CH3: Roaring Knight Fight"
     ch3_cold_place = "CH3: Cold Place"
+    ch3_fountain = "CH3: Fountain"
 
     chapter_4 = "Chapter 4"
     ch4_castle_town = "CH4: Castle Town"

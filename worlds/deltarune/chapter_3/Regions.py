@@ -40,6 +40,7 @@ def create_regions(world: "DeltaruneWorld"):
     sword_3 = Region(Regions.ch3_sword_3, world.player, world.multiworld)
     knight = Region(Regions.ch3_knight, world.player, world.multiworld)
     cold_place = Region(Regions.ch3_cold_place, world.player, world.multiworld)
+    fountain = Region(Regions.ch3_fountain, world.player, world.multiworld)
 
     regions = [
         couch_cliffs,
@@ -53,6 +54,7 @@ def create_regions(world: "DeltaruneWorld"):
         sword_3,
         knight,
         cold_place,
+        fountain,
     ]
 
     for region in regions:
@@ -100,12 +102,6 @@ def create_regions(world: "DeltaruneWorld"):
         filtered_resolution=True,
     )
 
-    shadow_mantle = (
-        Has(items[ItemIDs.shadowmantle])
-        | OptionFilter(IncludeShadowMantle, IncludeShadowMantle.option_false)
-        | Has(glitched_item_name)
-    )
-
     if all_recruits_route(world):
         all_recruits = (
             CanReachLocation(locations[LocationIDs.ch3_recruit_shadowguy])
@@ -117,17 +113,19 @@ def create_regions(world: "DeltaruneWorld"):
         )
         tv_world.connect(
             cold_place,
-            rule=mantle_mandatory
-            & all_recruits
-            & (shadow_mantle | OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne"))
-            & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
+            rule=mantle_mandatory & all_recruits & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
         )
     else:
         tv_world.connect(
             cold_place,
-            rule=mantle_mandatory
-            & (shadow_mantle | OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory, operator="ne"))
-            & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
+            rule=mantle_mandatory & Has(items[ItemIDs.remote_battery], FromOption(MacGuffinChapter3)),
         )
 
-    cold_place.connect(knight, rule=shadow_mantle)
+    cold_place.connect(
+        fountain,
+        rule=CanReachLocation(
+            locations[LocationIDs.ch3_cold_place_knight_defeat_item_1],
+            options=[OptionFilter(RandomizeSecretBosses, RandomizeSecretBosses.option_mandatory)],
+            filtered_resolution=True,
+        ),
+    )
