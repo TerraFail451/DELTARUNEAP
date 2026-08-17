@@ -49,7 +49,10 @@ def set_rules(world: "DeltaruneWorld"):
         world.get_location(locations[LocationIDs.ch4_third_sanctuary_annoying_dog]), Has(items[ItemIDs.sheetmusic])
     )
 
-    world.set_rule(world.get_location(locations[LocationIDs.ch4_dark_sanctuary_jackenstein_gift]), have_kris)
+    world.set_rule( # You can get this by doing dark sanctuary skip, so it's glitched
+        world.get_location(locations[LocationIDs.ch4_dark_sanctuary_jackenstein_gift]), have_kris | Has(glitched_item_name)
+    )
+
     world.set_rule(world.get_location(locations[LocationIDs.ch4_dark_sanctuary_climbing_tutorial_chest]), have_kris)
 
     if include_mike_games(world) and world.options.exclude_mike_platinum.value == 1:

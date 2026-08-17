@@ -627,6 +627,9 @@ class UnlockCharacters(Choice):
     
     *(If someone isn't unlocked, they'll be at -666HP, and you can't use them in battle.)*
     *(If nobody is unlocked, then it will immediately be the enemy's turn, but you still get one hit to live.)*
+
+    **(Of course, missing any number of characters makes battles exponentially more difficult.)**
+    **(Only turn this option on if you're ready for battles to take upwards of 10 turns each!)**
     """
 
     display_name = "Unlock Characters"
@@ -641,7 +644,7 @@ class StartWithRandomCharacter(Toggle):
     IF THE ABILITY TO USE HEROES NEEDS TO BE UNLOCKED, WILL YOU BEGIN WITH ONE OR NONE?
 
     *(Only if you chose true on unlock character option. If you chose "Except Kris" this doesn't apply either.)*
-    *(Cannot be Noelle)*
+    *(Cannot be Noelle.)*
     """
 
     display_name = "Start with a random character"
