@@ -1,0 +1,45 @@
+
+name: remote-fuzz
+
+on:
+  push: 
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!deploy/**'
+      - '!setup.py'
+      - '!Dockerfile'
+      - '!*.iss'
+      - '!.gitignore'
+      - '!.dockerignore'
+      - '!.github/workflows/**'
+      - '!*.md'
+  workflow_dispatch:
+  pull_request: 
+    paths:
+      - '**'
+      - '!docs/**'
+      - '!deploy/**'
+      - '!setup.py'
+      - '!Dockerfile'
+      - '!*.iss'
+      - '!.gitignore'
+      - '!.dockerignore'
+      - '!.github/workflows/**'
+      - '!*.md'
+
+jobs:
+  test_logic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Remote Fuzzer
+        run: |
+          curl -sSN -f -X POST https://fuzzer.lonlonlabs.dev/api/fuzz \
+               -H "x-api-key: ${{ secrets.FUZZER_API_KEY }}" \
+               -H "Content-Type: application/json" \
+               -d '{
+                 "repo_url": "https://github.com/${{ github.repository }}",
+                 "apworld_name": "deltarune",
+                 "branch": "${{ github.ref_name }}",
+                 "runs": 500
+               }'

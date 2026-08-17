@@ -85,6 +85,15 @@ def set_rules(world: "DeltaruneWorld"):
         world.get_location(locations[LocationIDs.ch3_board_1_z_rank]).progress_type = LocationProgressType.EXCLUDED
         world.get_location(locations[LocationIDs.ch3_board_2_z_rank]).progress_type = LocationProgressType.EXCLUDED
 
+    if include_shadow_mantle(world):
+        world.set_rule(
+            world.get_location(locations[LocationIDs.ch3_cold_place_knight_defeat_item_1]),
+            Has(items[ItemIDs.shadowmantle]) | Has(glitched_item_name),
+        )
+        world.set_rule(
+            world.get_location(locations[LocationIDs.ch3_cold_place_knight_defeat_item_2]),
+            Has(items[ItemIDs.shadowmantle]) | Has(glitched_item_name),
+        )
 
 def handle_locked_items(world: "DeltaruneWorld"):
     # MANTLE
