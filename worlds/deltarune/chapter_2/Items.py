@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
 from worlds.deltarune.LogicHelper import (
+    include_unused_items,
     randomized_chapters,
     normal_route,
     weird_route,
@@ -235,43 +236,43 @@ chapter2_items = [
     ItemData(
         ItemIDs.javacookie,
         ItemClassification.filler,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.healing_item, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.revivebrite,
         ItemClassification.filler,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.healing_item, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.mannequin_consumable,
         ItemClassification.filler,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.healing_item, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.darkgoldband,
         ItemClassification.filler,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.currencies, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.skymantle,
         ItemClassification.useful,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.armors, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.spikeshackle,
         ItemClassification.useful,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.armors, ItemGroups.unused_items],
     ),
     ItemData(
         ItemIDs.cheerscarf,
         ItemClassification.useful,
-        should_be_included=include_hidden_items,
+        should_be_included=include_unused_items,
         groups=[ItemGroups.weapons, ItemGroups.ralsei_weapons, ItemGroups.unused_items],
     ),
 ]
