@@ -73,15 +73,16 @@ def create_regions(world: "DeltaruneWorld"):
         | have_kris_susie_or_ralsei
         & [OptionFilter(ChosenRoute, [ChosenRoute.option_weird_route, ChosenRoute.option_normal_route], operator="in")],
     )
-    # If you get the claimbclaws, you can recreate a save to skip Dark Sanctuary but require Kris or Susie for Wingblade fight
+    # If you get the claimbclaws, you can recreate a save to skip Dark Sanctuary but require Kris or Susie for Wingblade fight.
+    # However, you can return later with everyone, so ralsei can be there instead
     castle_town.connect(
         second_sanctuary,
-        rule=Has(items[ItemIDs.claimbclaws]) & have_kris_or_susie & Has(glitched_item_name),
+        rule=Has(items[ItemIDs.claimbclaws]) & have_kris_susie_or_ralsei & Has(glitched_item_name),
     )
     # If you can go to the Second Sanctuary with the previous rule, then you can Wrong Warp to skip Second Sanctuary
     castle_town.connect(
         third_sanctuary,
-        rule=Has(items[ItemIDs.claimbclaws]) & Has(glitched_item_name),
+        rule=Has(items[ItemIDs.claimbclaws]) & have_kris_susie_or_ralsei & Has(glitched_item_name),
     )
 
     dark_sanctuary.connect(old_man_shop)
