@@ -59,7 +59,7 @@ Since this randomizer only supports the Windows version, we must fix this, by ri
 
 This downloads the Windows version of DELTARUNE to use instead of the Linux version. If the play button is greyed out in Steam, be sure to go to `Settings -> Compatibility` and toggle `Enable Steam Play for all other titles`.
 
-### Hosting
+## Hosting
 
 If you are the host, once you have all of the players YAML, use the Generator provided by the Archipelago Launcher.
 
@@ -67,7 +67,7 @@ Once the output zip is generated, if you are playing a solo player multiworld yo
 
 If you're not doing a solo multiworld you must upload it to the [Archipelago upload page](https://archipelago.gg/uploads) to generate your room.
 
-### Connect to the Multiworld
+## Connect to the Multiworld
 
 Open your patched DELTARUNE version and choose `Change connection info` to input your host, port, slot and (if applicable) password.
 
