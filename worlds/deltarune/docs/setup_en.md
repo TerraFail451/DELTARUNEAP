@@ -19,7 +19,7 @@ Your YAML file is the settings of your Archipelago world.
 
 Using `Generate Template Options` you can find the default YAML and other presets in `<Archipelago folder Path>\Players\Templates` which you can edit to your liking. You can also use the `Option Creator` in the Archipelago Launcher but be warned that using `Options Generator` will make it harder to read some of the option descriptions. Otherwise, it works great.
 
-After setting your options to your liking, you can generate a Multiworld by following 
+After setting your options to your liking, you can generate a Multiworld by following the [archipelago setup](https://archipelago.gg/tutorial/Archipelago/setup_en).
 
 ## Installation
 
@@ -58,6 +58,14 @@ The Linux installation is mostly similar, however, DELTARUNE will be installed o
 Since this randomizer only supports the Windows version, we must fix this, by right-click the game in Steam, going to `Properties -> Compatibility`, and checking `Force the use of a specific Steam Play compatibility tool`.
 
 This downloads the Windows version of DELTARUNE to use instead of the Linux version. If the play button is greyed out in Steam, be sure to go to `Settings -> Compatibility` and toggle `Enable Steam Play for all other titles`.
+
+### Hosting
+
+If you are the host, once you have all of the players YAML, use the Generator provided by the Archipelago Launcher.
+
+Once the output zip is generated, if you are playing a solo player multiworld you can host it yourself with the Host option in the Archipelago Client and connect to `localhost:38281`.
+
+If you're not doing a solo multiworld you must upload it to the [Archipelago upload page](https://archipelago.gg/uploads) to generate your room.
 
 ### Connect to the Multiworld
 
