@@ -479,6 +479,14 @@ class DeathLink(Toggle):
     default = 0
 
 
+class DeathLinkGroup(FreeText):
+    """
+    ONLY THOSE IN THIS WILL BE PART OF YOUR DEATH LINK.
+
+    *(Games that don't support this option are part of the empty group.)*
+    """
+
+
 class DamageLink(Toggle):
     """
     TAKING DAMAGE WILL CAUSE THE HARM OF EVERYONE WHO HAS ENABLED THIS OPTION.
@@ -810,6 +818,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     door_key_from_broken_keys: DoorKeyFromBrokenKeys
     include_unused_items: IncludeUnusedItems
     death_link: DeathLink
+    death_link_group: DeathLinkGroup
     damage_link: DamageLink
     damage_link_group: DamageLinkGroup
     filler_healing_weight: FillerHealingWeight

@@ -279,6 +279,7 @@ class DeltaruneWorld(World):
                 "mysterykey_from_pink_coins",
                 "door_key_from_broken_keys",
                 "death_link",
+                "death_link_group",
                 "damage_link",
                 "damage_link_group",
                 "item_balancing",
