@@ -74,6 +74,16 @@ class HaveStarwalker(Toggle):
     display_name = "Always Have Starwalker"
     default = 1
 
+
+class ShuffleOST(Toggle):
+    """
+    SHOULD EVERY OST INSIDE THE mus FOLDER BE SHUFFLED
+    """
+
+    display_name = "Shuffle OST"
+    default = 0
+
+
 class ChosenRoute(Choice):
     """
     CHOOSE THE ROUTE THAT YOU PREFER.
@@ -846,6 +856,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_mike: IncludeMike
     exclude_mike_platinum: ExcludeMikePlatinum
     better_odds: BetterOdds
+    shuffle_ost: ShuffleOST
     pink_twin_ribbon_unnerf: UnnerfPinkTwinRibbon
     have_starwalker: HaveStarwalker
     unlock_fun_gang_actions: UnlockFunGangActions

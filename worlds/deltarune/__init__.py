@@ -300,6 +300,7 @@ class DeltaruneWorld(World):
                 "unlock_characters",
                 "start_with_random_character",
                 "better_odds",
+                "shuffle_ost",
                 "pink_twin_ribbon_unnerf",
                 "have_starwalker",
                 "unlock_fun_gang_actions",
