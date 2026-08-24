@@ -180,6 +180,7 @@ def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:
                     ItemClassification.progression,
                     should_be_included=randomized_chapters,
                     groups=[ItemGroups.region_blockers],
+                    amount=1,
                 )
             ],
         )
