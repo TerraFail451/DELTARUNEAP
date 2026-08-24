@@ -572,7 +572,7 @@ class ItemData(NamedTuple):
     classification: ItemClassification
     should_be_included: Callable[["DeltaruneWorld"], bool] = lambda world: True
     groups: list[ItemGroups] = []
-    amount: int = 1
+    amount: int = 0
     blacklist_filler: bool = False
     changing_classification: bool = False
 

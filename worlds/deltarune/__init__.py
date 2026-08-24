@@ -27,6 +27,12 @@ from worlds.deltarune.LogicHelper import (
     all_chapter_unlocked,
     chapters_in_order,
     include_characters,
+    include_deluxedinner_fusion,
+    include_dogwidow_fusion,
+    include_hidden_items,
+    include_punchbowl_fusion,
+    include_tensionmax_fusion,
+    include_tvdinner_fusion,
     included_chapter,
     progressive_weapons_kris,
     progressive_weapons_noelle,
@@ -455,6 +461,8 @@ class DeltaruneWorld(World):
         for item_data in item_pool:
             item_pool_names_and_amounts += [items[item_data.code]] * item_data.amount
 
+        self.add_filler_items_used_in_fusion(item_pool_names_and_amounts)
+
         item_pool_converted = [self.create_item(item) for item in item_pool_names_and_amounts]
 
         self.handle_item_unfill_and_overflows(item_pool_converted)
@@ -464,6 +472,23 @@ class DeltaruneWorld(World):
     # endregion
 
     # region DELTARUNE Generation functions
+
+    def add_filler_items_used_in_fusion(self, item_pool_before_convert):
+        if include_tvdinner_fusion(self):
+            item_pool_before_convert += [items[ItemIDs.tvslop]] * 2
+
+        if include_deluxedinner_fusion(self):
+            item_pool_before_convert += [items[ItemIDs.tvdinner]] * 2
+
+        if include_punchbowl_fusion(self):
+            item_pool_before_convert += items[ItemIDs.scarlixir]
+
+        if include_tensionmax_fusion(self):
+            item_pool_before_convert += items[ItemIDs.scarlixir]
+
+        if include_dogwidow_fusion(self) and include_hidden_items(self):
+            # dogdollar must be find at their original location if hidden items not included
+            item_pool_before_convert += items[ItemIDs.dogdollar]
 
     def fill_chapter_included_array(self):
         self.included_chapters = []
