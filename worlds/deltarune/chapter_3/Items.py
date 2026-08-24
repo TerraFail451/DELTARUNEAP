@@ -62,6 +62,9 @@ chapter3_items = [
         changing_classification=True,
     ),
     ItemData(
+        ItemIDs.pipis, ItemClassification.filler, groups=[ItemGroups.healing_item], blacklist_filler=True, amount=1
+    ),
+    ItemData(
         ItemIDs.white_ribbon,
         ItemClassification.useful,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],

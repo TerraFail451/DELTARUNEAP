@@ -94,7 +94,7 @@ class ItemIDs(IntEnum):
     spoison = 32
     dogdollar = 33
     tvdinner = 34
-    # nothing = 35
+    pipis = 35
     flatsoda = 36
     tvslop = 37
     execbuffet = 38
@@ -400,6 +400,7 @@ items = {
     ItemIDs.smile: "SMILE",
     ItemIDs.tvslop: "TVSlop",
     ItemIDs.tvdinner: "TVDinner",
+    ItemIDs.pipis: "Pipis",
     ItemIDs.deluxedinner: "DeluxeDinner",
     ItemIDs.flatsoda: "FlatSoda",
     ItemIDs.tensionmax: "TensionMax",
