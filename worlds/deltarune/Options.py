@@ -54,6 +54,16 @@ class BetterOdds(Toggle):
     display_name = "Better Odds"
     default = 1
 
+
+class UnnerfPinkTwinRibbon(Toggle):
+    """
+    SHOULD PINK AND TWIN RIBBON NERF BE REVERTED IN CHAPTER 3+
+    """
+
+    display_name = "Un-nerf Pink/Twin Ribbon"
+    default = 1
+
+
 class HaveStarwalker(Toggle):
     """
     THE ORIGINAL ONE BE PRESENT UPON STARTING A NEW SAVE.
@@ -836,6 +846,7 @@ class DeltaruneOptions(PerGameCommonOptions):
     include_mike: IncludeMike
     exclude_mike_platinum: ExcludeMikePlatinum
     better_odds: BetterOdds
+    pink_twin_ribbon_unnerf: UnnerfPinkTwinRibbon
     have_starwalker: HaveStarwalker
     unlock_fun_gang_actions: UnlockFunGangActions
     chapter_1_recruit: Chapter1Recruit
