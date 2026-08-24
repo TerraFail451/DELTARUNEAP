@@ -127,7 +127,7 @@ chapter2_items = [
     ),
     ItemData(
         ItemIDs.frayedbowtie,
-        ItemClassification.useful,
+        ItemClassification.filler,
         should_be_included=normal_route,
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
         changing_classification=True,
