@@ -42,6 +42,7 @@ from worlds.deltarune.LogicHelper import (
     randomized_chapters,
     weird_route,
 )
+from worlds.deltarune.OSTRandomizer import randomizeOST
 from worlds.deltarune.Options import (
     ChosenRoute,
     DeltaruneOptions,
@@ -236,6 +237,7 @@ class DeltaruneWorld(World):
         self.cached_filler_and_trap_weights: dict[int, float] = None
         self.weapon_to_progressive_weapon_index: dict[ItemGroups, dict[ItemIDs, int]] = {}
         self.included_chapters: list[int] = []
+        self.randomized: dict[str, Any] = {}
 
     # region Archipelago Functions
     def create_item(self, name: str) -> DeltaruneItem:
@@ -316,6 +318,7 @@ class DeltaruneWorld(World):
                 "progressive_noelle_weapons",
                 toggles_as_bools=True,
             ),
+            "randomized": self.randomized,
             "world_seed": self.random.getrandbits(32),
             "seed_name": self.multiworld.seed_name,
             "player_name": self.multiworld.get_player_name(self.player),
@@ -332,6 +335,7 @@ class DeltaruneWorld(World):
         if re_gen_passthrough and self.game in re_gen_passthrough:
             # Get the passed through slot data from the real generation
             slot_data: dict[str, Any] = re_gen_passthrough[self.game]
+            self.randomized = slot_data.get("randomized", {})
 
             slot_options: dict[str, Any] = slot_data.get("options", {})
             # Set all your options here instead of getting them from the yaml
@@ -342,6 +346,8 @@ class DeltaruneWorld(World):
                     setattr(self.options, key, opt.from_any(value))
         else:
             self.fill_chapter_included_array()
+
+            self.randomized["ost"] = randomizeOST(self)
 
             validate_options(self)
 
