@@ -243,7 +243,7 @@ def create_items(world: "DeltaruneWorld"):
         return []
 
     # Only add noelle everybody weapon if chapter 2 is included
-    if include_everybodyweapon(world and included_chapter(world, 2)):
+    if include_everybodyweapon(world) and included_chapter(world, 2):
         item_data = next(
             (item_data for item_data in cross_chapter_items if item_data.code == ItemIDs.everybodyweapon), None
         )
