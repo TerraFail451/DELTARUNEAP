@@ -242,6 +242,14 @@ def create_items(world: "DeltaruneWorld"):
     if world.included_chapters == [5] and world.options.chosen_route.value == ChosenRoute.option_weird_route:
         return []
 
+    # Only add noelle everybody weapon if chapter 2 is included
+    if include_everybodyweapon(world and included_chapter(world, 2)):
+        item_data = next(
+            (item_data for item_data in cross_chapter_items if item_data.code == ItemIDs.everybodyweapon), None
+        )
+        index = cross_chapter_items.index(item_data)
+        cross_chapter_items[index] = item_data._replace(amount=4)
+
     return generic_create_items(world, cross_chapter_items)
 
 
