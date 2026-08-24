@@ -15,7 +15,7 @@ from worlds.deltarune.Rules import (
     have_kris_or_noelle,
     have_kris_or_ralsei,
     have_kris_susie_or_ralsei,
-    can_act_spare_susie,
+    have_noelle,
 )
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.Locations import LocationIDs, locations
@@ -98,13 +98,6 @@ def create_regions(world: "DeltaruneWorld"):
         rule=(Has(items[ItemIDs.safety_vest]) & have_kris_susie_or_ralsei),
     )
 
-    trash_zone_no_character_requirement.connect(trash_zone, rule=have_kris_or_noelle)
-
-    # Require Kris or Noelle for the Virovirokun after noelle
-    trash_zone_no_character_requirement.connect(
-        cyber_city, rule=have_kris_or_noelle | (have_kris_susie_or_ralsei & Has(glitched_item_name))
-    )
-
     if normal_route(world):
         spamton_shop = Region(Regions.ch2_spamton_shop, world.player, world.multiworld)
         swatch_cafe = Region(Regions.ch2_swatch_cafe, world.player, world.multiworld)
@@ -132,6 +125,17 @@ def create_regions(world: "DeltaruneWorld"):
             if region.name in chapter2_locations:
                 add_location_to_region(region, chapter2_locations[region.name], world)
             world.multiworld.regions.append(region)
+
+        trash_zone_no_character_requirement.connect(
+            trash_zone, "Trash No Charac -> Trash (Normal Route)", rule=have_kris_or_noelle
+        )
+
+        # Require Kris or Noelle for the Virovirokun after noelle
+        trash_zone_no_character_requirement.connect(
+            cyber_city,
+            "Trash no Charac -> City (Normal Route)",
+            rule=have_kris_or_noelle | (have_kris_susie_or_ralsei & Has(glitched_item_name)),
+        )
 
         cyber_field.connect(
             mansion_lobby_main_route,
@@ -223,6 +227,17 @@ def create_regions(world: "DeltaruneWorld"):
             if region.name in chapter2_locations:
                 add_location_to_region(region, chapter2_locations[region.name], world)
             world.multiworld.regions.append(region)
+
+        trash_zone_no_character_requirement.connect(
+            trash_zone, "Trash No Charac -> Trash (Weird Route)", rule=have_noelle
+        )
+
+        # Require Kris or Noelle for the Virovirokun after noelle
+        trash_zone_no_character_requirement.connect(
+            cyber_city,
+            "Trash no Charac -> City (Weird Route)",
+            rule=have_noelle,
+        )
 
         # WEIRD ROUTE REGION CONNECTIONS
         # Moved after creating items because we don't know yet how many progressive item is the thornring
