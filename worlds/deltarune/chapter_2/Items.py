@@ -74,7 +74,7 @@ chapter2_items = [
         amount=1,
     ),
     ItemData(ItemIDs.silver_watch, ItemClassification.useful, groups=[ItemGroups.armors], amount=1),
-    ItemData(ItemIDs.safety_vest, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
+    ItemData(ItemIDs.safety_vest, ItemClassification.progression, groups=[ItemGroups.region_blockers], amount=1),
     ItemData(
         ItemIDs.keygen_2_segment,
         ItemClassification.progression_skip_balancing,
