@@ -62,6 +62,7 @@ chapter2_items = [
         groups=[ItemGroups.armors, ItemGroups.fusion_ingredient],
         changing_classification=True,
     ),
+    ItemData(ItemIDs.silver_watch, ItemClassification.useful, groups=[ItemGroups.armors], amount=1),
     ItemData(ItemIDs.safety_vest, ItemClassification.progression, groups=[ItemGroups.region_blockers]),
     ItemData(
         ItemIDs.keygen_2_segment,

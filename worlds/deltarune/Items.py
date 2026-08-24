@@ -192,6 +192,7 @@ class ItemIDs(IntEnum):
     chainmail = 20011
     bshotbowtie = 20012
     spikeband = 20013
+    silver_watch = 20014
     tensionbow = 20015
     mannequin = 20016
     darkgoldband = 20017
@@ -471,6 +472,7 @@ items = {
     ItemIDs.pink_ribbon: "Pink Ribbon",
     ItemIDs.white_ribbon: "White Ribbon",
     ItemIDs.silver_card: "Silver Card",
+    ItemIDs.silver_watch: "Silver Watch",
     ItemIDs.spikeband: "SpikeBand",
     ItemIDs.twin_ribbon: "Twin Ribbon",
     ItemIDs.tensionbow: "TensionBow",
