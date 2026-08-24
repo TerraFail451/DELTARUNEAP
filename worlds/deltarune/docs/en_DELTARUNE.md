@@ -1,6 +1,6 @@
 # DELTARUNE
 
-**Remember that DELTARUNEAP will not affect your base DELTARUNE saves. DELTARUNEAP has a separate save folder for each slot you play as, meaning you can play multiple multiworld at once or even multiple slots in the same multiworld.**
+**Remember that DELTARUNEAP will not affect your base DELTARUNE saves. DELTARUNEAP has a separate save folder for each slot you play as, meaning you can play multiple multiworlds at once or even multiple slots in the same multiworld.**
 
 ## What is considered a location check in DELTARUNE?
 
