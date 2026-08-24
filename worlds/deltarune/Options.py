@@ -556,7 +556,7 @@ class TrapWeight(NamedRange):
     display_name = "Trap Weights"
     range_start = 0
     range_end = 99
-    default = filler_weight_range_names["uncommon"]
+    default = filler_weight_range_names["rare"]
     rich_text_doc = True
     special_range_names = filler_weight_range_names
 
