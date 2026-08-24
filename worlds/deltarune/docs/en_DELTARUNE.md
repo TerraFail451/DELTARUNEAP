@@ -1,5 +1,7 @@
 # DELTARUNE
 
+**Remember that DELTARUNEAP will not affect your base DELTARUNE saves. DELTARUNEAP has a separate save folder for each slot you play as, meaning you can play multiple multiworld at once or even multiple slots in the same multiworld.**
+
 ## What is considered a location check in DELTARUNE?
 
 Location checks in DELTARUNE are all the spots in the game where you can get an item, like shops, chests, and some extra events (Like getting the Moss). Exceptions are anything you cannot get on your chosen route and also some things that become unobtainable later on (Like Sweet Cap'n Cakes overworld shops) or things that only appear if certain choices are made (Like Chapter 3's Pipis item).
