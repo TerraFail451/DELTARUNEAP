@@ -121,7 +121,7 @@ Open your patched DELTARUNE version and choose `Change connection info` to input
 
 You can also copy/paste `host:port` directly into the host slot.
 
-<img width="640" height="492" alt="image" src="https://github.com/user-attachments/assets/26c11eee-e7ed-401d-9efa-ab033a70df22" />
+<img width="639" height="494" alt="image" src="https://github.com/user-attachments/assets/2f06bf7c-f3e5-44df-9acc-17e9b4a8b1c1" />
 
 If you want to change the preview items color, it's configurable by switching menu with left/right arrow key.
 
