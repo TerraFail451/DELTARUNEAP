@@ -65,13 +65,18 @@ class UnnerfPinkTwinRibbon(Toggle):
 
 
 class HaveStarwalker(Toggle):
+class GlitchedLogicAsLogic(Toggle):
     """
     THE ORIGINAL ONE BE PRESENT UPON STARTING A NEW SAVE.
+    SHOULD THE LOGIC EXPECT YOU TO USE ALL GLITCHES POSSIBLE AND NOT HIT FIGHTS
 
     **star              walker :D**
+    (This is actually probably a really bad idea to enable that, use as your own risk)
+    (This will also probably require you to save on multiple save slot to go back in time sometimes as you will probably softlock yourself from some checks sometimes)
     """
 
     display_name = "Always Have Starwalker"
+    display_name = "[HARD MODE] Gliched Logic as Logic"
     default = 1
 
 

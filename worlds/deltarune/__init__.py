@@ -318,6 +318,7 @@ class DeltaruneWorld(World):
                 "progressive_susie_weapons",
                 "progressive_ralsei_weapons",
                 "progressive_noelle_weapons",
+                "glitched_logic_as_logic",
                 toggles_as_bools=True,
             ),
             "randomized": self.randomized,
@@ -430,6 +431,9 @@ class DeltaruneWorld(World):
         if len(self.included_chapters) == 0:
             self.multiworld.push_precollected(self.create_item(items[ItemIDs.what_interesting_behavior]))
             return
+
+        if self.options.glitched_logic_as_logic.value == 1:
+            self.multiworld.push_precollected(self.create_item(glitched_item_name))
 
         item_pool: list[ItemData] = []
 
