@@ -58,7 +58,11 @@ class HaveStarwalker(Toggle):
 
 class ShuffleOST(Toggle):
     """
-    SHOULD EVERY OST INSIDE THE mus FOLDER BE SHUFFLED
+    THE BACKGROUND MUSIC WILL BE UNLIKE HOW YOU REMEMBER IT.
+
+    (Just a basic music randomizer.)
+    (Will likely not include rhythm games or the Sweet Cap'n Cakes fight.)
+    (Also, expect things like multiple soundtracks overlapping. This isn't a bug, it's just how the game is programmed.)
     """
 
     display_name = "Shuffle OST"
@@ -72,10 +76,14 @@ class ShuffleOST(Toggle):
 
 class GlitchedLogicAsLogic(Toggle):
     """
-    SHOULD THE LOGIC EXPECT YOU TO USE ALL GLITCHES POSSIBLE AND NOT HIT FIGHTS
+    THE INTENDED WAY TO PROGRESS WILL NO LONGER BE GUARANTEED.
 
-    (This is actually probably a really bad idea to enable that, use as your own risk)
-    (This will also probably require you to save on multiple save slot to go back in time sometimes as you will probably softlock yourself from some checks sometimes)
+    (You get a very bad feeling that this will probably a horrible idea...)
+    (All glitches and possible out of logic locations will now be in logic.)
+    (Expect things like having to replay board 1 over and over to recruit 25 shadowguys,)
+    (Utilizing wrong warps, overflows, and other glitches to progress,)
+    (And doing challenging fights no-hit if you don't have any characters unlocked.)
+    (Also a reminder that Chapter 2's Bagel Overflow has been re-added.)
     """
 
     display_name = "[HARD MODE] Gliched Logic as Logic"
@@ -98,7 +106,10 @@ class BetterOdds(Toggle):
 
 class UnnerfPinkTwinRibbon(Toggle):
     """
-    SHOULD PINK AND TWIN RIBBON NERF BE REVERTED IN CHAPTER 3+
+    THE PINK AND THE TWIN RIBBONS WILL NOT BE DOWNGRADED PAST THE SECOND CHAPTER.
+
+    (If you don't know, the pink/twin ribbon gets nerfed hard if you equip a second one in chapter 3+.)
+    (Though, keep in mind it was definitely nerfed for a reason. Equipping these ribbons all at once make some battles a cakewalk.)
     """
 
     display_name = "Un-nerf Pink/Twin Ribbon"
@@ -194,11 +205,13 @@ class RandomSafetyChapterIncluded(Toggle):
 
 class RandomizeSecretBosses(Choice):
     """
-    LOCATIONS GIVEN BY SECRET BOSSES WILL BE RANDOMIZED OR EVEN REQUIRED.
+    LOCATIONS GIVEN BY SHADOW CRYSTAL BOSSES WILL BE RANDOMIZED OR EVEN REQUIRED.
 
     - **Mandatory** *Secret Boss rewards will be randomized, and they will be required to beat to access the fountain.*
 
-    *Secret bosses are: Jevil, Spamton Neo, Shadow Mantle/ERAM, Chapter 3 Knight, Hammer of Justice, Pink*
+    *Secret bosses are: Jevil, Spamton Neo, Chapter 3 Knight, Hammer of Justice, Pink*
+
+    (Yeah yeah I know the knight fight isn't technically secret. SHUT IT!!!!)
     """
 
     display_name = "Randomize Secret Bosses"
@@ -219,7 +232,9 @@ class RandomizeSWORDRoute(Toggle):
 
 class ShadowMantleHolderAsSecretBoss(Toggle):
     """
-    SHOULD THE SHADOW MANTLE HOLDER BE DEFEATED TO PROCEED WHEN SECRET BOSSES ARE MANDATORY
+    SHOULD THE FINAL ENEMY OF THE ORIGINAL GAME BE TREATED AS A SHADOW CRYSTAL BOSS?
+
+    (This option makes Chapter 3's Shadow Mantle Holder Fight mandatory if you turn Secret Bosses to Mandatory.)
     """
 
     display_name = "Shadow Mantle Holder as secret boss"
@@ -263,7 +278,7 @@ class AllowDoomBoardWithoutAllCharacters(Toggle):
     *(Usually, all three characters would need to be unlocked to access Doom Board in chapter 3)*
     *(This is because the board has an ACT that requires everyone in order to progress.)*
     *(If you want to disable this requirement, set this option to true.)*
-    *(However, this will almost guarantee that you will have to do difficult fights such as the Knight with only one or two characters unlocked.)*
+    *(However, this will make it so that you might have to do fights such as the Knight with only one or two characters unlocked.)*
     """
 
     display_name = "Doom Board in logic without all characters"
@@ -273,6 +288,11 @@ class AllowDoomBoardWithoutAllCharacters(Toggle):
 class ItemBalancing(Toggle):
     """
     IF AN ITEM IS OBTAINED EARLY, ITS POWER WILL BE SCALED DOWN.
+
+    (Getting Chapter 5 items in Chapter 1 can make enemies die in a single hit and make you take less than 10 damage.)
+    (If you don't want the game to be THAT easy, then set this option to true.)
+    
+    (Can be toggled in-game)
     """
 
     display_name = "ItemBalancing"
@@ -305,7 +325,7 @@ class IncludeSecretBossesItemsRequirement(Toggle):
     - **Pink Coins**
     - **Pink Key**
 
-    *(For MANTLE items, see the RandomizeMANTLE option)*
+    *(For MANTLE items, see the Randomize SWORD Route option)*
     """
 
     display_name = "Randomize Items required for Secret Bosses"
@@ -314,7 +334,7 @@ class IncludeSecretBossesItemsRequirement(Toggle):
 
 class DoorKeyFromBrokenKeys(Toggle):
     """
-    THE JESTER'S DOOR KEY WILL BE ACQUIRED BY FUSING THE THREE BROKEN KEY PIECES.
+    THE JOKER'S DOOR KEY WILL BE ACQUIRED BY FUSING THE THREE BROKEN KEY PIECES.
 
     *(Plando "Door Key" to "CH1: Bake Sale - Repair Door Key")*
     *(Otherwise, it could be anywhere. This option only matters if you randomize secret boss requirement items.)*
@@ -519,6 +539,8 @@ class DeathLink(Toggle):
     YOUR FAILURE CAUSES THE FAILURE OF EVERYONE WHO HAS ENABLED THIS OPTION.
 
     TO COMPLIMENT, THE REVERSE IS TRUE AS WELL.
+
+    (Can be toggled in-game)
     """
 
     display_name = "Death Link"
@@ -527,7 +549,7 @@ class DeathLink(Toggle):
 
 class DeathLinkGroup(FreeText):
     """
-    ONLY THOSE IN THIS WILL BE PART OF YOUR DEATH LINK.
+    ONLY THOSE IN THIS GROUP WILL BE PART OF YOUR DEATH LINK.
 
     *(Games that don't support this option are part of the empty group.)*
     """
@@ -535,9 +557,11 @@ class DeathLinkGroup(FreeText):
 
 class DamageLink(Toggle):
     """
-    TAKING DAMAGE WILL CAUSE THE HARM OF EVERYONE WHO HAS ENABLED THIS OPTION.
+    GETTING HARMED WILL CAUSE THE HARM OF EVERYONE WHO HAS ENABLED THIS OPTION.
 
     TO COMPLIMENT, THE REVERSE IS TRUE AS WELL.
+
+    (Can be toggled in-game)
     """
 
     display_name = "Damage Link"
@@ -555,7 +579,7 @@ class DamageLinkGroup(FreeText):
     default = ""
 
 
-filler_weight_range_names = {"common": 50, "uncommon": 25, "rare": 10, "very rare": 5, "extremely rare": 1}
+filler_weight_range_names = {"common": 50, "uncommon": 25, "rare": 10, "very rare": 5, "extremely rare": 1, "none": 0}
 
 
 class FillerHealingWeight(NamedRange):
@@ -710,7 +734,8 @@ class IncludeUnusedItems(Choice):
     CERTAIN ITEMS ARE NOT NORMALLY PRESENT.
     WILL THEY NOW BE WITH THE REST?
 
-    - **True without EveryBodyWeapon** *(Include unused items but without EveryBodyWeapon, which is a super powerful unbalanced item probably used by the dev team for debugging.)*
+    - **True without EveryBodyWeapon** *(Include Unused items except for EverybodyWeapon.)*
+    *(It's pretty clear EverybodyWeapon was only meant for debug purposes, because it's pretty overpowered.)*
     """
 
     display_name = "Include Unused Items"
