@@ -5,7 +5,6 @@ from worlds.deltarune.Options import (
     IncludeMike,
     IncludeUnusedItems,
     RandomizeChapters,
-    RandomizeMANTLE,
     RandomizeSecretBosses,
     UnlockCharacters,
 )
@@ -196,12 +195,12 @@ def include_mike_games(world: "DeltaruneWorld") -> bool:
     return world.options.include_mike.value == IncludeMike.option_battle_and_games
 
 
-def include_mantle(world: "DeltaruneWorld") -> bool:
-    return world.options.randomize_mantle.value != RandomizeMANTLE.option_mantleless
+def randomized_sword_route(world: "DeltaruneWorld") -> bool:
+    return world.options.randomize_sword_route.value == 1
 
 
-def randomized_mantle(world: "DeltaruneWorld") -> bool:
-    return world.options.randomize_mantle.value in [RandomizeMANTLE.option_true, RandomizeMANTLE.option_mantleless]
+def shadow_mantle_holder_as_secret_boss(world: "DeltaruneWorld") -> bool:
+    return world.options.shadow_mantle_holder_as_secret_boss.value == 1
 
 
 def include_shadow_mantle(world: "DeltaruneWorld") -> bool:

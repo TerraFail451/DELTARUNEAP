@@ -9,11 +9,10 @@ from worlds.deltarune.LogicHelper import (
     excluded_z_rank,
     include_hidden_items,
     include_lose_recruits,
-    include_mantle,
     include_recruits,
     include_secret_bosses_items_reward,
     include_shadow_mantle,
-    randomized_mantle,
+    randomized_sword_route,
 )
 from worlds.deltarune.Regions import Regions
 from worlds.deltarune.Rules import (
@@ -97,7 +96,7 @@ def set_rules(world: "DeltaruneWorld"):
 
 def handle_locked_items(world: "DeltaruneWorld"):
     # MANTLE
-    if not randomized_mantle(world):
+    if not randomized_sword_route(world):
         world.get_location(locations[LocationIDs.ch3_mantle_susie_gift]).place_locked_item(
             world.create_item(items[ItemIDs.flatsoda])
         )
@@ -114,7 +113,7 @@ def handle_locked_items(world: "DeltaruneWorld"):
         if include_shadow_mantle(world):
             world.get_location(locations[LocationIDs.ch3_mantle_defeat]).progress_type = LocationProgressType.EXCLUDED
 
-    if not include_shadow_mantle(world) and include_mantle(world):
+    if not include_shadow_mantle(world):
         world.get_location(locations[LocationIDs.ch3_mantle_defeat]).place_locked_item(
             world.create_item(items[ItemIDs.shadowmantle])
         )

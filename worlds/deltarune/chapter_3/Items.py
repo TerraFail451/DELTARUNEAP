@@ -5,7 +5,7 @@ from worlds.deltarune.LogicHelper import (
     include_secret_bosses_items_reward,
     include_shadow_mantle,
     randomized_chapters,
-    randomized_mantle,
+    randomized_sword_route,
 )
 from worlds.deltarune.Items import (
     DeltaruneItem,
@@ -150,21 +150,21 @@ chapter3_items = [
     ItemData(
         ItemIDs.odd_controller,
         ItemClassification.progression,
-        should_be_included=randomized_mantle,
+        should_be_included=randomized_sword_route,
         groups=[ItemGroups.mantle_items],
         amount=1,
     ),
     ItemData(
         ItemIDs.ice_key,
         ItemClassification.progression,
-        should_be_included=randomized_mantle,
+        should_be_included=randomized_sword_route,
         groups=[ItemGroups.mantle_items],
         amount=1,
     ),
     ItemData(
         ItemIDs.shelter_key,
         ItemClassification.progression,
-        should_be_included=randomized_mantle,
+        should_be_included=randomized_sword_route,
         groups=[ItemGroups.mantle_items],
         amount=1,
     ),

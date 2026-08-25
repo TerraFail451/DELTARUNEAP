@@ -187,30 +187,33 @@ class RandomizeSecretBosses(Choice):
     default = option_false
 
 
-class RandomizeMANTLE(Choice):
+class RandomizeSWORDRoute(Toggle):
     """
     LOCATIONS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
-
-    *(If you choose to have mandatory secret bosses, the Shadow Mantle/ERAM fight is required, even if you set this option to false.)*
-    *(If you DON'T want to have to do that fight, set this option to MANTLELESS.)*
     """
 
-    display_name = "Randomize MANTLE"
-    option_false = 0
-    option_true = 1
-    option_mantleless = 2
-    default = option_false
+    display_name = "Randomize SWORD route"
+    default = 0
+
+
+class ShadowMantleHolderAsSecretBoss(Toggle):
+    """
+    SHOULD THE SHADOW MANTLE HOLDER BE DEFEATED TO PROCEED WHEN SECRET BOSSES ARE MANDATORY
+    """
+
+    display_name = "Shadow Mantle Holder as secret boss"
+    default = 0
 
 
 class IncludeShadowMantle(Toggle):
     """
     THE SHADOW MANTLE WILL BE IN THE RANDOM ITEM POOL OF THE THIRD CHAPTER.
 
-    - **False** *The Shadow Mantle is the reward for the Shadow Mantle/ERAM fight, but isn't in logic for the knight*
+    - **False** *The Shadow Mantle is the reward for the Shadow Mantle Holder/ERAM fight, but isn't in logic for the knight*
     - **True** *The Shadow Mantle will be in the itempool in logic before Knight fight*
     """
 
-    display_name = "Include Shadow Mantle"
+    display_name = "Include Shadow Mantle in itempool"
     default = 1
 
 
@@ -336,6 +339,7 @@ class IncludeChapter1(Toggle):
     display_name = "Include Chapter 1"
     default = 1
 
+
 class Chapter1Recruit(Toggle):
     """
     THE SYSTEM TO RECRUIT ENEMIES WILL BE PRESENT IN THE FIRST CHAPTER.
@@ -458,6 +462,7 @@ class MacGuffinChapter4(Range):
     default = 0
     range_start = 0
     range_end = 10
+
 
 class MacGuffinChapter5(Range):
     """
@@ -652,7 +657,7 @@ class ProgressiveNoelleWeapons(Toggle):
 class UnlockCharacters(Choice):
     """
     THE ABILITY TO USE HEROES IN COMBAT SEQUENCIES WILL NEED TO BE UNLOCKED.
-    
+
     *(If someone isn't unlocked, they'll be at -666HP, and you can't use them in battle.)*
     *(If nobody is unlocked, then it will immediately be the enemy's turn, but you still get one hit to live.)*
 
@@ -744,6 +749,7 @@ deltarune_option_groups = [
             RecruitsSanity,
             LoseRecruitsSanity,
             RandomizeSecretBosses,
+            MacGuffinExtra,
         ],
     ),
     OptionGroup(
@@ -752,8 +758,6 @@ deltarune_option_groups = [
             RandomizeChapters,
             RandomSafetyChapterIncluded,
             StartingChapter,
-            RemoveStartingEquipment,
-            MacGuffinExtra,
         ],
     ),
     OptionGroup("Chapter 1", [IncludeChapter1, MacGuffinChapter1, Chapter1Recruit]),
@@ -763,7 +767,8 @@ deltarune_option_groups = [
         [
             IncludeChapter3,
             MacGuffinChapter3,
-            RandomizeMANTLE,
+            RandomizeSWORDRoute,
+            ShadowMantleHolderAsSecretBoss,
             IncludeShadowMantle,
             ExcludeTRank,
             ExcludeZRank,
@@ -772,17 +777,6 @@ deltarune_option_groups = [
     ),
     OptionGroup("Chapter 4", [IncludeChapter4, MacGuffinChapter4, IncludeMike, ExcludeMikePlatinum]),
     OptionGroup("Chapter 5", [IncludeChapter5, MacGuffinChapter5]),
-    OptionGroup(
-        "Fillers",
-        [
-            FillerHealingWeight,
-            FillerCurrencyWeight,
-            TrapWeight,
-            FillerArmorWeight,
-            FillerTensionWeight,
-            FillerSMILEWeight,
-        ],
-    ),
     OptionGroup(
         "Items",
         [
@@ -798,6 +792,19 @@ deltarune_option_groups = [
             UnlockCharacters,
             StartWithRandomCharacter,
             UnlockFunGangActions,
+        ],
+    ),
+    OptionGroup("Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon]),
+    OptionGroup("Links", [DeathLink, DeathLinkGroup, DamageLink, DamageLinkGroup]),
+    OptionGroup(
+        "Fillers Weight",
+        [
+            FillerHealingWeight,
+            FillerCurrencyWeight,
+            TrapWeight,
+            FillerArmorWeight,
+            FillerTensionWeight,
+            FillerSMILEWeight,
         ],
     ),
 ]
@@ -827,7 +834,8 @@ class DeltaruneOptions(PerGameCommonOptions):
     macguffin_chapter_5: MacGuffinChapter5
     macguffin_extra: MacGuffinExtra
     randomize_secret_bosses: RandomizeSecretBosses
-    randomize_mantle: RandomizeMANTLE
+    randomize_sword_route: RandomizeSWORDRoute
+    shadow_mantle_holder_as_secret_boss: ShadowMantleHolderAsSecretBoss
     include_shadow_mantle: IncludeShadowMantle
     exclude_t_rank: ExcludeTRank
     exclude_z_rank: ExcludeZRank

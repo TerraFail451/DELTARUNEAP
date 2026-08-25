@@ -6,8 +6,6 @@ from worlds.deltarune.Regions import Regions
 from worlds.deltarune.LogicHelper import (
     include_lose_recruits,
     include_recruits,
-    include_mantle,
-    not_include_lose_recruits,
 )
 
 if TYPE_CHECKING:
@@ -248,12 +246,10 @@ chapter3_locations = {
     Regions.ch3_sword_3: [
         LocationData(
             LocationIDs.ch3_mantle_defeat,
-            should_be_included=include_mantle,
             group=LocationGroups.chapter3,
         ),
         LocationData(
             LocationIDs.ch3_mantle_susie_gift,
-            should_be_included=include_mantle,
             group=LocationGroups.chapter3,
         ),
     ],
