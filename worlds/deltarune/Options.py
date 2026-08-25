@@ -4,6 +4,7 @@ from Options import Choice, FreeText, Toggle, Range, PerGameCommonOptions, Named
 from dataclasses import dataclass
 
 
+# region No Group
 class ProgressionBalancing(NamedRange):
     """
     ATTEMPTS TO BALANCE THE PROGRESSION OF YOUR ITEMS.
@@ -44,6 +45,46 @@ class Accessibility(Choice):
     default = 0
 
 
+class HaveStarwalker(Toggle):
+    """
+    THE ORIGINAL ONE BE PRESENT UPON STARTING A NEW SAVE.
+
+    **star              walker :D**
+    """
+
+    display_name = "Always Have Starwalker"
+    default = 1
+
+
+class ShuffleOST(Toggle):
+    """
+    SHOULD EVERY OST INSIDE THE mus FOLDER BE SHUFFLED
+    """
+
+    display_name = "Shuffle OST"
+    default = 0
+
+
+# endregion
+
+# region Gameplay
+
+
+class GlitchedLogicAsLogic(Toggle):
+    """
+    SHOULD THE LOGIC EXPECT YOU TO USE ALL GLITCHES POSSIBLE AND NOT HIT FIGHTS
+
+    (This is actually probably a really bad idea to enable that, use as your own risk)
+    (This will also probably require you to save on multiple save slot to go back in time sometimes as you will probably softlock yourself from some checks sometimes)
+    """
+
+    display_name = "[HARD MODE] Gliched Logic as Logic"
+    default = 0
+
+
+# endregion
+
+
 class BetterOdds(Toggle):
     """
     SHOULD EVENTS RELIANT ON LUCK HAVE BETTER ODDS TO HAPPEN?
@@ -62,31 +103,6 @@ class UnnerfPinkTwinRibbon(Toggle):
 
     display_name = "Un-nerf Pink/Twin Ribbon"
     default = 1
-
-
-class HaveStarwalker(Toggle):
-class GlitchedLogicAsLogic(Toggle):
-    """
-    THE ORIGINAL ONE BE PRESENT UPON STARTING A NEW SAVE.
-    SHOULD THE LOGIC EXPECT YOU TO USE ALL GLITCHES POSSIBLE AND NOT HIT FIGHTS
-
-    **star              walker :D**
-    (This is actually probably a really bad idea to enable that, use as your own risk)
-    (This will also probably require you to save on multiple save slot to go back in time sometimes as you will probably softlock yourself from some checks sometimes)
-    """
-
-    display_name = "Always Have Starwalker"
-    display_name = "[HARD MODE] Gliched Logic as Logic"
-    default = 1
-
-
-class ShuffleOST(Toggle):
-    """
-    SHOULD EVERY OST INSIDE THE mus FOLDER BE SHUFFLED
-    """
-
-    display_name = "Shuffle OST"
-    default = 0
 
 
 class ChosenRoute(Choice):
@@ -799,7 +815,9 @@ deltarune_option_groups = [
             UnlockFunGangActions,
         ],
     ),
-    OptionGroup("Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon]),
+    OptionGroup(
+        "Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon, GlitchedLogicAsLogic]
+    ),
     OptionGroup("Links", [DeathLink, DeathLinkGroup, DamageLink, DamageLinkGroup]),
     OptionGroup(
         "Fillers Weight",
@@ -817,97 +835,91 @@ deltarune_option_groups = [
 
 @dataclass
 class DeltaruneOptions(PerGameCommonOptions):
+    # No Group
     progression_balancing: ProgressionBalancing
     accessibility: Accessibility
-    remove_starting_equipment: RemoveStartingEquipment
-    include_chapter_1: IncludeChapter1
-    include_chapter_2: IncludeChapter2
-    include_chapter_3: IncludeChapter3
-    include_chapter_4: IncludeChapter4
-    include_chapter_5: IncludeChapter5
-    randomize_chapters: RandomizeChapters
-    starting_chapter: StartingChapter
+    have_starwalker: HaveStarwalker
+    shuffle_ost: ShuffleOST
+
+    # Goal
     chosen_route: ChosenRoute
     recruits_sanity: RecruitsSanity
     lose_recruits_sanity: LoseRecruitsSanity
-    include_swatchling_during_weird_route: IncludeSwatchlingWeirdRoute
-    item_balancing: ItemBalancing
-    macguffin_chapter_1: MacGuffinChapter1
-    macguffin_chapter_2: MacGuffinChapter2
-    macguffin_chapter_3: MacGuffinChapter3
-    macguffin_chapter_4: MacGuffinChapter4
-    macguffin_chapter_5: MacGuffinChapter5
-    macguffin_extra: MacGuffinExtra
     randomize_secret_bosses: RandomizeSecretBosses
+    macguffin_extra: MacGuffinExtra
+
+    # Chapters
+    randomize_chapters: RandomizeChapters
+    random_safety_chapter_inclusion: RandomSafetyChapterIncluded
+    starting_chapter: StartingChapter
+
+    # Chapter 1
+    include_chapter_1: IncludeChapter1
+    macguffin_chapter_1: MacGuffinChapter1
+    chapter_1_recruit: Chapter1Recruit
+
+    # Chapter 2
+    include_chapter_2: IncludeChapter2
+    macguffin_chapter_2: MacGuffinChapter2
+    include_swatchling_during_weird_route: IncludeSwatchlingWeirdRoute
+
+    # Chapter 3
+    include_chapter_3: IncludeChapter3
+    macguffin_chapter_3: MacGuffinChapter3
     randomize_sword_route: RandomizeSWORDRoute
     shadow_mantle_holder_as_secret_boss: ShadowMantleHolderAsSecretBoss
     include_shadow_mantle: IncludeShadowMantle
     exclude_t_rank: ExcludeTRank
     exclude_z_rank: ExcludeZRank
     allow_doom_board_without_all_characters: AllowDoomBoardWithoutAllCharacters
+
+    # Chapter 4
+    include_chapter_4: IncludeChapter4
+    macguffin_chapter_4: MacGuffinChapter4
+    include_mike: IncludeMike
+    exclude_mike_platinum: ExcludeMikePlatinum
+
+    # Chapter 5
+    include_chapter_5: IncludeChapter5
+    macguffin_chapter_5: MacGuffinChapter5
+
+    # Items
     include_hidden_items: IncludeHiddenItems
     include_secret_bosses_items_requirement: IncludeSecretBossesItemsRequirement
     mysterykey_from_pink_coins: MysteryKeyFromPinkCoins
     door_key_from_broken_keys: DoorKeyFromBrokenKeys
     include_unused_items: IncludeUnusedItems
-    death_link: DeathLink
-    death_link_group: DeathLinkGroup
-    damage_link: DamageLink
-    damage_link_group: DamageLinkGroup
-    filler_healing_weight: FillerHealingWeight
-    filler_currency_weight: FillerCurrencyWeight
-    trap_weight: TrapWeight
-    filler_armor_weight: FillerArmorWeight
-    filler_tension_weight: FillerTensionWeight
-    filler_smile_weight: FillerSMILEWeight
     progressive_kris_weapons: ProgressiveKrisWeapons
     progressive_susie_weapons: ProgressiveSusieWeapons
     progressive_ralsei_weapons: ProgressiveRalseiWeapons
     progressive_noelle_weapons: ProgressiveNoelleWeapons
     unlock_characters: UnlockCharacters
     start_with_random_character: StartWithRandomCharacter
-    include_mike: IncludeMike
-    exclude_mike_platinum: ExcludeMikePlatinum
-    better_odds: BetterOdds
-    shuffle_ost: ShuffleOST
-    pink_twin_ribbon_unnerf: UnnerfPinkTwinRibbon
-    have_starwalker: HaveStarwalker
     unlock_fun_gang_actions: UnlockFunGangActions
-    chapter_1_recruit: Chapter1Recruit
 
-    random_safety_chapter_inclusion: RandomSafetyChapterIncluded
+    # Gameplay
+    better_odds: BetterOdds
+    remove_starting_equipment: RemoveStartingEquipment
+    item_balancing: ItemBalancing
+    glitched_logic_as_logic: GlitchedLogicAsLogic
+    pink_twin_ribbon_unnerf: UnnerfPinkTwinRibbon
+
+    # Links
+    death_link: DeathLink
+    death_link_group: DeathLinkGroup
+    damage_link: DamageLink
+    damage_link_group: DamageLinkGroup
+
+    # Fillers Weight
+    filler_healing_weight: FillerHealingWeight
+    filler_currency_weight: FillerCurrencyWeight
+    trap_weight: TrapWeight
+    filler_armor_weight: FillerArmorWeight
+    filler_tension_weight: FillerTensionWeight
+    filler_smile_weight: FillerSMILEWeight
 
 
 options_presets = {
-    "Complete Experience": {
-        "remove_starting_equipment": True,
-        "randomize_chapters": "randomized",
-        "chosen_route": "both_all_recruits_and_weird_route",
-        "macguffin_chapter_1": 10,
-        "macguffin_chapter_2": 10,
-        "macguffin_chapter_3": 10,
-        "macguffin_chapter_4": 10,
-        "macguffin_chapter_5": 10,
-        "macguffin_extra": 0,
-        "randomize_secret_bosses": "mandatory",
-        "randomize_mantle": "true",
-        "exclude_t_rank": False,
-        "exclude_z_rank": False,
-        "include_hidden_items": True,
-        "include_unused_items": "true",
-        "death_link": True,
-        "filler_healing_weight": "random",
-        "filler_currency_weight": "random",
-        "trap_weight": "random",
-        "filler_armor_weight": "random",
-        "filler_tension_weight": "random",
-        "filler_smile_weight": "random",
-        "unlock_characters": "true",
-        "include_mike": "battle_and_games",
-        "chapter_1_recruit": True,
-        "recruits_sanity": True,
-        "lose_recruits_sanity": True,
-    },
     "Classic All Recruits": {"chosen_route": "all_recruits", "recruits_sanity": True},
     "Classic Weird Route": {"chosen_route": "weird_route", "recruits_sanity": False, "lose_recruits_sanity": True},
 }
