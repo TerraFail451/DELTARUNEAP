@@ -78,12 +78,15 @@ class GlitchedLogicAsLogic(Toggle):
     """
     THE INTENDED WAY TO PROGRESS WILL NO LONGER BE GUARANTEED.
 
-    (You get a very bad feeling that this will probably a horrible idea...)
+    (You get the feeling that this is probably a horrible idea...)
+
     (All glitches and possible out of logic locations will now be in logic.)
     (Expect things like having to replay board 1 over and over to recruit 25 shadowguys,)
     (Utilizing wrong warps, overflows, and other glitches to progress,)
     (And doing challenging fights no-hit if you don't have any characters unlocked.)
     (Also a reminder that Chapter 2's Bagel Overflow has been re-added.)
+
+    (ONLY TURN THIS TO TRUE IF YOU ARE EXTREMELY KNOWLEDGEABLE AND SKILLED AT THE GAME.)
     """
 
     display_name = "[HARD MODE] Gliched Logic as Logic"
@@ -291,7 +294,7 @@ class ItemBalancing(Toggle):
 
     (Getting Chapter 5 items in Chapter 1 can make enemies die in a single hit and make you take less than 10 damage.)
     (If you don't want the game to be THAT easy, then set this option to true.)
-    
+
     (Can be toggled in-game)
     """
 
