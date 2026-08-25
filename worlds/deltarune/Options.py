@@ -81,7 +81,8 @@ class GlitchedLogicAsLogic(Toggle):
     (You get the feeling that this is probably a horrible idea...)
 
     (All glitches and possible out of logic locations will now be in logic.)
-    (Expect things like having to replay board 1 over and over to recruit 25 shadowguys,)
+    (Expect things like needing to replay a lot on a second or third save to progress at points,)
+    (Having to redo board 1 over and over to recruit 25 shadowguys,)
     (Utilizing wrong warps, overflows, and other glitches to progress,)
     (And doing challenging fights no-hit if you don't have any characters unlocked.)
     (Also a reminder that Chapter 2's Bagel Overflow has been re-added.)

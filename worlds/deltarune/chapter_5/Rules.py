@@ -59,6 +59,11 @@ def set_rules(world: "DeltaruneWorld"):
                 world.get_location(locations[LocationIDs.ch5_pinks_shop_4]), Has(items[ItemIDs.pinkcoin], 10)
             )
 
+        if include_secret_bosses_items_reward(world): # Even in glitched logic Flowery's gift requires buying everything
+            world.set_rule(
+                world.get_location(locations[LocationIDs.ch5_castle_top_flowerys_gift]), Has(items[ItemIDs.pinkcoin], 16)
+            )
+
     if all_recruits_route(world):
         world.set_rule(
             world.get_location(locations[LocationIDs.ch5_castle_town_trashy_trio_challenge]), have_kris_susie_and_ralsei
