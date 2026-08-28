@@ -81,13 +81,13 @@ class GlitchedLogicAsLogic(Toggle):
     (You get the feeling that this is probably a horrible idea...)
 
     (All glitches and possible out of logic locations will now be in logic.)
-    (Expect things like needing to replay a lot on a second or third save to progress at points,)
+    (Expect things like needing to replay most of the chapter on a second or third save to progress at points,)
     (Having to redo board 1 over and over to recruit 25 shadowguys,)
     (Utilizing wrong warps, overflows, and other glitches to progress,)
     (And doing challenging fights no-hit if you don't have any characters unlocked.)
     (Also a reminder that Chapter 2's Bagel Overflow has been re-added.)
 
-    (ONLY TURN THIS TO TRUE IF YOU ARE EXTREMELY KNOWLEDGEABLE AND SKILLED AT THE GAME.)
+    **(ONLY TURN THIS TO TRUE IF YOU ARE EXTREMELY KNOWLEDGEABLE AND SKILLED AT THE GAME.)**
     """
 
     display_name = "[HARD MODE] Gliched Logic as Logic"
@@ -353,7 +353,7 @@ class MysteryKeyFromPinkCoins(Toggle):
     """
     THE MYSTERIOUS PINK KEY WILL BE PURCHASED FOR TEN PINK COINS.
 
-    *(Plando "MysteryKey" to "CH5: Pink's Shop Item #4")*
+    *(Plando "MysteryKey" to "CH5: Cliffs Shop Item #4")*
     *(Otherwise, it could be anywhere. This option only matters if you randomize secret boss requirement items.)*
     *(Of course, this only applies if you play Chapter 5.)*
     """
@@ -711,10 +711,11 @@ class UnlockCharacters(Choice):
     *(If nobody is unlocked, then it will immediately be the enemy's turn, but you still get one hit to live.)*
 
     **(Of course, missing any number of characters makes battles exponentially more difficult.)**
-    **(Only turn this option on if you're ready for battles to take upwards of 10 turns each!)**
+    **(Expect things like battles taking 10 or more turns if you only have one character unlocked!)**
+    **(ONLY TURN THIS TO TRUE IF YOU ARE VERY SKILLED AT THE GAME.)**
     """
 
-    display_name = "Unlock Characters"
+    display_name = "[HARD MODE] Unlock Characters"
     option_false = 0
     option_true = 1
     option_except_kris = 2
@@ -739,7 +740,8 @@ class IncludeUnusedItems(Choice):
     WILL THEY NOW BE WITH THE REST?
 
     - **True without EveryBodyWeapon** *(Include Unused items except for EverybodyWeapon.)*
-    *(It's pretty clear EverybodyWeapon was only meant for debug purposes, because it's pretty overpowered.)*
+    *(It's pretty clear EverybodyWeapon was only meant for debug purposes, as it's pretty overpowered.)*
+    *(Turn on True Without Everybody weapon if you don't want it in the item pool.)*
     """
 
     display_name = "Include Unused Items"
