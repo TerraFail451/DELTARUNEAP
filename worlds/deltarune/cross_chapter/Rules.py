@@ -64,16 +64,13 @@ def set_rules(world: "DeltaruneWorld"):
             OptionFilter(RandomizeChapters, RandomizeChapters.option_in_order),
         ]
 
-        have_white_ribbon = (
-            Has(items[ItemIDs.white_ribbon])
-            | (
-                True_(
-                    options=[
-                        OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
-                        OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
-                    ]
-                )
-                & CanReachRegion(Regions.chapter_2)
+        have_white_ribbon = Has(items[ItemIDs.white_ribbon]) | (
+            CanReachRegion(
+                Regions.chapter_2,
+                options=[
+                    OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
+                    OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
+                ],
             )
         )
 
@@ -83,16 +80,13 @@ def set_rules(world: "DeltaruneWorld"):
                 have_white_ribbon & Has(items[ItemIDs.pink_ribbon]),
             )
 
-        have_glowwrist = (
-            Has(items[ItemIDs.glowwrist])
-            | (
-                True_(
-                    options=[
-                        OptionFilter(IncludeChapter4, IncludeChapter4.option_true),
-                        OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
-                    ]
-                )
-                & CanReachRegion(Regions.chapter_4)
+        have_glowwrist = Has(items[ItemIDs.glowwrist]) | (
+            CanReachRegion(
+                Regions.chapter_4,
+                options=[
+                    OptionFilter(IncludeChapter4, IncludeChapter4.option_true),
+                    OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
+                ],
             )
         )
 
