@@ -65,7 +65,7 @@ class ShuffleOST(Toggle):
     (Also, expect things like multiple soundtracks overlapping. This isn't a bug, it's just how the game is programmed.)
     """
 
-    display_name = "Shuffle OST"
+    display_name = "[BETA] Shuffle OST"
     default = 0
 
 
