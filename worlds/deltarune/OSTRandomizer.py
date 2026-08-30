@@ -321,7 +321,7 @@ ost_name = [
 def randomizeOST(world: "DeltaruneWorld"):
     randomized = {}
 
-    left_to_pick = ost_name
+    left_to_pick = ost_name.copy()
 
     for ost in ost_name:
         chosen = world.random.choice(left_to_pick)
