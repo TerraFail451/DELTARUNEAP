@@ -1,5 +1,5 @@
 from rule_builder.options import OptionFilter
-from rule_builder.rules import Has, True_
+from rule_builder.rules import CanReachRegion, Has, True_
 
 from worlds.deltarune.LogicHelper import (
     all_included_chapter,
@@ -34,6 +34,7 @@ from typing import TYPE_CHECKING
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import ItemGroups, glitched_item_name, items, ItemIDs
 from worlds.deltarune.Rules import have_thornring
+from worlds.deltarune.Regions import Regions
 
 if TYPE_CHECKING:
     from .. import DeltaruneWorld
@@ -63,11 +64,14 @@ def set_rules(world: "DeltaruneWorld"):
             OptionFilter(RandomizeChapters, RandomizeChapters.option_in_order),
         ]
 
-        have_white_ribbon = (
-            Has(items[ItemIDs.white_ribbon])
-            | have_chapter2_equipment_not_in_order
-            | have_chapter2_equipment_in_order_glitched
-            | have_chapter2_equipment_first_chapter
+        have_white_ribbon = Has(items[ItemIDs.white_ribbon]) | (
+            CanReachRegion(
+                Regions.chapter_2,
+                options=[
+                    OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
+                    OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
+                ],
+            )
         )
 
         if include_twin_ribbon_fusion(world):
@@ -76,19 +80,13 @@ def set_rules(world: "DeltaruneWorld"):
                 have_white_ribbon & Has(items[ItemIDs.pink_ribbon]),
             )
 
-        have_glowwrist = (
-            Has(items[ItemIDs.glowwrist])
-            | True_(
-                options=[
-                    OptionFilter(IncludeChapter3, IncludeChapter3.option_true),
-                    OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
-                ]
-            )
-            | True_(
+        have_glowwrist = Has(items[ItemIDs.glowwrist]) | (
+            CanReachRegion(
+                Regions.chapter_4,
                 options=[
                     OptionFilter(IncludeChapter4, IncludeChapter4.option_true),
                     OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
-                ]
+                ],
             )
         )
 
