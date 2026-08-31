@@ -40,15 +40,19 @@ Download the mod from [GameBanana](https://gamebanana.com/mods/699556) with eith
 
 <img width="670" height="222" alt="image" src="https://github.com/user-attachments/assets/b2686ca9-68d3-4f78-806a-7d1fcf1f887d" />
 
-2. Download the bsdiff files from the mod [Releases Page](https://github.com/Tenebrosful/DeltaruneAP-mod/releases) (it's the .zip that says "bsdiff" at the end) and unzip the folder.
+2. Download the bsdiff files from the mod [Releases Page](https://github.com/Tenebrosful/DeltaruneAP-mod/releases) (it's the .zip that says "bsdiff" at the end).
+
+<img width="1190" height="253" alt="Screenshot 2026-08-30 170645" src="https://github.com/user-attachments/assets/c8af3a7d-0b74-4117-87ba-6d991edb0537" />
+
+3. Unzip the folder and rename it to `DELTARUNE_PATCH`
 
 <img width="540" height="176" alt="image" src="https://github.com/user-attachments/assets/dd9dd1b3-bc21-4640-9581-dc1b42d4cd53" />
-
-3. Rename the unzipped folder `DELTARUNE_PATCH`, and move it to at the root of Archipelago folder.
 
 <img width="606" height="132" alt="image" src="https://github.com/user-attachments/assets/8e88940b-5656-4299-a5ad-0b7a71a6b44f" />
 
 <img width="631" height="69" alt="image" src="https://github.com/user-attachments/assets/4117efbb-1259-4b6a-81e1-c0cfa8f350a5" />
+
+4. Move the unzipped folder `DELTARUNE_PATCH` to at the root of Archipelago folder.
 
 <img width="693" height="680" alt="image" src="https://github.com/user-attachments/assets/e41b1fb9-2ddf-4de4-96fa-77066625e58c" />
 
@@ -56,18 +60,18 @@ If you don't know where that is, you can find your Archipelago folder by clickin
 
 <img width="795" height="287" alt="image" src="https://github.com/user-attachments/assets/fda6c8de-be13-4066-8be0-b0fc64b99fcc" />
 
-4. **Restart the Archipelago Launcher** (Or start the launcher if it's not open yet)
+5. **Restart the Archipelago Launcher** (Or start the launcher if it's not open yet)
 
 <img width="815" height="108" alt="image" src="https://github.com/user-attachments/assets/efced590-006a-4439-8f77-a60f06889ae3" />
 
-5. Start the DELTARUNE client from your Archipelago folder or the Archipelago app.
+6. Start the DELTARUNE client from your Archipelago folder or the Archipelago app.
    
 <img width="801" height="244" alt="image" src="https://github.com/user-attachments/assets/f44823ed-4dae-4361-a2e2-d29e21c9c519" />
 
 <img width="802" height="631" alt="image" src="https://github.com/user-attachments/assets/d01efa7b-8340-4e31-b1a3-3ac37fda9b99" />
 
 
-7. If your game is installed on your `C:` drive through Steam, you can type `/auto_patch steaminstall` word for word or if it's a downloaded depot `/auto_patch steamdepot` (`/auto_patch linux` or `/auto_patch linuxdepot` for linux) at the bottom of the client.
+7. If your game is installed on your `C:` drive through Steam, you can type `/auto_patch steaminstall` word for word or if it's a downloaded depot `/auto_patch steamdepot` (`/auto_patch linux` or `/auto_patch linuxdepot` for linux) at the bottom of the client. **If this works, you can skip straight to step 8.**
 
 <img width="799" height="115" alt="image" src="https://github.com/user-attachments/assets/adc8e601-4aa9-461f-9a2d-e424db0fb0c8" />
 
@@ -81,13 +85,13 @@ If your game isn't installed on your `C:` drive, or if it's not working for some
 
 <img width="802" height="122" alt="Screenshot 2026-08-24 021609" src="https://github.com/user-attachments/assets/71b12631-a79f-4633-9bad-7f4a6e5ed871" />
 
-**This process is resource intensive, so don't freak out if it stops responding. Just be patient!**
+8. Enter the command and wait for it to patch. **This process is resource intensive, so don't freak out if it stops responding. Just be patient!**
 
 <img width="802" height="632" alt="image" src="https://github.com/user-attachments/assets/263f0f1e-b12c-4a59-934b-d09ed2d3e101" />
 
 <img width="802" height="629" alt="image" src="https://github.com/user-attachments/assets/c99eadea-d26e-4613-9a70-2324e5cac9f1" />
 
-Next, go to your Archipelago folder. If everything goes according to plan, you will see a folder called `DELTARUNE`.
+9. Next, go to your Archipelago folder. If everything goes according to plan, you will see a folder called `DELTARUNE`.
 
 <img width="604" height="96" alt="image" src="https://github.com/user-attachments/assets/aebde2aa-86f0-4761-8768-aee1c2690f96" />
 
