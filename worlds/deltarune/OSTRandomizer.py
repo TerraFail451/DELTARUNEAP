@@ -230,6 +230,7 @@ ost_name = [
     "the_dark_truth.ogg",
     "THE_HOLY.ogg",
     "thrashmachine.ogg",
+    "tin_night.ogg",
     "titan_battle.ogg",
     "titan_pre.ogg",
     "titan_spawn.ogg",
