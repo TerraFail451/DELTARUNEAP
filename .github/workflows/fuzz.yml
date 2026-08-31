@@ -30,6 +30,7 @@ on:
 
 jobs:
   test_logic:
+    if: github.repository_owner == 'theemraldsword85'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Remote Fuzzer
