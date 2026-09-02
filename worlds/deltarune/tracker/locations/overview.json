@@ -1866,5 +1866,110 @@
         "y": 835
       }
     ]
+  },
+  {
+    "name": "Cross Chapter - MonarchRBN Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - MonarchRBN Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 600,
+        "y": 1110
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - TrueTie Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - TrueTie Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 650,
+        "y": 1110
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - TVDinner Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - TVDinner Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 700,
+        "y": 1110
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - DeluxeDinner Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - DeluxeDinner Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 600,
+        "y": 1160
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - PunchBowl Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - PunchBowl Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 650,
+        "y": 1160
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - TensionMax Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - TensionMax Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 700,
+        "y": 1160
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - DogWidow Fusion",
+    "sections": [
+      {
+        "name": "CC: Castle Town - DogWidow Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 750,
+        "y": 1160
+      }
+    ]
   }
 ]
