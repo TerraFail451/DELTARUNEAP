@@ -42,12 +42,11 @@ def create_regions(world: "DeltaruneWorld"):
     )
     trash_zone = Region(Regions.ch2_trash_zone, world.player, world.multiworld)
     cyber_city = Region(Regions.ch2_cyber_city, world.player, world.multiworld)
+    cyber_city_post_toilet = Region(Regions.ch2_cyber_city_post_toilet, world.player, world.multiworld)
     mansion_lobby_warp_door = Region(Regions.ch2_mansion_lobby_warp_door, world.player, world.multiworld)
     mansion_both_route = Region(Regions.ch2_mansion_both_route, world.player, world.multiworld)
     mansion_recruits = Region(Regions.ch2_mansion_recruits, world.player, world.multiworld)
-    mansion_losts = Region(Regions.ch2_mansion_losts, world.player, world.multiworld)
     recruit_werewerewire = Region(Regions.ch2_recruit_werewerewire, world.player, world.multiworld)
-    lose_werewerewire = Region(Regions.ch2_lose_werewerewire, world.player, world.multiworld)
     spamton_neo = Region(Regions.ch2_spamton_neo, world.player, world.multiworld)
 
     regions = [
@@ -59,12 +58,11 @@ def create_regions(world: "DeltaruneWorld"):
         trash_zone_no_character_requirement,
         trash_zone,
         cyber_city,
+        cyber_city_post_toilet,
         mansion_lobby_warp_door,
         mansion_both_route,
         mansion_recruits,
-        mansion_losts,
         recruit_werewerewire,
-        lose_werewerewire,
         spamton_neo,
     ]
 
@@ -149,13 +147,21 @@ def create_regions(world: "DeltaruneWorld"):
             world.multiworld.regions.append(region)
 
         trash_zone_no_character_requirement.connect(
-            trash_zone, "Trash No Charac -> Trash (Normal Route)", rule=have_kris_or_noelle
+            trash_zone,
+            get_entrance_name(trash_zone_no_character_requirement, trash_zone, "Normal Route"),
+            rule=have_kris_or_noelle,
         )
 
         # Require Kris or Noelle for the Virovirokun after noelle
         trash_zone_no_character_requirement.connect(
             cyber_city,
-            "Trash no Charac -> City (Normal Route)",
+            get_entrance_name(trash_zone_no_character_requirement, cyber_city, "Normal Route"),
+            rule=have_kris_or_noelle,
+        )
+
+        cyber_city.connect(
+            cyber_city_post_toilet,
+            get_entrance_name(cyber_city, cyber_city_post_toilet, "Normal Route"),
             rule=have_kris_or_noelle,
         )
 
@@ -167,10 +173,10 @@ def create_regions(world: "DeltaruneWorld"):
 
         # MAIN ROUTE REGION CONNECTIONS
         # Require Kris for Spamton fight unless you skip it with an Interaction Slide
-        cyber_city.connect(cyber_city_spamton_fight, rule=have_kris)
-        cyber_city.connect(
+        cyber_city_post_toilet.connect(cyber_city_spamton_fight, rule=have_kris)
+        cyber_city_post_toilet.connect(
             cyber_city_post_spamton,
-            get_entrance_name(cyber_city, cyber_city_post_spamton, "Interaction Slide"),
+            get_entrance_name(cyber_city_post_toilet, cyber_city_post_spamton, "Interaction Slide"),
             rule=speedrun_glitch_logic,
         )
         cyber_city_spamton_fight.connect(cyber_city_post_spamton)
@@ -189,12 +195,10 @@ def create_regions(world: "DeltaruneWorld"):
         )
 
         mansion_main_route.connect(mansion_recruits)
-        mansion_main_route.connect(mansion_losts)
         mansion_main_route.connect(mansion_both_route)
         mansion_main_route.connect(tunnel_of_love, rule=have_kris_or_ralsei)
 
         tunnel_of_love.connect(recruit_werewerewire)
-        tunnel_of_love.connect(lose_werewerewire)
 
         mansion_main_route.connect(
             mansion_basement,
@@ -251,14 +255,23 @@ def create_regions(world: "DeltaruneWorld"):
         cyber_field.connect(
             thornring, get_entrance_name(cyber_field, thornring, "Bagel Overflow"), rule=speedrun_glitch_logic
         )
+
         trash_zone_no_character_requirement.connect(
-            trash_zone, "Trash No Charac -> Trash (Weird Route)", rule=have_noelle
+            trash_zone,
+            get_entrance_name(trash_zone_no_character_requirement, trash_zone, "Weird Route"),
+            rule=have_noelle,
         )
 
         # Require Kris or Noelle for the Virovirokun after noelle
         trash_zone_no_character_requirement.connect(
             cyber_city,
-            "Trash no Charac -> City (Weird Route)",
+            get_entrance_name(trash_zone_no_character_requirement, cyber_city, "Weird Route"),
+            rule=have_noelle,
+        )
+
+        cyber_city.connect(
+            cyber_city_post_toilet,
+            get_entrance_name(cyber_city, cyber_city_post_toilet, "Weird Route"),
             rule=have_noelle,
         )
 
@@ -269,9 +282,7 @@ def create_regions(world: "DeltaruneWorld"):
         # cyber_city.connect(mansion_lobby_weird_route, rule=can_snowgrave(world))
 
         mansion_lobby_weird_route.connect(mansion_lobby_warp_door)
-        mansion_lobby_weird_route.connect(mansion_losts)
         mansion_lobby_weird_route.connect(mansion_recruits)
-        mansion_lobby_weird_route.connect(lose_werewerewire)
         mansion_lobby_weird_route.connect(recruit_werewerewire)
         mansion_lobby_weird_route.connect(
             mansion_both_route,

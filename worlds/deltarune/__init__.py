@@ -281,7 +281,6 @@ class DeltaruneWorld(World):
                 "chosen_route",
                 "recruits_sanity",
                 "lose_recruits_sanity",
-                "include_swatchling_during_weird_route",
                 "randomize_chapters",
                 "include_hidden_items",
                 "include_secret_bosses_items_requirement",

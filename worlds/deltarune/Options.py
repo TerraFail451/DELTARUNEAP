@@ -385,17 +385,6 @@ class IncludeChapter2(Toggle):
     default = 1
 
 
-class IncludeSwatchlingWeirdRoute(Toggle):
-    """
-    WILL THE SWATCHLING RECRUIT BE CONSIDERED TO LOSE OR RECRUIT IN THE FORBIDDEN ROUTE?
-
-    *(Since Swatchlings don't normally appear in weird route, enabling this means you have to do Singapore Wrong Warps.)*
-    """
-
-    display_name = "[GLITCHES] Include Swatchling during Weird Route"
-    default = 0
-
-
 class IncludeChapter3(Toggle):
     """
     DO YOU WISH TO PLAY CHAPTER 3?
@@ -783,6 +772,7 @@ class SpeedrunGlitchesAsLogic(Toggle):
     (All reasonable glitches will now be in logic.)
     (This includes: Wrong Warp, Bagel Overflow, interaction slide, ...)
     (This doesn't includes: ARMS)
+    (This will also add locations that can be obtained with Singapour Wrong Warp in chapter 2 Weird Route)
     (Do not forget to save on multiple slot to still have access on earlier event that might not happen anymore if you play with the plot value)
     (Reminder that Bagel Overflow was re-implemented)
     **(ONLY TURN THIS TO TRUE IF YOU ARE KNOWLEDGEABLE.)**
@@ -818,7 +808,6 @@ class AnnoyingFarmingAsLogic(Toggle):
     display_name = "[HARD MODE] Annoying farming as Logic"
     default = 0
 
-
 # endregion
 
 deltarune_option_groups = [
@@ -841,7 +830,7 @@ deltarune_option_groups = [
         ],
     ),
     OptionGroup("Chapter 1", [IncludeChapter1, MacGuffinChapter1, Chapter1Recruit]),
-    OptionGroup("Chapter 2", [IncludeChapter2, MacGuffinChapter2, IncludeSwatchlingWeirdRoute]),
+    OptionGroup("Chapter 2", [IncludeChapter2, MacGuffinChapter2]),
     OptionGroup(
         "Chapter 3",
         [
@@ -919,7 +908,6 @@ class DeltaruneOptions(PerGameCommonOptions):
     # Chapter 2
     include_chapter_2: IncludeChapter2
     macguffin_chapter_2: MacGuffinChapter2
-    include_swatchling_during_weird_route: IncludeSwatchlingWeirdRoute
 
     # Chapter 3
     include_chapter_3: IncludeChapter3
