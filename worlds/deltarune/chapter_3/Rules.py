@@ -47,26 +47,15 @@ def set_rules(world: "DeltaruneWorld"):
             can_recruit_zapper,
         )
 
-    if include_lose_recruits(world) and not include_recruits(world):
+    if include_lose_recruits(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_shadowguy]), can_lost_chapter3)
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_pippins]), can_lost_chapter3)
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_shuttah]), can_lost_chapter3)
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_water_cooler]), can_lost_chapter3)
-        world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_zapper]), can_lost_chapter3)
-    elif include_lose_recruits(world):
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch3_lost_shadowguy]),
-            can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
-        )
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_lost_pippins]),
-            can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
+            can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | annoying_farming_logic),
         )
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch3_lost_shuttah]),
-            can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
-        )
+        world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_shuttah]), can_lost_chapter3)
         world.set_rule(world.get_location(locations[LocationIDs.ch3_lost_water_cooler]), can_lost_chapter3)
+        # We didn't made the zapper blocking access to doom board respawnable so make the logic only for tv world
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_lost_zapper]),
             can_lost_chapter3 & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
