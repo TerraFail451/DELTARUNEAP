@@ -540,28 +540,16 @@
             "name": "CH2: Recruit Werewire"
           },
           {
-            "name": "CH2: Recruit Tasque"
-          },
-          {
-            "name": "CH2: Recruit Virovirokun"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 350,
-            "y": 410
-          }
-        ]
-      },
-      {
-        "name": "Chapter 2 - Cyber Fields - Loses",
-        "sections": [
-          {
             "name": "CH2: Lost Werewire"
           },
           {
+            "name": "CH2: Recruit Tasque"
+          },
+          {
             "name": "CH2: Lost Tasque"
+          },
+          {
+            "name": "CH2: Recruit Virovirokun"
           },
           {
             "name": "CH2: Lost Virovirokun"
@@ -685,10 +673,19 @@
             "name": "CH2: Recruit Poppup"
           },
           {
+            "name": "CH2: Lost Poppup"
+          },
+          {
             "name": "CH2: Recruit Ambyu-lance"
           },
           {
+            "name": "CH2: Lost Ambyu-lance"
+          },
+          {
             "name": "CH2: Recruit Maus"
+          },
+          {
+            "name": "CH2: Lost Maus"
           }
         ],
         "map_locations": [
@@ -702,15 +699,6 @@
       {
         "name": "Chapter 2 - Cyber City - Loses",
         "sections": [
-          {
-            "name": "CH2: Lost Poppup"
-          },
-          {
-            "name": "CH2: Lost Ambyu-lance"
-          },
-          {
-            "name": "CH2: Lost Maus"
-          },
           {
             "name": "CH2: Cyber City - \"Purchase\" FreezeRing"
           },
@@ -873,34 +861,22 @@
             "name": "CH2: Recruit Swatchling"
           },
           {
-            "name": "CH2: Recruit Tasque Manager"
-          },
-          {
-            "name": "CH2: Recruit Mauswheel"
-          },
-          {
-            "name": "CH2: Recruit Werewerewire"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 400,
-            "y": 860
-          }
-        ]
-      },
-      {
-        "name": "Chapter 2 - Mansion - Loses",
-        "sections": [
-          {
             "name": "CH2: Lost Swatchling"
+          },
+          {
+            "name": "CH2: Recruit Tasque Manager"
           },
           {
             "name": "CH2: Lost Tasque Manager"
           },
           {
+            "name": "CH2: Recruit Mauswheel"
+          },
+          {
             "name": "CH2: Lost Mauswheel"
+          },
+          {
+            "name": "CH2: Recruit Werewerewire"
           },
           {
             "name": "CH2: Lost Werewerewire"
@@ -1962,6 +1938,24 @@
     "sections": [
       {
         "name": "CC: Castle Town - DogWidow Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 750,
+        "y": 1160
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Garden - Recruits",
+    "sections": [
+      {
+        "name": "CH5: Recruit Floradinn"
+      },
+      {
+        "name": "CH5: Lose Floradinn"
       }
     ],
     "map_locations": [
