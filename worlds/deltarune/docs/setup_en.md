@@ -52,7 +52,7 @@ Download the mod from [GameBanana](https://gamebanana.com/mods/699556) with eith
 
 <img width="631" height="69" alt="image" src="https://github.com/user-attachments/assets/4117efbb-1259-4b6a-81e1-c0cfa8f350a5" />
 
-4. Move the unzipped folder `DELTARUNE_PATCH` to at the root of Archipelago folder.
+4. Move the `DELTARUNE_PATCH` folder to the root of Archipelago folder.
 
 <img width="693" height="680" alt="image" src="https://github.com/user-attachments/assets/e41b1fb9-2ddf-4de4-96fa-77066625e58c" />
 
