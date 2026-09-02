@@ -10,7 +10,7 @@
       {
         "map": "Overview",
         "x": 150,
-        "y": 110
+        "y": 790
       }
     ]
   },
@@ -24,8 +24,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 150,
-        "y": 160
+        "x": 96,
+        "y": 288
       }
     ]
   },
@@ -45,8 +45,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 150,
-        "y": 350
+        "x": 240,
+        "y": 288
       }
     ]
   },
@@ -73,30 +73,7 @@
           {
             "map": "Overview",
             "x": 50,
-            "y": 450
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Fields - Candy Trees 1&2",
-        "sections": [
-          {
-            "name": "CH1: Fields - Dark Candy Tree 1"
-          },
-          {
-            "name": "CH1: Fields - Dark Candy Tree 2"
-          }
-        ],
-        "map_locations": []
-      },
-      {
-        "name": "Chapter 1 - Fields - Candy Trees 3&4",
-        "sections": [
-          {
-            "name": "CH1: Fields - Dark Candy Tree 3"
-          },
-          {
-            "name": "CH1: Fields - Dark Candy Tree 4"
+            "y": 420
           }
         ]
       },
@@ -113,24 +90,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 50,
-            "y": 550
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Fields - Maze of Death Chest",
-        "sections": [
-          {
-            "name": "CH1: Fields - Maze of Death Chest"
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Fields - Chest Before Great Board",
-        "sections": [
-          {
-            "name": "CH1: Fields - Chest Before Great Board"
+            "x": 100,
+            "y": 420
           }
         ]
       },
@@ -147,8 +108,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 100,
-            "y": 450
+            "x": 50,
+            "y": 470
           }
         ]
       },
@@ -175,7 +136,7 @@
           {
             "map": "Overview",
             "x": 220,
-            "y": 475
+            "y": 470
           }
         ]
       },
@@ -190,7 +151,7 @@
           {
             "map": "Overview",
             "x": 100,
-            "y": 500
+            "y": 470
           }
         ]
       },
@@ -201,7 +162,16 @@
             "name": "CH1: Fields - Recruit Rudinn"
           },
           {
+            "name": "CH1: Fields - Lost Rudinn"
+          },
+          {
+            "name": "CH1: Fields - Lost Hathy"
+          },
+          {
             "name": "CH1: Fields - Recruit Hathy"
+          },
+          {
+            "name": "CH1: Fields - Lost Jigsawry"
           },
           {
             "name": "CH1: Fields - Recruit Jigsawry"
@@ -210,29 +180,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 150,
-            "y": 500
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Fields - Loses",
-        "sections": [
-          {
-            "name": "CH1: Fields - Lost Rudinn"
-          },
-          {
-            "name": "CH1: Fields - Lost Hathy"
-          },
-          {
-            "name": "CH1: Fields - Lost Jigsawry"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 150,
-            "y": 550
+            "x": 160,
+            "y": 470
           }
         ]
       }
@@ -246,19 +195,7 @@
         "sections": [
           {
             "name": "CH1: Great Board - Recruit Ponman"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 50,
-            "y": 700
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Great Board - Loses",
-        "sections": [
+          },
           {
             "name": "CH1: Great Board - Lost Ponman"
           }
@@ -267,7 +204,7 @@
           {
             "map": "Overview",
             "x": 50,
-            "y": 750
+            "y": 690
           }
         ]
       }
@@ -283,22 +220,10 @@
             "name": "CH1: Forest - Recruit Rabbick"
           },
           {
-            "name": "CH1: Forest - Recruit Bloxer"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 100,
-            "y": 700
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Loses",
-        "sections": [
-          {
             "name": "CH1: Forest - Lost Rabbick"
+          },
+          {
+            "name": "CH1: Forest - Recruit Bloxer"
           },
           {
             "name": "CH1: Forest - Lost Bloxer"
@@ -307,8 +232,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 100,
-            "y": 750
+            "x": 150,
+            "y": 690
           }
         ]
       },
@@ -323,7 +248,7 @@
           {
             "map": "Overview",
             "x": 100,
-            "y": 650
+            "y": 690
           }
         ]
       },
@@ -352,56 +277,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 150,
-            "y": 750
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Scissor Dancers Chest",
-        "sections": [
-          {
-            "name": "CH1: Forest - Scissor Dancers Chest"
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Hidden Chest Near Dancers",
-        "sections": [
-          {
-            "name": "CH1: Forest - Hidden Chest Near Dancers"
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Man",
-        "sections": [
-          {
-            "name": "CH1: Forest - Man"
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Coat Rack's Chest",
-        "sections": [
-          {
-            "name": "CH1: Forest - Coat Rack's Chest"
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Letter Block Chest",
-        "sections": [
-          {
-            "name": "CH1: Forest - Letter Block Chest"
-          }
-        ]
-      },
-      {
-        "name": "Chapter 1 - Forest - Chest Near Worm",
-        "sections": [
-          {
-            "name": "CH1: Forest - Chest Near Worm"
+            "x": 200,
+            "y": 690
           }
         ]
       }
@@ -423,8 +300,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 200,
-            "y": 750
+            "x": 70,
+            "y": 600
           }
         ]
       },
@@ -438,8 +315,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 200,
-            "y": 650
+            "x": 100,
+            "y": 640
           }
         ]
       },
@@ -459,8 +336,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 200,
-            "y": 700
+            "x": 250,
+            "y": 600
           }
         ]
       }
@@ -536,8 +413,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 236,
-            "y": 830
+            "x": 240,
+            "y": 914
           }
         ]
       }
@@ -553,8 +430,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 420,
-        "y": 110
+        "x": 440,
+        "y": 790
       }
     ]
   },
@@ -583,8 +460,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 420,
-            "y": 210
+            "x": 390,
+            "y": 275
           }
         ]
       },
@@ -598,8 +475,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 520,
-            "y": 210
+            "x": 513,
+            "y": 275
           }
         ]
       }
@@ -631,7 +508,7 @@
           {
             "map": "Overview",
             "x": 400,
-            "y": 400
+            "y": 460
           }
         ]
       },
@@ -652,7 +529,7 @@
           {
             "map": "Overview",
             "x": 400,
-            "y": 350
+            "y": 410
           }
         ]
       },
@@ -673,7 +550,7 @@
           {
             "map": "Overview",
             "x": 350,
-            "y": 350
+            "y": 410
           }
         ]
       },
@@ -694,7 +571,7 @@
           {
             "map": "Overview",
             "x": 350,
-            "y": 400
+            "y": 460
           }
         ]
       },
@@ -709,7 +586,7 @@
           {
             "map": "Overview",
             "x": 450,
-            "y": 350
+            "y": 410
           }
         ]
       },
@@ -732,8 +609,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 480,
-            "y": 300
+            "x": 465,
+            "y": 470
           }
         ]
       }
@@ -753,7 +630,7 @@
           {
             "map": "Overview",
             "x": 350,
-            "y": 550
+            "y": 650
           }
         ]
       },
@@ -768,7 +645,7 @@
           {
             "map": "Overview",
             "x": 350,
-            "y": 500
+            "y": 600
           }
         ]
       },
@@ -791,8 +668,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 480,
-            "y": 470
+            "x": 500,
+            "y": 670
           }
         ]
       }
@@ -818,7 +695,7 @@
           {
             "map": "Overview",
             "x": 400,
-            "y": 500
+            "y": 600
           }
         ]
       },
@@ -845,7 +722,7 @@
           {
             "map": "Overview",
             "x": 400,
-            "y": 550
+            "y": 650
           }
         ]
       },
@@ -869,7 +746,7 @@
           {
             "map": "Overview",
             "x": 450,
-            "y": 500
+            "y": 600
           }
         ]
       },
@@ -914,7 +791,7 @@
           {
             "map": "Overview",
             "x": 450,
-            "y": 550
+            "y": 650
           }
         ]
       }
@@ -943,7 +820,7 @@
           {
             "map": "Overview",
             "x": 350,
-            "y": 750
+            "y": 910
           }
         ]
       },
@@ -958,7 +835,7 @@
           {
             "map": "Overview",
             "x": 350,
-            "y": 700
+            "y": 860
           }
         ]
       },
@@ -985,7 +862,7 @@
           {
             "map": "Overview",
             "x": 450,
-            "y": 750
+            "y": 910
           }
         ]
       },
@@ -1009,7 +886,7 @@
           {
             "map": "Overview",
             "x": 400,
-            "y": 700
+            "y": 860
           }
         ]
       },
@@ -1033,7 +910,7 @@
           {
             "map": "Overview",
             "x": 400,
-            "y": 750
+            "y": 910
           }
         ]
       },
@@ -1056,8 +933,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 500,
-            "y": 650
+            "x": 532,
+            "y": 910
           }
         ]
       }
@@ -1112,8 +989,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 1100,
-            "y": 200
+            "x": 1085,
+            "y": 275
           }
         ]
       },
@@ -1127,8 +1004,23 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 935,
-            "y": 200
+            "x": 953,
+            "y": 275
+          }
+        ]
+      },
+      {
+        "name": "Chapter 4 - Castle Town - Cake",
+        "sections": [
+          {
+            "name": "CH4: Castle Town - Top Chef Gift"
+          }
+        ],
+        "map_locations": [
+          {
+            "map": "Overview",
+            "x": 1019,
+            "y": 275
           }
         ]
       }
@@ -1181,7 +1073,7 @@
           {
             "map": "Overview",
             "x": 930,
-            "y": 370
+            "y": 420
           }
         ]
       },
@@ -1208,7 +1100,7 @@
           {
             "map": "Overview",
             "x": 980,
-            "y": 320
+            "y": 420
           }
         ]
       },
@@ -1235,7 +1127,7 @@
           {
             "map": "Overview",
             "x": 980,
-            "y": 370
+            "y": 420
           }
         ]
       },
@@ -1259,7 +1151,7 @@
           {
             "map": "Overview",
             "x": 1030,
-            "y": 370
+            "y": 510
           }
         ]
       },
@@ -1277,7 +1169,7 @@
           {
             "map": "Overview",
             "x": 1080,
-            "y": 370
+            "y": 420
           }
         ]
       },
@@ -1292,7 +1184,7 @@
           {
             "map": "Overview",
             "x": 1030,
-            "y": 320
+            "y": 420
           }
         ]
       }
@@ -1327,12 +1219,12 @@
           {
             "map": "Overview",
             "x": 930,
-            "y": 560
+            "y": 720
           }
         ]
       },
       {
-        "name": "Chapter 4 - Dark Sanctuary - Recruits",
+        "name": "Chapter 4 - Second Sanctuary - Recruits",
         "sections": [
           {
             "name": "CH4: Recruit Wicabel"
@@ -1348,12 +1240,12 @@
           {
             "map": "Overview",
             "x": 980,
-            "y": 510
+            "y": 720
           }
         ]
       },
       {
-        "name": "Chapter 4 - Dark Sanctuary - Loses",
+        "name": "Chapter 4 - Second Sanctuary - Loses",
         "sections": [
           {
             "name": "CH4: Lost Wicabel"
@@ -1368,8 +1260,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 980,
-            "y": 560
+            "x": 1030,
+            "y": 720
           }
         ]
       },
@@ -1383,8 +1275,8 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 1030,
-            "y": 560
+            "x": 1080,
+            "y": 720
           }
         ]
       }
@@ -1401,37 +1293,97 @@
       {
         "map": "Overview",
         "x": 1010,
-        "y": 110
+        "y": 790
       }
     ]
   },
   {
-    "name": "Cross Chapter - Fusions",
+    "name": "Cross Chapter - DD-Burger",
     "sections": [
       {
-        "name": "Castle Town - DD-Burger Fusion"
-      },
-      {
-        "name": "Castle Town - Silver Card Fusion"
-      },
-      {
-        "name": "Castle Town - Twin Ribbon Fusion"
-      },
-      {
-        "name": "Castle Town - TensionBow Fusion"
-      },
-      {
-        "name": "Castle Town - Spike Band Fusion"
-      },
-      {
-        "name": "Castle Town - TwistedSwd Fusion"
+        "name": "CC: Castle Town - DD-Burger Fusion"
       }
     ],
     "map_locations": [
       {
         "map": "Overview",
-        "x": 1260,
-        "y": 170
+        "x": 180,
+        "y": 1110
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - Silver Card",
+    "sections": [
+      {
+        "name": "CC: Castle Town - Silver Card Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 230,
+        "y": 1110
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - Twin Ribbon",
+    "sections": [
+      {
+        "name": "CC: Castle Town - Twin Ribbon Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 280,
+        "y": 1110
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - TensionBow",
+    "sections": [
+      {
+        "name": "CC: Castle Town - TensionBow Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 180,
+        "y": 1160
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - Spike Band",
+    "sections": [
+      {
+        "name": "CC: Castle Town - Spike Band Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 230,
+        "y": 1160
+      }
+    ]
+  },
+  {
+    "name": "Cross Chapter - TwistedSwd",
+    "sections": [
+      {
+        "name": "CC: Castle Town - TwistedSwd Fusion"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 280,
+        "y": 1160
       }
     ]
   },
@@ -1446,7 +1398,7 @@
       {
         "map": "Overview",
         "x": 930,
-        "y": 720
+        "y": 870
       }
     ]
   },
@@ -1461,7 +1413,7 @@
       {
         "map": "Overview",
         "x": 980,
-        "y": 720
+        "y": 870
       }
     ]
   },
@@ -1476,7 +1428,7 @@
       {
         "map": "Overview",
         "x": 1030,
-        "y": 720
+        "y": 870
       }
     ]
   },
@@ -1491,7 +1443,7 @@
       {
         "map": "Overview",
         "x": 1080,
-        "y": 720
+        "y": 870
       }
     ]
   },
@@ -1505,8 +1457,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 710,
-        "y": 110
+        "x": 720,
+        "y": 885
       }
     ]
   },
@@ -1523,8 +1475,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 630,
-        "y": 210
+        "x": 620,
+        "y": 785
       }
     ]
   },
@@ -1574,8 +1526,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 730,
-        "y": 210
+        "x": 650,
+        "y": 275
       }
     ]
   },
@@ -1589,8 +1541,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 780,
-        "y": 210
+        "x": 800,
+        "y": 275
       }
     ]
   },
@@ -1613,8 +1565,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 652,
-        "y": 303
+        "x": 670,
+        "y": 785
       }
     ]
   },
@@ -1640,8 +1592,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 719,
-        "y": 374
+        "x": 720,
+        "y": 785
       }
     ]
   },
@@ -1658,8 +1610,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 723,
-        "y": 292
+        "x": 770,
+        "y": 785
       }
     ]
   },
@@ -1688,8 +1640,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 790,
-        "y": 293
+        "x": 620,
+        "y": 835
       }
     ]
   },
@@ -1721,8 +1673,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 820,
-        "y": 293
+        "x": 670,
+        "y": 835
       }
     ]
   },
@@ -1757,8 +1709,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 730,
-        "y": 530
+        "x": 650,
+        "y": 475
       }
     ]
   },
@@ -1775,8 +1727,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 680,
-        "y": 530
+        "x": 700,
+        "y": 475
       }
     ]
   },
@@ -1793,8 +1745,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 680,
-        "y": 480
+        "x": 750,
+        "y": 475
       }
     ]
   },
@@ -1808,8 +1760,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 780,
-        "y": 530
+        "x": 800,
+        "y": 475
       }
     ]
   },
@@ -1835,7 +1787,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 680,
+        "x": 650,
         "y": 680
       }
     ]
@@ -1862,8 +1814,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 680,
-        "y": 630
+        "x": 700,
+        "y": 680
       }
     ]
   },
@@ -1877,7 +1829,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 630,
+        "x": 750,
         "y": 680
       }
     ]
@@ -1937,7 +1889,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 730,
+        "x": 800,
         "y": 680
       }
     ]
@@ -1955,8 +1907,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 650,
-        "y": 880
+        "x": 720,
+        "y": 835
       }
     ]
   },
@@ -1974,7 +1926,7 @@
       {
         "map": "Overview",
         "x": 770,
-        "y": 880
+        "y": 835
       }
     ]
   }
