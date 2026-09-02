@@ -372,6 +372,7 @@ class LocationIDs(IntEnum):
     ch5_weird_route_sinking = 350
     ch2_fountain_sealed_weird_route = 351
     ch4_castle_town_mike_chest = 352
+    ch1_field_donation_hole = 353
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -436,6 +437,7 @@ locations = {
     LocationIDs.ch1_field_return_top_cake: "CH1: Fields - Return Top Cake",
     LocationIDs.ch1_field_maze_of_death_chest: "CH1: Fields - Maze of Death Chest",
     LocationIDs.ch1_field_chest_before_great_board: "CH1: Fields - Chest Before Great Board",
+    LocationIDs.ch1_field_donation_hole: "CH1: Fields - Donation hole",
     LocationIDs.ch1_seam_seap_talk_about_strange_prisoner: "CH1: Seam's Seap - Talk About Strange Prisoner",
     LocationIDs.ch1_seam_seap_1: "CH1: Seam's Seap 1",
     LocationIDs.ch1_seam_seap_2: "CH1: Seam's Seap 2",
@@ -764,6 +766,7 @@ locations = {
     LocationIDs.ch5_vending_machine_2: "CH5: Soda Fountain Item #2",
     LocationIDs.ch5_vending_machine_3: "CH5: Soda Fountain Item #3",
     LocationIDs.ch5_vending_machine_4: "CH5: Soda Fountain Item #4",
+    LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Soda Fountain Flowery's Secret",
     LocationIDs.ch5_castle_west_hidden_zen_garden_chest: "CH5: Castle West - Hidden Zen Garden Chest",
     LocationIDs.ch5_castle_west_yellow_flower_platforming_pink_coin: "CH5: Castle West - Yellow Flower Platforming Pink Coin",
     LocationIDs.ch5_castle_west_shinobeetle_shuriken_pink_coin: "CH5: Castle West - Shinobeetle Shuriken Pink Coin",
@@ -779,7 +782,6 @@ locations = {
     LocationIDs.ch5_castle_east_fox_race_pink_coin: "CH5: Castle East - Fox Race Pink Coin",
     LocationIDs.ch5_castle_east_mysterious_puzzle_warp_door: "CH5: Castle East - Mysterious Puzzle Warp Door",
     LocationIDs.ch5_castle_top_painting_room_item: "CH5: Top of Castle - Painting Room Item",
-    LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Soda Fountain Flowery's Secret",
     LocationIDs.ch5_castle_moss: "CH5: Flower Castle - Moss",
     LocationIDs.ch5_castle_west_shinobeetle_chest_behind_tree: "CH5: Castle West - Shinobeetle Chest Behind Tree",
     LocationIDs.ch5_castle_top_yellow_flower_platforming_pink_coin: "CH5: Top of Castle - Yellow Flower Platforming Pink Coin",
