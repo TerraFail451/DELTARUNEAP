@@ -220,7 +220,7 @@
             "name": "CH1: Forest - Recruit Rabbick"
           },
           {
-            "name": "CH1: Forest - Lost Rabbick"
+            "name": "Cross Chapter - Lost Rabbick"
           },
           {
             "name": "CH1: Forest - Recruit Bloxer"
@@ -947,7 +947,10 @@
         "name": "Chapter 4 - Castle Town - Mike",
         "sections": [
           {
-            "name": "CH4: Castle Town - Defeat Mike"
+            "name": "CH4: Mike - Chest before Mike"
+          },
+          {
+            "name": "CH4: Mike - Defeat Mike"
           },
           {
             "name": "CH4: Mike - Battat (Bronze Rank)"
@@ -1084,40 +1087,28 @@
             "name": "CH4: Recruit Guei"
           },
           {
-            "name": "CH4: Recruit Balthizard"
-          },
-          {
-            "name": "CH4: Recruit Bibliox"
-          },
-          {
-            "name": "CH4: Recruit Mizzle"
-          },
-          {
-            "name": "CH4: Recruit Miss Mizzle"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 980,
-            "y": 420
-          }
-        ]
-      },
-      {
-        "name": "Chapter 4 - Dark Sanctuary - Loses",
-        "sections": [
-          {
             "name": "CH4: Lost Guei"
+          },
+          {
+            "name": "CH4: Recruit Balthizard"
           },
           {
             "name": "CH4: Lost Balthizard"
           },
           {
+            "name": "CH4: Recruit Bibliox"
+          },
+          {
             "name": "CH4: Lost Bibliox"
           },
           {
+            "name": "CH4: Recruit Mizzle"
+          },
+          {
             "name": "CH4: Lost Mizzle"
+          },
+          {
+            "name": "CH4: Recruit Miss Mizzle"
           },
           {
             "name": "CH4: Lost Miss Mizzle"
@@ -1230,28 +1221,16 @@
             "name": "CH4: Recruit Wicabel"
           },
           {
-            "name": "CH4: Recruit Winglade"
-          },
-          {
-            "name": "CH4: Recruit Organikk"
-          }
-        ],
-        "map_locations": [
-          {
-            "map": "Overview",
-            "x": 980,
-            "y": 720
-          }
-        ]
-      },
-      {
-        "name": "Chapter 4 - Second Sanctuary - Loses",
-        "sections": [
-          {
             "name": "CH4: Lost Wicabel"
           },
           {
+            "name": "CH4: Recruit Winglade"
+          },
+          {
             "name": "CH4: Lost Winglade"
+          },
+          {
+            "name": "CH4: Recruit Organikk"
           },
           {
             "name": "CH4: Lost Organikk"
@@ -1260,7 +1239,7 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 1030,
+            "x": 980,
             "y": 720
           }
         ]
@@ -1275,7 +1254,7 @@
         "map_locations": [
           {
             "map": "Overview",
-            "x": 1080,
+            "x": 1030,
             "y": 720
           }
         ]
@@ -1392,34 +1371,10 @@
     "sections": [
       {
         "name": "CH4: Third Sanctuary - Annoying Dog...?"
-      }
-    ],
-    "map_locations": [
-      {
-        "map": "Overview",
-        "x": 930,
-        "y": 870
-      }
-    ]
-  },
-  {
-    "name": "CH4: Third Sanctuary - Speed Climbing Chest",
-    "sections": [
+      },
       {
         "name": "CH4: Third Sanctuary - Speed Climbing Chest"
-      }
-    ],
-    "map_locations": [
-      {
-        "map": "Overview",
-        "x": 980,
-        "y": 870
-      }
-    ]
-  },
-  {
-    "name": "CH4: Third Sanctuary - Dark Area Chest",
-    "sections": [
+      },
       {
         "name": "CH4: Third Sanctuary - Dark Area Chest"
       }
@@ -1427,7 +1382,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 1030,
+        "x": 930,
         "y": 870
       }
     ]
@@ -1481,8 +1436,11 @@
     ]
   },
   {
-    "name": "Chapter 3 - Board 1 - Loses",
+    "name": "Chapter 3 - Board 1 - Recruits",
     "sections": [
+      {
+        "name": "CH3: Recruit Shadowguy"
+      },
       {
         "name": "CH3: Lost Shadowguy"
       }
@@ -1490,8 +1448,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 680,
-        "y": 210
+        "x": 650,
+        "y": 275
       }
     ]
   },
@@ -1526,7 +1484,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 650,
+        "x": 700,
         "y": 275
       }
     ]
@@ -1709,24 +1667,6 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 650,
-        "y": 475
-      }
-    ]
-  },
-  {
-    "name": "Chapter 3 - Board 2 - Loses",
-    "sections": [
-      {
-        "name": "CH3: Lost Shuttah"
-      },
-      {
-        "name": "CH3: Lost Pippins"
-      }
-    ],
-    "map_locations": [
-      {
-        "map": "Overview",
         "x": 700,
         "y": 475
       }
@@ -1739,13 +1679,19 @@
         "name": "CH3: Recruit Shuttah"
       },
       {
+        "name": "CH3: Lost Shuttah"
+      },
+      {
         "name": "CH3: Recruit Pippins"
+      },
+      {
+        "name": "CH3: Lost Pippins"
       }
     ],
     "map_locations": [
       {
         "map": "Overview",
-        "x": 750,
+        "x": 650,
         "y": 475
       }
     ]
@@ -1766,55 +1712,46 @@
     ]
   },
   {
-    "name": "Chapter 3 - TV World - Loses",
-    "sections": [
-      {
-        "name": "CH3: Lost Shadowguy"
-      },
-      {
-        "name": "CH3: Lost Pippins"
-      },
-      {
-        "name": "CH3: Lost Water Cooler"
-      },
-      {
-        "name": "CH3: Lost Shuttah"
-      },
-      {
-        "name": "CH3: Lost Zapper"
-      }
-    ],
-    "map_locations": [
-      {
-        "map": "Overview",
-        "x": 650,
-        "y": 680
-      }
-    ]
-  },
-  {
     "name": "Chapter 3 - TV World - Recruits",
     "sections": [
       {
         "name": "CH3: Recruit Shadowguy"
       },
       {
+        "name": "CH3: Lost Shadowguy"
+      },
+      {
         "name": "CH3: Recruit Pippins"
+      },
+      {
+        "name": "CH3: Lost Pippins"
       },
       {
         "name": "CH3: Recruit Water Cooler"
       },
       {
+        "name": "CH3: Lost Water Cooler"
+      },
+      {
         "name": "CH3: Recruit Shuttah"
       },
       {
+        "name": "CH3: Lost Shuttah"
+      },
+      {
         "name": "CH3: Recruit Zapper"
+      },
+      {
+        "name": "CH3: Lost Zapper"
+      },
+      {
+        "name": "Cross Chapter - Lost Rabbick"
       }
     ],
     "map_locations": [
       {
         "map": "Overview",
-        "x": 700,
+        "x": 650,
         "y": 680
       }
     ]
@@ -1829,7 +1766,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 750,
+        "x": 700,
         "y": 680
       }
     ]
@@ -1889,7 +1826,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 800,
+        "x": 750,
         "y": 680
       }
     ]
