@@ -281,6 +281,8 @@ chapter2_locations = {
             should_be_included=weird_route,
             group=LocationGroups.chapter2,
         ),
+    ],
+    Regions.ch2_thornring: [
         LocationData(
             LocationIDs.ch2_cyber_city_purchase_thornring,
             should_be_included=weird_route,

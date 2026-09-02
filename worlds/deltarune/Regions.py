@@ -39,6 +39,7 @@ class Regions(StrEnum):
     ch2_trash_zone_no_character_required = "CH2: Trash Zone (No Character required)"
     ch2_spamton_shop = "CH2: Spamton's Shop"
     ch2_cyber_city = "CH2: Cyber City"
+    ch2_thornring = "CH2: Thornring"
     ch2_cyber_city_spamton_fight = "CH2: Cyber City (Spamton fight)"
     ch2_cyber_city_post_spamton = "CH2: Cyber City (Post-Spamton)"
     ch2_mansion_lobby_main_route = "CH2: Mansion Lobby Main Route"

@@ -26,6 +26,8 @@ from worlds.deltarune.Rules import (
     can_recruit_terakota,
     can_lost_chapter5,
     have_kris_susie_and_ralsei,
+    have_kris_susie_or_ralsei,
+    nohit_logic,
 )
 
 if TYPE_CHECKING:
@@ -34,6 +36,11 @@ if TYPE_CHECKING:
 
 def set_rules(world: "DeltaruneWorld"):
     if normal_route(world):
+        world.set_rule(
+            world.get_location(locations[LocationIDs.ch5_garden_pink_coin_near_tropical_starwalker]),
+            have_kris_susie_or_ralsei | nohit_logic,
+        )
+
         if include_recruits(world):
             world.set_rule(world.get_location(locations[LocationIDs.ch5_recruit_floradinn]), can_recruit_floradinn)
             world.set_rule(world.get_location(locations[LocationIDs.ch5_recruit_sheary]), can_recruit_sheary)

@@ -23,6 +23,7 @@ from worlds.deltarune.Rules import (
     can_recruit_zapper,
     can_lost_chapter3,
     have_kris,
+    annoying_farming_logic,
 )
 
 if TYPE_CHECKING:
@@ -33,12 +34,12 @@ def set_rules(world: "DeltaruneWorld"):
     if include_recruits(world):
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_recruit_shadowguy]),
-            can_recruit_shadowguy & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
+            can_recruit_shadowguy & (CanReachRegion(Regions.ch3_tv_world) | annoying_farming_logic),
         )
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_pippins]), can_recruit_pippins)
         world.set_rule(
             world.get_location(locations[LocationIDs.ch3_recruit_shuttah]),
-            can_recruit_shuttah & (CanReachRegion(Regions.ch3_tv_world) | Has(glitched_item_name)),
+            can_recruit_shuttah & (CanReachRegion(Regions.ch3_tv_world) | annoying_farming_logic),
         )
         world.set_rule(world.get_location(locations[LocationIDs.ch3_recruit_water_cooler]), can_recruit_water_cooler)
         world.set_rule(

@@ -74,27 +74,16 @@ class ShuffleOST(Toggle):
 # region Gameplay
 
 
-class GlitchedLogicAsLogic(Toggle):
+class UnnerfPinkTwinRibbon(Toggle):
     """
-    THE INTENDED WAY TO PROGRESS WILL NO LONGER BE GUARANTEED.
+    THE PINK AND THE TWIN RIBBONS WILL NOT BE DOWNGRADED PAST THE SECOND CHAPTER.
 
-    (You get the feeling that this is probably a horrible idea...)
-
-    (All glitches and possible out of logic locations will now be in logic.)
-    (Expect things like needing to replay most of the chapter on a second or third save to progress at points,)
-    (Having to redo board 1 over and over to recruit 25 shadowguys,)
-    (Utilizing wrong warps, overflows, and other glitches to progress,)
-    (And doing challenging fights no-hit if you don't have any characters unlocked.)
-    (Also a reminder that Chapter 2's Bagel Overflow has been re-added.)
-
-    **(ONLY TURN THIS TO TRUE IF YOU ARE EXTREMELY KNOWLEDGEABLE AND SKILLED AT THE GAME.)**
+    (If you don't know, the pink/twin ribbon gets nerfed hard if you equip a second one in chapter 3+.)
+    (Though, keep in mind it was definitely nerfed for a reason. Equipping these ribbons all at once make some battles a cakewalk.)
     """
 
-    display_name = "[HARD MODE] Gliched Logic as Logic"
-    default = 0
-
-
-# endregion
+    display_name = "Un-nerf Pink/Twin Ribbon"
+    default = 1
 
 
 class BetterOdds(Toggle):
@@ -108,16 +97,7 @@ class BetterOdds(Toggle):
     default = 1
 
 
-class UnnerfPinkTwinRibbon(Toggle):
-    """
-    THE PINK AND THE TWIN RIBBONS WILL NOT BE DOWNGRADED PAST THE SECOND CHAPTER.
-
-    (If you don't know, the pink/twin ribbon gets nerfed hard if you equip a second one in chapter 3+.)
-    (Though, keep in mind it was definitely nerfed for a reason. Equipping these ribbons all at once make some battles a cakewalk.)
-    """
-
-    display_name = "Un-nerf Pink/Twin Ribbon"
-    default = 1
+# endregion
 
 
 class ChosenRoute(Choice):
@@ -793,6 +773,54 @@ class UnlockFunGangActions(Toggle):
     default = 0
 
 
+# region Logic Difficulty
+
+
+class SpeedrunGlitchesAsLogic(Toggle):
+    """
+    THE INTENDED WAY TO PROGRESS WILL INCLUDE THE FAST LITTLE BOYS WAY.
+
+    (All reasonable glitches will now be in logic.)
+    (This includes: Wrong Warp, Bagel Overflow, interaction slide, ...)
+    (This doesn't includes: ARMS)
+    (Do not forget to save on multiple slot to still have access on earlier event that might not happen anymore if you play with the plot value)
+    (Reminder that Bagel Overflow was re-implemented)
+    **(ONLY TURN THIS TO TRUE IF YOU ARE KNOWLEDGEABLE.)**
+    """
+
+    display_name = "[HARD MODE] Speedrun glitches as Logic"
+    default = 0
+
+
+class NoHitAsLogic(Toggle):
+    """
+    THE INTENDED WAY TO PROGRESS WILL INCLUDE THE DODGERS WAY.
+
+    (Fights or sections that require you no no-hit them will now be in logic.)
+    (That does nothing if you don't have unlockable characters.)
+    (This include: Mike fight, Knight Climb, Gerson)
+    (Reminder that Chapter 1 Lancer fight is always in logic no-hit)
+    **(ONLY TURN THIS TO TRUE IF YOU ARE EXTREMELY SKILLED AT THE GAME.)**
+    """
+
+    display_name = "[HARD MODE] No Hit as Logic"
+    default = 0
+
+
+class AnnoyingFarmingAsLogic(Toggle):
+    """
+    THE INTENDED WAY TO PROGRESS WILL INCLUDE THE FARMING WAY.
+
+    (Annoying forming will farming will now be in logic.)
+    (This include replaying Chapter 3 Board 1 multiple times for recruiting 25 shadowguy or spamming spare for certain fight to recruit enemies)
+    """
+
+    display_name = "[HARD MODE] Annoying farming as Logic"
+    default = 0
+
+
+# endregion
+
 deltarune_option_groups = [
     OptionGroup(
         "Goal",
@@ -846,9 +874,8 @@ deltarune_option_groups = [
             UnlockFunGangActions,
         ],
     ),
-    OptionGroup(
-        "Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon, GlitchedLogicAsLogic]
-    ),
+    OptionGroup("Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon]),
+    OptionGroup("Logic Difficulty", [SpeedrunGlitchesAsLogic, NoHitAsLogic, AnnoyingFarmingAsLogic]),
     OptionGroup("Links", [DeathLink, DeathLinkGroup, DamageLink, DamageLinkGroup]),
     OptionGroup(
         "Fillers Weight",
@@ -932,8 +959,12 @@ class DeltaruneOptions(PerGameCommonOptions):
     better_odds: BetterOdds
     remove_starting_equipment: RemoveStartingEquipment
     item_balancing: ItemBalancing
-    glitched_logic_as_logic: GlitchedLogicAsLogic
     pink_twin_ribbon_unnerf: UnnerfPinkTwinRibbon
+
+    # Logic Difficulty
+    speedrun_gliches_as_logic: SpeedrunGlitchesAsLogic
+    nohit_as_logic: NoHitAsLogic
+    annoying_farming_as_logic: AnnoyingFarmingAsLogic
 
     # Links
     death_link: DeathLink

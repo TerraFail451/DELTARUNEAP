@@ -55,10 +55,6 @@ def set_rules(world: "DeltaruneWorld"):
 
     if weird_route(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_cyber_city_purchase_freezering]), have_noelle)
-        world.set_rule(
-            world.get_location(locations[LocationIDs.ch2_cyber_city_purchase_thornring]),
-            have_noelle | Has(glitched_item_name),
-        )
 
     if include_freeze_recruits_chapter2(world):
         world.set_rule(world.get_location(locations[LocationIDs.ch2_lost_werewire]), can_lost_chapter2)

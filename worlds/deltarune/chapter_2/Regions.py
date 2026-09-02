@@ -5,7 +5,13 @@ from rule_builder.field_resolvers import FromOption
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachEntrance, CanReachLocation, CanReachRegion, Has
 from worlds.deltarune.LogicHelper import all_recruits_route, normal_route, weird_route
-from worlds.deltarune.Options import ChosenRoute, MacGuffinChapter2, RandomizeSecretBosses, RecruitsSanity
+from worlds.deltarune.Options import (
+    ChosenRoute,
+    MacGuffinChapter2,
+    RandomizeSecretBosses,
+    RecruitsSanity,
+    SpeedrunGlitchesAsLogic,
+)
 from worlds.deltarune.Regions import Regions, add_location_to_region, get_entrance_name
 from worlds.deltarune.chapter_2.Locations import chapter2_locations
 from worlds.deltarune.Rules import (
@@ -16,6 +22,7 @@ from worlds.deltarune.Rules import (
     have_kris_or_ralsei,
     have_kris_susie_or_ralsei,
     have_noelle,
+    speedrun_glitch_logic,
 )
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.Locations import LocationIDs, locations
@@ -83,19 +90,34 @@ def create_regions(world: "DeltaruneWorld"):
     )
     cyber_field.connect(
         trash_zone_no_character_requirement,
-        get_entrance_name(cyber_field_post_dj, trash_zone_no_character_requirement, "BagelOverflow"),
-        Has(glitched_item_name),
-    )
-    cyber_field.connect(
-        cyber_field_post_dj,
-        get_entrance_name(cyber_field, cyber_field_post_dj, "BagelOverflow / WrongWarp"),
-        Has(glitched_item_name),
+        get_entrance_name(cyber_field, trash_zone_no_character_requirement, "BagelOverflow"),
+        rule=speedrun_glitch_logic,
     )
     cyber_field_post_dj.connect(music_shop)
     # Require Safety vest and at least one character for berdly fight or Bagel Overflow to Trash Zone
     cyber_field_post_dj.connect(
         trash_zone_no_character_requirement,
         rule=(Has(items[ItemIDs.safety_vest]) & have_kris_susie_or_ralsei),
+    )
+
+    cyber_field.connect(
+        mansion_lobby_warp_door,
+        get_entrance_name(cyber_field, mansion_lobby_warp_door, "BagelOverflow"),
+        rule=speedrun_glitch_logic,
+    )
+    mansion_lobby_warp_door.connect(
+        cyber_field_post_dj,
+        get_entrance_name(mansion_lobby_warp_door, cyber_field_post_dj, "Plot update after BagelOverflow"),
+    )
+    mansion_lobby_warp_door.connect(
+        cyber_city,
+        get_entrance_name(mansion_lobby_warp_door, cyber_city, "Plot update after BagelOverflow"),
+        rule=have_kris_susie_or_ralsei,
+    )
+    mansion_lobby_warp_door.connect(
+        trash_zone,
+        get_entrance_name(mansion_lobby_warp_door, trash_zone, "Plot update after BagelOverflow"),
+        rule=have_kris_susie_or_ralsei,
     )
 
     if normal_route(world):
@@ -134,13 +156,13 @@ def create_regions(world: "DeltaruneWorld"):
         trash_zone_no_character_requirement.connect(
             cyber_city,
             "Trash no Charac -> City (Normal Route)",
-            rule=have_kris_or_noelle | (have_kris_susie_or_ralsei & Has(glitched_item_name)),
+            rule=have_kris_or_noelle,
         )
 
         cyber_field.connect(
             mansion_lobby_main_route,
             get_entrance_name(cyber_field, mansion_lobby_main_route, "BagelOverflow"),
-            Has(glitched_item_name),
+            rule=speedrun_glitch_logic,
         )
 
         # MAIN ROUTE REGION CONNECTIONS
@@ -149,15 +171,12 @@ def create_regions(world: "DeltaruneWorld"):
         cyber_city.connect(
             cyber_city_post_spamton,
             get_entrance_name(cyber_city, cyber_city_post_spamton, "Interaction Slide"),
-            Has(glitched_item_name),
+            rule=speedrun_glitch_logic,
         )
         cyber_city_spamton_fight.connect(cyber_city_post_spamton)
         cyber_city_post_spamton.connect(mansion_lobby_main_route)
 
-        mansion_lobby_main_route.connect(
-            swatch_cafe,
-            rule=CanReachRegion(Regions.ch2_cyber_city_post_spamton) | Has(glitched_item_name),
-        )
+        mansion_lobby_main_route.connect(swatch_cafe)
         mansion_lobby_main_route.connect(mansion_lobby_warp_door)
         # Require you to being able to spare spamton
         mansion_lobby_main_route.connect(
@@ -218,16 +237,20 @@ def create_regions(world: "DeltaruneWorld"):
             )
 
     if weird_route(world):
+        thornring = Region(Regions.ch2_thornring, world.player, world.multiworld)
         mansion_lobby_weird_route = Region(Regions.ch2_mansion_lobby_weird_route, world.player, world.multiworld)
         fountain_weird_route = Region(Regions.ch2_fountain_weird_route, world.player, world.multiworld)
 
-        regions_weird_route = [mansion_lobby_weird_route, fountain_weird_route]
+        regions_weird_route = [thornring, mansion_lobby_weird_route, fountain_weird_route]
 
         for region in regions_weird_route:
             if region.name in chapter2_locations:
                 add_location_to_region(region, chapter2_locations[region.name], world)
             world.multiworld.regions.append(region)
 
+        cyber_field.connect(
+            thornring, get_entrance_name(cyber_field, thornring, "Bagel Overflow"), rule=speedrun_glitch_logic
+        )
         trash_zone_no_character_requirement.connect(
             trash_zone, "Trash No Charac -> Trash (Weird Route)", rule=have_noelle
         )
@@ -238,6 +261,8 @@ def create_regions(world: "DeltaruneWorld"):
             "Trash no Charac -> City (Weird Route)",
             rule=have_noelle,
         )
+
+        cyber_city.connect(thornring)
 
         # WEIRD ROUTE REGION CONNECTIONS
         # Moved after creating items because we don't know yet how many progressive item is the thornring
@@ -251,7 +276,7 @@ def create_regions(world: "DeltaruneWorld"):
         mansion_lobby_weird_route.connect(
             mansion_both_route,
             get_entrance_name(mansion_lobby_weird_route, mansion_both_route, "Singapore Wrong Warp"),
-            rule=Has(glitched_item_name),
+            rule=speedrun_glitch_logic,
         )
         mansion_lobby_weird_route.connect(
             spamton_neo,
