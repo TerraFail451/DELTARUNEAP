@@ -59,16 +59,16 @@ def include_recruits_chapter2_weird_route_exclusion(world: "DeltaruneWorld"):
     return include_recruits(world) and not_weird_route_only(world)
 
 
-def include_recruit_swatchlings_weird_route(world: "DeltaruneWorld"):
-    return include_recruits(world) and (
-        world.options.include_swatchling_during_weird_route == 1 or not_weird_route_only(world)
-    )
+def include_singapour_wrong_warp_locations(world: "DeltaruneWorld"):
+    return not_weird_route_only(world) or is_speedrun_logic(world)
 
 
-def include_lose_swatchlings_weird_route(world: "DeltaruneWorld"):
-    return include_lose_recruits(world) and (
-        world.options.include_swatchling_during_weird_route == 1 or not_weird_route_only(world)
-    )
+def include_singapour_wrong_warp_locations_recruit(world: "DeltaruneWorld"):
+    return include_singapour_wrong_warp_locations(world) and include_recruits(world)
+
+
+def include_singapour_wrong_warp_locations_lose_recruits(world: "DeltaruneWorld"):
+    return include_singapour_wrong_warp_locations(world) and include_lose_recruits(world)
 
 
 def include_twin_ribbon_fusion(world: "DeltaruneWorld"):
@@ -338,6 +338,24 @@ def any_included_chapter(world: "DeltaruneWorld", chapters: list[int]):
 
 def all_included_chapter(world: "DeltaruneWorld", chapters: list[int]):
     return all(chapter in world.included_chapters for chapter in chapters)
+
+
+# endregion
+
+
+# region Logic Difficulty
+
+
+def is_speedrun_logic(world: "DeltaruneWorld") -> bool:
+    return world.options.speedrun_gliches_as_logic == 1
+
+
+def is_nohit_logic(world: "DeltaruneWorld") -> bool:
+    return world.options.nohit_as_logic == 1
+
+
+def is_annoying_logic(world: "DeltaruneWorld") -> bool:
+    return world.options.annoying_farming_as_logic == 1
 
 
 # endregion
