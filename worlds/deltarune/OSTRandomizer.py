@@ -19,7 +19,6 @@ ost_name = [
     "AUDIO_DARKNESS.ogg",
     "AUDIO_DEFEAT.ogg",
     "AUDIO_STORY.ogg",
-    "baci_distort.ogg",
     "baci_perugina.ogg",
     "basement.ogg",
     "battle.ogg",
