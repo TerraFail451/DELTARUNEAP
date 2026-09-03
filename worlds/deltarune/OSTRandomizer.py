@@ -101,6 +101,7 @@ ost_name = [
     "festival_after.ogg",
     "festival_night.ogg",
     "field_of_hopes.ogg",
+    "field_of_hopes_insaneintherain_intro.ogg",
     "field_of_hopes_insaneintherain_loop.ogg",
     "findher.ogg",
     "flashback_excerpt.ogg",
