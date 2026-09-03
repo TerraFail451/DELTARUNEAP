@@ -5,13 +5,16 @@ from rule_builder.rules import CanReachRegion, Has
 from worlds.deltarune.Locations import locations, LocationIDs
 from worlds.deltarune.Items import items, ItemIDs, glitched_item_name
 from worlds.deltarune.LogicHelper import (
-    excluded_t_rank,
-    excluded_z_rank,
+    excluded_t_rank_board,
+    excluded_t_rank_physical_challenge,
+    excluded_z_rank_board,
+    excluded_z_rank_physical_challenge,
     include_hidden_items,
     include_lose_recruits,
     include_recruits,
     include_secret_bosses_items_reward,
     include_shadow_mantle,
+    physical_challenge_sanity_enabled,
     randomized_sword_route,
 )
 from worlds.deltarune.Regions import Regions
@@ -66,13 +69,36 @@ def set_rules(world: "DeltaruneWorld"):
         have_kris & Has(items[ItemIDs.tripticket])
     )
 
-    if excluded_t_rank(world):
+    if excluded_t_rank_board(world):
         world.get_location(locations[LocationIDs.ch3_board_1_t_rank]).progress_type = LocationProgressType.EXCLUDED
         world.get_location(locations[LocationIDs.ch3_board_2_t_rank]).progress_type = LocationProgressType.EXCLUDED
 
-    if excluded_z_rank(world):
+    if excluded_z_rank_board(world):
         world.get_location(locations[LocationIDs.ch3_board_1_z_rank]).progress_type = LocationProgressType.EXCLUDED
         world.get_location(locations[LocationIDs.ch3_board_2_z_rank]).progress_type = LocationProgressType.EXCLUDED
+
+    if physical_challenge_sanity_enabled(world):
+        if excluded_t_rank_physical_challenge(world):
+            world.get_location(locations[LocationIDs.ch3_cooking_show_rank_t]).progress_type = (
+                LocationProgressType.EXCLUDED
+            )
+            world.get_location(locations[LocationIDs.ch3_monster_movie_rank_t]).progress_type = (
+                LocationProgressType.EXCLUDED
+            )
+            world.get_location(locations[LocationIDs.ch3_rock_video_rank_t]).progress_type = (
+                LocationProgressType.EXCLUDED
+            )
+
+        if excluded_z_rank_physical_challenge(world):
+            world.get_location(locations[LocationIDs.ch3_cooking_show_rank_z]).progress_type = (
+                LocationProgressType.EXCLUDED
+            )
+            world.get_location(locations[LocationIDs.ch3_monster_movie_rank_z]).progress_type = (
+                LocationProgressType.EXCLUDED
+            )
+            world.get_location(locations[LocationIDs.ch3_rock_video_rank_z]).progress_type = (
+                LocationProgressType.EXCLUDED
+            )
 
     if include_shadow_mantle(world):
         world.set_rule(

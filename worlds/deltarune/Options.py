@@ -99,6 +99,127 @@ class BetterOdds(Toggle):
 
 # endregion
 
+# region Chapter 3
+
+
+class IncludeChapter3(Toggle):
+    """
+    DO YOU WISH TO PLAY CHAPTER 3?
+
+    *(Items from this chapter will also be included)*
+    """
+
+    display_name = "Include Chapter 3"
+    default = 1
+
+
+class MacGuffinChapter3(Range):
+    """
+    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 3.
+
+    THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
+
+    (Remote Batteries)
+    """
+
+    display_name = "Macguffin Chapter 3 Amount"
+    default = 0
+    range_start = 0
+    range_end = 10
+
+
+class RandomizeSWORDRoute(Toggle):
+    """
+    LOCATIONS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
+    """
+
+    display_name = "Randomize SWORD route"
+    default = 0
+
+
+class ShadowMantleHolderAsSecretBoss(Toggle):
+    """
+    SHOULD THE FINAL ENEMY OF THE ORIGINAL GAME BE TREATED AS A SHADOW CRYSTAL BOSS?
+
+    (This option makes Chapter 3's Shadow Mantle Holder Fight mandatory if you turn Secret Bosses to Mandatory.)
+    """
+
+    display_name = "Shadow Mantle Holder as secret boss"
+    default = 0
+
+
+class IncludeShadowMantle(Toggle):
+    """
+    THE SHADOW MANTLE WILL BE IN THE RANDOM ITEM POOL OF THE THIRD CHAPTER.
+
+    - **False** *The Shadow Mantle is the reward for the Shadow Mantle Holder/ERAM fight, but isn't in logic for the knight*
+    - **True** *The Shadow Mantle will be in the itempool in logic before Knight fight*
+    """
+
+    display_name = "Include Shadow Mantle in itempool"
+    default = 1
+
+
+class AllowDoomBoardWithoutAllCharacters(Toggle):
+    """
+    UNLOCKING ALL THREE HEROES WILL NOT BE REQUIRED TO ACCESS THE FINAL BOARD OF THE THIRD CHAPTER.
+
+    *(Usually, all three characters would need to be unlocked to access Doom Board in chapter 3)*
+    *(This is because the board has an ACT that requires everyone in order to progress.)*
+    *(If you want to disable this requirement, set this option to true.)*
+    *(However, this will make it so that you might have to do fights such as the Knight with only one or two characters unlocked.)*
+    """
+
+    display_name = "Doom Board in logic without all characters"
+    default = 0
+
+
+class ExcludeTRankBoard(Toggle):
+    """
+    THE HIGHEST RANK OF THE THIRD CHAPTER FOR BOARDS WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    """
+
+    display_name = "Exclude T Rank for boards"
+    default = 1
+
+
+class ExcludeZRankBoard(Toggle):
+    """
+    THE LOWEST RANK OF THE THIRD CHAPTER FOR BOARDS WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    """
+
+    display_name = "Exclude Z Rank for boards"
+    default = 1
+
+
+class PhysicalChallengeRankSanity(Toggle):
+    """
+    *idk how to gaster phrase that*
+    """
+
+    display_name = "Physical Challenge Sanity"
+    default = 0
+
+
+class ExcludeTRankPhysicalChallenge(Toggle):
+    """
+    THE HIGHEST RANK OF THE THIRD CHAPTER FOR PHYSICAL CHALLENGES WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    """
+
+    display_name = "Exclude T Rank for physical challenges"
+    default = 1
+
+
+class ExcludeZRankPhysicalChallenge(Toggle):
+    """
+    THE LOWEST RANK OF THE THIRD CHAPTER FOR PHYSICAL CHALLENGES WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    """
+
+    display_name = "Exclude Z Rank for physical challenges"
+    default = 1
+
+
+# endregion
 
 class ChosenRoute(Choice):
     """
@@ -203,70 +324,6 @@ class RandomizeSecretBosses(Choice):
     option_true = 1
     option_mandatory = 2
     default = option_false
-
-
-class RandomizeSWORDRoute(Toggle):
-    """
-    LOCATIONS RECEIVED IN THE ORIGINAL GAME OF THE THIRD CHAPTER WILL BE RANDOMIZED.
-    """
-
-    display_name = "Randomize SWORD route"
-    default = 0
-
-
-class ShadowMantleHolderAsSecretBoss(Toggle):
-    """
-    SHOULD THE FINAL ENEMY OF THE ORIGINAL GAME BE TREATED AS A SHADOW CRYSTAL BOSS?
-
-    (This option makes Chapter 3's Shadow Mantle Holder Fight mandatory if you turn Secret Bosses to Mandatory.)
-    """
-
-    display_name = "Shadow Mantle Holder as secret boss"
-    default = 0
-
-
-class IncludeShadowMantle(Toggle):
-    """
-    THE SHADOW MANTLE WILL BE IN THE RANDOM ITEM POOL OF THE THIRD CHAPTER.
-
-    - **False** *The Shadow Mantle is the reward for the Shadow Mantle Holder/ERAM fight, but isn't in logic for the knight*
-    - **True** *The Shadow Mantle will be in the itempool in logic before Knight fight*
-    """
-
-    display_name = "Include Shadow Mantle in itempool"
-    default = 1
-
-
-class ExcludeTRank(Toggle):
-    """
-    THE HIGHEST RANK OF THE THIRD CHAPTER WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
-    """
-
-    display_name = "Exclude T Rank"
-    default = 1
-
-
-class ExcludeZRank(Toggle):
-    """
-    THE LOWEST RANK OF THE THIRD CHAPTER WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
-    """
-
-    display_name = "Exclude Z Rank"
-    default = 1
-
-
-class AllowDoomBoardWithoutAllCharacters(Toggle):
-    """
-    UNLOCKING ALL THREE HEROES WILL NOT BE REQUIRED TO ACCESS THE FINAL BOARD OF THE THIRD CHAPTER.
-
-    *(Usually, all three characters would need to be unlocked to access Doom Board in chapter 3)*
-    *(This is because the board has an ACT that requires everyone in order to progress.)*
-    *(If you want to disable this requirement, set this option to true.)*
-    *(However, this will make it so that you might have to do fights such as the Knight with only one or two characters unlocked.)*
-    """
-
-    display_name = "Doom Board in logic without all characters"
-    default = 0
 
 
 class ItemBalancing(Toggle):
@@ -385,17 +442,6 @@ class IncludeChapter2(Toggle):
     default = 1
 
 
-class IncludeChapter3(Toggle):
-    """
-    DO YOU WISH TO PLAY CHAPTER 3?
-
-    *(Items from this chapter will also be included)*
-    """
-
-    display_name = "Include Chapter 3"
-    default = 1
-
-
 class IncludeChapter4(Toggle):
     """
     DO YOU WISH TO PLAY CHAPTER 4?
@@ -443,21 +489,6 @@ class MacGuffinChapter2(Range):
     """
 
     display_name = "Macguffin Chapter 2 Amount"
-    default = 0
-    range_start = 0
-    range_end = 10
-
-
-class MacGuffinChapter3(Range):
-    """
-    A NEW ROADBLOCK WILL APPEAR BEFORE THE FINAL BOSS OF CHAPTER 3.
-
-    THIS OPTION DETERMINES HOW MANY OF THESE ITEMS WILL BE REQUIRED TO PROGRESS.
-
-    (Remote Batteries)
-    """
-
-    display_name = "Macguffin Chapter 3 Amount"
     default = 0
     range_start = 0
     range_end = 10
@@ -839,8 +870,8 @@ deltarune_option_groups = [
             RandomizeSWORDRoute,
             ShadowMantleHolderAsSecretBoss,
             IncludeShadowMantle,
-            ExcludeTRank,
-            ExcludeZRank,
+            ExcludeTRankBoard,
+            ExcludeZRankBoard,
             AllowDoomBoardWithoutAllCharacters,
         ],
     ),
@@ -915,8 +946,11 @@ class DeltaruneOptions(PerGameCommonOptions):
     randomize_sword_route: RandomizeSWORDRoute
     shadow_mantle_holder_as_secret_boss: ShadowMantleHolderAsSecretBoss
     include_shadow_mantle: IncludeShadowMantle
-    exclude_t_rank: ExcludeTRank
-    exclude_z_rank: ExcludeZRank
+    exclude_t_rank_board: ExcludeTRankBoard
+    exclude_z_rank_board: ExcludeZRankBoard
+    physical_challenge_rank_sanity: PhysicalChallengeRankSanity
+    exclude_t_rank_physical_challenge: ExcludeTRankPhysicalChallenge
+    exclude_z_rank_physical_challenge: ExcludeZRankPhysicalChallenge
     allow_doom_board_without_all_characters: AllowDoomBoardWithoutAllCharacters
 
     # Chapter 4

@@ -262,64 +262,82 @@ class DeltaruneWorld(World):
     def _get_deltarune_data(self):
         return {
             "options": self.options.as_dict(
-                "randomize_secret_bosses",
-                "macguffin_chapter_1",
-                "macguffin_chapter_2",
-                "macguffin_chapter_3",
-                "macguffin_chapter_4",
-                "macguffin_chapter_5",
-                "macguffin_extra",
-                "remove_starting_equipment",
-                "include_chapter_1",
-                "include_chapter_2",
-                "include_chapter_3",
-                "include_chapter_4",
-                "include_chapter_5",
-                "exclude_t_rank",
-                "exclude_z_rank",
-                "allow_doom_board_without_all_characters",
+                # No Group
+                "progression_balancing",
+                "accessibility",
+                "have_starwalker",
+                "shuffle_ost",
+                # Goal
                 "chosen_route",
                 "recruits_sanity",
                 "lose_recruits_sanity",
+                "randomize_secret_bosses",
+                "macguffin_extra",
+                # Chapters
                 "randomize_chapters",
+                "random_safety_chapter_inclusion",
+                "starting_chapter",
+                # Chapter 1
+                "include_chapter_1",
+                "macguffin_chapter_1",
+                "chapter_1_recruit",
+                # Chapter 2
+                "include_chapter_2",
+                "macguffin_chapter_2",
+                # Chapter 3
+                "include_chapter_3",
+                "macguffin_chapter_3",
+                "include_shadow_mantle",
+                "randomize_sword_route",
+                "shadow_mantle_holder_as_secret_boss",
+                "exclude_t_rank_board",
+                "exclude_z_rank_board",
+                "physical_challenge_rank_sanity",
+                "exclude_t_rank_physical_challenge",
+                "exclude_z_rank_physical_challenge",
+                "allow_doom_board_without_all_characters",
+                # Chapter 4
+                "include_chapter_4",
+                "macguffin_chapter_4",
+                "include_mike",
+                "exclude_mike_platinum",
+                # Chapter 5
+                "include_chapter_5",
+                "macguffin_chapter_5",
+                # Items
                 "include_hidden_items",
                 "include_secret_bosses_items_requirement",
                 "mysterykey_from_pink_coins",
                 "door_key_from_broken_keys",
+                "include_unused_items",
+                "progressive_kris_weapons",
+                "progressive_susie_weapons",
+                "progressive_ralsei_weapons",
+                "progressive_noelle_weapons",
+                "unlock_characters",
+                "start_with_random_character",
+                "unlock_fun_gang_actions",
+                # Gameplay
+                "better_odds",
+                "remove_starting_equipment",
+                "item_balancing",
+                "pink_twin_ribbon_unnerf",
+                # Logic Difficulty
+                "speedrun_gliches_as_logic",
+                "nohit_as_logic",
+                "annoying_farming_as_logic",
+                # Links
                 "death_link",
                 "death_link_group",
                 "damage_link",
                 "damage_link_group",
-                "item_balancing",
-                "include_shadow_mantle",
-                "randomize_sword_route",
-                "shadow_mantle_holder_as_secret_boss",
-                "include_unused_items",
-                "include_mike",
-                "exclude_mike_platinum",
-                "unlock_characters",
-                "start_with_random_character",
-                "better_odds",
-                "shuffle_ost",
-                "pink_twin_ribbon_unnerf",
-                "have_starwalker",
-                "unlock_fun_gang_actions",
-                "chapter_1_recruit",
-                "random_safety_chapter_inclusion",
-                "starting_chapter",
+                # Fillers Weight
                 "filler_healing_weight",
                 "filler_currency_weight",
                 "trap_weight",
                 "filler_armor_weight",
                 "filler_tension_weight",
                 "filler_smile_weight",
-                "progressive_kris_weapons",
-                "progressive_susie_weapons",
-                "progressive_ralsei_weapons",
-                "progressive_noelle_weapons",
-                "speedrun_gliches_as_logic",
-                "nohit_as_logic",
-                "annoying_farming_as_logic",
                 toggles_as_bools=True,
             ),
             "randomized": self.randomized,
@@ -494,10 +512,7 @@ class DeltaruneWorld(World):
         if include_deluxedinner_fusion(self):
             item_pool_before_convert += [items[ItemIDs.tvdinner]] * 2
 
-        if include_punchbowl_fusion(self):
-            item_pool_before_convert += [items[ItemIDs.scarlixir]]
-
-        if include_tensionmax_fusion(self):
+        if include_punchbowl_fusion(self) or include_tensionmax_fusion(self):
             item_pool_before_convert += [items[ItemIDs.scarlixir]]
 
         if include_dogwidow_fusion(self) and include_hidden_items(self):

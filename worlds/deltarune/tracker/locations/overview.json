@@ -85,6 +85,9 @@
           },
           {
             "name": "CH1: Fields - Chest Before Great Board"
+          },
+          {
+            "name": "CH1: Fields - Donation hole"
           }
         ],
         "map_locations": [
@@ -1466,6 +1469,36 @@
     ]
   },
   {
+    "name": "Chapter 3 - Board 1 - Physical Challenge",
+    "sections": [
+      {
+        "name": "CH3: Cooking Show - Z-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - C-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - B-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - A-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - S-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - T-Rank"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 650,
+        "y": 275
+      }
+    ]
+  },
+  {
     "name": "Chapter 3 - Board 1 - SWORD 1",
     "sections": [
       {
@@ -1613,6 +1646,36 @@
     ]
   },
   {
+    "name": "Chapter 3 - Green Room - Physical Challenge",
+    "sections": [
+      {
+        "name": "CH3: Monster Movie - Z-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - C-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - B-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - A-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - S-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - T-Rank"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 670,
+        "y": 885
+      }
+    ]
+  },
+  {
     "name": "Chapter 3 - Board 2 - Board",
     "sections": [
       {
@@ -1644,6 +1707,36 @@
       {
         "map": "Overview",
         "x": 700,
+        "y": 475
+      }
+    ]
+  },
+  {
+    "name": "Chapter 3 - Board 2 - Physical Challenge",
+    "sections": [
+      {
+        "name": "CH3: Rock Video - Z-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - C-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - B-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - A-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - S-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - T-Rank"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 650,
         "y": 475
       }
     ]
@@ -1949,6 +2042,36 @@
     ]
   },
   {
+    "name": "Chapter 5 - Castle Town",
+    "sections": [
+      {
+        "name": "CH5: Castle Town - Top Chef Gift"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Castle Town - Bakery",
+    "sections": [
+      {
+        "name": "CH5: Castle Town - Trashy Trio Challenge"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
     "name": "Chapter 5 - Garden - Recruits",
     "sections": [
       {
@@ -1956,13 +2079,345 @@
       },
       {
         "name": "CH5: Lose Floradinn"
+      },
+      {
+        "name": "CH5: Recruit Sheary"
+      },
+      {
+        "name": "CH5: Lose Sheary"
+      },
+      {
+        "name": "CH5: Recruit Netskie"
+      },
+      {
+        "name": "CH5: Lose Netskie"
       }
     ],
     "map_locations": [
       {
         "map": "Overview",
-        "x": 750,
-        "y": 1160
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Garden - Chests",
+    "sections": [
+      {
+        "name": "CH5: Garden - First Chest"
+      },
+      {
+        "name": "CH5: Garden - First Chest (Susie Accepting Herself)"
+      },
+      {
+        "name": "CH5: Garden - Mushroom Puzzle Netskie Chest"
+      },
+      {
+        "name": "CH5: Garden - Shears Chest"
+      },
+      {
+        "name": "CH5: Garden - Chest Past Waterfall"
+      },
+      {
+        "name": "CH5: Garden - Chest Under Flowery Face 1"
+      },
+      {
+        "name": "CH5: Garden - Chest Under Flowery Face 2"
+      },
+      {
+        "name": "CH5: Garden - Hopschef Gift"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Dark Garden - Chests",
+    "sections": [
+      {
+        "name": "CH5: Dark Garden - Watering Can Maze Chest"
+      },
+      {
+        "name": "CH5: Dark Garden - Hidden Heart Chest"
+      },
+      {
+        "name": "CH5: Dark Garden - Aqua's Gift"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Garden & Dark Garden - Warps",
+    "sections": [
+      {
+        "name": "CH5: Garden - Hopschef Warp Door"
+      },
+      {
+        "name": "CH5: Dark Garden - End of Garden Warp Door"
+      },
+      {
+        "name": "CH5: Dark Garden - Near Shrine Warp Door"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Garden & Dark Garden - Pink Coins",
+    "sections": [
+      {
+        "name": "CH5: Garden - Watering Can Pink Coin"
+      },
+      {
+        "name": "CH5: Garden - Pink Coin Near Tropical Starwalker"
+      },
+      {
+        "name": "CH5: Dark Garden - Pink Coin Above Shrine"
+      },
+      {
+        "name": "CH5: Dark Garden - Pink Coin Left of Running Area"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Green's Cafe",
+    "sections": [
+      {
+        "name": "CH5: Green's Cafe Item #1"
+      },
+      {
+        "name": "CH5: Green's Cafe Item #2"
+      },
+      {
+        "name": "CH5: Green's Cafe Item #3"
+      },
+      {
+        "name": "CH5: Green's Cafe Item #4"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Garden - Recruits",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Cliffs - Chests",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Cliffs - Warps",
+    "sections": [
+      {
+        "name": "CH5: Cliffs - First Climb Warp Door"
+      },
+      {
+        "name": "CH5: Cliffs - Netskie Climb Warp Door"
+      },
+      {
+        "name": "CH5: Cliffs - Shop Warp Door"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Cliffs - Pink Coins",
+    "sections": [
+      {
+        "name": "CH5: Cliffs - Pink Coin By Rising Vine"
+      },
+      {
+        "name": "CH5: Cliffs - Pink Coin Under Falling Water"
+      },
+      {
+        "name": "CH5: Cliffs - Wind Puzzle Pink Coin"
+      },
+      {
+        "name": "CH5: Cliffs - Running Challenge Pink Coin"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Cliffs Shop",
+    "sections": [
+      {
+        "name": "CH5: Cliffs Shop Item #1"
+      },
+      {
+        "name": "CH5: Cliffs Shop Item #2"
+      },
+      {
+        "name": "CH5: Cliffs Shop Item #3"
+      },
+      {
+        "name": "CH5: Cliffs Shop Item #4"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Garden - Recruits",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Castle - Chests",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Castle - Pink Coins",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Castle - Warps",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Soda Fountain",
+    "sections": [
+      {
+        "name": "CH5: Soda Fountain Item #1"
+      },
+      {
+        "name": "CH5: Soda Fountain Item #2"
+      },
+      {
+        "name": "CH5: Soda Fountain Item #3"
+      },
+      {
+        "name": "CH5: Soda Fountain Item #4"
+      },
+      {
+        "name": "CH5: Soda Fountain Flowery's Secret"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Castle - Pink Room",
+    "sections": [],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  {
+    "name": "Chapter 5 - Complete",
+    "sections": [
+      {
+        "name": "CH5: Flower Kingdom - Fountain Sealed...?"
+      },
+      {
+        "name": "CH5: Flower Kingdom - Fountain Sealed"
+      },
+      {
+        "name": "CH5: Side B Complete"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 0,
+        "y": 0
       }
     ]
   }

@@ -372,6 +372,25 @@ class LocationIDs(IntEnum):
     ch5_weird_route_sinking = 350
     ch2_fountain_sealed_weird_route = 351
     ch4_castle_town_mike_chest = 352
+    ch1_field_donation_hole = 353
+    ch3_cooking_show_rank_z = 354
+    ch3_cooking_show_rank_c = 355
+    ch3_cooking_show_rank_b = 356
+    ch3_cooking_show_rank_a = 357
+    ch3_cooking_show_rank_s = 358
+    ch3_cooking_show_rank_t = 359
+    ch3_rock_video_rank_z = 360
+    ch3_rock_video_rank_c = 361
+    ch3_rock_video_rank_b = 362
+    ch3_rock_video_rank_a = 363
+    ch3_rock_video_rank_s = 364
+    ch3_rock_video_rank_t = 365
+    ch3_monster_movie_rank_z = 366
+    ch3_monster_movie_rank_c = 367
+    ch3_monster_movie_rank_b = 368
+    ch3_monster_movie_rank_a = 369
+    ch3_monster_movie_rank_s = 370
+    ch3_monster_movie_rank_t = 371
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -436,6 +455,7 @@ locations = {
     LocationIDs.ch1_field_return_top_cake: "CH1: Fields - Return Top Cake",
     LocationIDs.ch1_field_maze_of_death_chest: "CH1: Fields - Maze of Death Chest",
     LocationIDs.ch1_field_chest_before_great_board: "CH1: Fields - Chest Before Great Board",
+    LocationIDs.ch1_field_donation_hole: "CH1: Fields - Donation hole",
     LocationIDs.ch1_seam_seap_talk_about_strange_prisoner: "CH1: Seam's Seap - Talk About Strange Prisoner",
     LocationIDs.ch1_seam_seap_1: "CH1: Seam's Seap 1",
     LocationIDs.ch1_seam_seap_2: "CH1: Seam's Seap 2",
@@ -571,6 +591,12 @@ locations = {
     LocationIDs.ch3_board_1_s_rank: "CH3: Board 1 - S-Rank",
     LocationIDs.ch3_board_1_t_rank: "CH3: Board 1 - T-Rank",
     LocationIDs.ch3_board_1_z_rank: "CH3: Board 1 - Z-Rank",
+    LocationIDs.ch3_cooking_show_rank_c: "CH3: Cooking Show - C-Rank",
+    LocationIDs.ch3_cooking_show_rank_b: "CH3: Cooking Show - B-Rank",
+    LocationIDs.ch3_cooking_show_rank_a: "CH3: Cooking Show - A-Rank",
+    LocationIDs.ch3_cooking_show_rank_s: "CH3: Cooking Show - S-Rank",
+    LocationIDs.ch3_cooking_show_rank_t: "CH3: Cooking Show - T-Rank",
+    LocationIDs.ch3_cooking_show_rank_z: "CH3: Cooking Show - Z-Rank",
     LocationIDs.ch3_board_1_extra_key: "CH3: Board 1 - Extra Key",
     LocationIDs.ch3_board_1_extra_extra_key: "CH3: Board 1 - Extra Extra Key",
     LocationIDs.ch3_green_room_vending_machine_1: "CH3: Green Room - Vending Machine 1",
@@ -588,6 +614,12 @@ locations = {
     LocationIDs.ch3_b_rank_room_golden_prize_3: "CH3: B-Rank Room - Golden Prize 3",
     LocationIDs.ch3_b_rank_room_golden_prize_4: "CH3: B-Rank Room - Golden Prize 4",
     LocationIDs.ch3_b_rank_room_golden_prize_5: "CH3: B-Rank Room - Golden Prize 5",
+    LocationIDs.ch3_monster_movie_rank_c: "CH3: Monster Movie - C-Rank",
+    LocationIDs.ch3_monster_movie_rank_b: "CH3: Monster Movie - B-Rank",
+    LocationIDs.ch3_monster_movie_rank_a: "CH3: Monster Movie - A-Rank",
+    LocationIDs.ch3_monster_movie_rank_s: "CH3: Monster Movie - S-Rank",
+    LocationIDs.ch3_monster_movie_rank_t: "CH3: Monster Movie - T-Rank",
+    LocationIDs.ch3_monster_movie_rank_z: "CH3: Monster Movie - Z-Rank",
     LocationIDs.ch3_s_rank_room_person_behind_curtain: "CH3: S-Rank Room - Person Behind Curtain",
     LocationIDs.ch3_s_rank_room_vending_machine_1: "CH3: S-Rank Room - Vending Machine 1",
     LocationIDs.ch3_s_rank_room_vending_machine_2: "CH3: S-Rank Room - Vending Machine 2",
@@ -600,6 +632,12 @@ locations = {
     LocationIDs.ch3_board_2_s_rank: "CH3: Board 2 - S-Rank",
     LocationIDs.ch3_board_2_t_rank: "CH3: Board 2 - T-Rank",
     LocationIDs.ch3_board_2_z_rank: "CH3: Board 2 - Z-Rank",
+    LocationIDs.ch3_rock_video_rank_c: "CH3: Rock Video - C-Rank",
+    LocationIDs.ch3_rock_video_rank_b: "CH3: Rock Video - B-Rank",
+    LocationIDs.ch3_rock_video_rank_a: "CH3: Rock Video - A-Rank",
+    LocationIDs.ch3_rock_video_rank_s: "CH3: Rock Video - S-Rank",
+    LocationIDs.ch3_rock_video_rank_t: "CH3: Rock Video - T-Rank",
+    LocationIDs.ch3_rock_video_rank_z: "CH3: Rock Video - Z-Rank",
     LocationIDs.ch3_board_2_extra_photo: "CH3: Board 2 - Extra Photo",
     LocationIDs.ch3_board_2_moss: "CH3: Board 2 - Moss",
     LocationIDs.ch3_tv_world_chest_near_shadowmen: "CH3: TV World - Chest Near Shadowmen",
@@ -764,6 +802,7 @@ locations = {
     LocationIDs.ch5_vending_machine_2: "CH5: Soda Fountain Item #2",
     LocationIDs.ch5_vending_machine_3: "CH5: Soda Fountain Item #3",
     LocationIDs.ch5_vending_machine_4: "CH5: Soda Fountain Item #4",
+    LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Soda Fountain Flowery's Secret",
     LocationIDs.ch5_castle_west_hidden_zen_garden_chest: "CH5: Castle West - Hidden Zen Garden Chest",
     LocationIDs.ch5_castle_west_yellow_flower_platforming_pink_coin: "CH5: Castle West - Yellow Flower Platforming Pink Coin",
     LocationIDs.ch5_castle_west_shinobeetle_shuriken_pink_coin: "CH5: Castle West - Shinobeetle Shuriken Pink Coin",
@@ -779,7 +818,6 @@ locations = {
     LocationIDs.ch5_castle_east_fox_race_pink_coin: "CH5: Castle East - Fox Race Pink Coin",
     LocationIDs.ch5_castle_east_mysterious_puzzle_warp_door: "CH5: Castle East - Mysterious Puzzle Warp Door",
     LocationIDs.ch5_castle_top_painting_room_item: "CH5: Top of Castle - Painting Room Item",
-    LocationIDs.ch5_vending_machine_flowerys_secret: "CH5: Soda Fountain Flowery's Secret",
     LocationIDs.ch5_castle_moss: "CH5: Flower Castle - Moss",
     LocationIDs.ch5_castle_west_shinobeetle_chest_behind_tree: "CH5: Castle West - Shinobeetle Chest Behind Tree",
     LocationIDs.ch5_castle_top_yellow_flower_platforming_pink_coin: "CH5: Top of Castle - Yellow Flower Platforming Pink Coin",
