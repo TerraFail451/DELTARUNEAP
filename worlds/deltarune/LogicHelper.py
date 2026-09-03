@@ -151,6 +151,10 @@ def include_lancer_cookie(world: "DeltaruneWorld"):
     return any_included_chapter(world, [1, 2, 4])
 
 
+def physical_challenge_sanity_enabled(world: "DeltaruneWorld") -> bool:
+    return world.options.physical_challenge_rank_sanity.value == 1
+
+
 # region Direct Option Read
 
 
@@ -295,12 +299,20 @@ def include_unused_items(world: "DeltaruneWorld") -> bool:
     ]
 
 
-def excluded_t_rank(world: "DeltaruneWorld") -> bool:
-    return world.options.exclude_t_rank.value == 1
+def excluded_t_rank_board(world: "DeltaruneWorld") -> bool:
+    return world.options.exclude_t_rank_board.value == 1
 
 
-def excluded_z_rank(world: "DeltaruneWorld") -> bool:
-    return world.options.exclude_z_rank.value == 1
+def excluded_z_rank_board(world: "DeltaruneWorld") -> bool:
+    return world.options.exclude_z_rank_board.value == 1
+
+
+def excluded_t_rank_physical_challenge(world: "DeltaruneWorld") -> bool:
+    return world.options.exclude_t_rank_physical_challenge.value == 1
+
+
+def excluded_z_rank_physical_challenge(world: "DeltaruneWorld") -> bool:
+    return world.options.exclude_z_rank_physical_challenge.value == 1
 
 
 # endregion
