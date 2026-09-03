@@ -512,10 +512,7 @@ class DeltaruneWorld(World):
         if include_deluxedinner_fusion(self):
             item_pool_before_convert += [items[ItemIDs.tvdinner]] * 2
 
-        if include_punchbowl_fusion(self):
-            item_pool_before_convert += [items[ItemIDs.scarlixir]]
-
-        if include_tensionmax_fusion(self):
+        if include_punchbowl_fusion(self) or include_tensionmax_fusion(self):
             item_pool_before_convert += [items[ItemIDs.scarlixir]]
 
         if include_dogwidow_fusion(self) and include_hidden_items(self):
