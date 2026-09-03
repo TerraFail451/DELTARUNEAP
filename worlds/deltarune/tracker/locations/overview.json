@@ -1469,6 +1469,36 @@
     ]
   },
   {
+    "name": "Chapter 3 - Board 1 - Physical Challenge",
+    "sections": [
+      {
+        "name": "CH3: Cooking Show - Z-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - C-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - B-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - A-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - S-Rank"
+      },
+      {
+        "name": "CH3: Cooking Show - T-Rank"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 650,
+        "y": 275
+      }
+    ]
+  },
+  {
     "name": "Chapter 3 - Board 1 - SWORD 1",
     "sections": [
       {
@@ -1616,6 +1646,36 @@
     ]
   },
   {
+    "name": "Chapter 3 - Green Room - Physical Challenge",
+    "sections": [
+      {
+        "name": "CH3: Monster Movie - Z-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - C-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - B-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - A-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - S-Rank"
+      },
+      {
+        "name": "CH3: Monster Movie - T-Rank"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 670,
+        "y": 885
+      }
+    ]
+  },
+  {
     "name": "Chapter 3 - Board 2 - Board",
     "sections": [
       {
@@ -1647,6 +1707,36 @@
       {
         "map": "Overview",
         "x": 700,
+        "y": 475
+      }
+    ]
+  },
+  {
+    "name": "Chapter 3 - Board 2 - Physical Challenge",
+    "sections": [
+      {
+        "name": "CH3: Rock Video - Z-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - C-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - B-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - A-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - S-Rank"
+      },
+      {
+        "name": "CH3: Rock Video - T-Rank"
+      }
+    ],
+    "map_locations": [
+      {
+        "map": "Overview",
+        "x": 650,
         "y": 475
       }
     ]
