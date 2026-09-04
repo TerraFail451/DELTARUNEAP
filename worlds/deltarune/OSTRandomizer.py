@@ -56,6 +56,7 @@ ost_name = [
     "ch4_credits.ogg",
     "ch4_extra_boss.ogg",
     "ch5_credits.ogg",
+    "ch5_intro_audio.ogg",
     "ch5_inversion_lake_chant.ogg",
     "ch5_weird_monologue.ogg",
     "ch5_weird_monologue_deep.ogg",
