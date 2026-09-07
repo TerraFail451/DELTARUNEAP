@@ -47,7 +47,7 @@ try:
 
     if not gui_loaded_from_utils:
         from worlds.tracker.TrackerClient import gui_enabled
-except ModuleNotFoundError:
+except ImportError:
     from CommonClient import ClientCommandProcessor, CommonContext as SuperContext, get_base_parser, server_loop
 
     if not gui_loaded_from_utils:
