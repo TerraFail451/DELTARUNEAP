@@ -97,6 +97,37 @@ class BetterOdds(Toggle):
     default = 1
 
 
+class RockVideoSanity(Choice):
+    """
+    SHOULD THE ROCK VIDEO RANKS BE LOCATIONS ?
+
+    *(Also named Lightner Live concerts)*
+    """
+
+    display_name = "Rock Video Sanity"
+    option_false = 0
+    option_normal_only = 1
+    option_true = 2
+
+
+class ExcludeTRankRockVideo(Toggle):
+    """
+    THE HIGHEST RANK OF THE ROCK VIDEO WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    """
+
+    display_name = "Exclude T Rank for rock video"
+    default = 1
+
+
+class ExcludeZRankRockVideo(Toggle):
+    """
+    THE LOWEST RANK OF THE ROCK VIDEO WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    """
+
+    display_name = "Exclude Z Rank for rock video"
+    default = 1
+
+
 # endregion
 
 # region Chapter 3
@@ -982,6 +1013,9 @@ class DeltaruneOptions(PerGameCommonOptions):
     remove_starting_equipment: RemoveStartingEquipment
     item_balancing: ItemBalancing
     pink_twin_ribbon_unnerf: UnnerfPinkTwinRibbon
+    rock_video_sanity: RockVideoSanity
+    exclude_t_rank_rock_video: ExcludeTRankRockVideo
+    exclude_z_rank_rock_video: ExcludeZRankRockVideo
 
     # Logic Difficulty
     speedrun_gliches_as_logic: SpeedrunGlitchesAsLogic

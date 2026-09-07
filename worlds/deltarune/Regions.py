@@ -12,6 +12,8 @@ class Regions(StrEnum):
     chapter_select = "Chapter Select"
     fusion = "Fusion"
     ch5_fusion = "Chapter 5+ Fusion"
+    rock_video = "Rock Video"
+    ch5_rock_video = "Chapter 5+ Rock Video"
     lost_rabbick = "Cross Chapter: Lost Rabbick"
 
     chapter_1 = "Chapter 1"

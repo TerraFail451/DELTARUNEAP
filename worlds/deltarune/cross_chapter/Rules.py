@@ -7,6 +7,7 @@ from worlds.deltarune.LogicHelper import (
     can_access_fusion,
     can_access_fusion_post_chapter_5,
     chapters_in_order,
+    have_access_to_rock_video,
     include_dogwidow_fusion,
     include_hidden_items,
     include_spike_band_fusion,
@@ -17,6 +18,10 @@ from worlds.deltarune.LogicHelper import (
     included_chapter,
     normal_route,
     not_weird_route_only,
+    rock_video_sanity_enabled,
+    rock_video_sanity_enabled_ch5,
+    rock_video_sanity_hard_enabled,
+    rock_video_sanity_hard_enabled_ch5,
     weird_route,
 )
 from worlds.deltarune.Options import (
@@ -42,28 +47,6 @@ if TYPE_CHECKING:
 
 def set_rules(world: "DeltaruneWorld"):
     if can_access_fusion(world):
-        have_chapter2_equipment_not_in_order = [
-            OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
-            OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
-            OptionFilter(RandomizeChapters, RandomizeChapters.option_in_order, operator="ne"),
-        ]
-
-        have_chapter2_equipment_in_order_glitched = Has(
-            glitched_item_name,
-            options=[
-                OptionFilter(IncludeChapter1, IncludeChapter1.option_true),
-                OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
-                OptionFilter(RemoveStartingEquipment, RemoveStartingEquipment.option_false),
-                OptionFilter(RandomizeChapters, RandomizeChapters.option_in_order),
-            ],
-        )
-
-        have_chapter2_equipment_first_chapter = [
-            OptionFilter(IncludeChapter1, IncludeChapter1.option_false),
-            OptionFilter(IncludeChapter2, IncludeChapter2.option_true),
-            OptionFilter(RandomizeChapters, RandomizeChapters.option_in_order),
-        ]
-
         have_white_ribbon = Has(items[ItemIDs.white_ribbon]) | (
             CanReachRegion(
                 Regions.chapter_2,
@@ -158,6 +141,40 @@ def set_rules(world: "DeltaruneWorld"):
                     world.get_location(locations[LocationIDs.cc_castle_town_dogwidow_fusion]),
                     Has(items[ItemIDs.dogdollar]) & Has(items[ItemIDs.goldwidow]),
                 )
+
+    if rock_video_sanity_enabled(world) and have_access_to_rock_video(world):
+
+        if world.options.exclude_t_rank_rock_video == 1:
+            world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_T])
+            world.get_location(locations[LocationIDs.cc_rock_video_tv_time_T])
+            world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_T])
+
+            if rock_video_sanity_enabled_ch5(world):
+                world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_T])
+
+            if rock_video_sanity_hard_enabled(world):
+                world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_T_hard])
+                world.get_location(locations[LocationIDs.cc_rock_video_tv_time_T_hard])
+                world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_T_hard])
+
+                if rock_video_sanity_hard_enabled_ch5(world):
+                    world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_T_hard])
+
+        if world.options.exclude_z_rank_rock_video == 1:
+            world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_Z])
+            world.get_location(locations[LocationIDs.cc_rock_video_tv_time_Z])
+            world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_Z])
+
+            if rock_video_sanity_enabled_ch5(world):
+                world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_Z])
+
+            if rock_video_sanity_hard_enabled(world):
+                world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_Z_hard])
+                world.get_location(locations[LocationIDs.cc_rock_video_tv_time_Z_hard])
+                world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_Z_hard])
+
+                if rock_video_sanity_hard_enabled_ch5(world):
+                    world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_Z_hard])
 
 
 def get_location(world: "DeltaruneWorld", chapter: int):

@@ -322,6 +322,9 @@ class DeltaruneWorld(World):
                 "remove_starting_equipment",
                 "item_balancing",
                 "pink_twin_ribbon_unnerf",
+                "rock_video_sanity",
+                "exclude_t_rank_rock_video",
+                "exclude_z_rank_rock_video",
                 # Logic Difficulty
                 "speedrun_gliches_as_logic",
                 "nohit_as_logic",

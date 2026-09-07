@@ -6,6 +6,7 @@ from worlds.deltarune.Options import (
     IncludeUnusedItems,
     RandomizeChapters,
     RandomizeSecretBosses,
+    RockVideoSanity,
     UnlockCharacters,
 )
 
@@ -153,6 +154,33 @@ def include_lancer_cookie(world: "DeltaruneWorld"):
 
 def physical_challenge_sanity_enabled(world: "DeltaruneWorld") -> bool:
     return world.options.physical_challenge_rank_sanity.value == 1
+
+
+def rock_video_sanity_enabled(world: "DeltaruneWorld") -> bool:
+    return have_access_to_rock_video(world) and world.options.rock_video_sanity.value in [
+        RockVideoSanity.option_normal_only,
+        RockVideoSanity.option_true,
+    ]
+
+
+def rock_video_sanity_hard_enabled(world: "DeltaruneWorld") -> bool:
+    return have_access_to_rock_video(world) and world.options.rock_video_sanity.value == RockVideoSanity.option_true
+
+
+def rock_video_sanity_enabled_ch5(world: "DeltaruneWorld") -> bool:
+    return rock_video_sanity_enabled(world) and have_access_to_rock_video_ch5(world)
+
+
+def rock_video_sanity_hard_enabled_ch5(world: "DeltaruneWorld") -> bool:
+    return rock_video_sanity_hard_enabled(world) and have_access_to_rock_video_ch5(world)
+
+
+def have_access_to_rock_video_ch5(world: "DeltaruneWorld") -> bool:
+    return included_chapter(world, 5) and not_weird_route_only(world)
+
+
+def have_access_to_rock_video(world: "DeltaruneWorld") -> bool:
+    return included_chapter(world, 4) or have_access_to_rock_video_ch5(world)
 
 
 # region Direct Option Read

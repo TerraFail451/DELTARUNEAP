@@ -391,6 +391,54 @@ class LocationIDs(IntEnum):
     ch3_monster_movie_rank_a = 369
     ch3_monster_movie_rank_s = 370
     ch3_monster_movie_rank_t = 371
+    cc_rock_video_tv_time_Z = 372
+    cc_rock_video_tv_time_C = 373
+    cc_rock_video_tv_time_B = 374
+    cc_rock_video_tv_time_A = 375
+    cc_rock_video_tv_time_S = 376
+    cc_rock_video_tv_time_T = 377
+    cc_rock_video_tv_time_Z_hard = 378
+    cc_rock_video_tv_time_C_hard = 379
+    cc_rock_video_tv_time_B_hard = 380
+    cc_rock_video_tv_time_A_hard = 381
+    cc_rock_video_tv_time_S_hard = 382
+    cc_rock_video_tv_time_T_hard = 383
+    cc_rock_video_knock_you_down_Z = 384
+    cc_rock_video_knock_you_down_C = 385
+    cc_rock_video_knock_you_down_B = 386
+    cc_rock_video_knock_you_down_A = 387
+    cc_rock_video_knock_you_down_S = 388
+    cc_rock_video_knock_you_down_T = 389
+    cc_rock_video_knock_you_down_Z_hard = 390
+    cc_rock_video_knock_you_down_C_hard = 391
+    cc_rock_video_knock_you_down_B_hard = 392
+    cc_rock_video_knock_you_down_A_hard = 393
+    cc_rock_video_knock_you_down_S_hard = 394
+    cc_rock_video_knock_you_down_T_hard = 395
+    cc_rock_video_raise_up_your_bat_Z = 396
+    cc_rock_video_raise_up_your_bat_C = 397
+    cc_rock_video_raise_up_your_bat_B = 398
+    cc_rock_video_raise_up_your_bat_A = 399
+    cc_rock_video_raise_up_your_bat_S = 400
+    cc_rock_video_raise_up_your_bat_T = 401
+    cc_rock_video_raise_up_your_bat_Z_hard = 402
+    cc_rock_video_raise_up_your_bat_C_hard = 403
+    cc_rock_video_raise_up_your_bat_B_hard = 404
+    cc_rock_video_raise_up_your_bat_A_hard = 405
+    cc_rock_video_raise_up_your_bat_S_hard = 406
+    cc_rock_video_raise_up_your_bat_T_hard = 407
+    cc_rock_video_4rd_sanctuary_Z = 408
+    cc_rock_video_4rd_sanctuary_C = 409
+    cc_rock_video_4rd_sanctuary_B = 410
+    cc_rock_video_4rd_sanctuary_A = 411
+    cc_rock_video_4rd_sanctuary_S = 412
+    cc_rock_video_4rd_sanctuary_T = 413
+    cc_rock_video_4rd_sanctuary_Z_hard = 414
+    cc_rock_video_4rd_sanctuary_C_hard = 415
+    cc_rock_video_4rd_sanctuary_B_hard = 416
+    cc_rock_video_4rd_sanctuary_A_hard = 417
+    cc_rock_video_4rd_sanctuary_S_hard = 418
+    cc_rock_video_4rd_sanctuary_T_hard = 419
 
     # Lost recruits
     ch2_lost_werewire = 1049
@@ -442,6 +490,54 @@ locations = {
     LocationIDs.cc_castle_town_silver_card_fusion: "CC: Castle Town - Silver Card Fusion",
     LocationIDs.cc_castle_town_spike_band_fusion: "CC: Castle Town - Spike Band Fusion",
     LocationIDs.cc_castle_town_twistedsword_fusion: "CC: Castle Town - TwistedSwd Fusion",
+    LocationIDs.cc_rock_video_tv_time_Z: "CC: Rock Video - TV Time Z",
+    LocationIDs.cc_rock_video_tv_time_C: "CC: Rock Video - TV Time C",
+    LocationIDs.cc_rock_video_tv_time_B: "CC: Rock Video - TV Time B",
+    LocationIDs.cc_rock_video_tv_time_A: "CC: Rock Video - TV Time A",
+    LocationIDs.cc_rock_video_tv_time_S: "CC: Rock Video - TV Time S",
+    LocationIDs.cc_rock_video_tv_time_T: "CC: Rock Video - TV Time T",
+    LocationIDs.cc_rock_video_tv_time_Z_hard: "CC: Rock Video - TV Time Z (Hard)",
+    LocationIDs.cc_rock_video_tv_time_C_hard: "CC: Rock Video - TV Time C (Hard)",
+    LocationIDs.cc_rock_video_tv_time_B_hard: "CC: Rock Video - TV Time B (Hard)",
+    LocationIDs.cc_rock_video_tv_time_A_hard: "CC: Rock Video - TV Time A (Hard)",
+    LocationIDs.cc_rock_video_tv_time_S_hard: "CC: Rock Video - TV Time S (Hard)",
+    LocationIDs.cc_rock_video_tv_time_T_hard: "CC: Rock Video - TV Time T (Hard)",
+    LocationIDs.cc_rock_video_knock_you_down_Z: "CC: Rock Video - Knock You Down Z",
+    LocationIDs.cc_rock_video_knock_you_down_C: "CC: Rock Video - Knock You Down C",
+    LocationIDs.cc_rock_video_knock_you_down_B: "CC: Rock Video - Knock You Down B",
+    LocationIDs.cc_rock_video_knock_you_down_A: "CC: Rock Video - Knock You Down A",
+    LocationIDs.cc_rock_video_knock_you_down_S: "CC: Rock Video - Knock You Down S",
+    LocationIDs.cc_rock_video_knock_you_down_T: "CC: Rock Video - Knock You Down T",
+    LocationIDs.cc_rock_video_knock_you_down_Z_hard: "CC: Rock Video - Knock You Down Z (Hard)",
+    LocationIDs.cc_rock_video_knock_you_down_C_hard: "CC: Rock Video - Knock You Down C (Hard)",
+    LocationIDs.cc_rock_video_knock_you_down_B_hard: "CC: Rock Video - Knock You Down B (Hard)",
+    LocationIDs.cc_rock_video_knock_you_down_A_hard: "CC: Rock Video - Knock You Down A (Hard)",
+    LocationIDs.cc_rock_video_knock_you_down_S_hard: "CC: Rock Video - Knock You Down S (Hard)",
+    LocationIDs.cc_rock_video_knock_you_down_T_hard: "CC: Rock Video - Knock You Down T (Hard)",
+    LocationIDs.cc_rock_video_raise_up_your_bat_Z: "CC: Rock Video - Raise Up Your Bat Z",
+    LocationIDs.cc_rock_video_raise_up_your_bat_C: "CC: Rock Video - Raise Up Your Bat C",
+    LocationIDs.cc_rock_video_raise_up_your_bat_B: "CC: Rock Video - Raise Up Your Bat B",
+    LocationIDs.cc_rock_video_raise_up_your_bat_A: "CC: Rock Video - Raise Up Your Bat A",
+    LocationIDs.cc_rock_video_raise_up_your_bat_S: "CC: Rock Video - Raise Up Your Bat S",
+    LocationIDs.cc_rock_video_raise_up_your_bat_T: "CC: Rock Video - Raise Up Your Bat T",
+    LocationIDs.cc_rock_video_raise_up_your_bat_Z_hard: "CC: Rock Video - Raise Up Your Bat Z (Hard)",
+    LocationIDs.cc_rock_video_raise_up_your_bat_C_hard: "CC: Rock Video - Raise Up Your Bat C (Hard)",
+    LocationIDs.cc_rock_video_raise_up_your_bat_B_hard: "CC: Rock Video - Raise Up Your Bat B (Hard)",
+    LocationIDs.cc_rock_video_raise_up_your_bat_A_hard: "CC: Rock Video - Raise Up Your Bat A (Hard)",
+    LocationIDs.cc_rock_video_raise_up_your_bat_S_hard: "CC: Rock Video - Raise Up Your Bat S (Hard)",
+    LocationIDs.cc_rock_video_raise_up_your_bat_T_hard: "CC: Rock Video - Raise Up Your Bat T (Hard)",
+    LocationIDs.cc_rock_video_4rd_sanctuary_Z: "CC: Rock Video - 4rd Sanctuary Z",
+    LocationIDs.cc_rock_video_4rd_sanctuary_C: "CC: Rock Video - 4rd Sanctuary C",
+    LocationIDs.cc_rock_video_4rd_sanctuary_B: "CC: Rock Video - 4rd Sanctuary B",
+    LocationIDs.cc_rock_video_4rd_sanctuary_A: "CC: Rock Video - 4rd Sanctuary A",
+    LocationIDs.cc_rock_video_4rd_sanctuary_S: "CC: Rock Video - 4rd Sanctuary S",
+    LocationIDs.cc_rock_video_4rd_sanctuary_T: "CC: Rock Video - 4rd Sanctuary T",
+    LocationIDs.cc_rock_video_4rd_sanctuary_Z_hard: "CC: Rock Video - 4rd Sanctuary Z (Hard)",
+    LocationIDs.cc_rock_video_4rd_sanctuary_C_hard: "CC: Rock Video - 4rd Sanctuary C (Hard)",
+    LocationIDs.cc_rock_video_4rd_sanctuary_B_hard: "CC: Rock Video - 4rd Sanctuary B (Hard)",
+    LocationIDs.cc_rock_video_4rd_sanctuary_A_hard: "CC: Rock Video - 4rd Sanctuary A (Hard)",
+    LocationIDs.cc_rock_video_4rd_sanctuary_S_hard: "CC: Rock Video - 4rd Sanctuary S (Hard)",
+    LocationIDs.cc_rock_video_4rd_sanctuary_T_hard: "CC: Rock Video - 4rd Sanctuary T (Hard)",
     LocationIDs.ch1_unknown_hidden_item: "CH1: ?????? - Hidden Item",
     LocationIDs.ch1_castle_town_manual: "CH1: Castle Town - Manual",
     LocationIDs.ch1_throw_away_manual: "CH1: Throw Away Manual",
