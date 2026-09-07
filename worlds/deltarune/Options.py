@@ -925,8 +925,13 @@ deltarune_option_groups = [
             UnlockFunGangActions,
         ],
     ),
-    OptionGroup("Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon]),
-    OptionGroup("Logic Difficulty", [SpeedrunGlitchesAsLogic, NoHitAsLogic, AnnoyingFarmingAsLogic]),
+    OptionGroup(
+        "Gameplay", [BetterOdds, ItemBalancing, RemoveStartingEquipment, UnnerfPinkTwinRibbon, RockVideoSanity]
+    ),
+    OptionGroup(
+        "Logic Difficulty",
+        [SpeedrunGlitchesAsLogic, NoHitAsLogic, AnnoyingFarmingAsLogic, ExcludeZRankRockVideo, ExcludeTRankRockVideo],
+    ),
     OptionGroup("Links", [DeathLink, DeathLinkGroup, DamageLink, DamageLinkGroup]),
     OptionGroup(
         "Fillers Weight",
