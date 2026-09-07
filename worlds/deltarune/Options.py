@@ -58,7 +58,7 @@ class HaveStarwalker(Toggle):
 
 class ShuffleOST(Toggle):
     """
-    THE BACKGROUND MUSIC WILL BE UNLIKE HOW YOU REMEMBER IT.
+    THE BACKGROUND MUSIC WILL BE UNLIKE HOW YOU RECALL IT.
 
     (Just a basic music randomizer.)
     (Will likely not include rhythm games or the Sweet Cap'n Cakes fight.)
@@ -99,9 +99,10 @@ class BetterOdds(Toggle):
 
 class RockVideoSanity(Choice):
     """
-    SHOULD THE ROCK VIDEO RANKS BE LOCATIONS ?
+    YOUR RANK IN CONCERTS WILL COUNT AS LOCATIONS.
 
-    *(Also named Lightner Live concerts)*
+    *(Also named Lightners Live concerts, Rhythm minigames, etc)*
+    *(This is separate Chapter 3's Board 2 ranks)*
     """
 
     display_name = "Rock Video Sanity"
@@ -112,7 +113,9 @@ class RockVideoSanity(Choice):
 
 class ExcludeTRankRockVideo(Toggle):
     """
-    THE HIGHEST RANK OF THE ROCK VIDEO WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    THE HIGHEST RANK OF THE CONCERTS WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+
+    (Of course, this only applies if you set Rocky Video Sanity to true.)
     """
 
     display_name = "Exclude T Rank for rock video"
@@ -121,7 +124,9 @@ class ExcludeTRankRockVideo(Toggle):
 
 class ExcludeZRankRockVideo(Toggle):
     """
-    THE LOWEST RANK OF THE ROCK VIDEO WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    THE LOWEST RANK OF THE CONCERTS WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+
+    (Of course, this only applies if you set Rocky Video Sanity to true.)
     """
 
     display_name = "Exclude Z Rank for rock video"
@@ -199,6 +204,8 @@ class AllowDoomBoardWithoutAllCharacters(Toggle):
     *(This is because the board has an ACT that requires everyone in order to progress.)*
     *(If you want to disable this requirement, set this option to true.)*
     *(However, this will make it so that you might have to do fights such as the Knight with only one or two characters unlocked.)*
+
+    *(Of course, this only applies if you set Randomize Characters to true.)*
     """
 
     display_name = "Doom Board in logic without all characters"
@@ -225,7 +232,9 @@ class ExcludeZRankBoard(Toggle):
 
 class PhysicalChallengeRankSanity(Toggle):
     """
-    *idk how to gaster phrase that*
+    THE RANKS AQCUIRED ON THE LORD OF SCREEN'S CHALLENGES WILL BE COUNTED AS LOCATIONS.
+
+    *(This counts Cooking and Susiezilla. Rythym is it's own option.)*
     """
 
     display_name = "Physical Challenge Sanity"
@@ -234,7 +243,7 @@ class PhysicalChallengeRankSanity(Toggle):
 
 class ExcludeTRankPhysicalChallenge(Toggle):
     """
-    THE HIGHEST RANK OF THE THIRD CHAPTER FOR PHYSICAL CHALLENGES WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    THE HIGHEST RANK OF THE THIRD CHAPTER FOR CHALLENGES WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
     """
 
     display_name = "Exclude T Rank for physical challenges"
@@ -243,7 +252,7 @@ class ExcludeTRankPhysicalChallenge(Toggle):
 
 class ExcludeZRankPhysicalChallenge(Toggle):
     """
-    THE LOWEST RANK OF THE THIRD CHAPTER FOR PHYSICAL CHALLENGES WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
+    THE LOWEST RANK OF THE THIRD CHAPTER FOR CHALLENGES WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
     """
 
     display_name = "Exclude Z Rank for physical challenges"
@@ -361,7 +370,7 @@ class ItemBalancing(Toggle):
     """
     IF AN ITEM IS OBTAINED EARLY, ITS POWER WILL BE SCALED DOWN.
 
-    (Getting Chapter 5 items in Chapter 1 can make enemies die in a single hit and make you take less than 10 damage.)
+    (Getting Chapter 5 items in Chapter 1 can make enemies die in a single hit and make you take less than 10 damage each hit.)
     (If you don't want the game to be THAT easy, then set this option to true.)
 
     (Can be toggled in-game)
@@ -743,7 +752,7 @@ class UnlockCharacters(Choice):
 
     **(Of course, missing any number of characters makes battles exponentially more difficult.)**
     **(Expect things like battles taking 10 or more turns if you only have one character unlocked!)**
-    **(ONLY TURN THIS TO TRUE IF YOU ARE VERY SKILLED AT THE GAME.)**
+    **(ONLY TURN THIS TO TRUE IF YOU ARE SKILLED AT THE GAME.)**
     """
 
     display_name = "[HARD MODE] Unlock Characters"
@@ -829,14 +838,14 @@ class UnlockFunGangActions(Toggle):
 
 class SpeedrunGlitchesAsLogic(Toggle):
     """
-    THE INTENDED WAY TO PROGRESS WILL INCLUDE THE FAST LITTLE BOYS WAY.
+    THE FAST LITTLE BOYS WAY TO PROGRESS MAY BE THE EXPECTED WAY TO PROGRESS.
 
     (All reasonable glitches will now be in logic.)
-    (This includes: Wrong Warp, Bagel Overflow, interaction slide, ...)
+    (This includes: Wrong Warp, Bagel Overflow, interaction slide, etc.)
     (This doesn't includes: ARMS)
-    (This will also add locations that can be obtained with Singapour Wrong Warp in chapter 2 Weird Route)
-    (Do not forget to save on multiple slot to still have access on earlier event that might not happen anymore if you play with the plot value)
-    (Reminder that Bagel Overflow was re-implemented)
+    (This will also add locations that can be obtained with Singapore Wrong Warp in chapter 2 Weird Route.)
+    (Do not forget to save on multiple slot to still have access on earlier event that might not happen anymore if you play with the plot value.)
+    (Reminder that Bagel Overflow was re-implemented.)
     **(ONLY TURN THIS TO TRUE IF YOU ARE KNOWLEDGEABLE.)**
     """
 
@@ -846,13 +855,14 @@ class SpeedrunGlitchesAsLogic(Toggle):
 
 class NoHitAsLogic(Toggle):
     """
-    THE INTENDED WAY TO PROGRESS WILL INCLUDE THE DODGERS WAY.
+    SHOULD YOU HAVE NO CHARACTERS, TAKING NO DAMAGE WILL BE EXPECTED.
 
     (Fights or sections that require you no no-hit them will now be in logic.)
-    (That does nothing if you don't have unlockable characters.)
-    (This include: Mike fight, Knight Climb, Gerson)
-    (Reminder that Chapter 1 Lancer fight is always in logic no-hit)
+    (This includes: Mike fight, Knight Climb, Gerson.)
+    (Reminder that Chapter 1 Lancer fight is always in logic no-hit.)
     **(ONLY TURN THIS TO TRUE IF YOU ARE EXTREMELY SKILLED AT THE GAME.)**
+
+    *(Of course, this only applies if you set Unlock Characters to true.)*
     """
 
     display_name = "[HARD MODE] No Hit as Logic"
@@ -861,10 +871,10 @@ class NoHitAsLogic(Toggle):
 
 class AnnoyingFarmingAsLogic(Toggle):
     """
-    THE INTENDED WAY TO PROGRESS WILL INCLUDE THE FARMING WAY.
+    TASKS TAKING A GREAT AMOUNT OF TIME TO ACCOMPLISH WILL BE EXPECTED.
 
-    (Annoying forming will farming will now be in logic.)
-    (This include replaying Chapter 3 Board 1 multiple times for recruiting 25 shadowguy or spamming spare for certain fight to recruit enemies)
+    (Annoying farming will now be in logic.)
+    (This include replaying Chapter 3 Board 1 multiple times for recruiting 25 shadowguys or spamming spare to recruit enemies if you don't have any other way to spare them.)
     """
 
     display_name = "[HARD MODE] Annoying farming as Logic"
