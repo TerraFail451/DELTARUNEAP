@@ -1493,7 +1493,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 650,
+        "x": 750,
         "y": 275
       }
     ]
@@ -1736,7 +1736,7 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 650,
+        "x": 750,
         "y": 475
       }
     ]
@@ -2373,7 +2373,26 @@
   },
   {
     "name": "Chapter 5 - Castle - Chests",
-    "sections": [],
+    "sections": [
+      {
+        "name": "CH5: Castle West - Hidden Zen Garden Chest"
+      },
+      {
+        "name": "CH5: Castle East - Chest Past Paws"
+      },
+      {
+        "name": "CH5: Castle West - Shinobeetle Chest Behind Tree"
+      },
+      {
+        "name": "CH5: Top of Castle - Painting Room Item"
+      },
+      {
+        "name": "CH5: Top of Castle - Annoying Dog...?"
+      },
+      {
+        "name": "CH5: Castle West - Hidden Zen Garden Chest"
+      }
+    ],
     "map_locations": [
       {
         "map": "Overview",
@@ -2486,7 +2505,32 @@
   },
   {
     "name": "Chapter 5 - Castle - Pink Room",
-    "sections": [],
+    "sections": [
+      {
+        "name": "CH5: Top of Castle - Pink Defeat"
+      },
+      {
+        "name": "CH5: Top of Castle - Aqua's Gift"
+      },
+      {
+        "name": "CH5: Top of Castle - Orange's Gift"
+      },
+      {
+        "name": "CH5: Top of Castle - Blue's Gift"
+      },
+      {
+        "name": "CH5: Top of Castle - Seth's Gift"
+      },
+      {
+        "name": "CH5: Top of Castle - Green's Gift"
+      },
+      {
+        "name": "CH5: Top of Castle - Yellow's Gift"
+      },
+      {
+        "name": "CH5: Top of Castle - Flowery's Gift"
+      }
+    ],
     "map_locations": [
       {
         "map": "Overview",
@@ -2508,8 +2552,8 @@
     "map_locations": [
       {
         "map": "Overview",
-        "x": 1300,
-        "y": 790
+        "x": 1350,
+        "y": 800
       }
     ]
   },
