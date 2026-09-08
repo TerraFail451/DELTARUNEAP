@@ -233,8 +233,6 @@ class ExcludeZRankBoard(Toggle):
 class PhysicalChallengeRankSanity(Toggle):
     """
     THE RANKS AQCUIRED ON THE LORD OF SCREEN'S CHALLENGES WILL BE COUNTED AS LOCATIONS.
-
-    *(This counts Cooking and Susiezilla. Rythym is it's own option.)*
     """
 
     display_name = "Physical Challenge Sanity"
