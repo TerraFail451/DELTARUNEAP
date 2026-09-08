@@ -1,5 +1,6 @@
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachRegion, Has, True_
+from BaseClasses import LocationProgressType
 
 from worlds.deltarune.LogicHelper import (
     all_included_chapter,
@@ -145,36 +146,36 @@ def set_rules(world: "DeltaruneWorld"):
     if rock_video_sanity_enabled(world) and have_access_to_rock_video(world):
 
         if world.options.exclude_t_rank_rock_video == 1:
-            world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_T])
-            world.get_location(locations[LocationIDs.cc_rock_video_tv_time_T])
-            world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_T])
+            world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_T]).progress_type = LocationProgressType.EXCLUDED
+            world.get_location(locations[LocationIDs.cc_rock_video_tv_time_T]).progress_type = LocationProgressType.EXCLUDED
+            world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_T]).progress_type = LocationProgressType.EXCLUDED
 
             if rock_video_sanity_enabled_ch5(world):
-                world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_T])
+                world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_T]).progress_type = LocationProgressType.EXCLUDED
 
             if rock_video_sanity_hard_enabled(world):
-                world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_T_hard])
-                world.get_location(locations[LocationIDs.cc_rock_video_tv_time_T_hard])
-                world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_T_hard])
+                world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_T_hard]).progress_type = LocationProgressType.EXCLUDED
+                world.get_location(locations[LocationIDs.cc_rock_video_tv_time_T_hard]).progress_type = LocationProgressType.EXCLUDED
+                world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_T_hard]).progress_type = LocationProgressType.EXCLUDED
 
                 if rock_video_sanity_hard_enabled_ch5(world):
-                    world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_T_hard])
+                    world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_T_hard]).progress_type = LocationProgressType.EXCLUDED
 
         if world.options.exclude_z_rank_rock_video == 1:
-            world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_Z])
-            world.get_location(locations[LocationIDs.cc_rock_video_tv_time_Z])
-            world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_Z])
+            world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_Z]).progress_type = LocationProgressType.EXCLUDED
+            world.get_location(locations[LocationIDs.cc_rock_video_tv_time_Z]).progress_type = LocationProgressType.EXCLUDED
+            world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_Z]).progress_type = LocationProgressType.EXCLUDED
 
             if rock_video_sanity_enabled_ch5(world):
-                world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_Z])
+                world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_Z]).progress_type = LocationProgressType.EXCLUDED
 
             if rock_video_sanity_hard_enabled(world):
-                world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_Z_hard])
-                world.get_location(locations[LocationIDs.cc_rock_video_tv_time_Z_hard])
-                world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_Z_hard])
+                world.get_location(locations[LocationIDs.cc_rock_video_knock_you_down_Z_hard]).progress_type = LocationProgressType.EXCLUDED
+                world.get_location(locations[LocationIDs.cc_rock_video_tv_time_Z_hard]).progress_type = LocationProgressType.EXCLUDED
+                world.get_location(locations[LocationIDs.cc_rock_video_raise_up_your_bat_Z_hard]).progress_type = LocationProgressType.EXCLUDED
 
                 if rock_video_sanity_hard_enabled_ch5(world):
-                    world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_Z_hard])
+                    world.get_location(locations[LocationIDs.cc_rock_video_4rd_sanctuary_Z_hard]).progress_type = LocationProgressType.EXCLUDED
 
 
 def get_location(world: "DeltaruneWorld", chapter: int):

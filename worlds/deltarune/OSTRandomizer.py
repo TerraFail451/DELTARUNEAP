@@ -4,8 +4,6 @@ if TYPE_CHECKING:
     from . import DeltaruneWorld
 
 ost_name = [
-    "4rd_sanctuary.ogg",
-    "4rd_sanctuary_noguit.ogg",
     "acid_tunnel.ogg",
     "alarm_titlescreen.ogg",
     "alt_church_lobby.ogg",
@@ -200,8 +198,6 @@ ost_name = [
     "rakuichi_buster_wip.ogg",
     "rhythm_3rd_sanctuary_guit.ogg",
     "rhythm_3rd_sanctuary_noguit.ogg",
-    "rhythm_knockdown_combined.ogg",
-    "rhythm_knockdown_no_guit.ogg",
     "root_8bit.ogg",
     "rouxls_battle.ogg",
     "rudebuster_boss.ogg",
