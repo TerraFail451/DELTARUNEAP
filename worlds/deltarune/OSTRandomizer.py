@@ -213,7 +213,6 @@ ost_name = [
     "spamton_neo_after.ogg",
     "spamton_neo_meeting.ogg",
     "spamton_neo_mix_ex_wip.ogg",
-    "sound_battle_bg.ogg",
     "statue_chord_basic.ogg",
     "statue_level1.ogg",
     "statue_level2.ogg",
@@ -247,6 +246,16 @@ ost_name = [
     "tv_world.ogg",
     "tvromance.ogg",
     "vs_susie.ogg",
+    "tenna_battle.ogg",
+    "ch3_karaoke_full.ogg",
+    "ch3_karaoke_no_guitar.ogg",
+    "rhythm_knockdown_combined.ogg",
+    "rhythm_knockdown_no_guit.ogg",
+    "4rd_sanctuary.ogg",
+    "4rd_sanctuary_noguit.ogg",
+    "tenna_battle_guitar.ogg",
+    "cyber.ogg",
+    "mansion.ogg",
 ]
 
 
