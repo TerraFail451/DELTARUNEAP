@@ -859,7 +859,7 @@ class SpeedrunGlitchesAsLogic(Toggle):
     (This includes: Wrong Warp, Bagel Overflow, interaction slide, etc.)
     (This doesn't includes: ARMS)
     (This will also add locations that can be obtained with Singapore Wrong Warp in chapter 2 Weird Route.)
-    (Do not forget to save on multiple slot to still have access on earlier event that might not happen anymore if you play with the plot value.)
+    (Do not forget to have multiple saves to keep access to earlier events that may not happen anymore if the plot value updates.)
     (Reminder that Bagel Overflow was re-implemented.)
     **(ONLY TURN THIS TO TRUE IF YOU ARE KNOWLEDGEABLE.)**
     """
