@@ -329,7 +329,7 @@ class RandomizeChapters(Choice):
     option_in_order = 0
     option_randomized = 1
     option_all_unlocked = 2
-    default = option_all_unlocked
+    default = option_in_order
 
 
 class StartingChapter(Choice):
