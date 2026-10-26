@@ -61,6 +61,12 @@ def set_rules(world: "DeltaruneWorld"):
 
     world.set_rule(world.get_location(locations[LocationIDs.ch4_dark_sanctuary_climbing_tutorial_chest]), have_kris)
 
+
+    world.set_rule(  # You need to beat jackenstein first with Kris, or you can get it glitched with dark sanctuary skip
+        world.get_location(locations[LocationIDs.ch4_dark_sanctuary_sheetmusic]),
+        have_kris | speedrun_glitch_logic,
+    )
+
     if include_mike_games(world) and world.options.exclude_mike_platinum.value == 1:
         world.get_location(locations[LocationIDs.ch4_mike_pluey_platinum]).progress_type = LocationProgressType.EXCLUDED
         world.get_location(locations[LocationIDs.ch4_mike_battat_platinum]).progress_type = (

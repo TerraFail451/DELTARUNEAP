@@ -102,13 +102,13 @@ def create_regions(world: "DeltaruneWorld"):
         second_sanctuary,
         rule=Has(items[ItemIDs.sheetmusic]) & knight_climb & (have_kris_and_susie | Has(glitched_item_name)),
     )
-    dark_sanctuary_claimbclaws.connect(gerson, rule=have_susie | nohit_logic)
+    dark_sanctuary_claimbclaws.connect(gerson, rule=have_kris & (have_susie | nohit_logic)) # Kris needs to beat jack first if you don't skip dark sanctuary
 
     second_sanctuary.connect(second_sanctuary_post_wicabel, rule=have_kris)
 
     second_sanctuary_post_wicabel.connect(third_sanctuary, rule=have_susie)
 
-    third_sanctuary.connect(gerson, rule=have_susie | nohit_logic)
+    third_sanctuary.connect(gerson, rule=have_susie | nohit_logic) # Kris is not necessary as the flag for beating Jack is already set
 
     secret_boss_mandatory = CanReachLocation(
         locations[LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1]
