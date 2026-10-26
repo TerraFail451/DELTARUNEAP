@@ -140,6 +140,7 @@ class ExcludeZRankRockVideo(Toggle):
     """
     THE LOWEST RANK OF THE CONCERTS WILL BE EXCLUDED FROM CONTAINING AN IMPORTANT ITEM.
 
+    (Since Z-Rank is practically impossible on hard difficulty, those are not included.)
     (Of course, this only applies if you set Rocky Video Sanity to true.)
     """
 
